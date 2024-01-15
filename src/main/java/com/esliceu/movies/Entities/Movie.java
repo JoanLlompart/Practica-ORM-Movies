@@ -3,6 +3,7 @@ package com.esliceu.movies.Entities;
 import jakarta.persistence.*;
 
 import java.math.BigDecimal;
+import java.sql.Date;
 
 @Entity
 @Table(name = "movie")
@@ -26,8 +27,9 @@ public class Movie {
     @Column(name = "popularity")
     private Double popularity;
 
-    @Column(name = "release-date")
-    private BigDecimal releaseDate;
+    @Column(name = "release_date")
+    @Temporal(TemporalType.DATE)
+    private Date releaseDate;
 
     @Column(name = "revenue")
     private Long revenue;
@@ -94,11 +96,11 @@ public class Movie {
         this.popularity = popularity;
     }
 
-    public BigDecimal getReleaseDate() {
+    public Date getReleaseDate() {
         return releaseDate;
     }
 
-    public void setReleaseDate(BigDecimal releaseDate) {
+    public void setReleaseDate(Date releaseDate) {
         this.releaseDate = releaseDate;
     }
 

@@ -2,6 +2,8 @@ package com.esliceu.movies.Entities;
 
 import jakarta.persistence.*;
 
+import java.util.Set;
+
 @Entity
 @Table(name = "country")
 public class Country {
@@ -16,6 +18,8 @@ public class Country {
     @Column(name = "country_name")
     private String countryName;
 
+    @OneToMany(mappedBy = "country")
+    private Set<ProductionCountry> productionCountries;
 
     public Long getCountry_id() {
         return country_id;

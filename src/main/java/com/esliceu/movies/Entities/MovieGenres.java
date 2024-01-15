@@ -17,7 +17,6 @@ public class MovieGenres {
     @JoinColumn(name = "genre_id")
     private Gender gender;
 
-
     public Movie getMovie() {
         return movie;
     }

@@ -31,4 +31,51 @@ public class MovieLanguages {
     @JoinColumn(name = "language_role_id", insertable = false, updatable = false)
     private LanguageRole languageRole;
 
+    public Long getMovieId() {
+        return movieId;
+    }
+
+    public void setMovieId(Long movieId) {
+        this.movieId = movieId;
+    }
+
+    public Long getLanguageId() {
+        return languageId;
+    }
+
+    public void setLanguageId(Long languageId) {
+        this.languageId = languageId;
+    }
+
+    public Long getLanguageRoleId() {
+        return languageRoleId;
+    }
+
+    public void setLanguageRoleId(Long languageRoleId) {
+        this.languageRoleId = languageRoleId;
+    }
+
+    public Movie getMovie() {
+        return movie;
+    }
+
+    public void setMovie(Movie movie) {
+        this.movie = movie;
+    }
+
+    public Language getLanguage() {
+        return language;
+    }
+
+    public void setLanguage(Language language) {
+        this.language = language;
+    }
+
+    public LanguageRole getLanguageRole() {
+        return languageRole;
+    }
+
+    public void setLanguageRole(LanguageRole languageRole) {
+        this.languageRole = languageRole;
+    }
 }

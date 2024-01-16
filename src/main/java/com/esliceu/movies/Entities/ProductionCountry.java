@@ -10,7 +10,7 @@ import jakarta.persistence.*;
 public class ProductionCountry {
     @Id
     @ManyToOne
-    @JoinColumn(name = "movie_id")
+    @JoinColumn(name = "movie_id",  referencedColumnName = "movie_id")
     private Movie movie;
 
     @Id

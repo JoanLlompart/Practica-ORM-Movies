@@ -56,4 +56,15 @@ public class UserServices {
             return false;
         }
     }
+
+    public boolean registrarUsuari(String name, String email, String password) {
+        User user = new User();
+        user.setEmail(email);
+        //hem de comprobar si existeix.
+        user.setName(name);
+        String encriptPass =encriptarPassword(password);
+        user.setPassword(encriptPass);
+        adminRepo.save(user);
+        return true;
+    }
 }

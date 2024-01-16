@@ -1,5 +1,6 @@
 package com.esliceu.movies.Controllers;
 
+import com.esliceu.movies.Services.UserServices;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -10,11 +11,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import java.io.IOException;
 
-//@Controller
+@Controller
 public class RegisterController {
-    /*
+
     @Autowired
-    UserService userService;
+    UserServices userServices;
     @GetMapping("/register")
     public String showRegistrationForm() {
         return "register";
@@ -26,7 +27,7 @@ public class RegisterController {
                                       Model model, HttpServletResponse resp) throws IOException {
         boolean passwordValida = password.length() >= 5;
         if (passwordValida) {
-            boolean registrat = userService.registrarUsuari(name, email, password);
+            boolean registrat = userServices.registrarUsuari(name, email, password);
             if (registrat) {
                 model.addAttribute("missatgeRegistre", "Registre correcte. Benvingut!");
                 return "redirect:/login";
@@ -41,5 +42,5 @@ public class RegisterController {
         }
     }
 
-     */
+
 }

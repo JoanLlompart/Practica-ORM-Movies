@@ -12,7 +12,7 @@ public class Movie {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "movie_id")
-    private Long movie_id;
+    private Long movieId; //se ha cambiat antes se deia movie_id
 
     @Column(name = "title")
     private String title;
@@ -20,7 +20,7 @@ public class Movie {
     @Column(name = "budget")
     private Integer budget;
     @Column(name = "homepage")
-    private String hompage;
+    private String homepage;
 
     @Column(name = "overview")
     private String overview;
@@ -70,13 +70,12 @@ public class Movie {
     @OneToMany(mappedBy = "movie")
     private Set<MovieLanguages> movieLanguages;
 
-
-    public Long getMovie_id() {
-        return movie_id;
+    public Long getMovieId() {
+        return movieId;
     }
 
-    public void setMovie_id(Long movie_id) {
-        this.movie_id = movie_id;
+    public void setMovieId(Long movieId) {
+        this.movieId = movieId;
     }
 
     public String getTitle() {
@@ -95,12 +94,12 @@ public class Movie {
         this.budget = budget;
     }
 
-    public String getHompage() {
-        return hompage;
+    public String getHomepage() {
+        return homepage;
     }
 
-    public void setHompage(String hompage) {
-        this.hompage = hompage;
+    public void setHomepage(String homepage) {
+        this.homepage = homepage;
     }
 
     public String getOverview() {
@@ -173,5 +172,61 @@ public class Movie {
 
     public void setVoteCount(Integer voteCount) {
         this.voteCount = voteCount;
+    }
+
+    public Set<MovieCast> getMoviecast() {
+        return moviecast;
+    }
+
+    public void setMoviecast(Set<MovieCast> moviecast) {
+        this.moviecast = moviecast;
+    }
+
+    public Set<ProductionCountry> getProductionCountries() {
+        return productionCountries;
+    }
+
+    public void setProductionCountries(Set<ProductionCountry> productionCountries) {
+        this.productionCountries = productionCountries;
+    }
+
+    public Set<MovieCompany> getMovieCompanies() {
+        return movieCompanies;
+    }
+
+    public void setMovieCompanies(Set<MovieCompany> movieCompanies) {
+        this.movieCompanies = movieCompanies;
+    }
+
+    public Set<MovieCrew> getMovieCrews() {
+        return movieCrews;
+    }
+
+    public void setMovieCrews(Set<MovieCrew> movieCrews) {
+        this.movieCrews = movieCrews;
+    }
+
+    public Set<MovieGenres> getMovieGenres() {
+        return movieGenres;
+    }
+
+    public void setMovieGenres(Set<MovieGenres> movieGenres) {
+        this.movieGenres = movieGenres;
+    }
+
+    public Set<MovieKeywords> getMovieKeywords() {
+        return movieKeywords;
+    }
+
+    public void setMovieKeywords(Set<MovieKeywords> movieKeywords) {
+        this.movieKeywords = movieKeywords;
+    }
+
+    public Set<MovieLanguages> getMovieLanguages() {
+        return movieLanguages;
+    }
+
+    public void setMovieLanguages(Set<MovieLanguages> movieLanguages) {
+        this.movieLanguages = movieLanguages;
     }
 }

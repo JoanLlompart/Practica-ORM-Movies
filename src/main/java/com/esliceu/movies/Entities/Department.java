@@ -2,6 +2,8 @@ package com.esliceu.movies.Entities;
 
 import jakarta.persistence.*;
 
+import java.util.Set;
+
 @Entity
 @Table(name = "department")
 public class Department {
@@ -13,6 +15,16 @@ public class Department {
 
     @Column(name = "department_name")
     private String departmentName;
+    @OneToMany(mappedBy = "department")
+    private Set<MovieCrew> movieCrews;
+
+    public Set<MovieCrew> getMovieCrews() {
+        return movieCrews;
+    }
+
+    public void setMovieCrews(Set<MovieCrew> movieCrews) {
+        this.movieCrews = movieCrews;
+    }
 
     public Long getDepartmentId() {
         return departmentId;

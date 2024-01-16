@@ -12,9 +12,9 @@ public class MovieGenres {
     @JoinColumn(name = "movie_id")
     private Movie movie;
     @Id
-    @ManyToMany
+    @ManyToOne
     @JoinColumn(name = "genre_id")
-    private Gender gender;
+    private Genre genre;
 
     public Movie getMovie() {
         return movie;
@@ -24,11 +24,11 @@ public class MovieGenres {
         this.movie = movie;
     }
 
-    public Gender getGender() {
-        return gender;
+    public Genre getGenre() {
+        return genre;
     }
 
-    public void setGender(Gender gender) {
-        this.gender = gender;
+    public void setGenre(Genre genre) {
+        this.genre = genre;
     }
 }

@@ -2,23 +2,32 @@ package com.esliceu.movies.Entities;
 
 import jakarta.persistence.*;
 
+import java.util.Set;
+
 @Entity
 @Table(name = "person")
 public class Person {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "person_id")
-    private Long person_id;
+    private Long personId;
 
     @Column(name = "person_name")
     private String personName;
 
-    public Long getPerson_id() {
-        return person_id;
+    @OneToMany(mappedBy = "person")
+    private Set<MovieCast> moviecast;
+
+    @OneToMany(mappedBy = "person")
+    private Set<MovieCrew> movieCrews;
+
+
+    public Long getPersonId() {
+        return personId;
     }
 
-    public void setPerson_id(Long person_id) {
-        this.person_id = person_id;
+    public void setPersonId(Long personId) {
+        this.personId = personId;
     }
 
     public String getPersonName() {
@@ -27,5 +36,21 @@ public class Person {
 
     public void setPersonName(String personName) {
         this.personName = personName;
+    }
+
+    public Set<MovieCast> getMoviecast() {
+        return moviecast;
+    }
+
+    public void setMoviecast(Set<MovieCast> moviecast) {
+        this.moviecast = moviecast;
+    }
+
+    public Set<MovieCrew> getMovieCrews() {
+        return movieCrews;
+    }
+
+    public void setMovieCrews(Set<MovieCrew> movieCrews) {
+        this.movieCrews = movieCrews;
     }
 }

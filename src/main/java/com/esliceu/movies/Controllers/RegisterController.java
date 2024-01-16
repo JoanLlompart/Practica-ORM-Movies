@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import java.io.IOException;
 
-@Controller
+//@Controller
 public class RegisterController {
     /*
     @Autowired

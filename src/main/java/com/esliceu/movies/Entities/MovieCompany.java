@@ -4,9 +4,34 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "movie_company")
+@Table(name = "movie_company",
+        uniqueConstraints =
+        @UniqueConstraint(columnNames = {"movie_id", "company_id"})
+        )
 public class MovieCompany {
     @Id
-    @Column(name = "movie_id")
-    private Long movieId;
+    @ManyToOne
+    @JoinColumn(name = "movie_id")
+    private Movie movie;
+
+    @Id
+    @ManyToOne
+    @JoinColumn(name = "company_id")
+    private ProductionCompany company;
+
+    public Movie getMovie() {
+        return movie;
+    }
+
+    public void setMovie(Movie movie) {
+        this.movie = movie;
+    }
+
+    public ProductionCompany getCompany() {
+        return company;
+    }
+
+    public void setCompany(ProductionCompany company) {
+        this.company = company;
+    }
 }

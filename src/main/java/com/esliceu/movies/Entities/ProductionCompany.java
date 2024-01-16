@@ -12,7 +12,32 @@ public class ProductionCompany {
     @Column(name = "company_id")
     private Long companyId;
 
+    @Column(name = "company_name")
+    private String companyName;
     @OneToMany(mappedBy = "company")
     private Set<MovieCompany> movieCompanies;
 
+    public Long getCompanyId() {
+        return companyId;
+    }
+
+    public void setCompanyId(Long companyId) {
+        this.companyId = companyId;
+    }
+
+    public String getCompanyName() {
+        return companyName;
+    }
+
+    public void setCompanyName(String companyName) {
+        this.companyName = companyName;
+    }
+
+    public Set<MovieCompany> getMovieCompanies() {
+        return movieCompanies;
+    }
+
+    public void setMovieCompanies(Set<MovieCompany> movieCompanies) {
+        this.movieCompanies = movieCompanies;
+    }
 }

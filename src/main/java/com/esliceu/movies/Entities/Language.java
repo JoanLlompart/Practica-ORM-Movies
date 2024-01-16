@@ -2,6 +2,8 @@ package com.esliceu.movies.Entities;
 
 import jakarta.persistence.*;
 
+import java.util.Set;
+
 @Entity
 @Table(name = "language")
 public class Language {
@@ -15,6 +17,9 @@ public class Language {
 
     @Column(name = "language_name")
     private String languageName;
+
+    @OneToMany(mappedBy = "language")
+    private Set<MovieLanguages> movieLanguages;
 
     public Long getLanguageId() {
         return languageId;

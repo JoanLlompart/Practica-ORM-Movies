@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 
 import java.math.BigDecimal;
 import java.sql.Date;
+import java.util.Set;
 
 @Entity
 @Table(name = "movie")
@@ -47,6 +48,28 @@ public class Movie {
     private Double voteAverage;
     @Column(name = "vote_count")
     private Integer voteCount;
+
+
+    @OneToMany(mappedBy = "movie")
+    private Set<MovieCast> moviecast;
+    @OneToMany(mappedBy = "movie")
+    private Set<ProductionCountry> productionCountries;
+
+    @OneToMany(mappedBy = "movie")
+    private Set<MovieCompany> movieCompanies;
+
+    @OneToMany(mappedBy = "movie")
+    private Set<MovieCrew> movieCrews;
+
+    @OneToMany(mappedBy = "movie")
+    private Set<MovieGenres> movieGenres;
+
+    @OneToMany(mappedBy = "movie")
+    private Set<MovieKeywords> movieKeywords;
+
+    @OneToMany(mappedBy = "movie")
+    private Set<MovieLanguages> movieLanguages;
+
 
     public Long getMovie_id() {
         return movie_id;

@@ -15,7 +15,7 @@ public class Keyword {
     @Column(name = "keyword_name")
     private String keywordName;
 
-    @ManyToMany(mappedBy = "keyword")
-    private Set<MovieKeywords> movieKeywords = new HashSet<>();
+    @OneToMany(mappedBy = "keyword")
+    private Set<MovieKeywords> movieKeywords;
 
 }

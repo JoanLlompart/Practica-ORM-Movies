@@ -43,16 +43,17 @@ public class UserServices {
 
     public boolean validLogin(String email, String password) {
         User user = adminRepo.findByEmail(email);
-
         if (user == null) {
             System.out.println("Usuari no existent");
             return false;
         }
-        if (user.getEmail().equals(email)) {
-            System.out.println("usuari existent");
+        if (user.getEmail().equals(email) && user.getPassword().equals(password)) {
+            System.out.println("usuari existent" + "PasswordCorrecte");
+            System.out.println(user.getPassword());
+           // password = encriptarPassword(password);
             return true;
         } else {
-            System.out.println("Usuari inexistent");
+            System.out.println("Usuari o password incorrectes");
             return false;
         }
     }

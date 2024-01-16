@@ -44,4 +44,12 @@ public class Country {
     public void setCountryName(String countryName) {
         this.countryName = countryName;
     }
+
+    public Set<ProductionCountry> getProductionCountries() {
+        return productionCountries;
+    }
+
+    public void setProductionCountries(Set<ProductionCountry> productionCountries) {
+        this.productionCountries = productionCountries;
+    }
 }

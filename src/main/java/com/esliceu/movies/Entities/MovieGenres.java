@@ -11,7 +11,6 @@ public class MovieGenres {
     @ManyToOne
     @JoinColumn(name = "movie_id")
     private Movie movie;
-
     @Id
     @ManyToMany
     @JoinColumn(name = "genre_id")

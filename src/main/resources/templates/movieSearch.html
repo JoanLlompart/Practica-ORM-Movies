@@ -26,7 +26,7 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item"><a class="nav-link" href="/login">Admin Area</a></li>
-                    <li class="nav-item"><a class="nav-link" href="/movieSearch">Log Out/a></li>
+                    <li class="nav-item"><a class="nav-link" href="/movieSearch">Log Out </li>
                     <li class="nav-item"><a class="nav-link" href="/login">Login</a></li>
                 </ul>
             </div>
@@ -54,6 +54,15 @@
                 </tr>
             </tbody>
         </table>
+
+        <!-- Controles de paginación -->
+        <nav aria-label="Page navigation">
+            <ul class="pagination">
+                <li class="page-item" th:each="pageNumber : ${#numbers.sequence(0, totalPages - 1)}">
+                    <a class="page-link" th:href="@{/movieSearch(page=${pageNumber})}" th:text="${pageNumber + 1}"></a>
+                </li>
+            </ul>
+        </nav>
     </div>
 
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"

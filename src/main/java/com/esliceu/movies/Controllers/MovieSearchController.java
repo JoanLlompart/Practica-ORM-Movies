@@ -37,7 +37,10 @@ public class MovieSearchController {
         return "movieSearch";
     }
     @PostMapping("/movieSearch")
-    public String filterMovies(Model model, HttpSession session, HttpServletRequest req) {
+    public String filterMovies(Model model, HttpSession session, HttpServletRequest req, @RequestParam String filter,
+                               @RequestParam String keyword) {
+        System.out.println("Filtram per : " + filter + " , amb la paraula clau : " + keyword );
+
         return "movieSearch";
     }
 

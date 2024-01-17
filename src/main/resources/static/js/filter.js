@@ -1,7 +1,11 @@
 function sendData() {
     var form = document.getElementById('formFilter');
-    var formData = new FormData(form);
+    var filter = document.getElementById('filter').value;
+    var keyword = document.getElementById('keyword').value;
 
+    var formData = new FormData();
+    formData.append("filter",filter);
+    formData.append("keyword",keyword);
     fetch('/movieSearch', {
         method: 'POST', 
         headers: {

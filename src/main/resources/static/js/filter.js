@@ -1,9 +1,12 @@
 function sendData() {
-    var form = document.getElementById('myForm');
+    var form = document.getElementById('formFilter');
     var formData = new FormData(form);
 
     fetch('/movieSearch', {
-        method: 'POST', // o 'GET' según tu necesidad
+        method: 'POST', 
+        headers: {
+            'Content-Type': 'application/json'
+        },
         body: formData
     })
     .then(response => response.json())

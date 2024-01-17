@@ -44,6 +44,8 @@ public class MovieSearchController {
         String filter = formData.get("filter");
         String keyword = formData.get("keyword");
         System.out.println("Filtram per : " + filter + " , amb la paraula clau : " + keyword );
+        //En el service filtram per el tipus de keyword i tractam les dades.
+        movieSearchServices.filterMovies(filter,keyword);
 
         return "movieSearch";
     }

@@ -8,6 +8,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.util.Arrays;
 import java.util.List;
 
 @Service
@@ -22,5 +23,15 @@ public class MovieSearchServices {
 
     public Page<Movie> getPage(Pageable pageable) {
         return movieSearchRepo.findAll(pageable);
+    }
+
+    public void filterMovies(String filter, String keyword) {
+        List<String> validFilters = Arrays.asList("title","actor","character", "genre", "director");
+
+        if (validFilters.contains(filter)) {
+            System.out.println("Es un filtre valid");
+        } else {
+            System.out.println("Filtre no valid");
+        }
     }
 }

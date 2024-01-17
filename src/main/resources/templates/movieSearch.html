@@ -1,37 +1,43 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
+
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <title>Movie Search</title>
 </head>
+
 <body>
-<header>
-    <div class="header">
-        <nav>
-            <ul class="nav-list">
-                <li class="barra-pagina"><a href="/movieSearch">Search</a></li>
-                <li class="barra-pagina"><a href="/login">Admin Area</a></li>
-                <li class="barra-pagina"><a href="/allCanvas"></a></li>
-                <li class="barra-pagina"><a href="/login"></a></li>
-            </ul>
-        </nav>
-    </div>
-</header>
+    <header>
+        <div class="header">
+            <nav>
+                <ul class="nav-list">
+                    <li class="barra-pagina"><a href="/movieSearch">Search</a></li>
+                    <li class="barra-pagina"><a href="/login">Admin Area</a></li>
+                    <li class="barra-pagina"><a href="/allCanvas"></a></li>
+                    <li class="barra-pagina"><a href="/login"></a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
 
-<h1>Search your Movies</h1>
+    <h1>Search your Movies</h1>
 
-<table>
-    <tr>
-        <th>IdCanvas</th>
-        <th>Nombre</th>
-        <th>Fecha de creacion</th>
-        <th>Elementos</th>
-    </tr>
-    <tr th:each="movies : ${moviesFind}">
-        <td th:text="${movies.movieId}"></td>
-        <td th:text="${movies.title}"></td>
-        <td th:text="${movies.budget}"></td>
-    </tr>
-</table>
+    <table>
+        <tr>
+            <th>IdCanvas</th>
+            <th>Nombre</th>
+            <th>Fecha de creacion</th>
+            <th>Valoracion</th>
+        </tr>
+        <tr th:each="movies : ${moviesFind}">
+            <td th:text="${movies.movieId}"></td>
+            <td th:text="${movies.title}"></td>
+            <td th:text="${movies.releaseDate}"></td>
+            <td th:text="${movies.voteAverage}"></td>
+        </tr>
+    </table>
 </body>
+
 </html>

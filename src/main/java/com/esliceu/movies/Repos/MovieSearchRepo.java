@@ -5,6 +5,8 @@ import com.esliceu.movies.Entities.User;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 
@@ -13,4 +15,9 @@ public interface MovieSearchRepo extends JpaRepository<Movie, Long> {
 
     //Per paginar les pagines
     Page<Movie> findAll(Pageable pageable);
+    @Query("SELECT * FROM Movie m " +
+            "JOIN MovieCrew mc ON m.movieId = mc.movie.movieId " +
+            "JOIN Person p ON p.personId = mc.person.personId " +
+            "WHERE mc.job = 'Author' AND p.personName = :personName")
+    List<Movie> findMovieByActor(@Param("personName") String keyword);
 }

@@ -1,9 +1,5 @@
 package com.esliceu.movies.Entities;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-
-import java.math.BigDecimal;
 import java.sql.Date;
 import java.util.Set;
 

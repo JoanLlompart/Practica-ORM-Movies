@@ -18,20 +18,39 @@ public class MovieSearchServices {
 
 
     public List<Movie> allMovies() {
-       return movieSearchRepo.findAll();
+        return movieSearchRepo.findAll();
     }
 
     public Page<Movie> getPage(Pageable pageable) {
         return movieSearchRepo.findAll(pageable);
     }
 
-    public void filterMovies(String filter, String keyword) {
-        List<String> validFilters = Arrays.asList("title","actor","character", "genre", "director");
+    public List<Movie> filterMovies(String filter, String keyword) {
+        List<String> validFilters = Arrays.asList("title", "actor", "character", "genre", "director");
 
         if (validFilters.contains(filter)) {
             System.out.println("Es un filtre valid");
+            switch (filter) {
+                case "actor":
+                    return movieSearchRepo.findMovieByActor(keyword);
+                case "character":
+                    break;
+                case "title":
+                    System.out.println();
+                    break;
+                case "genre":
+                    break;
+                case "director":
+                    break;
+                default:
+                    System.err.println("Tipus de filtre no trobat");
+                    break;
+            }
         } else {
             System.out.println("Filtre no valid");
         }
+        return null;
     }
+
+
 }

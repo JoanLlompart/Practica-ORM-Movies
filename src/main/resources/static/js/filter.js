@@ -3,15 +3,21 @@ function sendData() {
     var filter = document.getElementById('filter').value;
     var keyword = document.getElementById('keyword').value;
 
+    /*
     var formData = new FormData();
     formData.append("filter",filter);
     formData.append("keyword",keyword);
+    */
+    var formData = {
+    filter: filter,
+    keyword: keyword
+    }
     fetch('/movieSearch', {
         method: 'POST', 
         headers: {
             'Content-Type': 'application/json'
         },
-        body: formData
+        body:JSON.stringify(formData)
     })
     .then(response => response.json())
     .then(data => {

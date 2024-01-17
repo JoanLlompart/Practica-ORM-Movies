@@ -11,9 +11,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
+import java.util.Map;
 
 @Controller
 public class MovieSearchController {
@@ -37,8 +39,10 @@ public class MovieSearchController {
         return "movieSearch";
     }
     @PostMapping("/movieSearch")
-    public String filterMovies(Model model, HttpSession session, HttpServletRequest req, @RequestParam String filter,
-                               @RequestParam String keyword) {
+    public String filterMovies(Model model, HttpSession session, HttpServletRequest req,
+                               @RequestBody Map<String, String> formData ) {
+        String filter = formData.get("filter");
+        String keyword = formData.get("keyword");
         System.out.println("Filtram per : " + filter + " , amb la paraula clau : " + keyword );
 
         return "movieSearch";

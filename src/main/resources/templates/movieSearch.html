@@ -26,7 +26,7 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item"><a class="nav-link" href="/login">Admin Area</a></li>
-                    <li class="nav-item"><a class="nav-link" href="/movieSearch">Log Out </li>
+                    <li class="nav-item"><a class="nav-link" href="/movieSearch">Log Out </a></li>
                     <li class="nav-item"><a class="nav-link" href="/login">Login</a></li>
                 </ul>
             </div>
@@ -35,6 +35,19 @@
 
     <div class="container mt-5">
         <h1 class="mb-4">Search your Movies</h1>
+
+        <select name="filter" id="filter">
+            <option value="actor">Actor</option>
+            <option value="character">Movie character</option>
+            <option value="title">Title</option>
+            <option value="genre">Genre</option>
+            <option value="director">Director</option>
+        </select>
+
+        <input type="text" name="textFilter" id="textFilter" placeholder="keyword">
+
+        <button type="button" onclick="sendData()">Filter</button>
+    </form>
 
         <table class="table">
             <thead>
@@ -81,17 +94,17 @@
             </select>
 
             <!-- Botones de avance y retroceso -->
-            <button class="btn btn-secondary ml-2" onclick="goToPage(${currentPage - 1})">Anterior</button>
-            <button class="btn btn-secondary ml-2" onclick="goToPage(${currentPage + 1})">Siguiente</button>
+            <button class="btn btn-secondary ml-2" onclick="goToPage(${currentPage - 1})">Previous</button>
+            <button class="btn btn-secondary ml-2" onclick="goToPage(${currentPage + 1})">Next</button>
 
             <!-- Campo de texto para ir a una página específica 
             <input type="text" class="form-control ml-2" id="pageNumberInput" placeholder="Ir a la página"
                 onkeypress="return event.charCode >= 48 && event.charCode <= 57">
             <button class="btn btn-primary ml-2"
                 onclick="goToPage(document.getElementById('pageNumberInput').value)">Ir</button> -->
-            <input type="text" class="form-control ml-2" id="pageNumberInput" placeholder="Ir a la página"
+            <input type="text" class="form-control ml-2" id="pageNumberInput" placeholder="Escribe la pagina"
                 onkeypress="return event.charCode >= 48 && event.charCode <= 57">
-            <button class="btn btn-primary ml-2" onclick="goToPage()">Ir</button>
+            <button class="btn btn-primary ml-2" onclick="goToPage()">Go to page</button>
         </nav>
     </div>
 

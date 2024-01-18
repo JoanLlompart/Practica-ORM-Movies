@@ -32,4 +32,9 @@ public interface MovieSearchRepo extends JpaRepository<Movie, Long> {
 
     @Query("SELECT m FROM Movie m WHERE m.title LIKE %:keyword%")
     Page<Movie> findMoviesByTitle(@Param("keyword")String keyword, Pageable pageable);
+
+
+
+    //proba
+   // List<Movie> findByTitleStartingWithIgnoreCase()
 }

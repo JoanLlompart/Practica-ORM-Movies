@@ -51,6 +51,18 @@ public class MovieSearchController {
 
      */
 
+    @GetMapping("filmsauto")
+    public String getFilms2() {
+        return "autocomplete";
+    }
+
+    @GetMapping("/filmauto")
+    @ResponseBody
+    public List<MovieAutoDTO> filmauto(@RequestParam String term) {
+
+    }
+
+
     @PostMapping("/movieSearch")
     @ResponseBody
     public List<MovieDTO> filterMovies(@RequestBody Map<String, String> formData) {
@@ -65,8 +77,9 @@ public class MovieSearchController {
         return movieList;
     }
 
+
     //TODO:PROBA
 
-    }
+
 
 }

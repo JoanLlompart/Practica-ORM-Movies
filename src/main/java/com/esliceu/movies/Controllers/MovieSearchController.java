@@ -1,5 +1,6 @@
 package com.esliceu.movies.Controllers;
 
+import com.esliceu.movies.DTO.MovieDTO;
 import com.esliceu.movies.Entities.Movie;
 import com.esliceu.movies.Services.MovieSearchServices;
 import jakarta.servlet.http.HttpServletRequest;
@@ -51,13 +52,13 @@ public class MovieSearchController {
      */
     @PostMapping("/movieSearch")
     @ResponseBody
-    public List<Movie> filterMovies(@RequestBody Map<String, String> formData) {
+    public List<MovieDTO> filterMovies(@RequestBody Map<String, String> formData) {
         String filter = formData.get("filter");
         String keyword = formData.get("keyword");
         System.out.println("Filtram per: " + filter + ", amb la paraula clau: " + keyword);
         // En el service filtramos por el tipo de keyword y tratamos las datos.
-        List<Movie> movieList = movieSearchServices.filterMovies(filter, keyword);
-        for(Movie m: movieList) {
+        List<MovieDTO> movieList = movieSearchServices.filterMovies(filter, keyword);
+        for(MovieDTO m: movieList) {
             System.out.println(m.getTitle());
         }
         return movieList;

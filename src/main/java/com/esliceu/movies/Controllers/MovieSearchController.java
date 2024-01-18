@@ -36,6 +36,7 @@ public class MovieSearchController {
 
         return "movieSearch";
     }
+
     @PostMapping("/movieSearch")
     public String filterMovies(Model model, HttpSession session, HttpServletRequest req,
                                @RequestBody Map<String, String> formData ) {

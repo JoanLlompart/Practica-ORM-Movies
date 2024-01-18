@@ -41,7 +41,7 @@ public class LoginController {
                 session.setAttribute("loginAttempts", 0);
                 session.setAttribute("usuariLogueat", true);
                 //session.setAttribute("name",nameUser);
-                //Redireccio a canvasDraw
+                //Redireccio a movieSearch
                 return "redirect:/movieSearch";
             } else {
                 if (loginAttempts == null) {

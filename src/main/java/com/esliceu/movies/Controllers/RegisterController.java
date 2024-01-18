@@ -2,6 +2,7 @@ package com.esliceu.movies.Controllers;
 
 import com.esliceu.movies.Services.UserServices;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,14 +18,16 @@ public class RegisterController {
     @Autowired
     UserServices userServices;
     @GetMapping("/register")
-    public String showRegistrationForm() {
+    public String showRegistrationForm(HttpSession session) {
+        String email = (String) session.getAttribute("email");
+
         return "register";
     }
     @PostMapping("/register")
     public String processRegistration(@RequestParam String name,
                                       @RequestParam String email,
                                       @RequestParam String password,
-                                      Model model, HttpServletResponse resp) throws IOException {
+                                      Model model, HttpServletResponse resp, HttpSession session) throws IOException {
         boolean passwordValida = password.length() >= 5;
         if (passwordValida) {
             boolean registrat = userServices.registrarUsuari(name, email, password);

@@ -49,8 +49,10 @@ public class MovieSearchServices {
                    }
                    return movieDTOList;
                 case "character":
+
                     break;
                 case "title":
+                    return findMoviesByTitle(keyword, page,);
                     System.out.println();
                     break;
                 case "genre":
@@ -67,6 +69,10 @@ public class MovieSearchServices {
         return null;
     }
 
+    public Page<Movie> findMoviesByTitle(String keyword, int page, int size) {
+        Pageable pageable = PageRequest.of(page, size);
+        return movieSearchRepo.findMoviesByTitle("%" + keyword + "%", pageable);
+    }
 /*
     public List<Movie> filterMovies(String filter, String keyword) {
         List<String> validFilters = Arrays.asList("title", "actor", "character", "genre", "director");

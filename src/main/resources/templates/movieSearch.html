@@ -6,15 +6,15 @@
     <title>Movie Search</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-   <!-- <style>
+    <!-- <style>
         body {
             padding-top: 56px;
         }
     </style>-->
-    
+
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="css/styleBasic.css" type="text/css">
-    
+
 </head>
 
 <body>
@@ -48,6 +48,14 @@
             </select>
 
             <input type="text" name="keyword" id="keyword" placeholder="keyword">
+            <!--Probant coses-->
+
+            <label for="page">Page:</label>
+            <input type="number" name="page" value="0" required>
+
+            <label for="size">Size:</label>
+            <input type="number" name="size" value="10" required>
+
 
             <button type="button" onclick="sendData()">Filter</button>
         </form>

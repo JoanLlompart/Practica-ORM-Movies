@@ -32,6 +32,7 @@ public class MovieSearchServices {
             System.out.println("Es un filtre valid");
             switch (filter) {
                 case "actor":
+                    System.out.println("actor :" + keyword );
                     return movieSearchRepo.findMovieByActor(keyword);
                 case "character":
                     break;

@@ -9,10 +9,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Map;
@@ -29,7 +26,7 @@ public class MovieSearchController {
         Page<Movie> pageRes = movieSearchServices.getPage(PageRequest.of(page, pageElement));
 
         List<Movie> movieList = movieSearchServices.allMovies();
-       // model.addAttribute("moviesFind", movieList);
+        model.addAttribute("moviesFind", movieList);
         model.addAttribute("moviesFind", pageRes.getContent());
         model.addAttribute("currentPage", page);
         model.addAttribute("totalPages", pageRes.getTotalPages());
@@ -37,7 +34,9 @@ public class MovieSearchController {
         return "movieSearch";
     }
 
+    /*
     @PostMapping("/movieSearch")
+    @ResponseBody
     public String filterMovies(Model model, HttpSession session, HttpServletRequest req,
                                @RequestBody Map<String, String> formData ) {
         String filter = formData.get("filter");
@@ -45,9 +44,23 @@ public class MovieSearchController {
         System.out.println("Filtram per : " + filter + " , amb la paraula clau : " + keyword );
         //En el service filtram per el tipus de keyword i tractam les dades.
         List<Movie> movieList= movieSearchServices.filterMovies(filter,keyword);
-        model.addAttribute("moviesFind",movieList);
+       // model.addAttribute("moviesFind",movieList);
         return "movieSearch";
     }
 
+     */
+    @PostMapping("/movieSearch")
+    @ResponseBody
+    public List<Movie> filterMovies(@RequestBody Map<String, String> formData) {
+        String filter = formData.get("filter");
+        String keyword = formData.get("keyword");
+        System.out.println("Filtram per: " + filter + ", amb la paraula clau: " + keyword);
+        // En el service filtramos por el tipo de keyword y tratamos las datos.
+        List<Movie> movieList = movieSearchServices.filterMovies(filter, keyword);
+        for(Movie m: movieList) {
+            System.out.println(m.getTitle());
+        }
+        return movieList;
+    }
 
 }

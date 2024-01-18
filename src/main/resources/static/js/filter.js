@@ -21,8 +21,18 @@ function sendData() {
     })
     .then(response => response.json())
     .then(data => {
-        // Manejar la respuesta del servidor si es necesario
-        console.log(data);
+        // Borrar la taula actual de dades per mostrar la nova
+        var tableBody = document.querySelector('.table tbody');
+        tableBody.innerHTML = "";
+        
+         // Llenar la tabla con los nuevos datos
+        data.moviesFind.forEach(movie => {
+            var newRow = tableBody.insertRow(tableBody.rows.length);
+            newRow.insertCell(0).textContent = movie.movieId;
+            newRow.insertCell(1).textContent = movie.title;
+            newRow.insertCell(2).textContent = movie.releaseDate;
+            newRow.insertCell(3).textContent = movie.voteAverage;
+        });
     })
     .catch(error => {
         console.error('Error:', error);

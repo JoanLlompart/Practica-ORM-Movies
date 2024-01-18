@@ -50,6 +50,7 @@ public class MovieSearchController {
     }
 
      */
+
     @PostMapping("/movieSearch")
     @ResponseBody
     public List<MovieDTO> filterMovies(@RequestBody Map<String, String> formData) {
@@ -66,5 +67,6 @@ public class MovieSearchController {
 
     //TODO:PROBA
 
+    }
 
 }

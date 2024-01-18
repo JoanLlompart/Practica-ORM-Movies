@@ -2,7 +2,8 @@ function sendData() {
     var form = document.getElementById('formFilter');
     var filter = document.getElementById('filter').value;
     var keyword = document.getElementById('keyword').value;
-    
+    var page = document.getElementById('page').value;
+    var size = document.getElementById('size').value; 
     /*
     var formData = new FormData();
     formData.append("filter",filter);
@@ -10,7 +11,9 @@ function sendData() {
     */
     var formData = {
     filter: filter,
-    keyword: keyword
+    keyword: keyword,
+    page: page,
+    size: size
     }
     fetch('/movieSearch', {
         method: 'POST', 

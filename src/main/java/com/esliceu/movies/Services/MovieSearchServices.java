@@ -27,7 +27,9 @@ public class MovieSearchServices {
         return movieSearchRepo.findAll(pageable);
     }
 
-    public List<MovieDTO> filterMovies(String filter, String keyword) {
+
+
+    public List<MovieDTO> filterMovies(String filter, String keyword,int page, int size) {
         List<String> validFilters = Arrays.asList("title", "actor", "character", "genre", "director");
 
         if (validFilters.contains(filter)) {
@@ -52,9 +54,17 @@ public class MovieSearchServices {
 
                     break;
                 case "title":
-                    return findMoviesByTitle(keyword, page,);
-                    System.out.println();
-                    break;
+                    Page<Movie> moviesList = findMoviesByTitle(keyword, page,size);
+                    List<MovieDTO> movietitleDTO = new ArrayList<>();
+                    for (Movie m:moviesList) {
+                        MovieDTO dto = new MovieDTO();
+                        dto.setMovieId(m.getMovieId());
+                        dto.setTitle(m.getTitle());
+                        dto.setReleaseDate(m.getReleaseDate());
+                        dto.setVoteAverage(m.getVoteAverage());
+                        movietitleDTO.add(dto);
+                    }
+                    return movietitleDTO;
                 case "genre":
                     break;
                 case "director":
@@ -105,3 +115,56 @@ public class MovieSearchServices {
 
  */
 }
+
+
+
+
+//anterior
+/*
+
+    public List<MovieDTO> filterMovies(String filter, String keyword,int page, int size) {
+        List<String> validFilters = Arrays.asList("title", "actor", "character", "genre", "director");
+
+        if (validFilters.contains(filter)) {
+            System.out.println("Es un filtre valid");
+            switch (filter) {
+                case "actor":
+                    System.out.println("actor :" + keyword );
+
+                   List<Movie> movieList= movieSearchRepo.findMovieByActor(keyword);
+                   List<MovieDTO> movieDTOList = new ArrayList<>();
+                   for (Movie m:movieList) {
+                       MovieDTO dto = new MovieDTO();
+                       dto.setMovieId(m.getMovieId());
+                       dto.setTitle(m.getTitle());
+                       dto.setReleaseDate(m.getReleaseDate());
+                       dto.setVoteAverage(m.getVoteAverage());
+                       //Una vegada el DTO te tots els atributs afegim a la llista
+                       movieDTOList.add(dto);
+                   }
+                   return movieDTOList;
+                case "character":
+
+                    break;
+                case "title":
+                    Page<Movie> moviesList = findMoviesByTitle(keyword, page,size);
+                    for (Movie m:moviesList) {
+                        MovieDTO dto = new MovieDTO();
+
+                    }
+                    System.out.println();
+                    break;
+                case "genre":
+                    break;
+                case "director":
+                    break;
+                default:
+                    System.err.println("Tipus de filtre no trobat");
+                    break;
+            }
+        } else {
+            System.out.println("Filtre no valid");
+        }
+        return null;
+    }
+ */

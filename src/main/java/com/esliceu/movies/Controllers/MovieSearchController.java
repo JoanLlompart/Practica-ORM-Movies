@@ -51,6 +51,7 @@ public class MovieSearchController {
 
      */
 
+    /*
     @GetMapping("filmsauto")
     public String getFilms2() {
         return "autocomplete";
@@ -61,6 +62,7 @@ public class MovieSearchController {
     public List<MovieAutoDTO> filmauto(@RequestParam String term) {
 
     }
+   */
 
 
     @PostMapping("/movieSearch")
@@ -68,9 +70,12 @@ public class MovieSearchController {
     public List<MovieDTO> filterMovies(@RequestBody Map<String, String> formData) {
         String filter = formData.get("filter");
         String keyword = formData.get("keyword");
+        int page = Integer.parseInt(formData.get("page"));
+        int size = Integer.parseInt(formData.get("size"));
+
         System.out.println("Filtram per: " + filter + ", amb la paraula clau: " + keyword);
         // En el service filtramos por el tipo de keyword y tratamos las datos.
-        List<MovieDTO> movieList = movieSearchServices.filterMovies(filter, keyword);
+        List<MovieDTO> movieList = movieSearchServices.filterMovies(filter, keyword,page,size);
         for(MovieDTO m: movieList) {
             System.out.println(m.getTitle());
         }

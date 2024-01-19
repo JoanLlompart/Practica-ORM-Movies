@@ -80,12 +80,11 @@ public class MovieSearchController {
         // En el service filtramos por el tipo de keyword y tratamos las datos.
         List<MovieDTO> movieList = movieSearchServices.filterMovies(filter, keyword,page,size);
         for(MovieDTO m: movieList) {
-            System.out.println(m.getTitle());
+            System.out.println("Title " + m.getTitle()  + " , relaseDate : " + m.getReleaseDate() + " , voteAvarage : " + m.getVoteAverage());
         }
         return movieList;
     }
 
-    //TODO:PROBA
 
 
 

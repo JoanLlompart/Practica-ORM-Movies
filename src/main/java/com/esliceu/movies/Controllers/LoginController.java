@@ -58,7 +58,7 @@ public class LoginController {
                 session.setAttribute("usuariLogueat", true);
                 //session.setAttribute("name",nameUser);
                 //Redireccio a movieSearch
-                return "redirect:/movieSearch";
+                return "redirect:/adminArea";
             } else {
                 if (loginAttempts == null) {
                     loginAttempts = 1;

@@ -17,7 +17,8 @@ public class AdminAreaController {
     @GetMapping("/adminArea")
     public String adminGet(HttpSession session, Model model) {
         String email = (String) session.getAttribute("email");
-        return "adminArea"; // nombre de la vista Thymeleaf
+        return "adminArea";
+
     }
     @PostMapping("/adminArea")
     public String adminPost(HttpServletRequest req, HttpSession session) {
@@ -25,6 +26,8 @@ public class AdminAreaController {
         userServices.setEmail(email);
         return "adminArea";
     }
+
+
 
     /*
     @PostMapping("/add")

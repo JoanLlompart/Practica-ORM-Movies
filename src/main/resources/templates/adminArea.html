@@ -4,13 +4,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SPA con Añadir, Actualizar, Borrar</title>
+    <title>adminArea</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
         crossorigin="anonymous">
-      <!--  <link rel="stylesheet" href="css/styleBasic.css" type="text/css">
+        <link rel="stylesheet" href="css/styleBasic.css" type="text/css">
         <link rel="stylesheet" href="css/spa.css" type="text/css">
-      -->
 </head>
 
 <body class="bg-light">
@@ -42,7 +41,7 @@
             </div>
             <div class="col">
                 <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="checkbox" id="chkActualizar" onclick="mostrarSeccion('actualizar')">
+                    <input class="form-check-input" type="button" id="chkActualizar" onclick="mostrarSeccion('actualizar')">
                     <label class="form-check-label" for="chkActualizar">Actualizar</label>
                 </div>
             </div>
@@ -55,42 +54,66 @@
         </div>
     </div>
 
-    <!--
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
-            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a class="nav-link" href="#" onclick="mostrarSeccion('añadir')">Añadir</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#" onclick="mostrarSeccion('actualizar')">Actualizar</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#" onclick="mostrarSeccion('borrar')">Borrar</a>
-                </li>
-            </ul>
+<!--
+    <div class="container mt-5">
+        <div class="row">
+            <select name="crud" id="crud">
+                <option value="add"  onclick="mostrarSeccion('añadir')">Add</option>
+                <option value="update"  onclick="mostrarSeccion('actualizar')">Update</option>
+                <option value="delete"  onclick="mostrarSeccion('borrar')">Delete</option>
+            </select>
         </div>
-    </nav>
+    </div>
+    
 -->
-
-
     <div id="añadir" class="section active-section container mt-3">
-        <h2>Sección Añadir</h2>
-        <p>Contenido de la sección Añadir...</p>
+        <h2>Elige un elemento para añadir</h2>
+        <select name="addSelect" id="addSelect">
+            <option value="country">Country</option>
+            <option value="language">Language</option>
+            <option value="language_role">Language Rol</option>
+            <option value="genre">Genre</option>
+            <option value="keyword">Keyword</option>
+            <option value="movie_company">Movie Company</option>
+            <option value="production_company">Production Company</option>
+            <option value="gender">Genre</option>
+            <option value="person">Person</option>
+            <option value="department">Department</option>
+        </select>
     </div>
 
     <div id="actualizar" class="section container mt-3">
-        <h2>Sección Actualizar</h2>
-        <p>Contenido de la sección Actualizar...</p>
+        <h2>Elige un elemento para modificar</h2>
+        <select name="updateSelect" id="updateSelect">
+            <option value="country">Country</option>
+            <option value="language">Language</option>
+            <option value="language_role">Language Rol</option>
+            <option value="genre">Genre</option>
+            <option value="keyword">Keyword</option>
+            <option value="movie_company">Movie Company</option>
+            <option value="production_company">Production Company</option>
+            <option value="gender">Genre</option>
+            <option value="person">Person</option>
+            <option value="department">Department</option>
+        </select>
     </div>
 
     <div id="borrar" class="section container mt-3">
-        <h2>Sección Borrar</h2>
-        <p>Contenido de la sección Borrar...</p>
+        <h2>Sección Borrar</h2>     
+
+        <h3>Elige un elemento para modificar</h3>
+        <select name="deleteSelect" id="deleteSelect">
+            <option value="country">Country</option>
+            <option value="language">Language</option>
+            <option value="language_role">Language Rol</option>
+            <option value="genre">Genre</option>
+            <option value="keyword">Keyword</option>
+            <option value="movie_company">Movie Company</option>
+            <option value="production_company">Production Company</option>
+            <option value="gender">Genre</option>
+            <option value="person">Person</option>
+            <option value="department">Department</option>
+        </select>
     </div>
 
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
@@ -102,16 +125,7 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
-
-    <script>
-        function mostrarSeccion(seccion) {
-            var secciones = document.querySelectorAll('.section');
-            secciones.forEach(function (element) {
-                element.classList.remove('active-section');
-            });
-            document.getElementById(seccion).classList.add('active-section');
-        }
-    </script>
+        <script src="js/adminSPA.js"></script>
 </body>
 
 </html>

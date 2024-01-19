@@ -25,6 +25,7 @@ public class AdminAreaController {
         userServices.setEmail(email);
         return "adminArea";
     }
+
     /*
     @PostMapping("/add")
     public String addProducto(@ModelAttribute Producto producto) {

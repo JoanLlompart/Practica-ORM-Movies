@@ -8,6 +8,7 @@ import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -23,14 +24,14 @@ public class MovieSearchController {
     @GetMapping("/movieSearch")
     public String showMovies(Model model, HttpSession session, @RequestParam(defaultValue = "0") int page) {
         //Numero de de elements per pagina
-        int pageElement = 10;
-        Page<Movie> pageRes = movieSearchServices.getPage(PageRequest.of(page, pageElement));
+        //int pageElement = 10;
+        //Page<Movie> pageRes = movieSearchServices.getPage(PageRequest.of(page, pageElement));
 
         List<Movie> movieList = movieSearchServices.allMovies();
         model.addAttribute("moviesFind", movieList);
-        model.addAttribute("moviesFind", pageRes.getContent());
+      //  model.addAttribute("moviesFind", pageRes.getContent());
         model.addAttribute("currentPage", page);
-        model.addAttribute("totalPages", pageRes.getTotalPages());
+        //model.addAttribute("totalPages", pageRes.getTotalPages());
 
         return "movieSearch";
     }
@@ -70,7 +71,7 @@ public class MovieSearchController {
 
     @PostMapping("/movieSearch")
     @ResponseBody
-    public List<MovieDTO> filterMovies(@RequestBody Map<String, String> formData) {
+    public Page<MovieDTO> filterMovies(@RequestBody Map<String, String> formData, Pageable pageable) {
         String filter = formData.get("filter");
         String keyword = formData.get("keyword");
         int page = Integer.parseInt(formData.get("page"));
@@ -78,7 +79,7 @@ public class MovieSearchController {
 
         System.out.println("Filtram per: " + filter + ", amb la paraula clau: " + keyword);
         // En el service filtramos por el tipo de keyword y tratamos las datos.
-        List<MovieDTO> movieList = movieSearchServices.filterMovies(filter, keyword,page,size);
+        Page<MovieDTO> movieList = movieSearchServices.filterMovies(filter, keyword,pageable);
         for(MovieDTO m: movieList) {
             System.out.println("Title " + m.getTitle()  + " , relaseDate : " + m.getReleaseDate() + " , voteAvarage : " + m.getVoteAverage());
         }

@@ -20,6 +20,13 @@ public class MovieDTO {
     public MovieDTO() {
     }
 
+    public MovieDTO(Long movieId, String title, Date releaseDate, Double voteAverage) {
+        this.movieId = movieId;
+        this.title = title;
+        this.releaseDate = releaseDate;
+        this.voteAverage = voteAverage;
+    }
+
     public Long getMovieId() {
         return movieId;
     }

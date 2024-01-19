@@ -5,6 +5,7 @@ import com.esliceu.movies.Entities.Movie;
 import com.esliceu.movies.Repos.MovieSearchRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -23,13 +24,65 @@ public class MovieSearchServices {
         return movieSearchRepo.findAll();
     }
 
-    public Page<Movie> getPage(Pageable pageable) {
-        return movieSearchRepo.findAll(pageable);
+    public Page<MovieDTO> filterMovies(String filter, String keyword, Pageable pageable) {
+        List<String> validFilters = Arrays.asList("title", "actor", "character", "genre", "director");
+
+        if (validFilters.contains(filter)) {
+            switch (filter) {
+                case "actor":
+                    List<Movie> movieList = movieSearchRepo.findMovieByActor(keyword);
+                    List<MovieDTO> movieDTOList = new ArrayList<>();
+
+                    for (Movie m : movieList) {
+                        movieDTOList.add(new MovieDTO(m.getMovieId(), m.getTitle(), m.getReleaseDate(), m.getVoteAverage()));
+                    }
+
+                    return new PageImpl<>(movieDTOList, pageable, movieList.size());
+
+                case "character":
+                    // Implementa el caso "character" si es necesario
+                    break;
+
+                case "title":
+                    Page<Movie> moviesPage = findMoviesByTitle(keyword, pageable.getPageNumber(), pageable.getPageSize());
+                    List<MovieDTO> movieTitleDTOList = new ArrayList<>();
+
+                    for (Movie m : moviesPage.getContent()) {
+                        movieTitleDTOList.add(new MovieDTO(m.getMovieId(), m.getTitle(), m.getReleaseDate(), m.getVoteAverage()));
+                    }
+
+                    return new PageImpl<>(movieTitleDTOList, pageable, moviesPage.getTotalElements());
+
+                case "genre":
+                    // Implementa el caso "genre" si es necesario
+                    break;
+
+                case "director":
+                    // Implementa el caso "director" si es necesario
+                    break;
+
+                default:
+                    System.err.println("Tipo de filtro no encontrado");
+                    break;
+            }
+        } else {
+            System.out.println("Filtro no válido");
+        }
+
+        return Page.empty();
     }
 
 
 
-    public List<MovieDTO> filterMovies(String filter, String keyword,int page, int size) {
+    /*
+    Funciona be
+    public Page<Movie> getPage(Pageable pageable) {
+        return movieSearchRepo.findAll(pageable);
+    }
+
+     */
+/*
+    public Page<MovieDTO> filterMovies(String filter, String keyword,Pageable pageable) {
         List<String> validFilters = Arrays.asList("title", "actor", "character", "genre", "director");
 
         if (validFilters.contains(filter)) {
@@ -79,6 +132,7 @@ public class MovieSearchServices {
         return null;
     }
 
+ */
     public Page<Movie> findMoviesByTitle(String keyword, int page, int size) {
         Pageable pageable = PageRequest.of(page, size);
         return movieSearchRepo.findMoviesByTitle("%" + keyword + "%", pageable);

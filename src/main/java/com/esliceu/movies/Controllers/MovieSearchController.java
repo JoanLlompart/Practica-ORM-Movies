@@ -35,6 +35,7 @@ public class MovieSearchController {
         return "movieSearch";
     }
 
+
     /*
     @PostMapping("/movieSearch")
     @ResponseBody
@@ -42,14 +43,16 @@ public class MovieSearchController {
                                @RequestBody Map<String, String> formData ) {
         String filter = formData.get("filter");
         String keyword = formData.get("keyword");
+        int page = Integer.parseInt(formData.get("page"));
+
         System.out.println("Filtram per : " + filter + " , amb la paraula clau : " + keyword );
         //En el service filtram per el tipus de keyword i tractam les dades.
         List<Movie> movieList= movieSearchServices.filterMovies(filter,keyword);
        // model.addAttribute("moviesFind",movieList);
         return "movieSearch";
     }
+*/
 
-     */
 
     /*
     @GetMapping("filmsauto")
@@ -81,7 +84,6 @@ public class MovieSearchController {
         }
         return movieList;
     }
-
 
     //TODO:PROBA
 

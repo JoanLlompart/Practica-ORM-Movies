@@ -1,6 +1,7 @@
 package com.esliceu.movies.Controllers;
 
 import com.esliceu.movies.Services.UserServices;
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +22,21 @@ public class LoginController {
         }
         return "login";
     }
+
+    //TODO:Esta amb porbes
+    @GetMapping("/logout")
+    public String logout(HttpServletRequest request) {
+        //Agafa la sessio actual i si no te sessio no la creara
+        HttpSession session = request.getSession(false);
+
+        if (session != null) {
+            //Tanca la sessio
+            session.invalidate();
+        }
+        return "redirect:/login"; // Puedes redirigir a la página de inicio de sesión u otra página según tu aplicación
+    }
+
+
     @PostMapping("/login")
     public String login(
             HttpSession session,

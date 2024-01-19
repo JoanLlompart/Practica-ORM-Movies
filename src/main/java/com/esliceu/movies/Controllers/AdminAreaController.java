@@ -8,6 +8,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class AdminAreaController {
@@ -17,6 +19,7 @@ public class AdminAreaController {
     @GetMapping("/adminArea")
     public String adminGet(HttpSession session, Model model) {
         String email = (String) session.getAttribute("email");
+
         return "adminArea";
 
     }
@@ -24,6 +27,7 @@ public class AdminAreaController {
     public String adminPost(HttpServletRequest req, HttpSession session) {
         String email = (String) session.getAttribute("email");
         userServices.setEmail(email);
+
         return "adminArea";
     }
 

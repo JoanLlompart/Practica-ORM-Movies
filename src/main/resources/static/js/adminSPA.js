@@ -20,3 +20,6 @@ function mostrarSeccion() {
     seccionActual.classList.add("active-section");
 }
 */
+
+
+

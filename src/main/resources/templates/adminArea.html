@@ -6,13 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>adminArea</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
-        crossorigin="anonymous">
-        <link rel="stylesheet" href="css/styleBasic.css" type="text/css">
-        <link rel="stylesheet" href="css/spa.css" type="text/css">
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/styleBasic.css" type="text/css">
+    <link rel="stylesheet" href="css/spa.css" type="text/css">
 </head>
 
-<body class="bg-light">
+<class="bg-light">
     <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
         <a class="navbar-brand" href="/adminArea">Admin Area</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
@@ -35,26 +34,27 @@
         <div class="row">
             <div class="col">
                 <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="checkbox" id="chkAñadir" onclick="mostrarSeccion('añadir')">
+                    <input class="form-check-input" type="radio" id="chkAñadir" onclick="mostrarSeccion('añadir')">
                     <label class="form-check-label" for="chkAñadir">Añadir</label>
                 </div>
             </div>
             <div class="col">
                 <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="button" id="chkActualizar" onclick="mostrarSeccion('actualizar')">
+                    <input class="form-check-input" type="radio" id="chkActualizar"
+                        onclick="mostrarSeccion('actualizar')">
                     <label class="form-check-label" for="chkActualizar">Actualizar</label>
                 </div>
             </div>
             <div class="col">
                 <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="checkbox" id="chkBorrar" onclick="mostrarSeccion('borrar')">
+                    <input class="form-check-input" type="radio" id="chkBorrar" onclick="mostrarSeccion('borrar')">
                     <label class="form-check-label" for="chkBorrar">Borrar</label>
                 </div>
             </div>
         </div>
     </div>
 
-<!--
+    <!--
     <div class="container mt-5">
         <div class="row">
             <select name="crud" id="crud">
@@ -68,19 +68,40 @@
 -->
     <div id="añadir" class="section active-section container mt-3">
         <h2>Elige un elemento para añadir</h2>
-        <select name="addSelect" id="addSelect">
-            <option value="country">Country</option>
-            <option value="language">Language</option>
-            <option value="language_role">Language Rol</option>
-            <option value="genre">Genre</option>
-            <option value="keyword">Keyword</option>
-            <option value="movie_company">Movie Company</option>
-            <option value="production_company">Production Company</option>
-            <option value="gender">Genre</option>
-            <option value="person">Person</option>
-            <option value="department">Department</option>
-        </select>
+        <form onsubmit="return false">
+            <select name="addSelect" id="addSelect">
+                <option value="country">Country</option>
+                <option value="language">Language</option>
+                <option value="language_role">Language Rol</option>
+                <option value="genre">Genre</option>
+                <option value="keyword">Keyword</option>
+                <option value="movie_company">Movie Company</option>
+                <option value="production_company">Production Company</option>
+                <option value="gender">Genre</option>
+                <option value="person">Person</option>
+                <option value="department">Department</option>
+            </select>
+
+            <div id="countryAddElements">
+                <label for="countryIsoCode">
+                    <input type="text" name="countryIsoCode" id="countryIsoCode" placeholder="country_iso_code">
+                </label>
+                <label for="countryName">
+                    <input type="text" name="countryName" id="countryName" placeholder="Country Name">
+                </label>
+            </div>
+
+            <!--LANGUAGE-->
+            <div id="languageAddElements">
+                <label for="languageCode">
+                    <input type="text" name="languageCode" id="languageCode" placeholder="Language Code">
+                </label>
+                <label for="languageName">
+                    <input type="text" name="languageName" id="languageName" placeholder="Language Name">
+                </label>
+            </div>
     </div>
+    </form>
 
     <div id="actualizar" class="section container mt-3">
         <h2>Elige un elemento para modificar</h2>
@@ -99,8 +120,7 @@
     </div>
 
     <div id="borrar" class="section container mt-3">
-        <h2>Sección Borrar</h2>     
-
+        <h2>Sección Borrar</h2>
         <h3>Elige un elemento para modificar</h3>
         <select name="deleteSelect" id="deleteSelect">
             <option value="country">Country</option>
@@ -125,7 +145,7 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
-        <script src="js/adminSPA.js"></script>
-</body>
+    <script src="js/adminSPA.js"></script>
+    </body>
 
 </html>

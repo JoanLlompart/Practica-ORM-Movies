@@ -24,11 +24,10 @@ public class LoginController {
     }
 
     //TODO:Esta amb porbes
-    @GetMapping("/logout")
-    public String logout(HttpServletRequest request) {
-        //Agafa la sessio actual i si no te sessio no la creara
-        HttpSession session = request.getSession(false);
 
+    @GetMapping("/logout")
+    public String logout(HttpSession session) {
+        //Invalidar la session actual si existe
         if (session != null) {
             //Tanca la sessio
             session.invalidate();

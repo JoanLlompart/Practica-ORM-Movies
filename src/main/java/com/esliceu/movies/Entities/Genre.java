@@ -1,7 +1,5 @@
 package com.esliceu.movies.Entities;
-
 import jakarta.persistence.*;
-
 import java.util.Set;
 
 @Entity
@@ -17,7 +15,6 @@ public class Genre {
 
     @OneToMany(mappedBy = "genre")
     private Set<MovieGenres> movieGenres;
-
 
     public Long getGenreId() {
         return genreId;

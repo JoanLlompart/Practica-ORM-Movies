@@ -30,8 +30,14 @@ public class MovieSearchServices {
 
 
     public List<MovieDTO> filterMovies(String filter, String keyword,int page, int size) {
-        List<String> validFilters = Arrays.asList("title", "actor", "character", "genre", "director","author");
+        if(isValidInput(keyword)) {
+            System.out.println("Input valid");
+        } else {
+            System.out.println("Input invalid");
+            return null;
+        }
 
+        List<String> validFilters = Arrays.asList("title", "actor", "character", "genre", "director","author");
         if (validFilters.contains(filter)) {
             System.out.println("Es un filtre valid");
             List<MovieDTO> movieDTOList = new ArrayList<>();
@@ -100,6 +106,15 @@ public class MovieSearchServices {
         }
         return null;
     }
+
+
+    //TODO: AMB PROBES DE SI POT CONTROLAR ELS FALSOS IMPUTS
+    private boolean isValidInput(String keyword) {
+        //Si el codi es una cadena buida o te nomes espais
+        keyword =keyword.trim();
+        return keyword.matches("[a-zA-Z0-9]+");
+    }
+
 
     //TODO: PER PAGINAR
   /*  public Page<Movie> findMoviesByTitle(String keyword, int page, int size) {

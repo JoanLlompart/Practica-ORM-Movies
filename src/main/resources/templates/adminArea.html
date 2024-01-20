@@ -6,8 +6,7 @@
     <title>adminArea</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="stylesheet" href="css/styleBasic.css">
-    <link rel="stylesheet" href="css/spa.css">
+    <link rel="stylesheet" href="/css/spa.css">
 </head>
 
 <div class="bg-light">
@@ -28,8 +27,17 @@
     </nav>
 </div>
 
+<div id="sectionContainer">
+    <h3>CRUD</h3>
+    <select id="operationSelect">
+        <option value="add">ADD</option>
+        <option value="update">UPDATE</option>
+        <option value="delete">DELETE</option>
+    </select>
+    <div id="selectedSection"></div>
+</div>
 
-
+<!--
 <div class="container mt-5">
     <div class="row">
         <div class="col">
@@ -53,18 +61,9 @@
     </div>
 </div>
 
-<!--
-    <div class="container mt-5">
-        <div class="row">
-            <select name="crud" id="crud">
-                <option value="add"  onclick="mostrarSeccion('añadir')">Add</option>
-                <option value="update"  onclick="mostrarSeccion('actualizar')">Update</option>
-                <option value="delete"  onclick="mostrarSeccion('borrar')">Delete</option>
-            </select>
-        </div>
-    </div>
-    
--->
+
+
+
 <div id="añadir" class="section active-section container mt-3">
     <h2>Elige un elemento para añadir</h2>
     <form onsubmit="return false">
@@ -90,7 +89,7 @@
             </label>
         </div>
 
-        <!--LANGUAGE-->
+        
         <div id="languageAddElements">
             <label for="languageCode">
                 <input type="text" name="languageCode" id="languageCode" placeholder="Language Code">
@@ -134,7 +133,7 @@
         <option value="department">Department</option>
     </select>
 </div>
-
+-->
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
     integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
     crossorigin="anonymous"></script>

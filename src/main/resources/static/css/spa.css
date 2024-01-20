@@ -1,7 +1,12 @@
+/*
 .section {
     display: none;
 }
 
 .active-section {
     display: block;
+}
+*/
+body {
+    padding-top: 56px;
 }

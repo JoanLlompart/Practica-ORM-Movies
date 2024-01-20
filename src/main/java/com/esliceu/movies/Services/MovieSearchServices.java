@@ -112,7 +112,8 @@ public class MovieSearchServices {
     private boolean isValidInput(String keyword) {
         //Si el codi es una cadena buida o te nomes espais
         keyword =keyword.trim();
-        return keyword.matches("[a-zA-Z0-9]+");
+        //Permet numeros i lletras i espais enmitg ja que els altres se han eliminat
+        return keyword.matches("[a-zA-Z0-9 ]+");
     }
 
 

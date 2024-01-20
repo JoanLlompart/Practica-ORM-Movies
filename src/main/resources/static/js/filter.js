@@ -67,7 +67,9 @@ function updateTable(data) {
 const keywordInput = document.getElementById("keyword");
 keywordInput.addEventListener("input" , function() {
     //Envia les noves dades a sendData perque faci la peticio
-    sendData();
+    if(keywordInput.value.trim() !=='') {
+        sendData();
+    }
 })
 
 

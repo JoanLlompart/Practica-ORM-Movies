@@ -63,7 +63,19 @@ public class MovieSearchServices {
                 case "character":
                     System.out.println("Character of movie : " + keyword);
                     movieList = movieSearchRepo.findMovieByCharacter(keyword);
-                    break;
+                    for (Movie mo:movieList) {
+                        System.out.println(mo.getTitle());
+                    }
+                    for (Movie m:movieList) {
+                        MovieDTO dto = new MovieDTO();
+                        dto.setMovieId(m.getMovieId());
+                        dto.setTitle(m.getTitle());
+                        dto.setReleaseDate(m.getReleaseDate());
+                        dto.setVoteAverage(m.getVoteAverage());
+                        //Una vegada el DTO te tots els atributs afegim a la llista
+                        movieDTOList.add(dto);
+                    }
+                    return movieDTOList;
                 case "author":
                     System.out.println("author :" + keyword );
                     movieList= movieSearchRepo.findMovieByAuthor(keyword);

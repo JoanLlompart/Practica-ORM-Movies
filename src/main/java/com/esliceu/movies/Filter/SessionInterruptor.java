@@ -18,7 +18,10 @@ public class SessionInterruptor implements HandlerInterceptor {
         request.setAttribute("email",user);
         if (user == null) {
             // si el usuari no esta logeat se redirigeix a el login
+            System.out.println("No ets administrador");
             response.sendRedirect("/login");
+        } else {
+            System.out.println("Sessio activa");
         }
         return true;
     }

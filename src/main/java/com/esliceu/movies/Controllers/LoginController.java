@@ -24,6 +24,7 @@ public class LoginController {
     }
 
 
+
     @GetMapping("/logout")
     public String logout(HttpSession session) {
         //Invalidar la session actual si existe
@@ -31,7 +32,8 @@ public class LoginController {
             //Tanca la sessio
             session.invalidate();
         }
-        return "redirect:/login"; // Puedes redirigir a la página de inicio de sesión u otra página según tu aplicación
+        System.out.println("Log Out tancada la sessio");
+        return "redirect:/movieSearch"; // Puedes redirigir a la página de inicio de sesión u otra página según tu aplicación
     }
     @PostMapping("/login")
     public String login(

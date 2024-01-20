@@ -23,7 +23,6 @@ public class LoginController {
         return "login";
     }
 
-    //TODO:Esta amb porbes
 
     @GetMapping("/logout")
     public String logout(HttpSession session) {
@@ -34,8 +33,6 @@ public class LoginController {
         }
         return "redirect:/login"; // Puedes redirigir a la página de inicio de sesión u otra página según tu aplicación
     }
-
-
     @PostMapping("/login")
     public String login(
             HttpSession session,

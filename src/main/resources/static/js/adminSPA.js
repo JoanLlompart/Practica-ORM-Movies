@@ -1,13 +1,27 @@
 
+const operationSelect = document.getElementById('operationSelect');
+const selectedSection = document.getElementById('selectedSection');
 
-/*function mostrarSeccion(seccion) {
+operationSelect.addEventListener('change', (event) => {
+    const selectedOption = event.target.value;
+
+    if (selectedOption === 'add') {
+        mostrarSeccion('añadir');
+    } else if (selectedOption === 'update') {
+        mostrarSeccion('actualizar');
+    } else if (selectedOption === 'delete') {
+        mostrarSeccion('borrar');
+    }
+});
+
+function mostrarSeccion(seccion) {
     var secciones = document.querySelectorAll('.section');
     secciones.forEach(function (element) {
         element.classList.remove('active-section');
     });
     document.getElementById(seccion).classList.add('active-section');
 }
-*/
+
 /*
 
 function mostrarSeccion() {
@@ -24,7 +38,7 @@ function mostrarSeccion() {
 }
 */
 
-
+/*
 const operationSelect = document.getElementById('operationSelect');
 const selectedSection = document.getElementById('selectedSection');
 
@@ -80,3 +94,4 @@ function generateAddSection() {
         </div>
     `;
 }
+*/

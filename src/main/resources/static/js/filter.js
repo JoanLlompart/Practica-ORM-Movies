@@ -112,3 +112,23 @@ function sendData() {
         });
     }
 */
+
+
+//Per ara no esta actiu
+        // Funció que navega a una página específica
+/*
+function goToPage() {
+    var pageNumberInput = document.getElementById('pageNumberInput').value;
+    var totalPages = ${totalPages};
+
+    // Validar que el valor sea un número entre 1 y totalPages
+    if (/^[1-9]\d*$/.test(pageNumberInput)) {
+        var page = parseInt(pageNumberInput, 10) - 1;
+
+        // Verificar que la página esté dentro del rango permitido
+        if (page >= 0 && page < totalPages) {
+            window.location.href = '/movieSearch?page=' + page;
+        }
+    }
+}
+*/

@@ -6,14 +6,7 @@
     <title>Movie Search</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <!-- <style>
-        body {
-            padding-top: 56px;
-        }
-    </style>-->
-
-    <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="css/styleBasic.css">
+    <link rel="stylesheet" href="/css/styleBasic.css">
 
 </head>
 
@@ -162,25 +155,8 @@
             }
         }
     </script>-->
-    <script>
-        // Funció que navega a una página específica
-        function goToPage() {
-            var pageNumberInput = document.getElementById('pageNumberInput').value;
-            var totalPages = ${totalPages};
 
-            // Validar que el valor sea un número entre 1 y totalPages
-            if (/^[1-9]\d*$/.test(pageNumberInput)) {
-                var page = parseInt(pageNumberInput, 10) - 1;
-
-                // Verificar que la página esté dentro del rango permitido
-                if (page >= 0 && page < totalPages) {
-                    window.location.href = '/movieSearch?page=' + page;
-                }
-            }
-        }
-    </script>
-
-    <script src="js/filter.js"></script>
+    <script src="/js/filter.js"></script>
 </body>
 
 </html>

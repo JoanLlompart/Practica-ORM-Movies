@@ -106,8 +106,21 @@ public class MovieSearchServices {
                     }
                     return movietitleDTO;
                 case "genre":
-
-                    break;
+                    System.out.println("Genre of movie : " + keyword);
+                    movieList = movieSearchRepo.findMovieByGenre(keyword);
+                    for (Movie mo:movieList) {
+                        System.out.println(mo.getTitle());
+                    }
+                    for (Movie m:movieList) {
+                        MovieDTO dto = new MovieDTO();
+                        dto.setMovieId(m.getMovieId());
+                        dto.setTitle(m.getTitle());
+                        dto.setReleaseDate(m.getReleaseDate());
+                        dto.setVoteAverage(m.getVoteAverage());
+                        //Una vegada el DTO te tots els atributs afegim a la llista
+                        movieDTOList.add(dto);
+                    }
+                    return movieDTOList;
                 case "director":
                     break;
                 default:

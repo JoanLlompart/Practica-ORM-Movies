@@ -45,4 +45,5 @@ public interface MovieSearchRepo extends JpaRepository<Movie, Long> {
             "JOIN MovieCast cast ON m.movieId = cast.movie.movieId " +
             "WHERE cast.characterName LIKE %:character% ")
     List<Movie> findMovieByCharacter(@Param("character") String character);
+
 }

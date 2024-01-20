@@ -106,6 +106,7 @@ public class MovieSearchServices {
                     }
                     return movietitleDTO;
                 case "genre":
+
                     break;
                 case "director":
                     break;

@@ -44,7 +44,6 @@ public class MovieSearchServices {
             switch (filter) {
                 case "actor":
                     System.out.println("actor :" + keyword );
-
                     List<Movie> movieList= movieSearchRepo.findMovieByActor(keyword);
                     for (Movie mo:movieList) {
                         System.out.println(mo.getTitle());
@@ -62,7 +61,8 @@ public class MovieSearchServices {
                     }
                     return movieDTOList;
                 case "character":
-
+                    System.out.println("Character of movie : " + keyword);
+                    movieList = movieSearchRepo.findMovieByCharacter(keyword);
                     break;
                 case "author":
                     System.out.println("author :" + keyword );

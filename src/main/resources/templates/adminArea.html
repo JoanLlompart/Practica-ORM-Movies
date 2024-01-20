@@ -66,7 +66,6 @@
 
 <div id="añadir" class="section active-section container mt-3">
     <h2>Elige un elemento para añadir</h2>
-    <form>
         <select name="addSelect" id="addSelect">
             <option value="country">Country</option>
             <option value="language">Language</option>
@@ -80,6 +79,16 @@
             <option value="department">Department</option>
         </select>
 
+
+        <div id="addElements">
+            <label for="countryIsoCode">
+                <input type="text" name="countryIsoCode" id="countryIsoCode" placeholder="country_iso_code">
+            </label>
+            <label for="countryName">
+                <input type="text" name="countryName" id="countryName" placeholder="Country Name">
+            </label>
+        </div>
+<!--
         <div id="countryAddElements">
             <label for="countryIsoCode">
                 <input type="text" name="countryIsoCode" id="countryIsoCode" placeholder="country_iso_code">
@@ -98,8 +107,7 @@
                 <input type="text" name="languageName" id="languageName" placeholder="Language Name">
             </label>
         </div>
-
-    </form>
+    -->
 </div>
 <div id="actualizar" class="section container mt-3">
     <h2>Elige un elemento para modificar</h2>
@@ -115,6 +123,16 @@
         <option value="person">Person</option>
         <option value="department">Department</option>
     </select>
+
+        <div id="updateElements">
+            <label for="countryIsoCode">
+                <input type="text" name="countryIsoCode" id="countryIsoCode" placeholder="country_iso_code">
+            </label>
+            <label for="countryName">
+                <input type="text" name="countryName" id="countryName" placeholder="Country Name">
+            </label>
+        </div>
+
 </div>
 
 <div id="borrar" class="section container mt-3">
@@ -132,6 +150,18 @@
         <option value="person">Person</option>
         <option value="department">Department</option>
     </select>
+
+
+    <div id="deleteElements">
+        <label for="countryIsoCode">
+            <input type="text" name="countryIsoCode" id="countryIsoCode" placeholder="country_iso_code">
+        </label>
+        <label for="countryName">
+            <input type="text" name="countryName" id="countryName" placeholder="Country Name">
+        </label>
+    </div>
+
+
 </div>
 
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"

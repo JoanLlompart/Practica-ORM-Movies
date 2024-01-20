@@ -30,10 +30,11 @@ public class MovieSearchServices {
 
 
     public List<MovieDTO> filterMovies(String filter, String keyword,int page, int size) {
-        List<String> validFilters = Arrays.asList("title", "actor", "character", "genre", "director");
+        List<String> validFilters = Arrays.asList("title", "actor", "character", "genre", "director","author");
 
         if (validFilters.contains(filter)) {
             System.out.println("Es un filtre valid");
+            List<MovieDTO> movieDTOList = new ArrayList<>();
             switch (filter) {
                 case "actor":
                     System.out.println("actor :" + keyword );
@@ -42,7 +43,8 @@ public class MovieSearchServices {
                     for (Movie mo:movieList) {
                         System.out.println(mo.getTitle());
                     }
-                    List<MovieDTO> movieDTOList = new ArrayList<>();
+                    //List<MovieDTO> movieDTOList = new ArrayList<>();
+
                     for (Movie m:movieList) {
                         MovieDTO dto = new MovieDTO();
                         dto.setMovieId(m.getMovieId());
@@ -56,6 +58,23 @@ public class MovieSearchServices {
                 case "character":
 
                     break;
+                case "author":
+                    System.out.println("author :" + keyword );
+                    movieList= movieSearchRepo.findMovieByAuthor(keyword);
+                    for (Movie mo:movieList) {
+                        System.out.println(mo.getTitle());
+                    }
+                    //List<MovieDTO> movieDTOList = new ArrayList<>();
+                    for (Movie m:movieList) {
+                        MovieDTO dto = new MovieDTO();
+                        dto.setMovieId(m.getMovieId());
+                        dto.setTitle(m.getTitle());
+                        dto.setReleaseDate(m.getReleaseDate());
+                        dto.setVoteAverage(m.getVoteAverage());
+                        //Una vegada el DTO te tots els atributs afegim a la llista
+                        movieDTOList.add(dto);
+                    }
+                    return movieDTOList;
                 case "title":
                     List<Movie> moviesList = movieSearchRepo.findMoviesByTitle(keyword);
                     List<MovieDTO> movietitleDTO = new ArrayList<>();

@@ -70,7 +70,7 @@ function sendData() {
     var keyword = document.getElementById('keyword').value;
     var page = document.getElementById('page').value;
     var size = document.getElementById('size').value; 
-  
+    
     var formData = {
     filter: filter,
     keyword: keyword,

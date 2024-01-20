@@ -39,6 +39,9 @@ public class MovieSearchServices {
                     System.out.println("actor :" + keyword );
 
                     List<Movie> movieList= movieSearchRepo.findMovieByActor(keyword);
+                    for (Movie mo:movieList) {
+                        System.out.println(mo.getTitle());
+                    }
                     List<MovieDTO> movieDTOList = new ArrayList<>();
                     for (Movie m:movieList) {
                         MovieDTO dto = new MovieDTO();
@@ -54,7 +57,7 @@ public class MovieSearchServices {
 
                     break;
                 case "title":
-                    Page<Movie> moviesList = findMoviesByTitle(keyword, page,size);
+                    List<Movie> moviesList = movieSearchRepo.findMoviesByTitle(keyword);
                     List<MovieDTO> movietitleDTO = new ArrayList<>();
                     for (Movie m:moviesList) {
                         MovieDTO dto = new MovieDTO();
@@ -79,10 +82,14 @@ public class MovieSearchServices {
         return null;
     }
 
-    public Page<Movie> findMoviesByTitle(String keyword, int page, int size) {
+    //TODO: PER PAGINAR
+  /*  public Page<Movie> findMoviesByTitle(String keyword, int page, int size) {
         Pageable pageable = PageRequest.of(page, size);
         return movieSearchRepo.findMoviesByTitle("%" + keyword + "%", pageable);
     }
+
+   */
+
 /*
     public List<Movie> filterMovies(String filter, String keyword) {
         List<String> validFilters = Arrays.asList("title", "actor", "character", "genre", "director");

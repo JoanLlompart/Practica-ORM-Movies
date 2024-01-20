@@ -20,7 +20,9 @@ public class MovieSearchController {
 
     @Autowired
     MovieSearchServices movieSearchServices;
-    @GetMapping("/movieSearch")
+
+    /*
+        @GetMapping("/movieSearch")
     public String showMovies(Model model, HttpSession session, @RequestParam(defaultValue = "0") int page) {
         //Numero de de elements per pagina
         int pageElement = 10;
@@ -31,6 +33,21 @@ public class MovieSearchController {
         model.addAttribute("moviesFind", pageRes.getContent());
         model.addAttribute("currentPage", page);
         model.addAttribute("totalPages", pageRes.getTotalPages());
+
+        return "movieSearch";
+    }
+     */
+    @GetMapping("/movieSearch")
+    public String showMovies(Model model, HttpSession session, @RequestParam(defaultValue = "0") int page) {
+        //Numero de de elements per pagina
+       // int pageElement = 10;
+       // Page<Movie> pageRes = movieSearchServices.getPage(PageRequest.of(page, pageElement));
+
+        List<Movie> movieList = movieSearchServices.allMovies();
+        model.addAttribute("moviesFind", movieList);
+        //model.addAttribute("moviesFind", pageRes.getContent());
+        model.addAttribute("currentPage", page);
+        //model.addAttribute("totalPages", pageRes.getTotalPages());
 
         return "movieSearch";
     }

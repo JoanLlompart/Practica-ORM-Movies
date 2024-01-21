@@ -22,13 +22,13 @@ public class AdminAreaController {
         return "adminArea";
 
     }
-    @PostMapping("/adminArea")
+    @PostMapping("/adminArea/add")
     public String adminPost(HttpServletRequest req, HttpSession session) {
         String email = (String) session.getAttribute("email");
         userServices.setEmail(email);
-
         return "adminArea";
     }
+
 
 
 

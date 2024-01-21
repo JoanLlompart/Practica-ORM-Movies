@@ -79,6 +79,8 @@ function generateAddSection() {
     `;
 }
 */
+
+/*
 const addSelect = document.getElementById('addSelect');
 const addElements = document.getElementById('addElements');
 
@@ -117,6 +119,55 @@ function getPlaceholderText(selectedOption) {
         return '';
     }
 }
+*/
 
 
+
+
+
+
+// PROBA
+const addSelect = document.getElementById('addSelect');
+const addElements = document.getElementById('addElements');
+
+addSelect.addEventListener('change', (event) => {
+    const selectedOption = event.target.value;
+    const placeholderText = getPlaceholderText(selectedOption);
+
+    addElements.innerHTML = `
+    <label for="${selectedOption}IsoCode">
+        <input type="text" name="${selectedOption}IsoCode" id="${selectedOption}IsoCode" placeholder="${placeholderText} Iso Code">
+    </label>
+    <label for="${selectedOption}Name">
+        <input type="text" name="${selectedOption}Name" id="${selectedOption}Name" placeholder="${placeholderText} Name">
+    </label>
+    `;
+});
+
+function getPlaceholderText(optionValue) {
+    switch (optionValue) {
+        case 'country':
+            return 'Código Iso de país';
+        case 'language':
+            return 'Código de idioma';
+        case 'language_role':
+            return 'Función de idioma';
+        case 'genre':
+            return 'Nombre de género';
+        case 'keyword':
+            return 'Término de palabra clave';
+        case 'movie_company':
+            return 'Nombre de la compañía cinematográfica';
+        case 'production_company':
+            return 'Nombre de la compañía productora';
+        case 'gender':
+            return 'Género';
+        case 'person':
+            return 'Nombre de persona';
+        case 'department':
+            return 'Nombre de departamento';
+        default:
+            return '';
+    }
+}
 

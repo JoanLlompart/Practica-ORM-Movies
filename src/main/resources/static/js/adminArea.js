@@ -23,31 +23,47 @@ function mostrarSeccion(seccion) {
 }
 
 
+
 const addButton = document.getElementById('addButton');
 addButton.addEventListener('click', (event) => {
-    const isoCodeValue = document.getElementById('isoCode').value;
-    const nameValue = document.getElementById('name').value;
+    confirm()
+    const isoCodeValue = document.getElementById('countryIsoCode').value;
+    const nameValue = document.getElementById('countryName').value;
 
     if (isoCodeValue && nameValue) {
-        const data = {
-            isoCode: isoCodeValue,
-            name: nameValue,
-        };
-        console.log(data);
+        // Mostrar confirmación antes de enviar la solicitud
+        const userConfirmed = window.confirm('Are you sure you want to add this new Country?');
 
-        fetch('/adminArea/add', {
-            method: 'POST',
-            body: JSON.stringify(data),
-            headers: {
-                'Content-Type': 'application/json',
-            },
-        })
-            .then(response => response.json())
-            .then(responseData => {
-                console.log(responseData);
+        if (userConfirmed) {
+            const data = {
+                isoCode: isoCodeValue,
+                name: nameValue,
+            };
+
+            fetch('/adminArea/add', {
+                method: 'POST',
+                body: JSON.stringify(data),
+                headers: {
+                    'Content-Type': 'application/json',
+                },
             })
-            .catch(error => {
-                console.error('Error al enviar datos:', error);
-            });
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Error en la solicitud: ' + response.statusText);
+                    }
+                    return response.text();
+                })
+                .then(responseData => {
+                    // Verificar si el servidor envió un mensaje y mostrarlo con un alert
+                    alert(responseData);
+                    console.log(responseData);
+                })
+                .catch(error => {
+                    console.error('Error al enviar datos:', error);
+                });
+        } else {
+            // El usuario ha hecho clic en "Cancelar" en la confirmación
+            console.log('Operación cancelada por el usuario.');
+        }
     }
 });

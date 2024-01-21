@@ -21,6 +21,9 @@ public class Country {
     @OneToMany(mappedBy = "country")
     private Set<ProductionCountry> productionCountries;
 
+    public Country() {
+    }
+
     public Long getCountry_id() {
         return country_id;
     }

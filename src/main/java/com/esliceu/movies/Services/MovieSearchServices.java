@@ -122,7 +122,21 @@ public class MovieSearchServices {
                     }
                     return movieDTOList;
                 case "director":
-                    break;
+                    System.out.println("Director of movie : " + keyword);
+                    movieList = movieSearchRepo.findMovieByDirector(keyword);
+                    for (Movie mo:movieList) {
+                        System.out.println(mo.getTitle());
+                    }
+                    for (Movie m:movieList) {
+                        MovieDTO dto = new MovieDTO();
+                        dto.setMovieId(m.getMovieId());
+                        dto.setTitle(m.getTitle());
+                        dto.setReleaseDate(m.getReleaseDate());
+                        dto.setVoteAverage(m.getVoteAverage());
+                        //Una vegada el DTO te tots els atributs afegim a la llista
+                        movieDTOList.add(dto);
+                    }
+                    return movieDTOList;
                 default:
                     System.err.println("Tipus de filtre no trobat");
                     break;

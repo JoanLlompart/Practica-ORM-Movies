@@ -79,7 +79,6 @@ function generateAddSection() {
     `;
 }
 */
-
 const addSelect = document.getElementById('addSelect');
 const addElements = document.getElementById('addElements');
 
@@ -87,7 +86,12 @@ addSelect.addEventListener('change', (event) => {
     const selectedOption = event.target.value;
     const placeholderText = getPlaceholderText(selectedOption);
 
-    addElements.innerHTML = `
+    if (selectedOption === 'department' || selectedOption === 'genre' || selectedOption === 'keyword' || selectedOption === 'production_company' || selectedOption === 'person') {
+        addElements.innerHTML = `
+    <input type="text" name="${selectedOption}" id="${selectedOption}" placeholder="${placeholderText}">
+    `;
+    } else {
+        addElements.innerHTML = `
     <label for="${selectedOption}IsoCode">
         <input type="text" name="${selectedOption}IsoCode" id="${selectedOption}IsoCode" placeholder="${placeholderText} Iso Code">
     </label>
@@ -95,32 +99,22 @@ addSelect.addEventListener('change', (event) => {
         <input type="text" name="${selectedOption}Name" id="${selectedOption}Name" placeholder="${placeholderText} Name">
     </label>
     `;
+    }
 });
 
-function getPlaceholderText(optionValue) {
-    switch (optionValue) {
-        case 'country':
-            return 'Código Iso de país';
-        case 'language':
-            return 'Código de idioma';
-        case 'language_role':
-            return 'Función de idioma';
-        case 'genre':
-            return 'Nombre de género';
-        case 'keyword':
-            return 'Término de palabra clave';
-        case 'movie_company':
-            return 'Nombre de la compañía cinematográfica';
-        case 'production_company':
-            return 'Nombre de la compañía productora';
-        case 'gender':
-            return 'Género';
-        case 'person':
-            return 'Nombre de persona';
-        case 'department':
-            return 'Nombre de departamento';
-        default:
-            return '';
+function getPlaceholderText(selectedOption) {
+    if (selectedOption === 'department') {
+        return 'Department Iso Code';
+    } else if (selectedOption === 'genre') {
+        return 'Genre Name';
+    } else if (selectedOption === 'keyword') {
+        return 'Keyword Name';
+    } else if (selectedOption === 'production_company') {
+        return 'Production Company Iso Code';
+    } else if (selectedOption === 'person') {
+        return 'Person Name';
+    } else {
+        return '';
     }
 }
 

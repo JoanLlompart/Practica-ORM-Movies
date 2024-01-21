@@ -67,3 +67,50 @@ addButton.addEventListener('click', (event) => {
         }
     }
 });
+
+
+
+
+function generateInputs() {
+    var select = document.getElementById("addSelect");
+    var selectedValue = select.options[select.selectedIndex].value;
+
+    // Limpiar campos anteriores
+    document.getElementById("dynamicInputs").innerHTML = '';
+
+    // Generar nuevos campos según la opción seleccionada
+    if (selectedValue === "country") {
+        generateInput("text", "countryIsoCode", "countryIsoCode", "Country ISO Code");
+        generateInput("text", "countryName", "countryName", "Country Name");
+    } else if (selectedValue === "language") {
+        generateInput("text", "languageCode", "languageCode", "Language Code");
+        generateInput("text", "languageName", "languageName", "Language Name");
+
+    } else if (selectedValue === "language_rol") {
+        generateInput("text", "language_role", "languageRole", "Language Role");
+
+    } else if (selectedValue === "genre") {
+        generateInput("text", "genreName", "genreName", "Genre Name");
+
+    } else if (selectedValue === "keyword") {
+        generateInput("text", "keywordName", "keywordName", "keyword Name");
+
+    } else if (selectedValue === "movie_company") {
+        generateInput("text", "movieId", "movieId", "Movie Id");
+        generateInput("text", "companyId", "companyId", "Company Id");
+
+    }  else if (selectedValue === "production_company") {
+        generateInput("text", "companyIdProduction", "companyIdProduction", "Company Id");
+        generateInput("text", "companyName", "companyName", "Company Name");
+    } 
+}
+
+function generateInput(type, name, id, placeholder) {
+    var input = document.createElement("input");
+    input.type = type;
+    input.name = name;
+    input.id = id;
+    input.placeholder = placeholder;
+
+    document.getElementById("dynamicInputs").appendChild(input);
+}

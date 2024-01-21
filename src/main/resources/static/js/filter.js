@@ -1,5 +1,3 @@
-
-
 async function sendData() {
     // Obtener los valores del formulario
     const filter = document.getElementById("filter").value;

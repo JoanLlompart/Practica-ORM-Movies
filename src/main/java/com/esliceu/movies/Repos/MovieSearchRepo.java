@@ -12,18 +12,18 @@ public interface MovieSearchRepo extends JpaRepository<Movie, Long> {
 
     //Per paginar les pagines
     Page<Movie> findAll(Pageable pageable);
-    /*  @Query("SELECT m FROM Movie m " +
-              "JOIN MovieCrew mc ON m.movieId = mc.movie.movieId " +
-              "JOIN Person p ON p.personId = mc.person.personId " +
-              "WHERE mc.job = 'Author' AND p.personName = :personName")
-      List<Movie> findMovieByActor(@Param("personName") String keyword);
-     */
+/*
     @Query("SELECT m FROM Movie m " +
             "JOIN MovieCast mc ON m.movieId = mc.movie.movieId " +
             "JOIN Person p ON p.personId = mc.person.personId " +
             "WHERE p.personName LIKE %:personName%")
     List<Movie> findMovieByActor(@Param("personName") String keyword);
-
+*/
+    @Query("SELECT m FROM Movie m " +
+        "JOIN MovieCast mc ON m.movieId = mc.movie.movieId " +
+        "JOIN Person p ON p.personId = mc.person.personId " +
+        "WHERE p.personName LIKE %:personName%")
+    Page<Movie> findMovieByActor(@Param("personName") String keyword,Pageable pageable);
 
     @Query("SELECT m FROM Movie m WHERE title LIKE %:keyword%")
     //Page<Movie> findMoviesByTitle(@Param("keyword")String keyword, Pageable pageable);

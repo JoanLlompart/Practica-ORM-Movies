@@ -1,6 +1,7 @@
 package com.esliceu.movies.Controllers;
 
 import com.esliceu.movies.DTO.MovieDTO;
+import com.esliceu.movies.DTO.MoviePageDTO;
 import com.esliceu.movies.Entities.Movie;
 import com.esliceu.movies.Services.MovieSearchServices;
 import jakarta.servlet.http.HttpServletRequest;
@@ -8,6 +9,8 @@ import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.repository.query.Param;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -56,37 +59,6 @@ public class MovieSearchController {
     /*
     @PostMapping("/movieSearch")
     @ResponseBody
-    public String filterMovies(Model model, HttpSession session, HttpServletRequest req,
-                               @RequestBody Map<String, String> formData ) {
-        String filter = formData.get("filter");
-        String keyword = formData.get("keyword");
-        int page = Integer.parseInt(formData.get("page"));
-
-        System.out.println("Filtram per : " + filter + " , amb la paraula clau : " + keyword );
-        //En el service filtram per el tipus de keyword i tractam les dades.
-        List<Movie> movieList= movieSearchServices.filterMovies(filter,keyword);
-       // model.addAttribute("moviesFind",movieList);
-        return "movieSearch";
-    }
-*/
-
-
-    /*
-    @GetMapping("filmsauto")
-    public String getFilms2() {
-        return "autocomplete";
-    }
-
-    @GetMapping("/filmauto")
-    @ResponseBody
-    public List<MovieAutoDTO> filmauto(@RequestParam String term) {
-
-    }
-   */
-
-
-    @PostMapping("/movieSearch")
-    @ResponseBody
     public List<MovieDTO> filterMovies(@RequestBody Map<String, String> formData) {
         String filter = formData.get("filter");
         String keyword = formData.get("keyword");
@@ -100,6 +72,25 @@ public class MovieSearchController {
             System.out.println("Title " + m.getTitle()  + " , relaseDate : " + m.getReleaseDate() + " , voteAvarage : " + m.getVoteAverage());
         }
         return movieList;
+    }
+*/
+
+
+    @PostMapping("/movieSearch")
+    @ResponseBody
+    public ResponseEntity<MoviePageDTO> filterMovies(@RequestBody Map<String, String> formData) {
+        String filter = formData.get("filter");
+        String keyword = formData.get("keyword");
+        int page = Integer.parseInt(formData.get("page"));
+        int size = Integer.parseInt(formData.get("size"));
+
+        PageRequest pageable = PageRequest.of(page-1,size);
+        System.out.println("Filtram per: " + filter + ", amb la paraula clau: " + keyword);
+        // En el service filtramos por el tipo de keyword y tratamos las datos.
+        Page<Movie> movieList = movieSearchServices.filterMovies(filter, keyword,pageable);
+        MoviePageDTO moviePageDTO = new MoviePageDTO(movieList.getContent(),movieList.getTotalPages(),
+                movieList.getTotalElements());
+        return ResponseEntity.ok(moviePageDTO);
     }
 
 

@@ -23,12 +23,37 @@ public class MovieSearchServices {
         return movieSearchRepo.findAll();
     }
 
+
+    public Page<Movie> filterMovies(String filter, String keyword, PageRequest pageRequest) {
+        List<String> validFilters = Arrays.asList("title", "actor", "character", "genre", "director","author");
+        if (validFilters.contains(filter)) {
+            System.out.println("Es un filtre valid");
+            switch (filter) {
+                case "actor":
+                    System.out.println("actor :" + keyword );
+                    Page<Movie> movieList = movieSearchRepo.findMovieByActor(keyword,pageRequest);
+                for (Movie mo:movieList) {
+                    System.out.println(mo.getTitle());
+                }
+                return movieList;
+                default:
+                    System.err.println("Tipus de filtre no trobat");
+                    break;
+            }
+        } else {
+            System.out.println("Filtre no valid");
+        }
+        return null;
+    }
+
+
     public Page<Movie> getPage(Pageable pageable) {
         return movieSearchRepo.findAll(pageable);
     }
 
 
 
+    /*
     public List<MovieDTO> filterMovies(String filter, String keyword,int page, int size) {
         if(isValidInput(keyword)) {
             System.out.println("Input valid");
@@ -147,6 +172,8 @@ public class MovieSearchServices {
         return null;
     }
 
+
+     */
 
     //TODO: AMB PROBES DE SI POT CONTROLAR ELS FALSOS IMPUTS
     private boolean isValidInput(String keyword) {

@@ -27,8 +27,8 @@ function mostrarSeccion(seccion) {
 const addButton = document.getElementById('addButton');
 addButton.addEventListener('click', (event) => {
     confirm()
-    const isoCodeValue = document.getElementById('countryIsoCode').value;
-    const nameValue = document.getElementById('countryName').value;
+    const isoCodeValue = document.getElementById('countryInputs_countryIsoCode').value;
+    const nameValue = document.getElementById('countryInputs_countryName').value;
 
     if (isoCodeValue && nameValue) {
         // Mostrar confirmación antes de enviar la solicitud
@@ -68,9 +68,25 @@ addButton.addEventListener('click', (event) => {
     }
 });
 
+function showInputs() {
+    var select = document.getElementById("addSelect");
+    var selectedValue = select.options[select.selectedIndex].value;
 
+    // Oculta todos los campos
+    hideAllInputs();
 
+    // Muestra los campos relevantes según la opción seleccionada
+    document.getElementById(selectedValue + "Inputs").classList.remove("hidden");
+}
 
+function hideAllInputs() {
+    var inputsContainers = document.querySelectorAll("#dynamicInputs > div");
+    inputsContainers.forEach(function(container) {
+        container.classList.add("hidden");
+    });
+}
+
+/*
 function generateInputs() {
     var select = document.getElementById("addSelect");
     var selectedValue = select.options[select.selectedIndex].value;
@@ -85,24 +101,19 @@ function generateInputs() {
     } else if (selectedValue === "language") {
         generateInput("text", "languageCode", "languageCode", "Language Code");
         generateInput("text", "languageName", "languageName", "Language Name");
-
-    } else if (selectedValue === "language_rol") {
-        generateInput("text", "language_role", "languageRole", "Language Role");
-
+    } else if (selectedValue === "language_role") {
+        generateInput("text", "languageRole", "languageRole", "Language Role");
     } else if (selectedValue === "genre") {
         generateInput("text", "genreName", "genreName", "Genre Name");
-
     } else if (selectedValue === "keyword") {
-        generateInput("text", "keywordName", "keywordName", "keyword Name");
-
+        generateInput("text", "keywordName", "keywordName", "Keyword Name");
     } else if (selectedValue === "movie_company") {
         generateInput("text", "movieId", "movieId", "Movie Id");
         generateInput("text", "companyId", "companyId", "Company Id");
-
-    }  else if (selectedValue === "production_company") {
+    } else if (selectedValue === "production_company") {
         generateInput("text", "companyIdProduction", "companyIdProduction", "Company Id");
         generateInput("text", "companyName", "companyName", "Company Name");
-    } 
+    }
 }
 
 function generateInput(type, name, id, placeholder) {
@@ -114,3 +125,4 @@ function generateInput(type, name, id, placeholder) {
 
     document.getElementById("dynamicInputs").appendChild(input);
 }
+*/

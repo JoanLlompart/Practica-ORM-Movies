@@ -24,6 +24,7 @@ public class MovieSearchServices {
     }
 
 
+    /*
     public Page<Movie> filterMovies(String filter, String keyword, PageRequest pageRequest) {
         List<String> validFilters = Arrays.asList("title", "actor", "character", "genre", "director","author");
         if (validFilters.contains(filter)) {
@@ -46,6 +47,8 @@ public class MovieSearchServices {
         return null;
     }
 
+     */
+
 
     public Page<Movie> getPage(Pageable pageable) {
         return movieSearchRepo.findAll(pageable);
@@ -53,7 +56,7 @@ public class MovieSearchServices {
 
 
 
-    /*
+
     public List<MovieDTO> filterMovies(String filter, String keyword,int page, int size) {
         if(isValidInput(keyword)) {
             System.out.println("Input valid");
@@ -172,8 +175,6 @@ public class MovieSearchServices {
         return null;
     }
 
-
-     */
 
     //TODO: AMB PROBES DE SI POT CONTROLAR ELS FALSOS IMPUTS
     private boolean isValidInput(String keyword) {

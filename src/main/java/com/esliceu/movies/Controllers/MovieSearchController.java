@@ -56,7 +56,7 @@ public class MovieSearchController {
     }
 
 
-    /*
+
     @PostMapping("/movieSearch")
     @ResponseBody
     public List<MovieDTO> filterMovies(@RequestBody Map<String, String> formData) {
@@ -73,9 +73,10 @@ public class MovieSearchController {
         }
         return movieList;
     }
-*/
 
 
+
+    /*
     @PostMapping("/movieSearch")
     @ResponseBody
     public ResponseEntity<MoviePageDTO> filterMovies(@RequestBody Map<String, String> formData) {
@@ -93,6 +94,8 @@ public class MovieSearchController {
         return ResponseEntity.ok(moviePageDTO);
     }
 
+
+     */
 
 
 

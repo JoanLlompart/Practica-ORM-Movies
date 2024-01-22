@@ -14,10 +14,16 @@ public class AdminAddServices {
     AdminRepo adminRepo;
     @PersistenceContext
     private EntityManager entityManager;
-    public void insertCountry(String isoCode,String nameCountry) {
-        Country c = new Country();
-        c.setCountryIsoCode(isoCode);
-        c.setCountryName(nameCountry);
-        adminRepo.save(c);
+    public boolean insertCountry(String isoCode,String nameCountry) {
+        if (!(isoCode == null) && !(nameCountry ==null)) {
+            Country c = new Country();
+            c.setCountryIsoCode(isoCode);
+            c.setCountryName(nameCountry);
+            adminRepo.save(c);
+            return true;
+        } else {
+            System.out.println("VALOR DE ENTRADA NULL A InsertCountry");
+            return false;
+        }
     }
 }

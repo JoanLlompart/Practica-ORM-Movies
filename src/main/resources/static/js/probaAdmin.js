@@ -35,6 +35,7 @@ function sendData() {
 
     // Obtén los datos del formulario según el tipo de datos actual
     var formData = getFormData(dataType);
+    console.log("Form data " + formData);
 
     // Obtén la URL del servidor según el tipo de datos actual
     var apiUrl = getApiUrl(dataType);
@@ -76,6 +77,7 @@ function determineDataType() {
     // Puedes usar clases, estilos, atributos, o cualquier otro indicador en tu interfaz para determinar el tipo de datos
     // Por ejemplo, si el div con id "countryInputs" está visible, el tipo de datos es "country", y así sucesivamente
     if (document.getElementById('countryInputs').classList.contains('visible')) {
+        console.log("Country ha agafat el tipus be")
         return 'country';
     } else if (document.getElementById('languageInputs').classList.contains('visible')) {
         return 'language';

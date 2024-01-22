@@ -26,11 +26,12 @@ public class AdminAddController {
         return "adminArea";
     }
     @PostMapping("/adminArea/add")
-    public ResponseEntity<Object> adminPost(HttpServletRequest req, HttpSession session , @RequestBody Map<String,String> data) {
+    public ResponseEntity<Object> adminPost(HttpServletRequest req, HttpSession session , @RequestBody Map<String,String> formData) {
         String email = (String) session.getAttribute("email");
         userServices.setEmail(email);
-        String isoCode = data.get("isoCode");
-        String nameCountry = data.get("name");
+        String isoCode = formData.get("isoCode");
+        String nameCountry = formData.get("name");
+        System.out.println("name" + nameCountry + " , CODE :"+ isoCode);
         adminAddServices.insertCountry(isoCode,nameCountry);
         String successMessage = "Add admin";
         // return ResponseEntity.ok().body(successMessage);

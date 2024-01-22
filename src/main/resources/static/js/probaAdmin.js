@@ -73,7 +73,7 @@ async function sendData() {
 }
 
 var selectType =document.querySelector("#addSelect");
-    let valueSelect = "";
+    let valueSelect = "country";
     selectType.addEventListener("change", () => {
         valueSelect=selectType.value;
     });

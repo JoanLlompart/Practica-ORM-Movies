@@ -26,9 +26,8 @@ function mostrarSeccion(seccion) {
 
 const addButton = document.getElementById('addButton');
 addButton.addEventListener('click', (event) => {
-    confirm()
-    const isoCodeValue = document.getElementById('countryIsoCode').value;
-    const nameValue = document.getElementById('countryName').value;
+    const isoCodeValue = document.getElementById('countryInputs_countryIsoCode').value;
+    const nameValue = document.getElementById('countryInputs_countryName').value;
 
     if (isoCodeValue && nameValue) {
         // Mostrar confirmación antes de enviar la solicitud
@@ -148,3 +147,8 @@ function showInputs() {
         selectedInputsDiv.classList.remove('hidden');
     }
 }
+
+// Llama a showInputs al cargar la página para visualizar por defecto "country"
+window.onload = function() {
+    showInputs();
+};

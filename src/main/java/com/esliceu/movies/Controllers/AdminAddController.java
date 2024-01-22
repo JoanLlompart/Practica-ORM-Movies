@@ -26,7 +26,7 @@ public class AdminAddController {
         return "adminArea";
     }
 
-    @PostMapping("/adminArea")
+    @PostMapping("/adminArea/add")
     public ResponseEntity<Object> adminPost(HttpServletRequest req, HttpSession session , @RequestBody Map<String,String> data) {
         String email = (String) session.getAttribute("email");
         userServices.setEmail(email);
@@ -36,13 +36,12 @@ public class AdminAddController {
         boolean valid=adminAddServices.insertCountry(isoCode,nameCountry);
         String successMessage;
         if (valid) {
-            successMessage = "Add admin";
+            successMessage = "Add admin AdminController";
         } else {
             successMessage = "Country ADD FAILED";
         }
         return ResponseEntity.ok().body(successMessage);
     }
-/*
     @PostMapping("/adminArea/add/country")
     public ResponseEntity<Object> adminAddPostCountry(HttpServletRequest req, HttpSession session , @RequestBody Map<String,String> data) {
         String email = (String) session.getAttribute("email");
@@ -72,5 +71,4 @@ public class AdminAddController {
         return ResponseEntity.ok().body(successMessage);
     }
 
- */
 }

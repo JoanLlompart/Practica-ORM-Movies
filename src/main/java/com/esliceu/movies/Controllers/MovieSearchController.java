@@ -55,8 +55,6 @@ public class MovieSearchController {
         return "movieSearch";
     }
 
-
-
     @PostMapping("/movieSearch")
     @ResponseBody
     public List<MovieDTO> filterMovies(@RequestBody Map<String, String> formData) {

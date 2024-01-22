@@ -29,7 +29,7 @@ addButton.addEventListener('click', (event) => {
 });
 
 
-function sendData() {
+async function sendData() {
     // Obtén el tipo de datos (país, idioma, etc.) según el estado actual de la interfaz
     var dataType = determineDataType();
 
@@ -82,7 +82,8 @@ function determineDataType() {
     } else if (document.getElementById('languageInputs').classList.contains('visible')) {
         return 'language';
     }
-    // Añade más casos según sea necesario
+
+    console.log("Ha entrat a determineDataType")
 }
 
 function getFormData(dataType) {

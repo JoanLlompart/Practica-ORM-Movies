@@ -30,7 +30,7 @@ public class AdminAreaController {
 
 
 
-   /* @PostMapping("/adminArea")
+    @PostMapping("/adminArea")
     public String adminPost(HttpServletRequest req, HttpSession session) {
         String email = (String) session.getAttribute("email");
         userServices.setEmail(email);
@@ -41,11 +41,11 @@ public class AdminAreaController {
         return "adminArea";
     }
 
-    */
 
 
+/*
   @PostMapping("/adminArea/add")
-  public ResponseEntity<Object> adminPost(HttpServletRequest req, HttpSession session , @RequestBody Map<String,String> data) {
+  public ResponseEntity<Object> adminPost(HttpSession session , @RequestBody Map<String,String> data) {
       String email = (String) session.getAttribute("email");
       userServices.setEmail(email);
       String isoCode = data.get("isoCode");
@@ -56,8 +56,11 @@ public class AdminAreaController {
       return ResponseEntity.ok().body(successMessage);
   }
 
+ */
+
+  /*
     @PostMapping("/adminArea/add/country")
-    public ResponseEntity<Object> adminAddPostCountry(HttpServletRequest req, HttpSession session , @RequestBody Map<String,String> data) {
+    public ResponseEntity<Object> adminAddPostCountry(HttpSession session , @RequestBody Map<String,String> data) {
         String email = (String) session.getAttribute("email");
         userServices.setEmail(email);
         String isoCode = data.get("isoCode");
@@ -74,7 +77,7 @@ public class AdminAreaController {
     }
 
     @PostMapping("/adminArea/add/language")
-    public ResponseEntity<Object> adminPostLanguage(HttpServletRequest req, HttpSession session, @RequestBody Map<String, String> data) {
+    public ResponseEntity<Object> adminPostLanguage(HttpSession session, @RequestBody Map<String, String> data) {
         String email = (String) session.getAttribute("email");
         userServices.setEmail(email);
         String isoCode = data.get("isoCode");
@@ -84,4 +87,6 @@ public class AdminAreaController {
         // return ResponseEntity.ok().body(successMessage);
         return ResponseEntity.ok().body(successMessage);
     }
+
+   */
 }

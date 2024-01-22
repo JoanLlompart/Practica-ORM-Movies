@@ -23,8 +23,9 @@ public class AdminAddController {
     @GetMapping("/adminArea/add")
     public String adminGet(HttpSession session, Model model) {
         String email = (String) session.getAttribute("email");
-        return "redirect:/adminArea";
+        return "adminArea";
     }
+
    /* @PostMapping("/adminArea/add")
     public String adminAddPost(HttpSession session, Model model) {
         String email = (String) session.getAttribute("email");

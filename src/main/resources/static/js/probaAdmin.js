@@ -95,9 +95,23 @@ function getFormData(dataType) {
         formData.countryIsoCode = document.getElementById('countryInputs_countryIsoCode').value;
         formData.countryName = document.getElementById('countryInputs_countryName').value;
     } else if (dataType === 'language') {
-        formData.countryIsoCode = document.getElementById('languageInputs_languageCode').value;
-        formData.countryName = document.getElementById('languageInputs_languageName').value;
-    }
+        formData.languageCode = document.getElementById('languageInputs_languageCode').value;
+        formData.languageName = document.getElementById('languageInputs_languageName').value;
+
+    } else if (dataType === 'language_role') {
+        formData.languageRole = document.getElementById('languageRoleInputs_languageRole').value;
+
+    } else if (dataType === 'genre') {
+        formData.genreName = document.getElementById('genreInputs_genreName').value;
+
+    }  else if (dataType === 'keyword') {
+        formData.keywordName = document.getElementById('keywordInputs_keywordName').value;
+
+    } else if (dataType === 'movie_company') {
+        formData.movieId = document.getElementById('movieCompanyInputs_movieId').value;
+        formData.companyId = document.getElementById('movieCompanyInputs_companyId').value;
+        
+    } 
 
     return formData;
 }

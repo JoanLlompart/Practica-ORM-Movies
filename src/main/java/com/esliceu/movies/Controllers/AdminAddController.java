@@ -65,9 +65,9 @@ public class AdminAddController {
     public ResponseEntity<Object> adminAddPostLanguage(HttpServletRequest req, HttpSession session , @RequestBody Map<String,String> data) {
         String email = (String) session.getAttribute("email");
         userServices.setEmail(email);
-        String isoCode = data.get("isoCode");
-        String nameCountry = data.get("name");
-        adminAddServices.insertCountry(isoCode,nameCountry);
+        String isoCode = data.get("value1");
+        String nameCountry = data.get("value2");
+        adminAddServices.insertLanguage(isoCode,nameCountry);
         String successMessage = "Country added successfully";
         // return ResponseEntity.ok().body(successMessage);
         return ResponseEntity.ok().body(successMessage);

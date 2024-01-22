@@ -1,4 +1,27 @@
 
+const operationSelect = document.getElementById('operationSelect');
+const selectedSection = document.getElementById('selectedSection');
+
+operationSelect.addEventListener('change', (event) => {
+    const selectedOption = event.target.value;
+
+    if (selectedOption === 'add') {
+        mostrarSeccion('añadir');
+    } else if (selectedOption === 'update') {
+        mostrarSeccion('actualizar');
+    } else if (selectedOption === 'delete') {
+        mostrarSeccion('borrar');
+    }
+});
+
+function mostrarSeccion(seccion) {
+    var secciones = document.querySelectorAll('.section');
+    secciones.forEach(function (element) {
+        element.classList.remove('active-section');
+    });
+    document.getElementById(seccion).classList.add('active-section');
+}
+//PART NOVA
 
 const addButton = document.getElementById('addButton');
 addButton.addEventListener('click', (event) => {
@@ -16,34 +39,14 @@ function sendData() {
     // Obtén la URL del servidor según el tipo de datos actual
     var apiUrl = getApiUrl(dataType);
 
-
-
-
-    const inputs = Array.from(document.getElementById(selectedOption + "Fields").querySelectorAll("input"));
-    //console.log("Inputs:", inputs);
-    operation = 'insert';
-    // Construir el objeto requestData
-    const data = {
-        input1: inputs[0].value,
-        input2: inputs[1] ? inputs[1].value : null,
-    };
-
-
     const userConfirmed = window.confirm('Are you sure you want to add this new Country?');
 
     if (userConfirmed) {
 
-        /* const data = {
-            isoCode: isoCodeValue,
-            name: nameValue,
-        };
-        */
-
-
         // Realiza la solicitud fetch
         fetch(apiUrl, {
             method: 'POST',
-            body: JSON.stringify(data),
+            body: JSON.stringify(formData),
             headers: {
                 'Content-Type': 'application/json',
             },
@@ -104,11 +107,34 @@ function getApiUrl(dataType) {
 
     // Ejemplo: URL para el tipo de datos 'country'
     if (dataType === 'country') {
-        return baseUrl + 'countries';
+        return baseUrl + '/countries';
     } else if (dataType === 'language') {
-        return baseUrl + 'countries';
+        return baseUrl + '/language';
 
     } //Acabar de implementar
 
     return baseUrl; // Devuelve la URL base si no coincide con ningún tipo de datos conocido
 }
+
+
+
+//AQUI COMENSA LA PART ANTIGÜA
+function showInputs() {
+    // Oculta todos los div de inputs
+    var allInputs = document.querySelectorAll('.dynamicInputs');
+    allInputs.forEach(function(inputDiv) {
+        inputDiv.classList.add('hidden');
+    });
+
+    // Muestra el div correspondiente al valor seleccionado en el select
+    var selectedValue = document.getElementById('addSelect').value;
+    var selectedInputsDiv = document.getElementById(selectedValue + 'Inputs');
+    if (selectedInputsDiv) {
+        selectedInputsDiv.classList.remove('hidden');
+    }
+}
+
+// Llama a showInputs al cargar la página para visualizar por defecto "country"
+window.onload = function() {
+    showInputs();
+};

@@ -28,8 +28,8 @@ public class AdminAreaController {
         return "adminArea";
 
     }
-    @PostMapping("/adminArea/add")
-    public ResponseEntity<Object> adminPost(HttpServletRequest req, HttpSession session , @RequestBody Map<String,String> data) {
+    @PostMapping("/adminArea/add/country")
+    public ResponseEntity<Object> adminPostCountry(HttpServletRequest req, HttpSession session , @RequestBody Map<String,String> data) {
         String email = (String) session.getAttribute("email");
         userServices.setEmail(email);
         String isoCode = data.get("isoCode");
@@ -40,7 +40,28 @@ public class AdminAreaController {
         return ResponseEntity.ok().body(successMessage);
     }
 
-
+    @PostMapping("/adminArea/add")
+    public ResponseEntity<Object> adminPost(HttpServletRequest req, HttpSession session , @RequestBody Map<String,String> data) {
+        String email = (String) session.getAttribute("email");
+        userServices.setEmail(email);
+        String isoCode = data.get("isoCode");
+        String nameCountry = data.get("name");
+        adminAddServices.insertCountry(isoCode,nameCountry);
+        String successMessage = "Country added successfully";
+        // return ResponseEntity.ok().body(successMessage);
+        return ResponseEntity.ok().body(successMessage);
+    }
+    @PostMapping("/adminArea/add/language")
+    public ResponseEntity<Object> adminPostLanguage(HttpServletRequest req, HttpSession session , @RequestBody Map<String,String> data) {
+        String email = (String) session.getAttribute("email");
+        userServices.setEmail(email);
+        String isoCode = data.get("isoCode");
+        String nameCountry = data.get("name");
+        adminAddServices.insertCountry(isoCode,nameCountry);
+        String successMessage = "Country added successfully";
+        // return ResponseEntity.ok().body(successMessage);
+        return ResponseEntity.ok().body(successMessage);
+    }
 
 
     /*

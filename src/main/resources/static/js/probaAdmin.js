@@ -16,22 +16,56 @@ function sendData() {
     // Obtén la URL del servidor según el tipo de datos actual
     var apiUrl = getApiUrl(dataType);
 
-    // Realiza la solicitud fetch
-    fetch(apiUrl, {
-        method: 'POST', // o 'GET' según tus necesidades
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData),
-    })
-    .then(response => response.json())
-    .then(data => {
-        // Maneja la respuesta del servidor según tus necesidades
-        console.log('Respuesta del servidor:', data);
-    })
-    .catch(error => {
-        console.error('Error al enviar los datos:', error);
-    });
+
+
+
+    const inputs = Array.from(document.getElementById(selectedOption + "Fields").querySelectorAll("input"));
+    //console.log("Inputs:", inputs);
+    operation = 'insert';
+    // Construir el objeto requestData
+    const data = {
+        input1: inputs[0].value,
+        input2: inputs[1] ? inputs[1].value : null,
+    };
+
+
+    const userConfirmed = window.confirm('Are you sure you want to add this new Country?');
+
+    if (userConfirmed) {
+
+        /* const data = {
+            isoCode: isoCodeValue,
+            name: nameValue,
+        };
+        */
+
+
+        // Realiza la solicitud fetch
+        fetch(apiUrl, {
+            method: 'POST',
+            body: JSON.stringify(data),
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Error en la solicitud: ' + response.statusText);
+                }
+                return response.text();
+            })
+            .then(responseData => {
+                // Verificar si el servidor envió un mensaje y mostrarlo con un alert
+                alert(responseData);
+                console.log(responseData);
+            })
+            .catch(error => {
+                console.error('Error al enviar datos:', error);
+            });
+    } else {
+        // El usuario ha hecho clic en "Cancelar" en la confirmación
+        console.log('Operación cancelada por el usuario.');
+    }
 }
 
 function determineDataType() {
@@ -72,8 +106,9 @@ function getApiUrl(dataType) {
     if (dataType === 'country') {
         return baseUrl + 'countries';
     } else if (dataType === 'language') {
-        // Implementa la lógica para otros tipos de datos
-    }
+        return baseUrl + 'countries';
+
+    } //Acabar de implementar
 
     return baseUrl; // Devuelve la URL base si no coincide con ningún tipo de datos conocido
 }

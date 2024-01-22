@@ -23,18 +23,29 @@ public class AdminAddController {
     @GetMapping("/adminArea/add")
     public String adminGet(HttpSession session, Model model) {
         String email = (String) session.getAttribute("email");
+        return "redirect:/adminArea";
+    }
+   /* @PostMapping("/adminArea/add")
+    public String adminAddPost(HttpSession session, Model model) {
+        String email = (String) session.getAttribute("email");
         return "adminArea";
     }
+
+    */
     @PostMapping("/adminArea/add")
-    public ResponseEntity<Object> adminPost(HttpServletRequest req, HttpSession session , @RequestBody Map<String,String> formData) {
+    public ResponseEntity<Object> adminPost(HttpServletRequest req, HttpSession session , @RequestBody Map<String,String> data) {
         String email = (String) session.getAttribute("email");
         userServices.setEmail(email);
-        String isoCode = formData.get("isoCode");
-        String nameCountry = formData.get("name");
+        String isoCode = data.get("isoCode");
+        String nameCountry = data.get("name");
         System.out.println("name" + nameCountry + " , CODE :"+ isoCode);
-        adminAddServices.insertCountry(isoCode,nameCountry);
-        String successMessage = "Add admin";
-        // return ResponseEntity.ok().body(successMessage);
+        boolean valid=adminAddServices.insertCountry(isoCode,nameCountry);
+        String successMessage;
+        if (valid) {
+            successMessage = "Add admin";
+        } else {
+            successMessage = "Country ADD FAILED";
+        }
         return ResponseEntity.ok().body(successMessage);
     }
 
@@ -44,8 +55,13 @@ public class AdminAddController {
         userServices.setEmail(email);
         String isoCode = data.get("isoCode");
         String nameCountry = data.get("name");
-        adminAddServices.insertCountry(isoCode,nameCountry);
-        String successMessage = "Country added successfully";
+        boolean valid =adminAddServices.insertCountry(isoCode,nameCountry);
+        String successMessage;
+        if (valid) {
+            successMessage = "Country added successfully";
+        } else {
+            successMessage = "Country ADD FAILED";
+        }
         // return ResponseEntity.ok().body(successMessage);
         return ResponseEntity.ok().body(successMessage);
     }

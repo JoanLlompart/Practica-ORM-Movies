@@ -72,18 +72,27 @@ async function sendData() {
     }
 }
 
+var selectType =document.querySelector("#addSelect");
+    let valueSelect = "";
+    selectType.addEventListener("change", () => {
+        valueSelect=selectType.value;
+    });
+    
 function determineDataType() {
     // Lógica para determinar el tipo de datos actual
     // Puedes usar clases, estilos, atributos, o cualquier otro indicador en tu interfaz para determinar el tipo de datos
     // Por ejemplo, si el div con id "countryInputs" está visible, el tipo de datos es "country", y así sucesivamente
-    if (document.getElementById('countryInputs').classList.contains('visible')) {
+    
+    /*  if (document.getElementById('countryInputs').classList.contains('visible')) {
         console.log("Country ha agafat el tipus be")
         return 'country';
     } else if (document.getElementById('languageInputs').classList.contains('visible')) {
         return 'language';
     }
-
+    */
+    
     console.log("Ha entrat a determineDataType")
+    return valueSelect;
 }
 
 //Versio personalizada per erronea
@@ -126,7 +135,6 @@ function getFormData(dataType) {
     // Lógica para obtener los datos del formulario según el tipo de datos
     // Implementa esta función según tus necesidades específicas
     var formData = {};
-
     // Ejemplo: Obtén datos del formulario para el tipo de datos 'country'
     if (dataType === 'country') {
         formData.value1 = document.getElementById('countryInputs_countryIsoCode').value;
@@ -148,7 +156,9 @@ function getFormData(dataType) {
         formData.value1 = document.getElementById('movieCompanyInputs_movieId').value;
         formData.value2 = document.getElementById('movieCompanyInputs_companyId').value;
         
-    } 
+    } else {
+        console.log(dataType);
+    }
 
     return formData;
 }

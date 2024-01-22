@@ -169,7 +169,7 @@ function getApiUrl(dataType) {
 
     // Ejemplo: URL para el tipo de datos 'country'
     if (dataType === 'country') {
-        return baseUrl + '/countries';
+        return baseUrl + '/country';
     } else if (dataType === 'language') {
         return baseUrl + '/language';
 

@@ -30,8 +30,8 @@ public class AdminAddController {
     public ResponseEntity<Object> adminPost(HttpServletRequest req, HttpSession session , @RequestBody Map<String,String> data) {
         String email = (String) session.getAttribute("email");
         userServices.setEmail(email);
-        String isoCode = data.get("isoCode");
-        String nameCountry = data.get("name");
+        String isoCode = data.get("value1");
+        String nameCountry = data.get("value2");
         System.out.println("name" + nameCountry + " , CODE :"+ isoCode);
         boolean valid=adminAddServices.insertCountry(isoCode,nameCountry);
         String successMessage;
@@ -46,8 +46,10 @@ public class AdminAddController {
     public ResponseEntity<Object> adminAddPostCountry(HttpServletRequest req, HttpSession session , @RequestBody Map<String,String> data) {
         String email = (String) session.getAttribute("email");
         userServices.setEmail(email);
-        String isoCode = data.get("isoCode");
-        String nameCountry = data.get("name");
+       // String isoCode = data.get("isoCode");
+       // String nameCountry = data.get("name");
+        String isoCode = data.get("value1");
+        String nameCountry = data.get("value2");
         boolean valid =adminAddServices.insertCountry(isoCode,nameCountry);
         String successMessage;
         if (valid) {

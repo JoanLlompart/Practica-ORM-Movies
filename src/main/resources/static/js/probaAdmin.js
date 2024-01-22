@@ -35,7 +35,7 @@ async function sendData() {
 
     // Obtén los datos del formulario según el tipo de datos actual
     var formData = getFormData(dataType);
-    console.log("Form data " + formData);
+    console.log("Form data " + formData.value1 + " VALUE2" + formData.value2);
 
     // Obtén la URL del servidor según el tipo de datos actual
     var apiUrl = getApiUrl(dataType);
@@ -86,6 +86,8 @@ function determineDataType() {
     console.log("Ha entrat a determineDataType")
 }
 
+//Versio personalizada per erronea
+/*
 function getFormData(dataType) {
     // Lógica para obtener los datos del formulario según el tipo de datos
     // Implementa esta función según tus necesidades específicas
@@ -116,7 +118,40 @@ function getFormData(dataType) {
 
     return formData;
 }
+*/
 
+
+
+function getFormData(dataType) {
+    // Lógica para obtener los datos del formulario según el tipo de datos
+    // Implementa esta función según tus necesidades específicas
+    var formData = {};
+
+    // Ejemplo: Obtén datos del formulario para el tipo de datos 'country'
+    if (dataType === 'country') {
+        formData.value1 = document.getElementById('countryInputs_countryIsoCode').value;
+        formData.value2 = document.getElementById('countryInputs_countryName').value;
+    } else if (dataType === 'language') {
+        formData.value1 = document.getElementById('languageInputs_languageCode').value;
+        formData.value2 = document.getElementById('languageInputs_languageName').value;
+
+    } else if (dataType === 'language_role') {
+        formData.value1 = document.getElementById('languageRoleInputs_languageRole').value;
+
+    } else if (dataType === 'genre') {
+        formData.value1 = document.getElementById('genreInputs_genreName').value;
+
+    }  else if (dataType === 'keyword') {
+        formData.value1 = document.getElementById('keywordInputs_keywordName').value;
+
+    } else if (dataType === 'movie_company') {
+        formData.value1 = document.getElementById('movieCompanyInputs_movieId').value;
+        formData.value2 = document.getElementById('movieCompanyInputs_companyId').value;
+        
+    } 
+
+    return formData;
+}
 function getApiUrl(dataType) {
     // Lógica para obtener la URL del servidor según el tipo de datos
     // Implementa esta función según tus necesidades específicas

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -40,64 +41,65 @@
 
 <div id="añadir" class="section active-section container mt-3">
     <h2>Elige un elemento para añadir</h2>
-        <select name="addSelect" id="addSelect" onchange="showInputs()">
-            <option value="country">Country</option>
-            <option value="language">Language</option>
-            <option value="language_role">Language Rol</option>
-            <option value="genre">Genre</option>
-            <option value="keyword">Keyword</option>
-            <option value="movie_company">Movie Company</option>
-            <option value="production_company">Production Company</option>
-            <option value="gender">Gender</option>
-            <option value="person">Person</option>
-            <option value="department">Department</option>
-        </select>
+    <select name="addSelect" id="addSelect" onchange="showInputs()">
+        <option value="country">Country</option>
+        <option value="language">Language</option>
+        <option value="language_role">Language Rol</option>
+        <option value="genre">Genre</option>
+        <option value="keyword">Keyword</option>
+        <option value="movie_company">Movie Company</option>
+        <option value="production_company">Production Company</option>
+        <option value="gender">Gender</option>
+        <option value="person">Person</option>
+        <option value="department">Department</option>
+    </select>
 
-        <!--
+    <!--
         <div id="addElements">
                 <input type="text" name="countryIsoCode" id="countryIsoCode" placeholder="country_iso_code">
                 <input type="text" name="countryName" id="countryName" placeholder="Country Name">
         </div>
     -->
 
-        
+
 
     <div id="countryInputs" class="dynamicInputs hidden">
         <input type="text" name="countryIsoCode" id="countryInputs_countryIsoCode" placeholder="Country ISO Code">
         <input type="text" name="countryName" id="countryInputs_countryName" placeholder="Country Name">
     </div>
-    
+
     <div id="languageInputs" class="dynamicInputs hidden">
         <input type="text" name="languageCode" id="languageInputs_languageCode" placeholder="Language Code">
         <input type="text" name="languageName" id="languageInputs_languageName" placeholder="Language Name">
     </div>
-    
+
     <div id="languageRoleInputs" class="dynamicInputs hidden">
         <input type="text" name="languageRole" id="languageRoleInputs_languageRole" placeholder="Language Role">
     </div>
-    
+
     <div id="genreInputs" class="dynamicInputs hidden">
         <input type="text" name="genreName" id="genreInputs_genreName" placeholder="Genre Name">
     </div>
-    
+
     <div id="keywordInputs" class="dynamicInputs hidden">
         <input type="text" name="keywordName" id="keywordInputs_keywordName" placeholder="Keyword Name">
     </div>
-    
+
     <div id="movieCompanyInputs" class="dynamicInputs hidden">
         <input type="text" name="movieId" id="movieCompanyInputs_movieId" placeholder="Movie Id">
         <input type="text" name="companyId" id="movieCompanyInputs_companyId" placeholder="Company Id">
     </div>
-    
+
     <div id="productionCompanyInputs" class="dynamicInputs hidden">
-        <input type="text" name="companyIdProduction" id="productionCompanyInputs_companyIdProduction" placeholder="Company Id">
+        <input type="text" name="companyIdProduction" id="productionCompanyInputs_companyIdProduction"
+            placeholder="Company Id">
         <input type="text" name="companyName" id="productionCompanyInputs_companyName" placeholder="Company Name">
     </div>
-    
 
-        <input type="button" id ="addButton" value="Add">
 
-<!--
+    <input type="button" id="addButton" value="Add">
+
+    <!--
         <div id="countryAddElements">
             <label for="countryIsoCode">
                 <input type="text" name="countryIsoCode" id="countryIsoCode" placeholder="country_iso_code">
@@ -132,7 +134,7 @@
         <option value="person">Person</option>
         <option value="department">Department</option>
     </select>
-<!--
+    <!--
         <div id="updateElements">
             <label for="countryIsoCode">
                 <input type="text" name="countryIsoCode" id="countryIsoCode" placeholder="country_iso_code">

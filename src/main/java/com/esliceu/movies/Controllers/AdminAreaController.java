@@ -29,19 +29,50 @@ public class AdminAreaController {
     }
 
 
-    @PostMapping("/adminArea")
+
+   /* @PostMapping("/adminArea")
     public String adminPost(HttpServletRequest req, HttpSession session) {
         String email = (String) session.getAttribute("email");
         userServices.setEmail(email);
-       /* String isoCode = data.get("isoCode");
-        String nameCountry = data.get("name");
-        adminAddServices.insertCountry(isoCode, nameCountry);
-        String successMessage = "Country added successfully";
-
-        */
+       // String isoCode = data.get("isoCode");
+        //String nameCountry = data.get("name");
+        //adminAddServices.insertCountry(isoCode, nameCountry);
+        //String successMessage = "Country added successfully";
         return "adminArea";
     }
-/*
+
+    */
+
+
+  @PostMapping("/adminArea/add")
+  public ResponseEntity<Object> adminPost(HttpServletRequest req, HttpSession session , @RequestBody Map<String,String> data) {
+      String email = (String) session.getAttribute("email");
+      userServices.setEmail(email);
+      String isoCode = data.get("isoCode");
+      String nameCountry = data.get("name");
+      adminAddServices.insertCountry(isoCode,nameCountry);
+      String successMessage = "Country added successfully";
+      // return ResponseEntity.ok().body(successMessage);
+      return ResponseEntity.ok().body(successMessage);
+  }
+
+    @PostMapping("/adminArea/add/country")
+    public ResponseEntity<Object> adminAddPostCountry(HttpServletRequest req, HttpSession session , @RequestBody Map<String,String> data) {
+        String email = (String) session.getAttribute("email");
+        userServices.setEmail(email);
+        String isoCode = data.get("isoCode");
+        String nameCountry = data.get("name");
+        boolean valid =adminAddServices.insertCountry(isoCode,nameCountry);
+        String successMessage;
+        if (valid) {
+            successMessage = "Country added successfully";
+        } else {
+            successMessage = "Country ADD FAILED";
+        }
+        // return ResponseEntity.ok().body(successMessage);
+        return ResponseEntity.ok().body(successMessage);
+    }
+
     @PostMapping("/adminArea/add/language")
     public ResponseEntity<Object> adminPostLanguage(HttpServletRequest req, HttpSession session, @RequestBody Map<String, String> data) {
         String email = (String) session.getAttribute("email");
@@ -49,10 +80,8 @@ public class AdminAreaController {
         String isoCode = data.get("isoCode");
         String nameCountry = data.get("name");
         adminAddServices.insertCountry(isoCode, nameCountry);
-        String successMessage = "Country added successfully";
+        String successMessage = "language added successfully";
         // return ResponseEntity.ok().body(successMessage);
         return ResponseEntity.ok().body(successMessage);
     }
-
- */
 }

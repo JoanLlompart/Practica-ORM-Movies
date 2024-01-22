@@ -13,9 +13,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.Map;
-
 @Controller
 public class AdminAddController {
+
     @Autowired
     UserServices userServices;
     @Autowired
@@ -26,14 +26,7 @@ public class AdminAddController {
         return "adminArea";
     }
 
-   /* @PostMapping("/adminArea/add")
-    public String adminAddPost(HttpSession session, Model model) {
-        String email = (String) session.getAttribute("email");
-        return "adminArea";
-    }
-
-    */
-    @PostMapping("/adminArea/add")
+    @PostMapping("/adminArea")
     public ResponseEntity<Object> adminPost(HttpServletRequest req, HttpSession session , @RequestBody Map<String,String> data) {
         String email = (String) session.getAttribute("email");
         userServices.setEmail(email);
@@ -49,7 +42,7 @@ public class AdminAddController {
         }
         return ResponseEntity.ok().body(successMessage);
     }
-
+/*
     @PostMapping("/adminArea/add/country")
     public ResponseEntity<Object> adminAddPostCountry(HttpServletRequest req, HttpSession session , @RequestBody Map<String,String> data) {
         String email = (String) session.getAttribute("email");
@@ -79,7 +72,5 @@ public class AdminAddController {
         return ResponseEntity.ok().body(successMessage);
     }
 
-
-
-
+ */
 }

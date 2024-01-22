@@ -27,8 +27,8 @@ function mostrarSeccion(seccion) {
 const addButton = document.getElementById('addButton');
 addButton.addEventListener('click', (event) => {
     confirm()
-    const isoCodeValue = document.getElementById('countryInputs_countryIsoCode').value;
-    const nameValue = document.getElementById('countryInputs_countryName').value;
+    const isoCodeValue = document.getElementById('countryIsoCode').value;
+    const nameValue = document.getElementById('countryName').value;
 
     if (isoCodeValue && nameValue) {
         // Mostrar confirmación antes de enviar la solicitud
@@ -68,23 +68,7 @@ addButton.addEventListener('click', (event) => {
     }
 });
 
-function showInputs() {
-    var select = document.getElementById("addSelect");
-    var selectedValue = select.options[select.selectedIndex].value;
 
-    // Oculta todos los campos
-    hideAllInputs();
-
-    // Muestra los campos relevantes según la opción seleccionada
-    document.getElementById(selectedValue + "Inputs").classList.remove("hidden");
-}
-
-function hideAllInputs() {
-    var inputsContainers = document.querySelectorAll("#dynamicInputs > div");
-    inputsContainers.forEach(function(container) {
-        container.classList.add("hidden");
-    });
-}
 
 /*
 function generateInputs() {
@@ -126,3 +110,41 @@ function generateInput(type, name, id, placeholder) {
     document.getElementById("dynamicInputs").appendChild(input);
 }
 */
+
+
+/*
+function showInputs() {
+    var select = document.getElementById("addSelect");
+    var selectedValue = select.options[select.selectedIndex].value;
+
+    // Oculta todos los campos
+    hideAllInputs();
+
+    // Muestra los campos relevantes según la opción seleccionada
+    document.querySelectorAll('.' + selectedValue + "Inputs").forEach(function(container) {
+        container.classList.remove('hidden');
+    });
+}
+
+function hideAllInputs() {
+    document.querySelectorAll('.dynamicInputs').forEach(function(container) {
+        container.classList.add('hidden');
+    });
+}
+*/
+
+
+function showInputs() {
+    // Oculta todos los div de inputs
+    var allInputs = document.querySelectorAll('.dynamicInputs');
+    allInputs.forEach(function(inputDiv) {
+        inputDiv.classList.add('hidden');
+    });
+
+    // Muestra el div correspondiente al valor seleccionado en el select
+    var selectedValue = document.getElementById('addSelect').value;
+    var selectedInputsDiv = document.getElementById(selectedValue + 'Inputs');
+    if (selectedInputsDiv) {
+        selectedInputsDiv.classList.remove('hidden');
+    }
+}

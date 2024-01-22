@@ -48,7 +48,7 @@
             <option value="keyword">Keyword</option>
             <option value="movie_company">Movie Company</option>
             <option value="production_company">Production Company</option>
-            <option value="gender">Genre</option>
+            <option value="gender">Gender</option>
             <option value="person">Person</option>
             <option value="department">Department</option>
         </select>
@@ -61,37 +61,39 @@
     -->
 
         
-<div id="countryInputs" class="addElements hidden">
-    <input type="text" name="countryIsoCode" id="countryInputs_countryIsoCode" placeholder="Country ISO Code">
-    <input type="text" name="countryName" id="countryInputs_countryName" placeholder="Country Name">
-</div>
 
-<div id="languageInputs" class="addElements hidden">
-    <input type="text" name="languageCode" id="languageInputs_languageCode" placeholder="Language Code">
-    <input type="text" name="languageName" id="languageInputs_languageName" placeholder="Language Name">
-</div>
-
-<div id="languageRoleInputs" class="addElements hidden">
-    <input type="text" name="languageRole" id="languageRoleInputs_languageRole" placeholder="Language Role">
-</div>
-
-<div id="genreInputs" class="addElements hidden">
-    <input type="text" name="genreName" id="genreInputs_genreName" placeholder="Genre Name">
-</div>
-
-<div id="keywordInputs" class="addElements hidden">
-    <input type="text" name="keywordName" id="keywordInputs_keywordName" placeholder="Keyword Name">
-</div>
-
-<div id="movieCompanyInputs" class="addElements hidden">
-    <input type="text" name="movieId" id="movieCompanyInputs_movieId" placeholder="Movie Id">
-    <input type="text" name="companyId" id="movieCompanyInputs_companyId" placeholder="Company Id">
-</div>
-
-<div id="productionCompanyInputs" class="addElements hidden">
-    <input type="text" name="companyIdProduction" id="productionCompanyInputs_companyIdProduction" placeholder="Company Id">
-    <input type="text" name="companyName" id="productionCompanyInputs_companyName" placeholder="Company Name">
-</div>
+    <div id="countryInputs" class="dynamicInputs hidden">
+        <input type="text" name="countryIsoCode" id="countryInputs_countryIsoCode" placeholder="Country ISO Code">
+        <input type="text" name="countryName" id="countryInputs_countryName" placeholder="Country Name">
+    </div>
+    
+    <div id="languageInputs" class="dynamicInputs hidden">
+        <input type="text" name="languageCode" id="languageInputs_languageCode" placeholder="Language Code">
+        <input type="text" name="languageName" id="languageInputs_languageName" placeholder="Language Name">
+    </div>
+    
+    <div id="languageRoleInputs" class="dynamicInputs hidden">
+        <input type="text" name="languageRole" id="languageRoleInputs_languageRole" placeholder="Language Role">
+    </div>
+    
+    <div id="genreInputs" class="dynamicInputs hidden">
+        <input type="text" name="genreName" id="genreInputs_genreName" placeholder="Genre Name">
+    </div>
+    
+    <div id="keywordInputs" class="dynamicInputs hidden">
+        <input type="text" name="keywordName" id="keywordInputs_keywordName" placeholder="Keyword Name">
+    </div>
+    
+    <div id="movieCompanyInputs" class="dynamicInputs hidden">
+        <input type="text" name="movieId" id="movieCompanyInputs_movieId" placeholder="Movie Id">
+        <input type="text" name="companyId" id="movieCompanyInputs_companyId" placeholder="Company Id">
+    </div>
+    
+    <div id="productionCompanyInputs" class="dynamicInputs hidden">
+        <input type="text" name="companyIdProduction" id="productionCompanyInputs_companyIdProduction" placeholder="Company Id">
+        <input type="text" name="companyName" id="productionCompanyInputs_companyName" placeholder="Company Name">
+    </div>
+    
 
         <input type="button" id ="addButton" value="Add">
 

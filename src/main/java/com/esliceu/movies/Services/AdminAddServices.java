@@ -26,6 +26,8 @@ public class AdminAddServices {
     KeywordRepo keywordRepo;
     @Autowired
     GenderRepo genderRepo;
+    @Autowired
+    DepartmentRepo departmentRepo;
 
 
     @PersistenceContext
@@ -135,6 +137,18 @@ public class AdminAddServices {
             return "Gender Add successfully";
         } else {
             return "Gender Insert FAILED";
+        }
+    }
+
+    public String insertNewDepartment(Map<String, String> data) {
+        String departmentName = data.get("value1");
+        if (isValidInput(departmentName) && departmentName != null) {
+            Department dp = new Department();
+            dp.setDepartmentName(departmentName);
+            departmentRepo.save(dp);
+            return "Department Add successfully";
+        } else {
+            return "Department Insert FAILED";
         }
     }
 }

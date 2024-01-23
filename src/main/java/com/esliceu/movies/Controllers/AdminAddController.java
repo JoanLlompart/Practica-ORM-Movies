@@ -100,4 +100,15 @@ public class AdminAddController {
         String successMessage =adminAddServices.insertNewMovieCompany(data);
         return ResponseEntity.ok().body(successMessage);
     }
+
+
+    @PostMapping("/adminArea/add/gender")
+    public ResponseEntity<Object> adminAddPostGender( HttpSession session , @RequestBody Map<String,String> data) {
+        String email = (String) session.getAttribute("email");
+        userServices.setEmail(email);
+        String successMessage =adminAddServices.insertNewGender(data);
+        return ResponseEntity.ok().body(successMessage);
+    }
+
+
 }

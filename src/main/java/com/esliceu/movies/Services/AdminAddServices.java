@@ -24,6 +24,8 @@ public class AdminAddServices {
     GenreRepo genreRepo;
     @Autowired
     KeywordRepo keywordRepo;
+    @Autowired
+    GenderRepo genderRepo;
 
 
     @PersistenceContext
@@ -92,11 +94,11 @@ public class AdminAddServices {
 
     public String insertNewKeyword(Map<String, String> data) {
         String keywordName = data.get("value1");
-
+        System.out.println("keywordname " + keywordName);
         if (isValidInput(keywordName) && keywordName != null) {
             Keyword k = new Keyword();
             k.setKeywordName(keywordName);
-            Long lastId =keywordRepo.lasGenreId();
+            Long lastId =keywordRepo.lasKeywordId();
             k.setKeywordId(lastId+1);
             keywordRepo.save(k);
             return "Keyword Add successfully";
@@ -119,5 +121,20 @@ public class AdminAddServices {
 
     private boolean isNumeric(String cadena) {
         return cadena.matches("-?\\d+");
+    }
+
+    public String insertNewGender(Map<String, String> data) {
+        String genderName = data.get("value1");
+
+        if (isValidInput(genderName) && genderName != null) {
+            Gender ge = new Gender();
+            ge.setGender(genderName);
+            Long lastId =genderRepo.lastGenderId();
+            ge.setGenderId(lastId+1);
+            genderRepo.save(ge);
+            return "Gender Add successfully";
+        } else {
+            return "Gender Insert FAILED";
+        }
     }
 }

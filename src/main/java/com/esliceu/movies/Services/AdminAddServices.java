@@ -153,7 +153,6 @@ public class AdminAddServices {
             return "Department Insert FAILED";
         }
     }
-
     public String insertNewPerson(Map<String, String> data) {
         String personName = data.get("value1");
         if (isValidInput(personName) && personName != null) {

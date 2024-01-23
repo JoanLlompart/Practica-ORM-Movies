@@ -31,6 +31,8 @@ public class AdminAddServices {
     @Autowired
     PersonRepo personRepo;
 
+    @Autowired
+    ProductionCompanyRepo productionCompanyRepo;
 
     @PersistenceContext
     private EntityManager entityManager;
@@ -111,14 +113,18 @@ public class AdminAddServices {
         }
     }
 
-    public String insertNewMovieCompany(Map<String, String> data) {
-        String movieId = data.get("value1");
-        String companyId = data.get("value2");
-        if (isNumeric(movieId) && isNumeric(companyId)) {
-            MovieCompany mc = new MovieCompany();
-            return "NOT MAKE AT THE MOMENT";
+    public String insertNewProductionCompany(Map<String, String> data) {
+        String companyName = data.get("value1");
+       // String companyId = data.get("value2");
+        if (isValidInput(companyName) && companyName != null) {
+            ProductionCompany pc = new ProductionCompany();
+            pc.setCompanyName(companyName);
+            Long lastId = productionCompanyRepo.lastCompanyId();
+            pc.setCompanyId(lastId+1);
+            productionCompanyRepo.save(pc);
+            return "Company Add successfully";
         } else {
-            return "Invalid ID type";
+            return "Company Insert FAILED";
         }
 
     }

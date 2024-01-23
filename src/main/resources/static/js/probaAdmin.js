@@ -151,8 +151,8 @@ function getFormData(dataType) {
         formData.value2 = document.getElementById('movieCompanyInputs_companyId').value;
         
     } else if (dataType === 'productionCompany') {
-        formData.value1 = document.getElementById('productionCompanyInputs_companyIdProduction').value;
-        formData.value2 = document.getElementById('productionCompanyInputs_companyName').value;
+        //formData.value1 = document.getElementById('productionCompanyInputs_companyIdProduction').value;
+        formData.value1 = document.getElementById('productionCompanyInputs_companyName').value;
         
     }  else if (dataType === 'gender') {
         formData.value1 = document.getElementById('genderInputs_genderName').value;

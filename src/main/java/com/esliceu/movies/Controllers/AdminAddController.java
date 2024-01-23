@@ -93,11 +93,12 @@ public class AdminAddController {
         return ResponseEntity.ok().body(successMessage);
     }
 
-    @PostMapping("/adminArea/add/movieCompany")
-    public ResponseEntity<Object> adminAddPostMovieCompany( HttpSession session , @RequestBody Map<String,String> data) {
+    @PostMapping("/adminArea/add/productionCompany")
+    public ResponseEntity<Object> adminAddPostProductionCompany( HttpSession session , @RequestBody Map<String,String> data) {
         String email = (String) session.getAttribute("email");
         userServices.setEmail(email);
-        String successMessage =adminAddServices.insertNewMovieCompany(data);
+
+        String successMessage =adminAddServices.insertNewProductionCompany(data);
         return ResponseEntity.ok().body(successMessage);
     }
 

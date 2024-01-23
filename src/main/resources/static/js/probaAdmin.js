@@ -206,9 +206,6 @@ function getApiUrl(dataType) {
         return baseUrl + '/department';
 
     }
-
-    //console.log("Datetype : " + dataType)
-    //console.log(baseUrl)
     return baseUrl; // Devuelve la URL base si no coincide con ningún tipo de datos conocido
 }
 

@@ -80,6 +80,7 @@ public class AdminAddController {
         String isoCode = data.get("value1");
         String nameCountry = data.get("value2");
         //adminAddServices.insertLanguage(isoCode,nameCountry);
+
         String successMessage = "Country added successfully";
         // return ResponseEntity.ok().body(successMessage);
         return ResponseEntity.ok().body(successMessage);

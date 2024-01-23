@@ -8,7 +8,7 @@ import java.util.Set;
 @Table(name = "keyword")
 public class Keyword {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    //@GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "keyword_id")
     private Long keywordId;
 
@@ -18,4 +18,27 @@ public class Keyword {
     @OneToMany(mappedBy = "keyword")
     private Set<MovieKeywords> movieKeywords;
 
+    public Long getKeywordId() {
+        return keywordId;
+    }
+
+    public void setKeywordId(Long keywordId) {
+        this.keywordId = keywordId;
+    }
+
+    public String getKeywordName() {
+        return keywordName;
+    }
+
+    public void setKeywordName(String keywordName) {
+        this.keywordName = keywordName;
+    }
+
+    public Set<MovieKeywords> getMovieKeywords() {
+        return movieKeywords;
+    }
+
+    public void setMovieKeywords(Set<MovieKeywords> movieKeywords) {
+        this.movieKeywords = movieKeywords;
+    }
 }

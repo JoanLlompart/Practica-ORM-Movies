@@ -1,9 +1,6 @@
 package com.esliceu.movies.Services;
 
-import com.esliceu.movies.Entities.Country;
-import com.esliceu.movies.Entities.Genre;
-import com.esliceu.movies.Entities.Language;
-import com.esliceu.movies.Entities.LanguageRole;
+import com.esliceu.movies.Entities.*;
 import com.esliceu.movies.Repos.*;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EntityManager;
@@ -25,6 +22,8 @@ public class AdminAddServices {
     LanguageRoleRepo languageRoleRepo;
     @Autowired
     GenreRepo genreRepo;
+    @Autowired
+    KeywordRepo keywordRepo;
 
 
     @PersistenceContext
@@ -88,6 +87,21 @@ public class AdminAddServices {
             return "Genre added successfully";
         } else {
             return "Genre Insert FAILED";
+        }
+    }
+
+    public String insertNewKeyword(Map<String, String> data) {
+        String keywordName = data.get("value1");
+
+        if (isValidInput(keywordName) && keywordName != null) {
+            Keyword k = new Keyword();
+            k.setKeywordName(keywordName);
+            Long lastId =keywordRepo.lasGenreId();
+            k.setKeywordId(lastId+1);
+            keywordRepo.save(k);
+            return "Keyword Add successfully";
+        } else {
+            return "Keyword Insert FAILED";
         }
     }
 }

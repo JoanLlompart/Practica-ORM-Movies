@@ -2,14 +2,19 @@ package com.esliceu.movies.Services;
 
 import com.esliceu.movies.Entities.Country;
 import com.esliceu.movies.Entities.Language;
+import com.esliceu.movies.Entities.LanguageRole;
 import com.esliceu.movies.Repos.AdminRepo;
 import com.esliceu.movies.Repos.CountryRepo;
 import com.esliceu.movies.Repos.LanguageRepo;
+import com.esliceu.movies.Repos.LanguageRoleRepo;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.Map;
+
 @Service
 public class AdminAddServices {
     @Autowired
@@ -18,6 +23,8 @@ public class AdminAddServices {
     LanguageRepo languageRepo;
     @Autowired
     CountryRepo countryRepo;
+    @Autowired
+    LanguageRoleRepo languageRoleRepo;
 
     @PersistenceContext
     private EntityManager entityManager;
@@ -49,5 +56,15 @@ public class AdminAddServices {
         keyword =keyword.trim();
         //Permet numeros i lletras i espais enmitg ja que els altres se han eliminat
         return keyword.matches("[a-zA-Z0-9 ]+");
+    }
+
+    public void insertLanguageRole(Map<String, String> data) {
+        String language_role = data.get("value1");
+        if (isValidInput(language_role) && language_role != null) {
+            LanguageRole lRole = new LanguageRole();
+            lRole.setLanguage_role(language_role);
+            languageRoleRepo.save(lRole);
+        }
+
     }
 }

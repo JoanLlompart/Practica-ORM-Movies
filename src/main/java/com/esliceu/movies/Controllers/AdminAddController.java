@@ -74,12 +74,14 @@ public class AdminAddController {
     }
 
     @PostMapping("/adminArea/add/languageRole")
-    public ResponseEntity<Object> adminAddPostProductionCompany(HttpServletRequest req, HttpSession session , @RequestBody Map<String,String> data) {
+    public ResponseEntity<Object> adminAddPostLanguageRole(HttpServletRequest req, HttpSession session , @RequestBody Map<String,String> data) {
         String email = (String) session.getAttribute("email");
         userServices.setEmail(email);
-        String isoCode = data.get("value1");
-        String nameCountry = data.get("value2");
+       // String isoCode = data.get("value1");
+        // String nameCountry = data.get("value2");
+
         //adminAddServices.insertLanguage(isoCode,nameCountry);
+        adminAddServices.insertLanguageRole(data);
 
         String successMessage = "Country added successfully";
         // return ResponseEntity.ok().body(successMessage);

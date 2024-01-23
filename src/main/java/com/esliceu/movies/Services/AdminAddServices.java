@@ -110,6 +110,7 @@ public class AdminAddServices {
         String companyId = data.get("value2");
         if (isNumeric(movieId) && isNumeric(companyId)) {
             MovieCompany mc = new MovieCompany();
+            return "NOT MAKE AT THE MOMENT";
         } else {
             return "Invalid ID type";
         }

@@ -92,4 +92,12 @@ public class AdminAddController {
         String successMessage =adminAddServices.insertNewKeyword(data);
         return ResponseEntity.ok().body(successMessage);
     }
+
+    @PostMapping("/adminArea/add/movieCompany")
+    public ResponseEntity<Object> adminAddPostMovieCompany( HttpSession session , @RequestBody Map<String,String> data) {
+        String email = (String) session.getAttribute("email");
+        userServices.setEmail(email);
+        String successMessage =adminAddServices.insertNewMovieCompany(data);
+        return ResponseEntity.ok().body(successMessage);
+    }
 }

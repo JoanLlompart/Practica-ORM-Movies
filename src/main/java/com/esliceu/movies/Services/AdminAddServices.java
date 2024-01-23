@@ -104,4 +104,19 @@ public class AdminAddServices {
             return "Keyword Insert FAILED";
         }
     }
+
+    public String insertNewMovieCompany(Map<String, String> data) {
+        String movieId = data.get("value1");
+        String companyId = data.get("value2");
+        if (isNumeric(movieId) && isNumeric(companyId)) {
+            MovieCompany mc = new MovieCompany();
+        } else {
+            return "Invalid ID type";
+        }
+
+    }
+
+    private boolean isNumeric(String cadena) {
+        return cadena.matches("-?\\d+");
+    }
 }

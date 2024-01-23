@@ -63,6 +63,10 @@ public class AdminAddServices {
         if (isValidInput(language_role) && language_role != null) {
             LanguageRole lRole = new LanguageRole();
             lRole.setLanguage_role(language_role);
+            Long lastRoleId =languageRoleRepo.findFirstByOrderByRoleIdDesc();
+           // lRole.setRoleId();
+            System.out.println("Id darrer de LanguageRole es : " + lastRoleId);
+            lRole.setRoleId(lastRoleId +1);
             languageRoleRepo.save(lRole);
         }
 

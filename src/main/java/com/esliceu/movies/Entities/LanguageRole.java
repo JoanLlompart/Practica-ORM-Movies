@@ -16,8 +16,6 @@ public class LanguageRole {
     @OneToMany(mappedBy = "languageRole")
     private Set<MovieLanguages> movieLanguages;
 
-
-
     public Long getRoleId() {
         return roleId;
     }

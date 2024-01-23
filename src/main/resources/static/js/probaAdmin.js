@@ -39,6 +39,7 @@ async function sendData() {
 
     // Obtén la URL del servidor según el tipo de datos actual
     var apiUrl = getApiUrl(dataType);
+    console.log("url " + apiUrl);
 
     const userConfirmed = window.confirm('Are you sure you want to add this new Country?');
 
@@ -183,10 +184,35 @@ function getApiUrl(dataType) {
     // Ejemplo: URL para el tipo de datos 'country'
     if (dataType === 'country') {
         return baseUrl + '/country';
+
     } else if (dataType === 'language') {
         return baseUrl + '/language';
 
-    } //Acabar de implementar
+    } else if (dataType === 'languageRole') {
+        return baseUrl + '/languageRole';
+
+    } else if (dataType === 'genre') {
+        return baseUrl + '/genre';
+
+    } else if (dataType === 'keyword') {
+        return baseUrl + '/keyword';
+
+    } else if (dataType === 'movieCompany') {
+        return baseUrl + '/movieCompany';
+
+    } else if (dataType === 'productionCompany') {
+        return baseUrl + '/productionCompany';
+
+    } else if (dataType === 'gender') {
+        return baseUrl + '/gender';
+
+    } else if (dataType === 'person') {
+        return baseUrl + '/person';
+
+    } else if (dataType === 'department') {
+        return baseUrl + '/department';
+
+    }
 
     //console.log("Datetype : " + dataType)
     //console.log(baseUrl)

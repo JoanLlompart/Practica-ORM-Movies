@@ -74,7 +74,7 @@ public class AdminAddController {
     }
 
     @PostMapping("/adminArea/add/languageRole")
-    public ResponseEntity<Object> adminAddPostLanguageRole(HttpServletRequest req, HttpSession session , @RequestBody Map<String,String> data) {
+    public ResponseEntity<Object> adminAddPostLanguageRole( HttpSession session , @RequestBody Map<String,String> data) {
         String email = (String) session.getAttribute("email");
         userServices.setEmail(email);
        // String isoCode = data.get("value1");
@@ -83,10 +83,23 @@ public class AdminAddController {
         //adminAddServices.insertLanguage(isoCode,nameCountry);
         adminAddServices.insertLanguageRole(data);
 
-        String successMessage = "Country added successfully";
+        String successMessage = "Language Role added successfully";
         // return ResponseEntity.ok().body(successMessage);
         return ResponseEntity.ok().body(successMessage);
     }
 
+
+
+
+    @PostMapping("/adminArea/add/genre")
+    public ResponseEntity<Object> adminAddPostGenre( HttpSession session , @RequestBody Map<String,String> data) {
+        String email = (String) session.getAttribute("email");
+        userServices.setEmail(email);
+        //adminAddServices.insertLanguage(isoCode,nameCountry);
+        String successMessage =adminAddServices.insertNewGenre(data);
+
+       // String successMessage = "Genre added successfully";
+        return ResponseEntity.ok().body(successMessage);
+    }
 
 }

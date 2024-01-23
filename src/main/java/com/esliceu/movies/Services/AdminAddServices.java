@@ -1,12 +1,10 @@
 package com.esliceu.movies.Services;
 
 import com.esliceu.movies.Entities.Country;
+import com.esliceu.movies.Entities.Genre;
 import com.esliceu.movies.Entities.Language;
 import com.esliceu.movies.Entities.LanguageRole;
-import com.esliceu.movies.Repos.AdminRepo;
-import com.esliceu.movies.Repos.CountryRepo;
-import com.esliceu.movies.Repos.LanguageRepo;
-import com.esliceu.movies.Repos.LanguageRoleRepo;
+import com.esliceu.movies.Repos.*;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
@@ -25,6 +23,9 @@ public class AdminAddServices {
     CountryRepo countryRepo;
     @Autowired
     LanguageRoleRepo languageRoleRepo;
+    @Autowired
+    GenreRepo genreRepo;
+
 
     @PersistenceContext
     private EntityManager entityManager;
@@ -75,5 +76,19 @@ public class AdminAddServices {
             System.err.println("Problema a Language Role add");
         }
 
+    }
+
+    public String insertNewGenre(Map<String, String> data) {
+        String genreName = data.get("value1");
+        if (isValidInput(genreName) && genreName != null) {
+            Genre g = new Genre();
+            g.setGenreName(genreName);
+            Long lastId =genreRepo.lasGenreId();
+            g.setGenreId(lastId+1);
+            genreRepo.save(g);
+            return "Genre added successfully";
+        } else {
+            return "Genre Insert FAILED";
+        }
     }
 }

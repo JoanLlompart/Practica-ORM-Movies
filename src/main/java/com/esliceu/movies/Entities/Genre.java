@@ -6,7 +6,7 @@ import java.util.Set;
 @Table(name = "genre")
 public class Genre {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    //@GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "genre_id")
     private Long genreId;
     @Column(name = "genre_name")

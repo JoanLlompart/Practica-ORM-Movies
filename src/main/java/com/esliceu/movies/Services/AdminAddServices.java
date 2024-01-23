@@ -28,6 +28,8 @@ public class AdminAddServices {
     GenderRepo genderRepo;
     @Autowired
     DepartmentRepo departmentRepo;
+    @Autowired
+    PersonRepo personRepo;
 
 
     @PersistenceContext
@@ -149,6 +151,20 @@ public class AdminAddServices {
             return "Department Add successfully";
         } else {
             return "Department Insert FAILED";
+        }
+    }
+
+    public String insertNewPerson(Map<String, String> data) {
+        String personName = data.get("value1");
+        if (isValidInput(personName) && personName != null) {
+            Person person = new Person();
+            person.setPersonName(personName);
+            Long lastId =personRepo.lastPersonId();
+            person.setPersonId(lastId+1);
+            personRepo.save(person);
+            return "Person Add successfully";
+        } else {
+            return "Person Insert FAILED";
         }
     }
 }

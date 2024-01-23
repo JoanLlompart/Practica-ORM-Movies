@@ -46,8 +46,6 @@ public class AdminAddController {
     public ResponseEntity<Object> adminAddPostCountry(HttpServletRequest req, HttpSession session , @RequestBody Map<String,String> data) {
         String email = (String) session.getAttribute("email");
         userServices.setEmail(email);
-       // String isoCode = data.get("isoCode");
-       // String nameCountry = data.get("name");
         String isoCode = data.get("value1");
         String nameCountry = data.get("value2");
         boolean valid =adminAddServices.insertCountry(isoCode,nameCountry);
@@ -57,7 +55,6 @@ public class AdminAddController {
         } else {
             successMessage = "Country ADD FAILED";
         }
-        // return ResponseEntity.ok().body(successMessage);
         return ResponseEntity.ok().body(successMessage);
     }
 
@@ -69,7 +66,6 @@ public class AdminAddController {
         String nameCountry = data.get("value2");
         adminAddServices.insertLanguage(isoCode,nameCountry);
         String successMessage = "Country added successfully";
-        // return ResponseEntity.ok().body(successMessage);
         return ResponseEntity.ok().body(successMessage);
     }
 
@@ -77,28 +73,15 @@ public class AdminAddController {
     public ResponseEntity<Object> adminAddPostLanguageRole( HttpSession session , @RequestBody Map<String,String> data) {
         String email = (String) session.getAttribute("email");
         userServices.setEmail(email);
-       // String isoCode = data.get("value1");
-        // String nameCountry = data.get("value2");
-
-        //adminAddServices.insertLanguage(isoCode,nameCountry);
-        adminAddServices.insertLanguageRole(data);
-
-        String successMessage = "Language Role added successfully";
-        // return ResponseEntity.ok().body(successMessage);
+        String successMessage = adminAddServices.insertLanguageRole(data);
         return ResponseEntity.ok().body(successMessage);
     }
-
-
-
 
     @PostMapping("/adminArea/add/genre")
     public ResponseEntity<Object> adminAddPostGenre( HttpSession session , @RequestBody Map<String,String> data) {
         String email = (String) session.getAttribute("email");
         userServices.setEmail(email);
-        //adminAddServices.insertLanguage(isoCode,nameCountry);
         String successMessage =adminAddServices.insertNewGenre(data);
-
-       // String successMessage = "Genre added successfully";
         return ResponseEntity.ok().body(successMessage);
     }
 

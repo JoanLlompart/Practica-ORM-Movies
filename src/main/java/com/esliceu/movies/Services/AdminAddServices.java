@@ -59,21 +59,20 @@ public class AdminAddServices {
         return keyword.matches("[a-zA-Z0-9 ]+");
     }
 
-    public void insertLanguageRole(Map<String, String> data) {
+    public String insertLanguageRole(Map<String, String> data) {
         String languageRole = data.get("value1");
         if (isValidInput(languageRole) && languageRole != null) {
             LanguageRole lRole = new LanguageRole();
             lRole.setLanguageRole(languageRole);
             //Long lastRoleId =languageRoleRepo.findFirstByOrderByRoleIdDesc();
-           // lRole.setRoleId();
             Long lastRoleId=languageRoleRepo.lastRoleId();
-
 
             lRole.setRoleId(lastRoleId +1);
             System.out.println("Id darrer de LanguageRole es : " + lRole.getRoleId());
             languageRoleRepo.save(lRole);
+            return "Language Role added successfully";
         } else {
-            System.err.println("Problema a Language Role add");
+            return "Problema a Language Role add";
         }
 
     }

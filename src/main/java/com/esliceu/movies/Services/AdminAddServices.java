@@ -59,15 +59,20 @@ public class AdminAddServices {
     }
 
     public void insertLanguageRole(Map<String, String> data) {
-        String language_role = data.get("value1");
-        if (isValidInput(language_role) && language_role != null) {
+        String languageRole = data.get("value1");
+        if (isValidInput(languageRole) && languageRole != null) {
             LanguageRole lRole = new LanguageRole();
-            lRole.setLanguage_role(language_role);
+            lRole.setLanguageRole(languageRole);
             //Long lastRoleId =languageRoleRepo.findFirstByOrderByRoleIdDesc();
            // lRole.setRoleId();
-            System.out.println("Id darrer de LanguageRole es : " + lastRoleId);
+            Long lastRoleId=languageRoleRepo.lastRoleId();
+
+
             lRole.setRoleId(lastRoleId +1);
+            System.out.println("Id darrer de LanguageRole es : " + lRole.getRoleId());
             languageRoleRepo.save(lRole);
+        } else {
+            System.err.println("Problema a Language Role add");
         }
 
     }

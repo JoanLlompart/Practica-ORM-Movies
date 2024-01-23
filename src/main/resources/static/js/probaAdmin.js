@@ -193,6 +193,7 @@ function showInputs() {
     // Muestra el div correspondiente al valor seleccionado en el select
     var selectedValue = document.getElementById('addSelect').value;
     var selectedInputsDiv = document.getElementById(selectedValue + 'Inputs');
+    console.log("Valor a addSelect : " + selectedValue  + " , valor a el div : " + selectedInputsDiv );
     if (selectedInputsDiv) {
         selectedInputsDiv.classList.remove('hidden');
     }

@@ -143,7 +143,7 @@ function getFormData(dataType) {
         formData.value1 = document.getElementById('languageInputs_languageCode').value;
         formData.value2 = document.getElementById('languageInputs_languageName').value;
 
-    } else if (dataType === 'language_role') {
+    } else if (dataType === 'languageRole') {
         formData.value1 = document.getElementById('languageRoleInputs_languageRole').value;
 
     } else if (dataType === 'genre') {
@@ -152,9 +152,22 @@ function getFormData(dataType) {
     }  else if (dataType === 'keyword') {
         formData.value1 = document.getElementById('keywordInputs_keywordName').value;
 
-    } else if (dataType === 'movie_company') {
+    } else if (dataType === 'movieCompany') {
         formData.value1 = document.getElementById('movieCompanyInputs_movieId').value;
         formData.value2 = document.getElementById('movieCompanyInputs_companyId').value;
+        
+    } else if (dataType === 'productionCompany') {
+        formData.value1 = document.getElementById('productionCompanyInputs_companyIdProduction').value;
+        formData.value2 = document.getElementById('productionCompanyInputs_companyName').value;
+        
+    }  else if (dataType === 'gender') {
+        formData.value1 = document.getElementById('genderInputs_genderName').value;
+        
+    } else if (dataType === 'person') {
+        formData.value1 = document.getElementById('personInputs_personName').value;
+        
+    } else if (dataType === 'department') {
+        formData.value1 = document.getElementById('departmentInputs_departmentName').value;
         
     } else {
         console.log(dataType);

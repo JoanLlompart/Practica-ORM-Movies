@@ -15,6 +15,8 @@ public class AdminAddServices {
     AdminRepo adminRepo;
     @Autowired
     LanguageRepo languageRepo;
+    @Autowired
+
     @PersistenceContext
     private EntityManager entityManager;
     public boolean insertCountry(String isoCode,String nameCountry) {
@@ -37,5 +39,13 @@ public class AdminAddServices {
             language.setLanguageName(value2);
             languageRepo.save(language);
         }
+    }
+
+    //TODO:per ara no la utilitzarem
+    private boolean isValidInput(String keyword) {
+        //Si el codi es una cadena buida o te nomes espais
+        keyword =keyword.trim();
+        //Permet numeros i lletras i espais enmitg ja que els altres se han eliminat
+        return keyword.matches("[a-zA-Z0-9 ]+");
     }
 }

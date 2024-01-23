@@ -6,5 +6,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface AdminRepo  extends JpaRepository<User, Long> {
     User findByEmail(String email);
-    void save(Country country);
+    //void save(Country country);
 }

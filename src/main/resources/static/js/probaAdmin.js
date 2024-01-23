@@ -40,8 +40,9 @@ async function sendData() {
     // Obtén la URL del servidor según el tipo de datos actual
     var apiUrl = getApiUrl(dataType);
     console.log("url " + apiUrl);
+    
+    const userConfirmed = window.confirm('Are you sure you want to add this new ' + dataType + ' ?');
 
-    const userConfirmed = window.confirm('Are you sure you want to add this new Country?');
 
     if (userConfirmed) {
 
@@ -82,16 +83,8 @@ var selectType =document.querySelector("#addSelect");
 function determineDataType() {
     // Lógica para determinar el tipo de datos actual
     // Puedes usar clases, estilos, atributos, o cualquier otro indicador en tu interfaz para determinar el tipo de datos
-    // Por ejemplo, si el div con id "countryInputs" está visible, el tipo de datos es "country", y así sucesivamente
-    
-    /*  if (document.getElementById('countryInputs').classList.contains('visible')) {
-        console.log("Country ha agafat el tipus be")
-        return 'country';
-    } else if (document.getElementById('languageInputs').classList.contains('visible')) {
-        return 'language';
-    }
-    */
-    
+    // Per exemple, si el div con id "countryInputs" está visible, el tipo de datos es "country", y así sucesivamente
+
     console.log("Ha entrat a determineDataType")
     return valueSelect;
 }

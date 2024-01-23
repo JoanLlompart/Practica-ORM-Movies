@@ -3,6 +3,7 @@ package com.esliceu.movies.Services;
 import com.esliceu.movies.Entities.Country;
 import com.esliceu.movies.Entities.Language;
 import com.esliceu.movies.Repos.AdminRepo;
+import com.esliceu.movies.Repos.CountryRepo;
 import com.esliceu.movies.Repos.LanguageRepo;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EntityManager;
@@ -16,6 +17,7 @@ public class AdminAddServices {
     @Autowired
     LanguageRepo languageRepo;
     @Autowired
+    CountryRepo countryRepo;
 
     @PersistenceContext
     private EntityManager entityManager;
@@ -24,7 +26,7 @@ public class AdminAddServices {
             Country c = new Country();
             c.setCountryIsoCode(isoCode);
             c.setCountryName(nameCountry);
-            adminRepo.save(c);
+            countryRepo.save(c);
             return true;
         } else {
             System.out.println("VALOR DE ENTRADA NULL A InsertCountry");

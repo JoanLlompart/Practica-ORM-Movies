@@ -5,7 +5,8 @@ let selectedOption ="add";
 
 operationSelect.addEventListener('change', (event) => {
     selectedOption = event.target.value;
-
+    //Llamar a funcion
+    checkOperation();
     if (selectedOption === 'add') {
         mostrarSeccion('añadir');
     } else if (selectedOption === 'update') {
@@ -80,13 +81,15 @@ async function sendData() {
         console.log('Operación cancelada por el usuario.');
     }
 }
-
+let valueSelect = "country";
+//Funcio per veura la operacio que estam realitzant
+function checkOperation() {
 var selectType =document.querySelector(`#${selectedOption}Select`);
-console.log(selectedOption)
-    let valueSelect = "country";
+    console.log("selectedOption " + selectedOption)
     selectType.addEventListener("change", () => {
         valueSelect=selectType.value;
     });
+}
     
 function determineDataType() {
     // Lógica para determinar el tipo de datos actual
@@ -97,80 +100,45 @@ function determineDataType() {
     return valueSelect;
 }
 
-//Versio personalizada per erronea
-/*
 function getFormData(dataType) {
-    // Lógica para obtener los datos del formulario según el tipo de datos
-    // Implementa esta función según tus necesidades específicas
-    var formData = {};
 
-    // Ejemplo: Obtén datos del formulario para el tipo de datos 'country'
-    if (dataType === 'country') {
-        formData.countryIsoCode = document.getElementById('countryInputs_countryIsoCode').value;
-        formData.countryName = document.getElementById('countryInputs_countryName').value;
-    } else if (dataType === 'language') {
-        formData.languageCode = document.getElementById('languageInputs_languageCode').value;
-        formData.languageName = document.getElementById('languageInputs_languageName').value;
-
-    } else if (dataType === 'language_role') {
-        formData.languageRole = document.getElementById('languageRoleInputs_languageRole').value;
-
-    } else if (dataType === 'genre') {
-        formData.genreName = document.getElementById('genreInputs_genreName').value;
-
-    }  else if (dataType === 'keyword') {
-        formData.keywordName = document.getElementById('keywordInputs_keywordName').value;
-
-    } else if (dataType === 'movie_company') {
-        formData.movieId = document.getElementById('movieCompanyInputs_movieId').value;
-        formData.companyId = document.getElementById('movieCompanyInputs_companyId').value;
-        
-    } 
-
-    return formData;
-}
-*/
-
-
-
-function getFormData(dataType) {
-    
+    let operation =  selectedOption.substring(0, 1).toUpperCase() + selectedOption.substring(1);
     // Lógica para obtener los datos del formulario según el tipo de datos
     // Implementa esta función según tus necesidades específicas
     var formData = {};
     // Ejemplo: Obtén datos del formulario para el tipo de datos 'country'
     if (dataType === 'country') {
-        formData.value1 = document.getElementById(`countryInputs${selectedOption}_countryIsoCode`).value;
-        formData.value2 = document.getElementById(`countryInputs${selectedOption}_countryName`).value;
+        formData.value1 = document.getElementById(`countryInputs${operation}_countryIsoCode`).value;
+        formData.value2 = document.getElementById(`countryInputs${operation}_countryName`).value;
     } else if (dataType === 'language') {
-        formData.value1 = document.getElementById(`languageInputs${selectedOption}_languageCode`).value;
-        formData.value2 = document.getElementById(`languageInputs${selectedOption}_languageName`).value;
+        formData.value1 = document.getElementById(`languageInputs${operation}_languageCode`).value;
+        formData.value2 = document.getElementById(`languageInputs${operation}_languageName`).value;
 
     } else if (dataType === 'languageRole') {
-        formData.value1 = document.getElementById(`languageRoleInputs${selectedOption}_languageRole`).value;
+        formData.value1 = document.getElementById(`languageRoleInputs${operation}_languageRole`).value;
 
     } else if (dataType === 'genre') {
-        formData.value1 = document.getElementById(`genreInputs${selectedOption}_genreName`).value;
+        formData.value1 = document.getElementById(`genreInputs${operation}_genreName`).value;
 
     }  else if (dataType === 'keyword') {
-        formData.value1 = document.getElementById(`keywordInputs${selectedOption}_keywordName`).value;
+        formData.value1 = document.getElementById(`keywordInputs${operation}_keywordName`).value;
 
     } else if (dataType === 'movieCompany') {
-        formData.value1 = document.getElementById(`movieCompanyInputs${selectedOption}_movieId`).value;
-        formData.value2 = document.getElementById(`movieCompanyInputs${selectedOption}_companyId`).value;
+        formData.value1 = document.getElementById(`movieCompanyInputs${operation}_movieId`).value;
+        formData.value2 = document.getElementById(`movieCompanyInputs${operation}_companyId`).value;
         
     } else if (dataType === 'productionCompany') {
         //formData.value1 = document.getElementById('productionCompanyInputs_companyIdProduction').value;
-        formData.value1 = document.getElementById(`productionCompanyInputs${selectedOption}_companyName`).value;
+        formData.value1 = document.getElementById(`productionCompanyInputs${operation}_companyName`).value;
         
     }  else if (dataType === 'gender') {
-        formData.value1 = document.getElementById(`genderInputs${selectedOption}_genderName`).value;
+        formData.value1 = document.getElementById(`genderInputs${operation}_genderName`).value;
         
     } else if (dataType === 'person') {
-        formData.value1 = document.getElementById(`personInputs${selectedOption}_personName`).value;
+        formData.value1 = document.getElementById(`personInputs${operation}_personName`).value;
         
     } else if (dataType === 'department') {
-        formData.value1 = document.getElementById(`departmentInputs${selectedOption}_departmentName`).value;
+        formData.value1 = document.getElementById(`departmentInputs${operation}_departmentName`).value;
         
     } else {
         console.log("Data type: " + dataType);
@@ -229,15 +197,13 @@ function showInputs() {
     });
 
     // Muestra el div correspondiente al valor seleccionado en el select
-    var selectedValue = document.getElementById('addSelect').value;
+    var selectedValue = document.getElementById(`${selectedOption}Select`).value;
     var selectedInputsDiv = document.getElementById(selectedValue + 'Inputs');
     console.log("Valor a addSelect : " + selectedValue  + " , valor a el div : " + selectedInputsDiv);
     if (selectedInputsDiv) {
         selectedInputsDiv.classList.remove('hidden');
     }
 }
-
-
 
 
 //UPDATE NOU

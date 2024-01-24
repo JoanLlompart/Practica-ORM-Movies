@@ -131,6 +131,7 @@ public class AdminAddController {
     public ResponseEntity<Object> adminUpdatePostCountry( HttpSession session , @RequestBody Map<String,String> data) {
         String email = (String) session.getAttribute("email");
         userServices.setEmail(email);
+        System.err.println("Ha arribat a el servidor");
         String successMessage =adminAddServices.updateCountry(data);
         return ResponseEntity.ok().body(successMessage);
     }

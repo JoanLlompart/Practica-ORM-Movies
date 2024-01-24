@@ -134,42 +134,43 @@ function getFormData(dataType) {
 
 
 function getFormData(dataType) {
+    
     // Lógica para obtener los datos del formulario según el tipo de datos
     // Implementa esta función según tus necesidades específicas
     var formData = {};
     // Ejemplo: Obtén datos del formulario para el tipo de datos 'country'
     if (dataType === 'country') {
-        formData.value1 = document.getElementById('countryInputs_countryIsoCode').value;
-        formData.value2 = document.getElementById('countryInputs_countryName').value;
+        formData.value1 = document.getElementById(`countryInputs${selectedOption}_countryIsoCode`).value;
+        formData.value2 = document.getElementById(`countryInputs${selectedOption}_countryName`).value;
     } else if (dataType === 'language') {
-        formData.value1 = document.getElementById('languageInputs_languageCode').value;
-        formData.value2 = document.getElementById('languageInputs_languageName').value;
+        formData.value1 = document.getElementById(`languageInputs${selectedOption}_languageCode`).value;
+        formData.value2 = document.getElementById(`languageInputs${selectedOption}_languageName`).value;
 
     } else if (dataType === 'languageRole') {
-        formData.value1 = document.getElementById('languageRoleInputs_languageRole').value;
+        formData.value1 = document.getElementById(`languageRoleInputs${selectedOption}_languageRole`).value;
 
     } else if (dataType === 'genre') {
-        formData.value1 = document.getElementById('genreInputs_genreName').value;
+        formData.value1 = document.getElementById(`genreInputs${selectedOption}_genreName`).value;
 
     }  else if (dataType === 'keyword') {
-        formData.value1 = document.getElementById('keywordInputs_keywordName').value;
+        formData.value1 = document.getElementById(`keywordInputs${selectedOption}_keywordName`).value;
 
     } else if (dataType === 'movieCompany') {
-        formData.value1 = document.getElementById('movieCompanyInputs_movieId').value;
-        formData.value2 = document.getElementById('movieCompanyInputs_companyId').value;
+        formData.value1 = document.getElementById(`movieCompanyInputs${selectedOption}_movieId`).value;
+        formData.value2 = document.getElementById(`movieCompanyInputs${selectedOption}_companyId`).value;
         
     } else if (dataType === 'productionCompany') {
         //formData.value1 = document.getElementById('productionCompanyInputs_companyIdProduction').value;
-        formData.value1 = document.getElementById('productionCompanyInputs_companyName').value;
+        formData.value1 = document.getElementById(`productionCompanyInputs${selectedOption}_companyName`).value;
         
     }  else if (dataType === 'gender') {
-        formData.value1 = document.getElementById('genderInputs_genderName').value;
+        formData.value1 = document.getElementById(`genderInputs${selectedOption}_genderName`).value;
         
     } else if (dataType === 'person') {
-        formData.value1 = document.getElementById('personInputs_personName').value;
+        formData.value1 = document.getElementById(`personInputs${selectedOption}_personName`).value;
         
     } else if (dataType === 'department') {
-        formData.value1 = document.getElementById('departmentInputs_departmentName').value;
+        formData.value1 = document.getElementById(`departmentInputs${selectedOption}_departmentName`).value;
         
     } else {
         console.log("Data type: " + dataType);

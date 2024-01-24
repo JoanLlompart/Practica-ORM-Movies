@@ -167,6 +167,22 @@ public class AdminAddController {
         return ResponseEntity.ok().body(successMessage);
     }
 
+    @PostMapping("/adminArea/update/productionCompany")
+    public ResponseEntity<Object> adminUpdatePosProductionCompany( HttpSession session , @RequestBody Map<String,String> data) {
+        String email = (String) session.getAttribute("email");
+        userServices.setEmail(email);
+        String successMessage =adminAddServices.updateProductionCompany(data);
+        return ResponseEntity.ok().body(successMessage);
+    }
+
+    @PostMapping("/adminArea/update/gender")
+    public ResponseEntity<Object> adminUpdatePostGender( HttpSession session , @RequestBody Map<String,String> data) {
+        String email = (String) session.getAttribute("email");
+        userServices.setEmail(email);
+        String successMessage =adminAddServices.updateGender(data);
+        return ResponseEntity.ok().body(successMessage);
+    }
+
 
 
 }

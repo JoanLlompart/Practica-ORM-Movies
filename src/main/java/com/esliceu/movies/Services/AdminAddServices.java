@@ -251,4 +251,12 @@ public class AdminAddServices {
             return "Keyword Update Error";
         }
     }
+
+    public String updateGender(Map<String, String> data) {
+        return "FAILED NOT MAKE";
+    }
+
+    public String updateProductionCompany(Map<String, String> data) {
+        return "FAILED NOT MAKE";
+    }
 }

@@ -164,7 +164,7 @@ function getFormData(dataType) {
         formData.value1 = document.getElementById('departmentInputs_departmentName').value;
         
     } else {
-        console.log(dataType);
+        console.log("Data type: " + dataType);
     }
 
     return formData;

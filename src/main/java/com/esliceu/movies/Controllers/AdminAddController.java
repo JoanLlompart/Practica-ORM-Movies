@@ -139,7 +139,14 @@ public class AdminAddController {
     public ResponseEntity<Object> adminUpdatePostLanguage( HttpSession session , @RequestBody Map<String,String> data) {
         String email = (String) session.getAttribute("email");
         userServices.setEmail(email);
-        String successMessage =adminAddServices.updateCountry(data);
+        String successMessage =adminAddServices.updateLanguage(data);
+        return ResponseEntity.ok().body(successMessage);
+    }
+    @PostMapping("/adminArea/update/country")
+    public ResponseEntity<Object> adminUpdatePostLanguageRol( HttpSession session , @RequestBody Map<String,String> data) {
+        String email = (String) session.getAttribute("email");
+        userServices.setEmail(email);
+        String successMessage =adminAddServices.updateLanguageRol(data);
         return ResponseEntity.ok().body(successMessage);
     }
 

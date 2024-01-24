@@ -187,8 +187,37 @@ public class AdminAddServices {
         } else {
             return "Country Update Error";
         }
+    }
 
+    public String updateLanguage(Map<String, String> data) {
+        Long languageId = Long.valueOf(data.get("value1"));
+        String code = data.get("value2");
+        String name = data.get("value3");
+        if (!(code == null) && !(name ==null) && !(languageId ==null)) {
+            //TODO: Comprobam si existeix el id.
+            Language lan = new Language();
+            lan.setLanguageId(languageId);
+            lan.setLanguageCode(code);
+            lan.setLanguageName(name);
+            languageRepo.save(lan);
+            return "Language by id ," + languageId + " , Update successfully";
+        } else {
+            return "Language Update Error";
+        }
+    }
 
-
+    public String updateLanguageRol(Map<String, String> data) {
+            Long roleId = Long.valueOf(data.get("value1"));
+            String role = data.get("value2");
+            if (!(role == null) && !(role ==null) && !(role ==null)) {
+                //TODO: Comprobam si existeix el id.
+                LanguageRole lr = new LanguageRole();
+                lr.setRoleId(roleId);
+                lr.setLanguageRole(role);
+                languageRoleRepo.save(lr);
+                return "Language Role by id ," + roleId + " , Update successfully";
+            } else {
+                return "Language Rol Update Error";
+            }
     }
 }

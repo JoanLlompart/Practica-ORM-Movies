@@ -1,4 +1,4 @@
-//const operationSelect = document.getElementById('operationSelect');
+const operationSelect = document.getElementById('operationSelect');
 const selectedSection = document.getElementById('selectedSection');
 
 operationSelect.addEventListener('change', (event) => {
@@ -20,6 +20,7 @@ function mostrarSeccion(seccion) {
     });
     document.getElementById(seccion).classList.add('active-section');
 }
+
 //PART NOVA
 
 const updateButton = document.getElementById('updateButton');

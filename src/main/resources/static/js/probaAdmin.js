@@ -230,7 +230,7 @@ function showInputs() {
 
 
 
-/*
+
 //UPDATE NOU
 document.getElementById('updateSelect').addEventListener('change', function () {
     var selectedValue = this.value;
@@ -246,7 +246,7 @@ document.getElementById('updateSelect').addEventListener('change', function () {
     if (selectedInputs) {
         selectedInputs.classList.remove('hidden');
     }
-});*/
+});
 
 
 // Llama a showInputs al cargar la página para visualizar por defecto "country"

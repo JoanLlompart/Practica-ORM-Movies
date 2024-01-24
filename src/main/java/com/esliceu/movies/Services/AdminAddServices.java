@@ -173,9 +173,11 @@ public class AdminAddServices {
         }
     }
     public String updateCountry(Map<String, String> data) {
-        Long countryId = Long.valueOf(data.get("value1"));
-        String isoCode = data.get("value2");
-        String name = data.get("value3");
+        System.out.println("Data :" + data.toString());
+        //Long countryId = Long.valueOf(data.get("value1"));
+        Long countryId = Long.valueOf(285);
+        String isoCode = data.get("value1");
+        String name = data.get("value2");
 
         if (!(isoCode == null) && !(name ==null) && !(countryId ==null)) {
             //TODO: Comprobam si existeix el id.

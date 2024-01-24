@@ -172,4 +172,23 @@ public class AdminAddServices {
             return "Person Insert FAILED";
         }
     }
+    public String updateCountry(Map<String, String> data) {
+        Long countryId = Long.valueOf(data.get("value1"));
+        String isoCode = data.get("value2");
+        String name = data.get("value3");
+        if (!(isoCode == null) && !(name ==null) && !(countryId ==null)) {
+            //TODO: Comprobam si existeix el id.
+            Country c = new Country();
+            c.setCountry_id(countryId);
+            c.setCountryName(name);
+            c.setCountryIsoCode(isoCode);
+            countryRepo.save(c);
+            return "Country by id ," + countryId + " , Update successfully";
+        } else {
+            return "Country Update Error";
+        }
+
+
+
+    }
 }

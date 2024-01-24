@@ -127,11 +127,11 @@ public class AdminAddController {
         return ResponseEntity.ok().body(successMessage);
     }
 
-    @PostMapping("/adminArea/update/person")
-    public ResponseEntity<Object> adminUpdatePostPerson( HttpSession session , @RequestBody Map<String,String> data) {
+    @PostMapping("/adminArea/update/country")
+    public ResponseEntity<Object> adminUpdatePostCountry( HttpSession session , @RequestBody Map<String,String> data) {
         String email = (String) session.getAttribute("email");
         userServices.setEmail(email);
-        String successMessage =adminAddServices.insertNewPerson(data);
+        String successMessage =adminAddServices.updateCountry(data);
         return ResponseEntity.ok().body(successMessage);
     }
 

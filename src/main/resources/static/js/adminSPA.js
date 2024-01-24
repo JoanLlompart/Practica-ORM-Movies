@@ -1,24 +1,32 @@
-const operationSelect = document.getElementById('operationSelect');
+//const operationSelect = document.getElementById('operationSelect');
 const selectedSection = document.getElementById('selectedSection');
 
 operationSelect.addEventListener('change', (event) => {
     const selectedOption = event.target.value;
-    mostrarSeccion(selectedOption);
+
+    if (selectedOption === 'add') {
+        mostrarSeccion('añadir');
+    } else if (selectedOption === 'update') {
+        mostrarSeccion('actualizar');
+    } else if (selectedOption === 'delete') {
+        mostrarSeccion('borrar');
+    }
 });
 
-function mostrarSeccion(operacion) {
-    var seccion = operacion.toLowerCase(); // La operación y la sección tienen el mismo nombre
+function mostrarSeccion(seccion) {
     var secciones = document.querySelectorAll('.section');
     secciones.forEach(function (element) {
         element.classList.remove('active-section');
     });
     document.getElementById(seccion).classList.add('active-section');
 }
+//PART NOVA
 
-const actionButton = document.getElementById('actionButton');
-actionButton.addEventListener('click', (event) => {
+const updateButton = document.getElementById('updateButton');
+updateButton.addEventListener('click', (event) => {
     sendData();
 });
+
 
 async function sendData() {
     // Obtén el tipo de datos (país, idioma, etc.) según el estado actual de la interfaz
@@ -26,18 +34,20 @@ async function sendData() {
 
     // Obtén los datos del formulario según el tipo de datos actual
     var formData = getFormData(dataType);
-    console.log("Form data " + formData.value1 + " VALUE2 " + formData.value2);
+    console.log("Form data " + formData.value1 + " VALUE2" + formData.value2);
 
-    // Obtén la URL del servidor según el tipo de datos actual y la operación seleccionada
-    var apiUrl = getApiUrl(dataType, operationSelect.value);
+    // Obtén la URL del servidor según el tipo de datos actual
+    var apiUrl = getApiUrl(dataType);
     console.log("url " + apiUrl);
+    
+    const userConfirmed = window.confirm('Are you sure you want to Update this new ' + dataType + ' ?');
 
-    const userConfirmed = window.confirm('Are you sure you want to ' + operationSelect.value + ' this ' + dataType + ' ?');
 
     if (userConfirmed) {
+
         // Realiza la solicitud fetch
         fetch(apiUrl, {
-            method: 'POST', // Puedes ajustar el método según la operación (POST para agregar, PUT/PATCH para actualizar, DELETE para borrar)
+            method: 'POST',
             body: JSON.stringify(formData),
             headers: {
                 'Content-Type': 'application/json',
@@ -63,13 +73,11 @@ async function sendData() {
     }
 }
 
-// Resto del código sin cambios
-var selectType =document.querySelector("#addSelect");
+var selectType =document.querySelector("#updateSelect");
     let valueSelect = "country";
     selectType.addEventListener("change", () => {
         valueSelect=selectType.value;
     });
-
     
 function determineDataType() {
     // Lógica para determinar el tipo de datos actual
@@ -79,67 +87,121 @@ function determineDataType() {
     console.log("Ha entrat a determineDataType")
     return valueSelect;
 }
-
-
 function getFormData(dataType) {
     // Lógica para obtener los datos del formulario según el tipo de datos
     // Implementa esta función según tus necesidades específicas
     var formData = {};
     // Ejemplo: Obtén datos del formulario para el tipo de datos 'country'
     if (dataType === 'country') {
-        formData.value1 = document.getElementById('countryInputs_countryIsoCode').value;
-        formData.value2 = document.getElementById('countryInputs_countryName').value;
+        formData.value1 = document.getElementById('countryInputsUpdate_countryId').value;
+        formData.value2 = document.getElementById('countryInputsUpdate_countryIsoCode').value;
+        formData.value3 = document.getElementById('countryInputsUpdate_countryName').value;
+
     } else if (dataType === 'language') {
-        formData.value1 = document.getElementById('languageInputs_languageCode').value;
-        formData.value2 = document.getElementById('languageInputs_languageName').value;
+        formData.value1 = document.getElementById('languageInputsUpdate_languageId').value;
+        formData.value2 = document.getElementById('languageInputsUpdate_languageCode').value;
+        formData.value3 = document.getElementById('languageInputsUpdate_languageName').value;
 
     } else if (dataType === 'languageRole') {
-        formData.value1 = document.getElementById('languageRoleInputs_languageRole').value;
+        formData.value1 = document.getElementById('languageRoleInputsUpdate_roleId').value;
+        formData.value2 = document.getElementById('languageRoleInputsUpdate_languageRole').value;
+
 
     } else if (dataType === 'genre') {
-        formData.value1 = document.getElementById('genreInputs_genreName').value;
+        formData.value1 = document.getElementById('genreInputsUpdate_genreId').value;
+        formData.value2 = document.getElementById('genreInputsUpdate_genreName').value;
 
     }  else if (dataType === 'keyword') {
-        formData.value1 = document.getElementById('keywordInputs_keywordName').value;
+        formData.value1 = document.getElementById('keywordInputsUpdate_keywordId').value;
+        formData.value2 = document.getElementById('keywordInputsUpdate_keywordName').value;
 
     } else if (dataType === 'movieCompany') {
-        formData.value1 = document.getElementById('movieCompanyInputs_movieId').value;
-        formData.value2 = document.getElementById('movieCompanyInputs_companyId').value;
+        formData.value1 = document.getElementById('movieCompanyInputsUpdate_movieId').value;
+        formData.value2 = document.getElementById('movieCompanyInputsUpdate_companyId').value;
         
     } else if (dataType === 'productionCompany') {
-        //formData.value1 = document.getElementById('productionCompanyInputs_companyIdProduction').value;
-        formData.value1 = document.getElementById('productionCompanyInputs_companyName').value;
+        formData.value1 = document.getElementById('productionCompanyInputsUpdate_companyIdProduction').value;
+        formData.value2 = document.getElementById('productionCompanyInputsUpdate_companyName').value;
         
     }  else if (dataType === 'gender') {
-        formData.value1 = document.getElementById('genderInputs_genderName').value;
-        
+        formData.value1 = document.getElementById('genderInputsUpdate_genderId').value;
+        formData.value2 = document.getElementById('genderInputsUpdate_genderName').value;
+
     } else if (dataType === 'person') {
-        formData.value1 = document.getElementById('personInputs_personName').value;
+        formData.value1 = document.getElementById('personInputsUpdate_personId').value;
+        formData.value2 = document.getElementById('personInputsUpdate_personName').value;
+
         
     } else if (dataType === 'department') {
-        formData.value1 = document.getElementById('departmentInputs_departmentName').value;
-        
+        formData.value1 = document.getElementById('departmentInputsUpdate_departmentId').value;
+        formData.value2 = document.getElementById('departmentInputsUpdate_departmentName').value;
+
     } else {
         console.log(dataType);
     }
 
     return formData;
 }
+function getApiUrl(dataType) {
+    // Lógica para obtener la URL del servidor según el tipo de datos
+    // Implementa esta función según tus necesidades específicas
+    var baseUrl = '/adminArea/update';
 
+    // Ejemplo: URL para el tipo de datos 'country'
+    if (dataType === 'country') {
+        return baseUrl + '/country';
 
+    } else if (dataType === 'language') {
+        return baseUrl + '/language';
 
-// Función para obtener la URL del servidor según el tipo de datos y la operación
-function getApiUrl(dataType, operation) {
-    var baseUrl = '/adminArea'; // Cambia esto según la estructura de tu API
+    } else if (dataType === 'languageRole') {
+        return baseUrl + '/languageRole';
 
-    if (operation === 'add') {
-        return `${baseUrl}/add/${dataType}`;
-    } else if (operation === 'update') {
-        return `${baseUrl}/update/${dataType}`;
-    } else if (operation === 'delete') {
-        return `${baseUrl}/delete/${dataType}`;
+    } else if (dataType === 'genre') {
+        return baseUrl + '/genre';
+
+    } else if (dataType === 'keyword') {
+        return baseUrl + '/keyword';
+
+    } else if (dataType === 'movieCompany') {
+        return baseUrl + '/movieCompany';
+
+    } else if (dataType === 'productionCompany') {
+        return baseUrl + '/productionCompany';
+
+    } else if (dataType === 'gender') {
+        return baseUrl + '/gender';
+
+    } else if (dataType === 'person') {
+        return baseUrl + '/person';
+
+    } else if (dataType === 'department') {
+        return baseUrl + '/department';
+
     }
-
-    // Devuelve la URL base si no coincide con ninguna operación conocida
-    return baseUrl;
+    return baseUrl; // Devuelve la URL base si no coincide con ningún tipo de datos conocido
 }
+
+
+
+//AQUI COMENSA LA PART ANTIGÜA
+function showInputs() {
+    // Oculta todos los div de inputs
+    var allInputs = document.querySelectorAll('.dynamicInputs');
+    allInputs.forEach(function(inputDiv) {
+        inputDiv.classList.add('hidden');
+    });
+
+    // Muestra el div correspondiente al valor seleccionado en el select
+    var selectedValue = document.getElementById('updateSelect').value;
+    var selectedInputsDiv = document.getElementById(selectedValue + 'Inputs');
+    console.log("Valor a updateSelect : " + selectedValue  + " , valor a el div : " + selectedInputsDiv );
+    if (selectedInputsDiv) {
+        selectedInputsDiv.classList.remove('hidden');
+    }
+}
+
+// Llama a showInputs al cargar la página para visualizar por defecto "country"
+window.onload = function() {
+    showInputs();
+};

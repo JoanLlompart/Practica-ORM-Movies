@@ -1,9 +1,10 @@
 
 const operationSelect = document.getElementById('operationSelect');
 const selectedSection = document.getElementById('selectedSection');
+let selectedOption ="add";
 
 operationSelect.addEventListener('change', (event) => {
-    const selectedOption = event.target.value;
+    selectedOption = event.target.value;
 
     if (selectedOption === 'add') {
         mostrarSeccion('añadir');
@@ -81,6 +82,7 @@ async function sendData() {
 }
 
 var selectType =document.querySelector(`#${selectedOption}Select`);
+console.log(selectedOption)
     let valueSelect = "country";
     selectType.addEventListener("change", () => {
         valueSelect=selectType.value;

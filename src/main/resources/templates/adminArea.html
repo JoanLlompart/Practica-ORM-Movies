@@ -111,7 +111,7 @@
         <option value="language_role">Language Rol</option>
         <option value="genre">Genre</option>
         <option value="keyword">Keyword</option>
-        <option value="movie_company">Movie Company</option>
+    <!--<option value="movie_company">Movie Company</option>-->
         <option value="production_company">Production Company</option>
         <option value="gender">Genre</option>
         <option value="person">Person</option>
@@ -119,48 +119,56 @@
     </select>
 
     <div id="countryInputsUpdate" class="dynamicInputs hidden">
+        <input type="text" name="countryId" id="countryInputsUpdate_countryId" placeholder="Country ID">
         <input type="text" name="countryIsoCode" id="countryInputsUpdate_countryIsoCode" placeholder="Country ISO Code">
         <input type="text" name="countryName" id="countryInputsUpdate_countryName" placeholder="Country Name">
     </div>
 
     <div id="languageInputsUpdate" class="dynamicInputs hidden">
+        <input type="text" name="languageid" id="languageInputsUpdate_languageId" placeholder="Language ID">
         <input type="text" name="languageCode" id="languageInputsUpdate_languageCode" placeholder="Language Code">
         <input type="text" name="languageName" id="languageInputsUpdate_languageName" placeholder="Language Name">
     </div>
 
     <div id="languageRoleInputsUpdate" class="dynamicInputs hidden">
+        <input type="text" name="roleId" id="languageRoleInputsUpdate_roleId" placeholder="Role ID">
         <input type="text" name="languageRole" id="languageRoleInputsUpdate_languageRole" placeholder="Language Role">
     </div>
 
 
     <div id="genreInputsUpdate" class="dynamicInputs hidden">
+        <input type="text" name="genreId" id="genreInputsUpdate_genreId" placeholder="Genre ID">
         <input type="text" name="genreName" id="genreInputsUpdate_genreName" placeholder="Genre Name">
     </div>
 
     <div id="keywordInputsUpdate" class="dynamicInputs hidden">
+        <input type="text" name="keywordId" id="keywordInputsUpdate_keywordId" placeholder="Keyword ID">
         <input type="text" name="keywordName" id="keywordInputsUpdate_keywordName" placeholder="Keyword Name">
     </div>
-
+<!--
     <div id="movieCompanyInputsUpdate" class="dynamicInputs hidden">
         <input type="text" name="movieId" id="movieCompanyInputsUpdate_movieId" placeholder="Movie Id">
         <input type="text" name="companyId" id="movieCompanyInputsUpdate_companyId" placeholder="Company Id">
-    </div>
+    </div>-->
 
     <div id="productionCompanyInputsUpdate" class="dynamicInputs hidden">
-        <!--  <input type="text" name="companyIdProduction" id="productionCompanyInputs_companyIdProduction"
-            placeholder="Company Id"> -->
+        <input type="text" name="companyIdProduction" id="productionCompanyInputs_companyIdProduction"
+            placeholder="Company Id">
         <input type="text" name="companyName" id="productionCompanyInputsUpdate_companyName" placeholder="Company Name">
     </div>
 
     <div id="genderInputsUpdate" class="dynamicInputs hidden">
+        <input type="text" name="genderId" id="genderInputsUpdate_genderId" placeholder="Gender ID">
         <input type="text" name="genderName" id="genderInputsUpdate_genderName" placeholder="Gender">
     </div>
 
     <div id="personInputsUpdate" class="dynamicInputs hidden">
+        <input type="text" name="personId" id="personInputsUpdate_personId" placeholder="Person ID">
         <input type="text" name="personName" id="personInputsUpdate_personName" placeholder="Name">
     </div>
 
     <div id="departmentInputsUpdate" class="dynamicInputs hidden">
+        <input type="text" name="departmentId" id="departmentInputsUpdate_departmentId" placeholder="Department ID">
         <input type="text" name="departmentName" id="departmentInputsUpdate_departmentName"
             placeholder="Department Name">
     </div>

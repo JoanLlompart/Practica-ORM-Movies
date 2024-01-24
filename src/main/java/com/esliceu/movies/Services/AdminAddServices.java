@@ -220,4 +220,18 @@ public class AdminAddServices {
                 return "Language Rol Update Error";
             }
     }
+
+    public String updateGenre(Map<String, String> data) {
+        Long id = Long.valueOf(data.get("value1"));
+        String genre = data.get("value2");
+        if (isValidInput(genre)) {
+            Genre ge = new Genre();
+            ge.setGenreId(id);
+            ge.setGenreName(genre);
+            genreRepo.save(ge);
+            return "Genre by id ," + id + " , Update successfully";
+        } else {
+            return "Genre Update Error";
+        }
+    }
 }

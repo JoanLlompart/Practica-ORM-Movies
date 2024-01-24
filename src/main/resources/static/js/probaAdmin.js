@@ -253,3 +253,33 @@ document.getElementById('updateSelect').addEventListener('change', function () {
 window.onload = function() {
     showInputs();
 };
+
+
+
+
+    /*function showInputs() {
+        // Oculta todos los div de inputs
+        var allInputs = document.querySelectorAll('.dynamicInputs');
+        allInputs.forEach(function (inputDiv) {
+            inputDiv.classList.add('hidden');
+        });
+
+        // Muestra el div correspondiente al valor seleccionado en el select
+        var selectedValue = document.getElementById('updateSelect').value;
+        var selectedInputsDiv = document.getElementById(selectedValue + 'InputsUpdate');
+        console.log("Valor a updateSelect : " + selectedValue + " , valor a el div : " + selectedInputsDiv);
+        if (selectedInputsDiv) {
+            selectedInputsDiv.classList.remove('hidden');
+        }
+    }
+
+    document.getElementById('updateSelect').addEventListener('change', function () {
+        // Llama a la función showInputs cuando cambia el valor del select
+        showInputs();
+    });
+
+    // Llama a showInputs al cargar la página para visualizar por defecto "country"
+    window.onload = function() {
+        showInputs();
+    };
+    */

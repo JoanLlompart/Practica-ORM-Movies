@@ -21,8 +21,8 @@ function mostrarSeccion(seccion) {
     });
     document.getElementById(seccion).classList.add('active-section');
 }
-
 //PART NOVA
+
 const addButton = document.getElementById('addButton');
 addButton.addEventListener('click', (event) => {
     sendData();
@@ -212,58 +212,44 @@ function getApiUrl(dataType) {
 
 
 //AQUI COMENSA LA PART ANTIGÜA
-function showInputs(section) {
+function showInputs() {
     // Oculta todos los div de inputs
-    var allInputs = document.querySelectorAll('.' + section + ' .dynamicInputs');
+    var allInputs = document.querySelectorAll('.dynamicInputs');
     allInputs.forEach(function(inputDiv) {
         inputDiv.classList.add('hidden');
     });
-   /* var allInputs = document.querySelectorAll('.dynamicInputs');
-    allInputs.forEach(function(inputDiv) {
-        inputDiv.classList.add('hidden');
-    });
-    */
-
-
-
 
     // Muestra el div correspondiente al valor seleccionado en el select
-    var selectedValue;
-    if (section === 'añadir') {
-        selectedValue = document.getElementById('addSelect').value;
-    } else if (section === 'actualizar') {
-        selectedValue = document.getElementById('updateSelect').value;
-    } else if (section === 'borrar') {
-        selectedValue = document.getElementById('deleteSelect').value;
-    }
-
-    var selectedInputsDiv = document.getElementById(selectedValue + 'Inputs' + (section === 'actualizar' ? 'Update' : ''));
-    if (selectedInputsDiv) {
-        selectedInputsDiv.classList.remove('hidden');
-    }
-    /*
     var selectedValue = document.getElementById('addSelect').value;
     var selectedInputsDiv = document.getElementById(selectedValue + 'Inputs');
     console.log("Valor a addSelect : " + selectedValue  + " , valor a el div : " + selectedInputsDiv );
     if (selectedInputsDiv) {
         selectedInputsDiv.classList.remove('hidden');
     }
-    */
-
 }
+
+
+
+
+//UPDATE NOU
+document.getElementById('updateSelect').addEventListener('change', function () {
+    var selectedValue = this.value;
+
+    // Oculta todos los conjuntos de inputs
+    var allInputs = document.querySelectorAll('.dynamicInputs');
+    allInputs.forEach(function (input) {
+        input.classList.add('hidden');
+    });
+
+    // Muestra solo el conjunto de inputs correspondiente al valor seleccionado
+    var selectedInputs = document.getElementById(selectedValue + 'InputsUpdate');
+    if (selectedInputs) {
+        selectedInputs.classList.remove('hidden');
+    }
+});
+
 
 // Llama a showInputs al cargar la página para visualizar por defecto "country"
 window.onload = function() {
-    showInputs("añadir");
+    showInputs();
 };
-
-
-// Llama a showInputs cuando cambia el valor en el select de añadir
-document.getElementById('addSelect').addEventListener('change', function() {
-    showInputs('añadir');
-});
-
-// Llama a showInputs cuando cambia el valor en el select de actualizar
-document.getElementById('updateSelect').addEventListener('change', function() {
-    showInputs('actualizar');
-});

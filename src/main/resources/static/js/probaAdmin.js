@@ -20,13 +20,19 @@ function mostrarSeccion(seccion) {
         element.classList.remove('active-section');
     });
     document.getElementById(seccion).classList.add('active-section');
+
+    const addButton = document.getElementById(`${seccion}Button`);
+    addButton.addEventListener('click', (event) => {
+        sendData();
+    });
+
 }
 //PART NOVA
-
+/*
 const addButton = document.getElementById('addButton');
 addButton.addEventListener('click', (event) => {
     sendData();
-});
+});*/
 
 
 async function sendData() {
@@ -172,7 +178,7 @@ function getFormData(dataType) {
 function getApiUrl(dataType) {
     // Lógica para obtener la URL del servidor según el tipo de datos
     // Implementa esta función según tus necesidades específicas
-    var baseUrl = '/adminArea/add';
+    var baseUrl = `/adminArea/${selectedOption}`;
 
     // Ejemplo: URL para el tipo de datos 'country'
     if (dataType === 'country') {
@@ -222,7 +228,7 @@ function showInputs() {
     // Muestra el div correspondiente al valor seleccionado en el select
     var selectedValue = document.getElementById('addSelect').value;
     var selectedInputsDiv = document.getElementById(selectedValue + 'Inputs');
-    console.log("Valor a addSelect : " + selectedValue  + " , valor a el div : " + selectedInputsDiv );
+    console.log("Valor a addSelect : " + selectedValue  + " , valor a el div : " + selectedInputsDiv);
     if (selectedInputsDiv) {
         selectedInputsDiv.classList.remove('hidden');
     }

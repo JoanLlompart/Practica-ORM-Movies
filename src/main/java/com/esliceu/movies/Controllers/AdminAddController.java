@@ -157,4 +157,15 @@ public class AdminAddController {
         String successMessage =adminAddServices.updateGenre(data);
         return ResponseEntity.ok().body(successMessage);
     }
+
+    @PostMapping("/adminArea/update/keyword")
+    public ResponseEntity<Object> adminUpdatePostKeyword( HttpSession session , @RequestBody Map<String,String> data) {
+        String email = (String) session.getAttribute("email");
+        userServices.setEmail(email);
+        String successMessage =adminAddServices.updateKeyword(data);
+        return ResponseEntity.ok().body(successMessage);
+    }
+
+
+
 }

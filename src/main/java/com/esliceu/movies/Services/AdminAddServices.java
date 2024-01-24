@@ -234,4 +234,18 @@ public class AdminAddServices {
             return "Genre Update Error";
         }
     }
+
+    public String updateKeyword(Map<String, String> data) {
+        Long keywordId = Long.valueOf(data.get("value1"));
+        String keywordName = data.get("value2");
+        if (isValidInput(keywordName) && keywordRepo.existsByKeywordId(keywordId)) {
+            Genre ge = new Genre();
+            ge.setGenreId(keywordId);
+            ge.setGenreName(keywordName);
+            genreRepo.save(ge);
+            return "Keyword by id ," + keywordId + " , Update successfully";
+        } else {
+            return "Keyword Update Error";
+        }
+    }
 }

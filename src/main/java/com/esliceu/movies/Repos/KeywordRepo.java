@@ -8,4 +8,6 @@ public interface KeywordRepo  extends JpaRepository<Keyword, Long>  {
     @Query("SELECT MAX(keywordId) FROM Keyword")
     Long lasKeywordId();
 
+    boolean existsByKeywordId(Long keywordId);
+
 }

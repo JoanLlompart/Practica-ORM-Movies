@@ -150,7 +150,7 @@ public class AdminAddController {
         return ResponseEntity.ok().body(successMessage);
     }
 
-    @PostMapping("/adminArea/add/genre")
+    @PostMapping("/adminArea/update/genre")
     public ResponseEntity<Object> adminUpdatePostGenre( HttpSession session , @RequestBody Map<String,String> data) {
         String email = (String) session.getAttribute("email");
         userServices.setEmail(email);

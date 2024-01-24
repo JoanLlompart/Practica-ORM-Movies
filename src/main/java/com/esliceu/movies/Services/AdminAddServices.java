@@ -222,14 +222,14 @@ public class AdminAddServices {
     }
 
     public String updateGenre(Map<String, String> data) {
-        Long id = Long.valueOf(data.get("value1"));
+        Long genreId = Long.valueOf(data.get("value1"));
         String genre = data.get("value2");
-        if (isValidInput(genre)) {
+        if (isValidInput(genre) && genreRepo.existsByGenreId(genreId)) {
             Genre ge = new Genre();
-            ge.setGenreId(id);
+            ge.setGenreId(genreId);
             ge.setGenreName(genre);
             genreRepo.save(ge);
-            return "Genre by id ," + id + " , Update successfully";
+            return "Genre by id ," + genreId + " , Update successfully";
         } else {
             return "Genre Update Error";
         }

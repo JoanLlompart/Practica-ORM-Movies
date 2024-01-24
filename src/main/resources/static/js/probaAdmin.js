@@ -80,7 +80,7 @@ async function sendData() {
     }
 }
 
-var selectType =document.querySelector("#addSelect");
+var selectType =document.querySelector(`#${selectedOption}Select`);
     let valueSelect = "country";
     selectType.addEventListener("change", () => {
         valueSelect=selectType.value;

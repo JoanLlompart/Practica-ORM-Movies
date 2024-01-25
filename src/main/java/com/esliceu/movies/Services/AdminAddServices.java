@@ -197,7 +197,7 @@ public class AdminAddServices {
         Long languageId = Long.valueOf(data.get("value3"));
         String code = data.get("value1");
         String name = data.get("value2");
-        if (!(code == null) && !(name ==null) && !(languageId ==null)) {
+        if (!(code == null) && !(name ==null) && !(languageId ==null) && languageRepo.existsByLanguageId(languageId)) {
             //TODO: Comprobam si existeix el id.
             Language lan = new Language();
             lan.setLanguageId(languageId);
@@ -213,7 +213,7 @@ public class AdminAddServices {
     public String updateLanguageRol(Map<String, String> data) {
             Long roleId = Long.valueOf(data.get("value2"));
             String role = data.get("value1");
-            if (!(role == null) && !(role ==null) && !(role ==null)) {
+            if (!(role == null) && !(role ==null) && !(role ==null) && languageRoleRepo.existsByLanguageRolId(roleId)) {
                 //TODO: Comprobam si existeix el id.
                 LanguageRole lr = new LanguageRole();
                 lr.setRoleId(roleId);

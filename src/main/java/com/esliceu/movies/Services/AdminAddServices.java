@@ -243,10 +243,10 @@ public class AdminAddServices {
         Long keywordId = Long.valueOf(data.get("value2"));
         String keywordName = data.get("value1");
         if (isValidInput(keywordName) && keywordRepo.existsByKeywordId(keywordId)) {
-            Genre ge = new Genre();
-            ge.setGenreId(keywordId);
-            ge.setGenreName(keywordName);
-            genreRepo.save(ge);
+            Keyword keyword = new Keyword();
+            keyword.setKeywordId(keywordId);
+            keyword.setKeywordName(keywordName);
+            keywordRepo.save(keyword);
             return "Keyword by id ," + keywordId + " , Update successfully";
         } else {
             return "Keyword Update Error";
@@ -254,7 +254,15 @@ public class AdminAddServices {
     }
 
     public String updateGender(Map<String, String> data) {
-        return "FAILED NOT MAKE";
+        Long keywordId = Long.valueOf(data.get("value2"));
+        String keywordName = data.get("value1");
+        if (isValidInput(keywordName) && keywordRepo.existsByKeywordId(keywordId)) {
+
+            return "Gender by id ," + keywordId + " , Update successfully";
+        } else {
+            return "Gender Update Error";
+        }
+
     }
 
     public String updateProductionCompany(Map<String, String> data) {

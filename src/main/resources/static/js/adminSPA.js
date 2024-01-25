@@ -107,6 +107,11 @@ function getFormData(dataType) {
     // Implementa esta función según tus necesidades específicas
     var formData = {};
     // Ejemplo: Obtén datos del formulario para el tipo de datos 'country'
+
+
+    //Proba de update 
+    console.log("operation a getFormData : " + operation);
+
     if (dataType === 'country') {
         formData.value1 = document.getElementById(`countryInputs${operation}_countryIsoCode`).value;
         formData.value2 = document.getElementById(`countryInputs${operation}_countryName`).value;

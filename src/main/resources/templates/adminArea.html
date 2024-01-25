@@ -194,16 +194,24 @@
     </select>
 
 
-    <!-- <div id="deleteElements">
-        
-        <label for="countryIsoCode">
-            <input type="text" name="countryIsoCode" id="countryIsoCode" placeholder="country_iso_code">
-        </label>
-        <label for="countryName">
-            <input type="text" name="countryName" id="countryName" placeholder="Country Name">
-        </label>
-        
-    </div>-->
+    <div id="countryInputsUpdate" class="dynamicInputs hidden">
+        <input type="text" name="countryId" id="countryInputsUpdate_countryId" placeholder="Country ID">
+        <input type="text" name="countryIsoCode" id="countryInputsUpdate_countryIsoCode" placeholder="Country ISO Code">
+        <input type="text" name="countryName" id="countryInputsUpdate_countryName" placeholder="Country Name">
+    </div>
+
+    <div id="languageInputsUpdate" class="dynamicInputs hidden">
+        <input type="text" name="languageid" id="languageInputsUpdate_languageId" placeholder="Language ID">
+        <input type="text" name="languageCode" id="languageInputsUpdate_languageCode" placeholder="Language Code">
+        <input type="text" name="languageName" id="languageInputsUpdate_languageName" placeholder="Language Name">
+    </div>
+
+    <div id="languageRoleInputsUpdate" class="dynamicInputs hidden">
+        <input type="text" name="roleId" id="languageRoleInputsUpdate_roleId" placeholder="Role ID">
+        <input type="text" name="languageRole" id="languageRoleInputsUpdate_languageRole" placeholder="Language Role">
+    </div>
+
+
     <input type="button" id="deleteButton" value="Delete">
 
 </div>

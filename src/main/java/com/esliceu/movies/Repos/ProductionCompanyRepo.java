@@ -8,4 +8,6 @@ import org.springframework.data.jpa.repository.Query;
 public interface ProductionCompanyRepo extends JpaRepository<ProductionCompany, Long> {
     @Query("SELECT MAX(companyId) FROM ProductionCompany")
     Long lastCompanyId();
+
+    boolean existsByCompanyId(Long companyId);
 }

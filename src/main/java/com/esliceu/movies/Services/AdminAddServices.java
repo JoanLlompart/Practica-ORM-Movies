@@ -254,10 +254,15 @@ public class AdminAddServices {
     }
 
     public String updateGender(Map<String, String> data) {
-        Long keywordId = Long.valueOf(data.get("value2"));
-        String keywordName = data.get("value1");
-        if (isValidInput(keywordName) && keywordRepo.existsByKeywordId(keywordId)) {
-            return "Gender by id ," + keywordId + " , Update successfully";
+        Long genderId = Long.valueOf(data.get("value2"));
+        String gender = data.get("value1");
+        if (isValidInput(gender) && genderRepo.existsByGenderId(genderId)) {
+            Gender ge = new Gender();
+            ge.setGenderId(genderId);
+            ge.setGender(gender);
+            genderRepo.save(ge);
+
+            return "Gender by id ," + genderId + " , Update successfully";
         } else {
             return "Gender Update Error";
         }
@@ -265,6 +270,44 @@ public class AdminAddServices {
     }
 
     public String updateProductionCompany(Map<String, String> data) {
-        return "FAILED NOT MAKE";
+        Long companyId = Long.valueOf(data.get("value2"));
+        String name = data.get("value1");
+        if (isValidInput(name) && productionCompanyRepo.existsByCompanyId(companyId)) {
+          ProductionCompany pc = new ProductionCompany();
+          pc.setCompanyId(companyId);
+          pc.setCompanyName(name);
+          productionCompanyRepo.save(pc);
+            return "Production Company by id ," + companyId + " , Update successfully";
+        } else {
+            return "Production Company Update Error";
+        }
+    }
+
+    public String updatePerson(Map<String, String> data) {
+        Long companyId = Long.valueOf(data.get("value2"));
+        String name = data.get("value1");
+        if (isValidInput(name) && productionCompanyRepo.existsByCompanyId(companyId)) {
+            ProductionCompany pc = new ProductionCompany();
+            pc.setCompanyId(companyId);
+            pc.setCompanyName(name);
+            productionCompanyRepo.save(pc);
+            return "Person by id ," + companyId + " , Update successfully";
+        } else {
+            return "Person Update Error";
+        }
+    }
+
+    public String updateDepartment(Map<String, String> data) {
+        Long departmentId = Long.valueOf(data.get("value2"));
+        String name = data.get("value1");
+        if (isValidInput(name) && departmentRepo.existsByDepartmentId(departmentId)) {
+            Department dp = new Department();
+            dp.setDepartmentId(departmentId);
+            dp.setDepartmentName(name);
+            departmentRepo.save(dp);
+            return "Department by id ," + departmentId + " , Update successfully";
+        } else {
+            return "Department Update Error";
+        }
     }
 }

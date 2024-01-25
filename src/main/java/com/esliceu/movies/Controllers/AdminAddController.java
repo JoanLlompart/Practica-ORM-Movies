@@ -1,8 +1,6 @@
 package com.esliceu.movies.Controllers;
 
-import com.esliceu.movies.Services.AdminAddServices;
-import com.esliceu.movies.Services.CountryServices;
-import com.esliceu.movies.Services.UserServices;
+import com.esliceu.movies.Services.*;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +21,11 @@ public class AdminAddController {
     AdminAddServices adminAddServices;
     @Autowired
     CountryServices countryServices;
+    @Autowired
+    LanguageServices languageServices;
+
+    @Autowired
+    LanguageRoleServices languageRoleServices;
 
     @GetMapping("/adminArea/add")
     public String adminGet(HttpSession session, Model model) {
@@ -203,7 +206,21 @@ public class AdminAddController {
         return ResponseEntity.ok().body(successMessage);
     }
 
+    @PostMapping("/adminArea/delete/language")
+    public ResponseEntity<Object> adminDeletePostLanguage(HttpSession session , @RequestBody Map<String,String> data) {
+        String email = (String) session.getAttribute("email");
+        userServices.setEmail(email);
+        String successMessage =languageServices.deleteLanguage(data);
+        return ResponseEntity.ok().body(successMessage);
+    }
 
 
+    @PostMapping("/adminArea/delete/language")
+    public ResponseEntity<Object> adminDeletePostLanguageRole(HttpSession session , @RequestBody Map<String,String> data) {
+        String email = (String) session.getAttribute("email");
+        userServices.setEmail(email);
+        String successMessage =languageRoleServices.deleteLanguageRole(data);
+        return ResponseEntity.ok().body(successMessage);
+    }
 
 }

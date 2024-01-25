@@ -12,7 +12,6 @@ public class Department {
     @Column(name = "department_id")
     private Long departmentId;
 
-
     @Column(name = "department_name")
     private String departmentName;
     @OneToMany(mappedBy = "department")

@@ -1,7 +1,7 @@
 
 const operationSelect = document.getElementById('operationSelect');
 const selectedSection = document.getElementById('selectedSection');
-let selectedOption ="add";
+let selectedOption = "add";
 // Seccio que es troba (añadir,actualizar,delete)
 //let seccion = 'añadir';
 //mostrarSeccion(seccion);
@@ -52,7 +52,7 @@ async function sendData() {
     // Obtén la URL del servidor según el tipo de datos actual
     var apiUrl = getApiUrl(dataType);
     console.log("url " + apiUrl);
-    
+
     const userConfirmed = window.confirm('Are you sure you want to add this new ' + dataType + ' ?');
 
 
@@ -88,13 +88,13 @@ async function sendData() {
 let valueSelect = "country";
 //Funcio per veura la operacio que estam realitzant
 function checkOperation() {
-var selectType =document.querySelector(`#${selectedOption}Select`);
+    var selectType = document.querySelector(`#${selectedOption}Select`);
     console.log("selectedOption " + selectedOption)
     selectType.addEventListener("change", () => {
-        valueSelect=selectType.value;
+        valueSelect = selectType.value;
     });
 }
-    
+
 function determineDataType() {
     // Lógica para determinar el tipo de datos actual
     // Puedes usar clases, estilos, atributos, o cualquier otro indicador en tu interfaz para determinar el tipo de datos
@@ -106,7 +106,7 @@ function determineDataType() {
 
 function getFormData(dataType) {
 
-    let operation =  selectedOption.substring(0, 1).toUpperCase() + selectedOption.substring(1);
+    let operation = selectedOption.substring(0, 1).toUpperCase() + selectedOption.substring(1);
     // Lógica para obtener los datos del formulario según el tipo de datos
     // Implementa esta función según tus necesidades específicas
     var formData = {};
@@ -116,89 +116,119 @@ function getFormData(dataType) {
     //Proba de update 
     console.log("operation a getFormData : " + operation);
 
-    if (dataType === 'country') {
-        formData.value1 = document.getElementById(`countryInputs${operation}_countryIsoCode`).value;
-        formData.value2 = document.getElementById(`countryInputs${operation}_countryName`).value;
-
-        // Añade el valor adicional si operation es igual a "Update"
-        if (operation === 'Update') {
-            formData.value3 = document.getElementById(`countryInputs${operation}_countryId`).value;
-        }
-
-    } else if (dataType === 'language') {
-        formData.value1 = document.getElementById(`languageInputs${operation}_languageCode`).value;
-        formData.value2 = document.getElementById(`languageInputs${operation}_languageName`).value;
-
-
-        if (operation === 'Update') {
-            formData.value3 = document.getElementById(`languageInputs${operation}_languageId`).value;
-        }
-
-    } else if (dataType === 'languageRole') {
-        formData.value1 = document.getElementById(`languageRoleInputs${operation}_languageRole`).value;
-
-        if (operation === 'Update') {
-            formData.value2 = document.getElementById(`languageRoleInputs${operation}_roleId`).value;
-        }
-
-    } else if (dataType === 'genre') {
-        formData.value1 = document.getElementById(`genreInputs${operation}_genreName`).value;
-        //Afegim el id si la operacio el requereix
-        if (operation === 'Update') {
-            formData.value2 = document.getElementById(`genreInputs${operation}_genreId`).value;
-        }
-
-
-    }  else if (dataType === 'keyword') {
-        formData.value1 = document.getElementById(`keywordInputs${operation}_keywordName`).value;
-
-         //Afegim el id si la operacio el requereix
-        if (operation === 'Update') {
-            formData.value2 = document.getElementById(`keywordInputs${operation}_keywordId`).value;
-        }
-
-
-    } else if (dataType === 'movieCompany') {
-        formData.value1 = document.getElementById(`movieCompanyInputs${operation}_movieId`).value;
-        formData.value2 = document.getElementById(`movieCompanyInputs${operation}_companyId`).value;
-
-    } else if (dataType === 'productionCompany') {
-        //formData.value1 = document.getElementById('productionCompanyInputs_companyIdProduction').value;
-        formData.value1 = document.getElementById(`productionCompanyInputs${operation}_companyName`).value;
-    
-        // Añade el valor adicional si operation es igual a "Update"
-        if (operation === 'Update') {
-            formData.value2 = document.getElementById(`productionCompanyInputs${operation}_companyIdProduction`).value;
-        }
-        
-    }  else if (dataType === 'gender') {
-        formData.value1 = document.getElementById(`genderInputs${operation}_genderName`).value;
-
-          //Afegim el id si la operacio el requereix
-        if (operation === 'Update') {
-            formData.value2 = document.getElementById(`genderInputs${operation}_genderId`).value;
-        }
-        
-    } else if (dataType === 'person') {
-        formData.value1 = document.getElementById(`personInputs${operation}_personName`).value;
-         //Afegim el id si la operacio el requereix
-        if (operation === 'Update') {
-            formData.value2 = document.getElementById(`personInputs${operation}_personId`).value;
-        }
-
-
-    } else if (dataType === 'department') {
-        formData.value1 = document.getElementById(`departmentInputs${operation}_departmentName`).value;
-        
-        if (operation === 'Update') {
-            formData.value2 = document.getElementById(`departmentInputs${operation}_departmentId`).value;
-        }
-
+    if (operation == 'Delete') {
+        formDataForDelete(dataType, formData);
     } else {
-        console.log("Data type: " + dataType);
+
+        if (dataType === 'country') {
+            formData.value1 = document.getElementById(`countryInputs${operation}_countryIsoCode`).value;
+            formData.value2 = document.getElementById(`countryInputs${operation}_countryName`).value;
+
+            // Añade el valor adicional si operation es igual a "Update"
+            if (operation === 'Update') {
+                formData.value3 = document.getElementById(`countryInputs${operation}_countryId`).value;
+            }
+
+        } else if (dataType === 'language') {
+            formData.value1 = document.getElementById(`languageInputs${operation}_languageCode`).value;
+            formData.value2 = document.getElementById(`languageInputs${operation}_languageName`).value;
+
+
+            if (operation === 'Update') {
+                formData.value3 = document.getElementById(`languageInputs${operation}_languageId`).value;
+            }
+
+        } else if (dataType === 'languageRole') {
+            formData.value1 = document.getElementById(`languageRoleInputs${operation}_languageRole`).value;
+
+            if (operation === 'Update') {
+                formData.value2 = document.getElementById(`languageRoleInputs${operation}_roleId`).value;
+            }
+
+        } else if (dataType === 'genre') {
+            formData.value1 = document.getElementById(`genreInputs${operation}_genreName`).value;
+            //Afegim el id si la operacio el requereix
+            if (operation === 'Update') {
+                formData.value2 = document.getElementById(`genreInputs${operation}_genreId`).value;
+            }
+
+
+        } else if (dataType === 'keyword') {
+            formData.value1 = document.getElementById(`keywordInputs${operation}_keywordName`).value;
+
+            //Afegim el id si la operacio el requereix
+            if (operation === 'Update') {
+                formData.value2 = document.getElementById(`keywordInputs${operation}_keywordId`).value;
+            }
+
+
+        } else if (dataType === 'movieCompany') {
+            formData.value1 = document.getElementById(`movieCompanyInputs${operation}_movieId`).value;
+            formData.value2 = document.getElementById(`movieCompanyInputs${operation}_companyId`).value;
+
+        } else if (dataType === 'productionCompany') {
+            //formData.value1 = document.getElementById('productionCompanyInputs_companyIdProduction').value;
+            formData.value1 = document.getElementById(`productionCompanyInputs${operation}_companyName`).value;
+
+            // Añade el valor adicional si operation es igual a "Update"
+            if (operation === 'Update') {
+                formData.value2 = document.getElementById(`productionCompanyInputs${operation}_companyIdProduction`).value;
+            }
+
+        } else if (dataType === 'gender') {
+            formData.value1 = document.getElementById(`genderInputs${operation}_genderName`).value;
+
+            //Afegim el id si la operacio el requereix
+            if (operation === 'Update') {
+                formData.value2 = document.getElementById(`genderInputs${operation}_genderId`).value;
+            }
+
+        } else if (dataType === 'person') {
+            formData.value1 = document.getElementById(`personInputs${operation}_personName`).value;
+            //Afegim el id si la operacio el requereix
+            if (operation === 'Update') {
+                formData.value2 = document.getElementById(`personInputs${operation}_personId`).value;
+            }
+
+
+        } else if (dataType === 'department') {
+            formData.value1 = document.getElementById(`departmentInputs${operation}_departmentName`).value;
+
+            if (operation === 'Update') {
+                formData.value2 = document.getElementById(`departmentInputs${operation}_departmentId`).value;
+            }
+
+        } else {
+            console.log("Data type: " + dataType);
+        }
+
     }
     return formData;
 }
+
+function formDataForDelete(dataType,formData) {
+//Funcio per agafar inputs de delete
+    switch (dataType) {
+        case 'country':
+            console.log("La opción es country");
+            formData.value = document.getElementById(`countryInputsDelete_countryId`).value; 
+            break;
+        case 'language':
+            console.log("La opción es language");
+            break;
+        case 'languageRole':
+            console.log("La opción es LanguageRole");
+            break;
+        case 'person':
+            console.log("La opción es person");
+            break;
+        default:
+            console.log("Opción no reconocida");
+    }
+}
+
+
+
 function getApiUrl(dataType) {
     // Lógica para obtener la URL del servidor según el tipo de datos
     // Implementa esta función según tus necesidades específicas
@@ -245,14 +275,14 @@ function getApiUrl(dataType) {
 function showInputs() {
     // Oculta todos los div de inputs
     var allInputs = document.querySelectorAll('.dynamicInputs');
-    allInputs.forEach(function(inputDiv) {
+    allInputs.forEach(function (inputDiv) {
         inputDiv.classList.add('hidden');
     });
 
     // Muestra el div correspondiente al valor seleccionado en el select
     var selectedValue = document.getElementById(`${selectedOption}Select`).value;
     var selectedInputsDiv = document.getElementById(selectedValue + 'Inputs');
-    console.log("Valor a addSelect : " + selectedValue  + " , valor a el div : " + selectedInputsDiv);
+    console.log("Valor a addSelect : " + selectedValue + " , valor a el div : " + selectedInputsDiv);
     if (selectedInputsDiv) {
         selectedInputsDiv.classList.remove('hidden');
     }
@@ -294,36 +324,36 @@ document.getElementById('deleteSelect').addEventListener('change', function () {
 
 
 // Llama a showInputs al cargar la página para visualizar por defecto "country"
-window.onload = function() {
+window.onload = function () {
     showInputs();
 };
 
 
 
 
-    /*function showInputs() {
-        // Oculta todos los div de inputs
-        var allInputs = document.querySelectorAll('.dynamicInputs');
-        allInputs.forEach(function (inputDiv) {
-            inputDiv.classList.add('hidden');
-        });
-
-        // Muestra el div correspondiente al valor seleccionado en el select
-        var selectedValue = document.getElementById('updateSelect').value;
-        var selectedInputsDiv = document.getElementById(selectedValue + 'InputsUpdate');
-        console.log("Valor a updateSelect : " + selectedValue + " , valor a el div : " + selectedInputsDiv);
-        if (selectedInputsDiv) {
-            selectedInputsDiv.classList.remove('hidden');
-        }
-    }
-
-    document.getElementById('updateSelect').addEventListener('change', function () {
-        // Llama a la función showInputs cuando cambia el valor del select
-        showInputs();
+/*function showInputs() {
+    // Oculta todos los div de inputs
+    var allInputs = document.querySelectorAll('.dynamicInputs');
+    allInputs.forEach(function (inputDiv) {
+        inputDiv.classList.add('hidden');
     });
 
-    // Llama a showInputs al cargar la página para visualizar por defecto "country"
-    window.onload = function() {
-        showInputs();
-    };
-    */
+    // Muestra el div correspondiente al valor seleccionado en el select
+    var selectedValue = document.getElementById('updateSelect').value;
+    var selectedInputsDiv = document.getElementById(selectedValue + 'InputsUpdate');
+    console.log("Valor a updateSelect : " + selectedValue + " , valor a el div : " + selectedInputsDiv);
+    if (selectedInputsDiv) {
+        selectedInputsDiv.classList.remove('hidden');
+    }
+}
+
+document.getElementById('updateSelect').addEventListener('change', function () {
+    // Llama a la función showInputs cuando cambia el valor del select
+    showInputs();
+});
+
+// Llama a showInputs al cargar la página para visualizar por defecto "country"
+window.onload = function() {
+    showInputs();
+};
+*/

@@ -15,7 +15,6 @@ public class CountryServices {
     @Autowired
     AdminAddServices adminAddServices;
 
-
     public String deleteCountry(Map<String, String> data) {
         Long countryId = Long.valueOf(data.get("value1"));
        // Long countryId = 293L;

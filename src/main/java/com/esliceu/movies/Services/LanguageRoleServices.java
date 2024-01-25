@@ -11,8 +11,8 @@ public class LanguageRoleServices {
     @Autowired
     LanguageRoleRepo languageRoleRepo;
     public String deleteLanguageRole(Map<String, String> data) {
-       // Long roleId = Long.valueOf(data.get("value1"));
-        Long roleId = 5L;
+        Long roleId = Long.valueOf(data.get("value1"));
+        //Long roleId = 5L;
         if (languageRoleRepo.existsByRoleId(roleId)) {
             languageRoleRepo.deleteById(roleId);
             return "LanguageRole by id ," + roleId + " ,Delete successfully";

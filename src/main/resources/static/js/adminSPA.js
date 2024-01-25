@@ -110,6 +110,7 @@ function getFormData(dataType) {
     // Lógica para obtener los datos del formulario según el tipo de datos
     // Implementa esta función según tus necesidades específicas
     var formData = {};
+
     // Ejemplo: Obtén datos del formulario para el tipo de datos 'country'
 
 
@@ -117,7 +118,7 @@ function getFormData(dataType) {
     console.log("operation a getFormData : " + operation);
 
     if (operation == 'Delete') {
-        formDataForDelete(dataType, formData);
+        formData=formDataForDelete(dataType, formData);
     } else {
 
         if (dataType === 'country') {
@@ -211,19 +212,19 @@ function formDataForDelete(dataType,formData) {
     switch (dataType) {
         case 'country':
             console.log("La opción es country");
-            formData.value = document.getElementById(`countryInputsDelete_countryId`).value; 
+            formData.value1 = document.getElementById(`countryInputsDelete_countryId`).value; 
             return formData;
         case 'language':
-            console.log("La opción es language");
-            break;
+            formData.value1 = document.getElementById(`languageInputsDelete_languageId`).value;
+            return formData;
         case 'languageRole':
-            console.log("La opción es LanguageRole");
-            break;
+            formData.value1 = document.getElementById(`languageRoleInputsDelete_roleId`).value;
+            return formData;
         case 'person':
-            console.log("La opción es person");
-            break;
+            formData.value1 = document.getElementById(`languageRoleInputsDelete_roleId`).value;
+        return formData;
         default:
-            console.log("Opción no reconocida");
+            return formData;
     }
 }
 

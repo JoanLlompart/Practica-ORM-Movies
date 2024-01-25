@@ -180,7 +180,7 @@
 
 <div id="borrar" class="section container mt-3">
     <h3>Elige un elemento para modificar</h3>
-    <select name="deleteSelect" id="deleteSelect">
+    <select name="deleteSelect" id="deleteSelect" onchange="showInputs()">
         <option value="country">Country</option>
         <option value="language">Language</option>
         <option value="languageRole">Language Rol</option>
@@ -193,25 +193,17 @@
         <option value="department">Department</option>
     </select>
 
-
-    <div id="countryInputsUpdate" class="dynamicInputs hidden">
-        <input type="text" name="countryId" id="countryInputsUpdate_countryId" placeholder="Country ID">
-        <input type="text" name="countryIsoCode" id="countryInputsUpdate_countryIsoCode" placeholder="Country ISO Code">
-        <input type="text" name="countryName" id="countryInputsUpdate_countryName" placeholder="Country Name">
+    <div id="countryInputsDelete" class="dynamicInputs hidden">
+        <input type="text" name="countryId" id="countryInputsDelete_countryId" placeholder="Country ID">
     </div>
 
-    <div id="languageInputsUpdate" class="dynamicInputs hidden">
-        <input type="text" name="languageid" id="languageInputsUpdate_languageId" placeholder="Language ID">
-        <input type="text" name="languageCode" id="languageInputsUpdate_languageCode" placeholder="Language Code">
-        <input type="text" name="languageName" id="languageInputsUpdate_languageName" placeholder="Language Name">
+    <div id="languageInputsDelete" class="dynamicInputs hidden">
+        <input type="text" name="languageid" id="languageInputsDelete_languageId" placeholder="Language ID">
     </div>
 
-    <div id="languageRoleInputsUpdate" class="dynamicInputs hidden">
-        <input type="text" name="roleId" id="languageRoleInputsUpdate_roleId" placeholder="Role ID">
-        <input type="text" name="languageRole" id="languageRoleInputsUpdate_languageRole" placeholder="Language Role">
+    <div id="languageRoleInputsDelete" class="dynamicInputs hidden">
+        <input type="text" name="roleId" id="languageRoleInputsDelete_roleId" placeholder="Role ID">
     </div>
-
-
     <input type="button" id="deleteButton" value="Delete">
 
 </div>

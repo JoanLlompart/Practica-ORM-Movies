@@ -276,6 +276,22 @@ document.getElementById('updateSelect').addEventListener('change', function () {
     }
 });
 
+document.getElementById('deleteSelect').addEventListener('change', function () {
+    var selectedValue = this.value;
+
+    // Oculta todos los conjuntos de inputs
+    var allInputs = document.querySelectorAll('.dynamicInputs');
+    allInputs.forEach(function (input) {
+        input.classList.add('hidden');
+    });
+
+    // Muestra solo el conjunto de inputs correspondiente al valor seleccionado
+    var selectedInputs = document.getElementById(selectedValue + 'InputsDelete');
+    if (selectedInputs) {
+        selectedInputs.classList.remove('hidden');
+    }
+});
+
 
 // Llama a showInputs al cargar la página para visualizar por defecto "country"
 window.onload = function() {

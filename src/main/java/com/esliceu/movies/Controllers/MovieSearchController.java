@@ -4,6 +4,7 @@ import com.esliceu.movies.DTO.MovieDTO;
 import com.esliceu.movies.DTO.MoviePageDTO;
 import com.esliceu.movies.Entities.Movie;
 import com.esliceu.movies.Services.MovieSearchServices;
+import com.esliceu.movies.Services.UserServices;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +24,8 @@ public class MovieSearchController {
 
     @Autowired
     MovieSearchServices movieSearchServices;
-
+    @Autowired
+    UserServices userServices;
     /*
         @GetMapping("/movieSearch")
     public String showMovies(Model model, HttpSession session, @RequestParam(defaultValue = "0") int page) {
@@ -70,6 +72,14 @@ public class MovieSearchController {
             System.out.println("Title " + m.getTitle()  + " , relaseDate : " + m.getReleaseDate() + " , voteAvarage : " + m.getVoteAverage());
         }
         return movieList;
+    }
+
+    @PostMapping("/adminArea/add/movie")
+    public ResponseEntity<Object> adminAddPostMovie(HttpSession session , @RequestBody Map<String,String> data) {
+        String email = (String) session.getAttribute("email");
+        userServices.setEmail(email);
+        String successMessage =movieSearchServices.insertNewMovie(data);
+        return ResponseEntity.ok().body(successMessage);
     }
 
 

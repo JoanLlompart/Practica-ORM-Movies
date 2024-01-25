@@ -2,6 +2,10 @@
 const operationSelect = document.getElementById('operationSelect');
 const selectedSection = document.getElementById('selectedSection');
 let selectedOption ="add";
+// Seccio que es troba (añadir,actualizar,delete)
+//let seccion = 'añadir';
+//mostrarSeccion(seccion);
+
 
 operationSelect.addEventListener('change', (event) => {
     selectedOption = event.target.value;

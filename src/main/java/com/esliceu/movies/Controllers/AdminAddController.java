@@ -1,6 +1,7 @@
 package com.esliceu.movies.Controllers;
 
 import com.esliceu.movies.Services.AdminAddServices;
+import com.esliceu.movies.Services.CountryServices;
 import com.esliceu.movies.Services.UserServices;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
@@ -20,6 +21,9 @@ public class AdminAddController {
     UserServices userServices;
     @Autowired
     AdminAddServices adminAddServices;
+    @Autowired
+    CountryServices countryServices;
+
     @GetMapping("/adminArea/add")
     public String adminGet(HttpSession session, Model model) {
         String email = (String) session.getAttribute("email");
@@ -191,12 +195,15 @@ public class AdminAddController {
         return ResponseEntity.ok().body(successMessage);
     }
 
-    @PostMapping("/adminArea/update/department")
-    public ResponseEntity<Object> adminUpdatePostDepartment( HttpSession session , @RequestBody Map<String,String> data) {
+    @PostMapping("/adminArea/delete/country")
+    public ResponseEntity<Object> adminDeletePostCountry(HttpSession session , @RequestBody Map<String,String> data) {
         String email = (String) session.getAttribute("email");
         userServices.setEmail(email);
-        String successMessage =adminAddServices.updateDepartment(data);
+        String successMessage =countryServices.deleteCountry(data);
         return ResponseEntity.ok().body(successMessage);
     }
+
+
+
 
 }

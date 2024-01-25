@@ -212,7 +212,7 @@ function formDataForDelete(dataType,formData) {
         case 'country':
             console.log("La opción es country");
             formData.value = document.getElementById(`countryInputsDelete_countryId`).value; 
-            break;
+            return formData;
         case 'language':
             console.log("La opción es language");
             break;

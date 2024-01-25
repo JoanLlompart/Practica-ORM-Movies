@@ -59,7 +59,7 @@ public class AdminAddServices {
     }
 
     //TODO:per ara no la utilitzarem
-    private boolean isValidInput(String keyword) {
+    protected boolean isValidInput(String keyword) {
         //Si el codi es una cadena buida o te nomes espais
         keyword =keyword.trim();
         //Permet numeros i lletras i espais enmitg ja que els altres se han eliminat

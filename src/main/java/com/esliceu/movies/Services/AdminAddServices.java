@@ -211,8 +211,8 @@ public class AdminAddServices {
     }
 
     public String updateLanguageRol(Map<String, String> data) {
-            Long roleId = Long.valueOf(data.get("value1"));
-            String role = data.get("value2");
+            Long roleId = Long.valueOf(data.get("value2"));
+            String role = data.get("value1");
             if (!(role == null) && !(role ==null) && !(role ==null)) {
                 //TODO: Comprobam si existeix el id.
                 LanguageRole lr = new LanguageRole();

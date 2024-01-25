@@ -215,7 +215,7 @@ public class AdminAddController {
     }
 
 
-    @PostMapping("/adminArea/delete/language")
+    @PostMapping("/adminArea/delete/languageRole")
     public ResponseEntity<Object> adminDeletePostLanguageRole(HttpSession session , @RequestBody Map<String,String> data) {
         String email = (String) session.getAttribute("email");
         userServices.setEmail(email);

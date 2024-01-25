@@ -2,9 +2,11 @@ package com.esliceu.movies.Services;
 
 import com.esliceu.movies.Repos.LanguageRepo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.Map;
 
+@Service
 public class LanguageServices {
     @Autowired
     LanguageRepo languageRepo;

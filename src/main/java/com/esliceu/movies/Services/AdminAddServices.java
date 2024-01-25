@@ -226,8 +226,8 @@ public class AdminAddServices {
     }
 
     public String updateGenre(Map<String, String> data) {
-        Long genreId = Long.valueOf(data.get("value1"));
-        String genre = data.get("value2");
+        Long genreId = Long.valueOf(data.get("value2"));
+        String genre = data.get("value1");
         if (isValidInput(genre) && genreRepo.existsByGenreId(genreId)) {
             Genre ge = new Genre();
             ge.setGenreId(genreId);
@@ -240,8 +240,8 @@ public class AdminAddServices {
     }
 
     public String updateKeyword(Map<String, String> data) {
-        Long keywordId = Long.valueOf(data.get("value1"));
-        String keywordName = data.get("value2");
+        Long keywordId = Long.valueOf(data.get("value2"));
+        String keywordName = data.get("value1");
         if (isValidInput(keywordName) && keywordRepo.existsByKeywordId(keywordId)) {
             Genre ge = new Genre();
             ge.setGenreId(keywordId);

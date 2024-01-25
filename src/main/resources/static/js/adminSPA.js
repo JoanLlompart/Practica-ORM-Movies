@@ -115,6 +115,12 @@ function getFormData(dataType) {
     if (dataType === 'country') {
         formData.value1 = document.getElementById(`countryInputs${operation}_countryIsoCode`).value;
         formData.value2 = document.getElementById(`countryInputs${operation}_countryName`).value;
+
+        // Añade el valor adicional si operation es igual a "Update"
+        if (operation === 'Update') {
+            formData.value3 = document.getElementById(`countryInputs${operation}_countryId`).value;
+        }
+
     } else if (dataType === 'language') {
         formData.value1 = document.getElementById(`languageInputs${operation}_languageCode`).value;
         formData.value2 = document.getElementById(`languageInputs${operation}_languageName`).value;
@@ -135,6 +141,11 @@ function getFormData(dataType) {
     } else if (dataType === 'productionCompany') {
         //formData.value1 = document.getElementById('productionCompanyInputs_companyIdProduction').value;
         formData.value1 = document.getElementById(`productionCompanyInputs${operation}_companyName`).value;
+    
+        // Añade el valor adicional si operation es igual a "Update"
+        if (operation === 'Update') {
+            formData.value2 = document.getElementById(`productionCompanyInputs${operation}_companyIdProduction`).value;
+        }
         
     }  else if (dataType === 'gender') {
         formData.value1 = document.getElementById(`genderInputs${operation}_genderName`).value;
@@ -148,7 +159,6 @@ function getFormData(dataType) {
     } else {
         console.log("Data type: " + dataType);
     }
-
     return formData;
 }
 function getApiUrl(dataType) {

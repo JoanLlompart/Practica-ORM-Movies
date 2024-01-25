@@ -280,6 +280,8 @@ function getApiUrl(dataType) {
     } else if (dataType === 'department') {
         return baseUrl + '/department';
 
+    } else if (dataType === 'movie') {
+        return baseUrl + '/movie';
     }
     return baseUrl; // Devuelve la URL base si no coincide con ningún tipo de datos conocido
 }

@@ -9,7 +9,7 @@ public interface LanguageRoleRepo  extends JpaRepository<LanguageRole, Long> {
     @Query("SELECT MAX(roleId) FROM LanguageRole")
     Long lastRoleId();
 
-    boolean existsByLanguageRolId(Long roleId);
+    boolean existsByRoleId(Long roleId);
 
     //@Query("INSERT INTO LanguageRol role (roleId, )")
     //void save(LanguageRole role);

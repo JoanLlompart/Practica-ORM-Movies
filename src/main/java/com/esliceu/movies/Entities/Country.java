@@ -10,7 +10,8 @@ public class Country {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "country_id")
-    private Long country_id;
+   // private Long country_id;
+    private Long countryId;
     @Column(name = "country_iso_code")
     private String countryIsoCode;
 
@@ -23,12 +24,12 @@ public class Country {
     public Country() {
     }
 
-    public Long getCountry_id() {
-        return country_id;
+    public Long getCountryId() {
+        return countryId;
     }
 
-    public void setCountry_id(Long country_id) {
-        this.country_id = country_id;
+    public void setCountryId(Long countryId) {
+        this.countryId = countryId;
     }
 
     public String getCountryIsoCode() {

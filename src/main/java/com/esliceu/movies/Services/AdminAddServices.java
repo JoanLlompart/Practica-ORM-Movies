@@ -180,10 +180,10 @@ public class AdminAddServices {
         String name = data.get("value2");
         Long countryId = Long.valueOf(data.get("value3"));
 
-        if (!(isoCode == null) && !(name ==null) && !(countryId ==null)) {
+        if (!(isoCode == null) && !(name ==null) && !(countryId ==null) && countryRepo.existsByCountryId(countryId)) {
             //TODO: Comprobam si existeix el id.
             Country c = new Country();
-            c.setCountry_id(countryId);
+            c.setCountryId(countryId);
             c.setCountryName(name);
             c.setCountryIsoCode(isoCode);
             countryRepo.save(c);
@@ -213,7 +213,7 @@ public class AdminAddServices {
     public String updateLanguageRol(Map<String, String> data) {
             Long roleId = Long.valueOf(data.get("value2"));
             String role = data.get("value1");
-            if (!(role == null) && !(role ==null) && !(role ==null) && languageRoleRepo.existsByLanguageRolId(roleId)) {
+            if (!(role == null) && !(role ==null) && !(role ==null) && languageRoleRepo.existsByRoleId(roleId)) {
                 //TODO: Comprobam si existeix el id.
                 LanguageRole lr = new LanguageRole();
                 lr.setRoleId(roleId);
@@ -257,7 +257,6 @@ public class AdminAddServices {
         Long keywordId = Long.valueOf(data.get("value2"));
         String keywordName = data.get("value1");
         if (isValidInput(keywordName) && keywordRepo.existsByKeywordId(keywordId)) {
-
             return "Gender by id ," + keywordId + " , Update successfully";
         } else {
             return "Gender Update Error";

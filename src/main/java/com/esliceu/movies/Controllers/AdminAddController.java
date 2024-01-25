@@ -198,6 +198,14 @@ public class AdminAddController {
         return ResponseEntity.ok().body(successMessage);
     }
 
+    @PostMapping("/adminArea/update/department")
+    public ResponseEntity<Object> adminUpdatePostDepartment( HttpSession session , @RequestBody Map<String,String> data) {
+        String email = (String) session.getAttribute("email");
+        userServices.setEmail(email);
+        String successMessage =adminAddServices.updateDepartment(data);
+        return ResponseEntity.ok().body(successMessage);
+    }
+
     @PostMapping("/adminArea/delete/country")
     public ResponseEntity<Object> adminDeletePostCountry(HttpSession session , @RequestBody Map<String,String> data) {
         String email = (String) session.getAttribute("email");

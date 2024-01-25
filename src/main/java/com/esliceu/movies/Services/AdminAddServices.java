@@ -194,9 +194,9 @@ public class AdminAddServices {
     }
 
     public String updateLanguage(Map<String, String> data) {
-        Long languageId = Long.valueOf(data.get("value1"));
-        String code = data.get("value2");
-        String name = data.get("value3");
+        Long languageId = Long.valueOf(data.get("value3"));
+        String code = data.get("value1");
+        String name = data.get("value2");
         if (!(code == null) && !(name ==null) && !(languageId ==null)) {
             //TODO: Comprobam si existeix el id.
             Language lan = new Language();

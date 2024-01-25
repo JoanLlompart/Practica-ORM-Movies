@@ -129,19 +129,39 @@ function getFormData(dataType) {
         formData.value1 = document.getElementById(`languageInputs${operation}_languageCode`).value;
         formData.value2 = document.getElementById(`languageInputs${operation}_languageName`).value;
 
+
+        if (operation === 'Update') {
+            formData.value3 = document.getElementById(`languageInputs${operation}_languageId`).value;
+        }
+
     } else if (dataType === 'languageRole') {
         formData.value1 = document.getElementById(`languageRoleInputs${operation}_languageRole`).value;
 
+        if (operation === 'Update') {
+            formData.value2 = document.getElementById(`languageRoleInputs${operation}_roleId`).value;
+        }
+
     } else if (dataType === 'genre') {
         formData.value1 = document.getElementById(`genreInputs${operation}_genreName`).value;
+        //Afegim el id si la operacio el requereix
+        if (operation === 'Update') {
+            formData.value2 = document.getElementById(`genreInputs${operation}_genreId`).value;
+        }
+
 
     }  else if (dataType === 'keyword') {
         formData.value1 = document.getElementById(`keywordInputs${operation}_keywordName`).value;
 
+         //Afegim el id si la operacio el requereix
+        if (operation === 'Update') {
+            formData.value2 = document.getElementById(`keywordInputs${operation}_keywordId`).value;
+        }
+
+
     } else if (dataType === 'movieCompany') {
         formData.value1 = document.getElementById(`movieCompanyInputs${operation}_movieId`).value;
         formData.value2 = document.getElementById(`movieCompanyInputs${operation}_companyId`).value;
-        
+
     } else if (dataType === 'productionCompany') {
         //formData.value1 = document.getElementById('productionCompanyInputs_companyIdProduction').value;
         formData.value1 = document.getElementById(`productionCompanyInputs${operation}_companyName`).value;
@@ -153,13 +173,27 @@ function getFormData(dataType) {
         
     }  else if (dataType === 'gender') {
         formData.value1 = document.getElementById(`genderInputs${operation}_genderName`).value;
+
+          //Afegim el id si la operacio el requereix
+        if (operation === 'Update') {
+            formData.value2 = document.getElementById(`genderInputs${operation}_genderId`).value;
+        }
         
     } else if (dataType === 'person') {
         formData.value1 = document.getElementById(`personInputs${operation}_personName`).value;
-        
+         //Afegim el id si la operacio el requereix
+        if (operation === 'Update') {
+            formData.value2 = document.getElementById(`personInputs${operation}_personId`).value;
+        }
+
+
     } else if (dataType === 'department') {
         formData.value1 = document.getElementById(`departmentInputs${operation}_departmentName`).value;
         
+        if (operation === 'Update') {
+            formData.value2 = document.getElementById(`departmentInputs${operation}_departmentId`).value;
+        }
+
     } else {
         console.log("Data type: " + dataType);
     }

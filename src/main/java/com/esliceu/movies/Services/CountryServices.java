@@ -17,7 +17,7 @@ public class CountryServices {
 
 
     public String deleteCountry(Map<String, String> data) {
-        Long countryId = Long.valueOf(gidata.get("value1"));
+        Long countryId = Long.valueOf(data.get("value1"));
         if (countryRepo.existsByCountryId(countryId)) {;
             countryRepo.deleteById(countryId);
             return "Country by id ," + countryId + " ,Delete successfully";

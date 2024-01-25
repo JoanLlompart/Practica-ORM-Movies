@@ -117,7 +117,7 @@ function getFormData(dataType) {
     console.log("operation a getFormData : " + operation);
 
     if (operation == 'Delete') {
-        formDataForDelete(dataType, formData);
+        formData =formDataForDelete(dataType, formData);
     } else {
 
         if (dataType === 'country') {
@@ -212,7 +212,7 @@ function formDataForDelete(dataType,formData) {
         case 'country':
             console.log("La opción es country");
             formData.value = document.getElementById(`countryInputsDelete_countryId`).value; 
-            return formData;
+            break;
         case 'language':
             console.log("La opción es language");
             break;
@@ -225,6 +225,7 @@ function formDataForDelete(dataType,formData) {
         default:
             console.log("Opción no reconocida");
     }
+    return formData;
 }
 
 

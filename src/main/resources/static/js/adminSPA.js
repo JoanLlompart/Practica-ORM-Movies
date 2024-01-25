@@ -199,6 +199,24 @@ function getFormData(dataType) {
                 formData.value2 = document.getElementById(`departmentInputs${operation}_departmentId`).value;
             }
 
+        } else if(dataType === 'movie') {
+            formData.value1 = document.getElementById(`movieInputs${operation}_title`).value;
+            formData.value2 = document.getElementById(`movieInputs${operation}_budget`).value;
+            formData.value3 = document.getElementById(`movieInputs${operation}_homepage`).value;
+            formData.value4 = document.getElementById(`movieInputs${operation}_overview`).value;
+            formData.value5 = document.getElementById(`movieInputs${operation}_popularity`).value;
+            formData.value6 = document.getElementById(`movieInputs${operation}_releseDate`).value;
+            formData.value7 = document.getElementById(`movieInputs${operation}_revenue`).value;
+            formData.value8 = document.getElementById(`movieInputs${operation}_runtime`).value;
+            formData.value9 = document.getElementById(`movieInputs${operation}_movieStatus`).value;
+            formData.value10 = document.getElementById(`movieInputs${operation}_tagline`).value;
+            formData.value11 = document.getElementById(`movieInputs${operation}_voteAvarage`).value;
+            formData.value12 = document.getElementById(`movieInputs${operation}_voteCount`).value;
+
+
+
+
+
         } else {
             console.log("Data type: " + dataType);
         }

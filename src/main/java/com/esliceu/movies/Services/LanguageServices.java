@@ -15,7 +15,6 @@ public class LanguageServices {
 
     public String deleteLanguage(Map<String, String> data) {
         Long languageId = Long.valueOf(data.get("value1"));
-        //Long languageId = 24705L;
         if (languageRepo.existsByLanguageId(languageId)) {;
             languageRepo.deleteById(languageId);
             return "Language by id ," + languageId + " ,Delete successfully";

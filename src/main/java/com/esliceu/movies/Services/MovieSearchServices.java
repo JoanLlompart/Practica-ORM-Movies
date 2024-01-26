@@ -93,7 +93,9 @@ public class MovieSearchServices {
                     return movieDTOList;
                 case "character":
                     System.out.println("Character of movie : " + keyword);
-                    movieList = movieSearchRepo.findMovieByCharacter(keyword);
+                    //movieList = movieSearchRepo.findMovieByCharacter(keyword);
+                    movieList = movieSearchRepo.findMovieByMoviecastCharacterNameContaining(keyword);
+
                     for (Movie mo:movieList) {
                         System.out.println(mo.getTitle());
                     }

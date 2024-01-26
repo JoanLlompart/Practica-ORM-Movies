@@ -45,11 +45,16 @@ public interface MovieSearchRepo extends JpaRepository<Movie, Long> {
             "WHERE mc.job = 'Author' AND p.personName LIKE %:personName%")
     List<Movie> findMovieByAuthor(@Param("personName") String keyword);
 
-    @Query("SELECT m " +
+    //Format utilizant SQL
+   /* @Query("SELECT m " +
             "FROM Movie m " +
             "JOIN MovieCast cast ON m.movieId = cast.movie.movieId " +
             "WHERE cast.characterName LIKE %:character% ")
     List<Movie> findMovieByCharacter(@Param("character") String character);
+    */
+
+    //Torna les peliculas que hi ha aquest personatge de una pelicula.
+    List<Movie> findMovieByMoviecastCharacterNameContaining(String keyword);
 
 
     @Query("SELECT m " +

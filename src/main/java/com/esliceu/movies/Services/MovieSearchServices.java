@@ -141,7 +141,8 @@ public class MovieSearchServices {
                     return movietitleDTO;
                 case "genre":
                     System.out.println("Genre of movie : " + keyword);
-                    movieList = movieSearchRepo.findMovieByGenre(keyword);
+                   // movieList = movieSearchRepo.findMovieByGenre(keyword);
+                    movieList = movieSearchRepo.findMovieByMovieGenres_GenreGenreNameContaining(keyword);
                     for (Movie mo:movieList) {
                         System.out.println(mo.getTitle());
                     }

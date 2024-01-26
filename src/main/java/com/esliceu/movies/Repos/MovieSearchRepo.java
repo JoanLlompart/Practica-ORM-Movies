@@ -57,12 +57,18 @@ public interface MovieSearchRepo extends JpaRepository<Movie, Long> {
     List<Movie> findMovieByMoviecastCharacterNameContaining(String keyword);
 
 
-    @Query("SELECT m " +
+   /* @Query("SELECT m " +
             "FROM Movie m " +
             "JOIN MovieGenres mg ON m.movieId=mg.movie.movieId " +
             "JOIN Genre g ON g.genreId= mg.genre.genreId " +
             "WHERE g.genreName LIKE %:keyword%")
     List<Movie> findMovieByGenre(@Param("keyword") String keyword);
+    */
+
+
+    //Peliculas que tenen aquest genre
+    List<Movie> findMovieByMovieGenres_GenreGenreNameContaining(String genreName);
+
 
     @Query("SELECT m FROM Movie m " +
             "JOIN MovieCrew mc ON m.movieId = mc.movie.movieId " +

@@ -113,6 +113,7 @@ public class MovieSearchServices {
                 case "author":
                     System.out.println("author :" + keyword );
                     movieList= movieSearchRepo.findMovieByAuthor(keyword);
+                    //movieList = movieSearchRepo.findByMovieCrewJobAndMovieCrewPersonPersonNameContainingIgnoreCase("Author",keyword);
                     for (Movie mo:movieList) {
                         System.out.println(mo.getTitle());
                     }

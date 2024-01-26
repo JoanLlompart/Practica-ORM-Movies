@@ -97,7 +97,6 @@ public class AdminAddServices {
             return "Genre Insert FAILED";
         }
     }
-
     public String insertNewKeyword(Map<String, String> data) {
         String keywordName = data.get("value1");
         System.out.println("keywordname " + keywordName);

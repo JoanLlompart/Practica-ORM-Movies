@@ -20,12 +20,9 @@ import java.util.Map;
 public class MovieSearchServices {
     @Autowired
     MovieSearchRepo movieSearchRepo;
-
-
     public List<Movie> allMovies() {
         return movieSearchRepo.findAll();
     }
-
 
     /*
     public Page<Movie> filterMovies(String filter, String keyword, PageRequest pageRequest) {
@@ -52,13 +49,9 @@ public class MovieSearchServices {
 
      */
 
-
     public Page<Movie> getPage(Pageable pageable) {
         return movieSearchRepo.findAll(pageable);
     }
-
-
-
 
     public List<MovieDTO> filterMovies(String filter, String keyword,int page, int size) {
         if(isValidInput(keyword)) {

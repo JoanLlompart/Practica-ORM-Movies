@@ -74,7 +74,7 @@ public class MovieSearchController {
         return movieList;
     }
 
-    /*
+
     @PostMapping("/adminArea/add/movie")
     public ResponseEntity<Object> adminAddPostMovie(HttpSession session , @RequestBody Map<String,String> data) {
         String email = (String) session.getAttribute("email");
@@ -83,7 +83,7 @@ public class MovieSearchController {
         return ResponseEntity.ok().body(successMessage);
     }
 
-     */
+
 
 
 

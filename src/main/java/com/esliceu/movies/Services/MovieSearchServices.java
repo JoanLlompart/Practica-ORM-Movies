@@ -125,7 +125,8 @@ public class MovieSearchServices {
                     }
                     return movieDTOList;
                 case "title":
-                    List<Movie> moviesList = movieSearchRepo.findMoviesByTitle(keyword);
+                    //List<Movie> moviesList = movieSearchRepo.findMoviesByTitle(keyword);
+                    List<Movie> moviesList = movieSearchRepo.findByTitleContainingIgnoreCase(keyword);
                     List<MovieDTO> movietitleDTO = new ArrayList<>();
                     for (Movie m:moviesList) {
                         MovieDTO dto = new MovieDTO();

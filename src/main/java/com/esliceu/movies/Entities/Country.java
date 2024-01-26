@@ -1,5 +1,6 @@
 package com.esliceu.movies.Entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.util.Set;
@@ -19,6 +20,7 @@ public class Country {
     private String countryName;
 
     @OneToMany(mappedBy = "country")
+    @JsonIgnore
     private Set<ProductionCountry> productionCountries;
 
     public Country() {

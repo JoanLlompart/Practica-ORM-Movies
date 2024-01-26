@@ -14,39 +14,39 @@ public class Movie {
     @Column(name = "movie_id")
     private Long movieId; //se ha cambiat antes se deia movie_id
 
-    @Column(name = "title")
+    @Column(name = "title", nullable = true)
     private String title;
 
-    @Column(name = "budget")
+    @Column(name = "budget", nullable = true)
     private Integer budget;
-    @Column(name = "homepage")
+    @Column(name = "homepage", nullable = true)
     private String homepage;
 
-    @Column(name = "overview")
+    @Column(name = "overview", nullable = true)
     private String overview;
 
-    @Column(name = "popularity")
+    @Column(name = "popularity", nullable = true)
     private Double popularity;
 
-    @Column(name = "release_date")
+    @Column(name = "release_date", nullable = true)
     @Temporal(TemporalType.DATE)
     private Date releaseDate;
 
-    @Column(name = "revenue")
+    @Column(name = "revenue", nullable = true)
     private Long revenue;
 
-    @Column(name = "runtime")
+    @Column(name = "runtime", nullable = true)
     private Integer runtime;
 
-    @Column(name = "movie_status")
+    @Column(name = "movie_status", nullable = true)
     private String movieStatus;
 
-    @Column(name = "tagline")
+    @Column(name = "tagline", nullable = true)
     private String tagline;
 
-    @Column(name = "vote_average")
+    @Column(name = "vote_average", nullable = true)
     private Double voteAverage;
-    @Column(name = "vote_count")
+    @Column(name = "vote_count", nullable = true)
     private Integer voteCount;
 
 
@@ -58,23 +58,23 @@ public class Movie {
     private Set<ProductionCountry> productionCountries;
 
     @OneToMany(mappedBy = "movie")
-   // @JsonIgnore
+    // @JsonIgnore
     private Set<MovieCompany> movieCompanies;
 
     @OneToMany(mappedBy = "movie")
-  //  @JsonIgnore
+    //  @JsonIgnore
     private Set<MovieCrew> movieCrews;
 
     @OneToMany(mappedBy = "movie")
-   // @JsonIgnore
+    // @JsonIgnore
     private Set<MovieGenres> movieGenres;
 
     @OneToMany(mappedBy = "movie")
-   // @JsonIgnore
+    // @JsonIgnore
     private Set<MovieKeywords> movieKeywords;
 
     @OneToMany(mappedBy = "movie")
-   // @JsonIgnore
+    // @JsonIgnore
     private Set<MovieLanguages> movieLanguages;
 
     public Movie(Long movieId, String title, Integer budget, String homepage, String overview, Double popularity,

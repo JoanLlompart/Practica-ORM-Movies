@@ -234,7 +234,6 @@ public class MovieSearchServices {
     }
 
     @Transactional
-
     public String updateMovie(Map<String, String> data) {
         /*
         String title = data.get("value1");
@@ -311,6 +310,8 @@ public class MovieSearchServices {
            movie.setTitle(title);
            movie.setTagline(tagline);
            movie.setHomepage(homepage);
+           movie.setOverview(overview);
+           movie.setMovieStatus(movieStatus);
            movieSearchRepo.save(movie);
             return "Movie by id:" + movieId + " Update successfully";
         }else {

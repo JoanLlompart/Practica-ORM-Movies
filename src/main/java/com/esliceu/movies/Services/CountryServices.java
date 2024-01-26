@@ -1,7 +1,9 @@
 package com.esliceu.movies.Services;
+import com.esliceu.movies.Entities.Country;
 import com.esliceu.movies.Entities.ProductionCountry;
 import com.esliceu.movies.Repos.CountryRepo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -27,5 +29,9 @@ public class CountryServices {
             return "Country Delete Error";
         }
 
+    }
+
+    public List<Country> filterByCountry(String keyword, Pageable pageable) {
+        return countryRepo.findByCountryNameContainingIgnoreCase(keyword,pageable);
     }
 }

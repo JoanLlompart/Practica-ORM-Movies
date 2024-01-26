@@ -15,7 +15,7 @@ async function sendData() {
 
     try {
         // Realizar la solicitud Fetch al servidor con método POST
-        const response = await fetch('/', {
+        const response = await fetch('/adminArea/filter', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'

@@ -56,7 +56,7 @@ async function sendData() {
     var apiUrl = getApiUrl(dataType);
     console.log("url " + apiUrl);
 
-    const userConfirmed = window.confirm('Are you sure you want to add this new ' + dataType + ' ?');
+    const userConfirmed = window.confirm(`Are you sure you want to ${selectedOption} this register of  ` + dataType + ' ?');
 
 
     if (userConfirmed) {
@@ -349,7 +349,6 @@ document.getElementById('deleteSelect').addEventListener('change', function () {
 // Llama a showInputs al cargar la página para visualizar por defecto "country"
 window.onload = function () {
     showInputs();
-    mostrarSeccion('añadir');
 };
 
 

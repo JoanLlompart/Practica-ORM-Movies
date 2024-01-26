@@ -216,6 +216,9 @@ function getFormData(dataType) {
             formData.value11 = document.getElementById(`movieInputs${operation}_voteAvarage`).value;
             formData.value12 = document.getElementById(`movieInputs${operation}_voteCount`).value;
 
+            if (operation === 'Update') {
+                formData.value13 = document.getElementById(`movieInputs${operation}_movieId`).value;
+            }
         } else {
             console.log("Data type: " + dataType);
         }

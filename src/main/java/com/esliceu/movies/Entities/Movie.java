@@ -1,10 +1,13 @@
 package com.esliceu.movies.Entities;
 import jakarta.persistence.*;
+import org.hibernate.annotations.DynamicUpdate;
+
 import java.sql.Date;
 import java.util.Set;
 
 @Entity
 @Table(name = "movie")
+@DynamicUpdate
 public class Movie {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

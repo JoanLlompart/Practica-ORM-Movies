@@ -233,6 +233,7 @@ public class MovieSearchServices {
     }
 
     public String updateMovie(Map<String, String> data) {
+
         //todo : Falta fer bastant
         String title = data.get("value1");
         Integer budget = Integer.valueOf(data.get("value2"));
@@ -246,8 +247,13 @@ public class MovieSearchServices {
         String tagline = data.get("value10");
         Double voteAvarage = Double.valueOf(data.get("value11"));
         Integer voteCount = Integer.valueOf(data.get("value12"));
-        return "ENCARA NO ESTA FEt";
+        Long movieId = Long.valueOf(data.get("value13"));
 
+        if (movieSearchRepo.existsByMovieId(movieId)) {
+            return "Movie by id:" + movieId + " Update successfully";
+        }else {
+            return "Movie by id:" + movieId + " Delete error";
+        }
     }
 
     public String deleteMovie(Map<String, String> data) {

@@ -215,8 +215,6 @@ public class MovieSearchServices {
         Double voteAvarage = Double.valueOf(data.get("value11"));
         Integer voteCount = Integer.valueOf(data.get("value12"));
 
-
-
         Movie movie = new Movie();
         movie.setTitle(title);
         movie.setBudget(budget);

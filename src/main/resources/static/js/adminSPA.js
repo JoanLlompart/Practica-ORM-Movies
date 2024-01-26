@@ -2,6 +2,8 @@
 const operationSelect = document.getElementById('operationSelect');
 const selectedSection = document.getElementById('selectedSection');
 let selectedOption = "add";
+
+
 // Seccio que es troba (añadir,actualizar,delete)
 //let seccion = 'añadir';
 //mostrarSeccion(seccion);
@@ -28,6 +30,7 @@ function mostrarSeccion(seccion) {
     document.getElementById(seccion).classList.add('active-section');
 
     const addButton = document.getElementById(`${seccion}Button`);
+
     addButton.addEventListener('click', (event) => {
         sendData();
     });
@@ -343,6 +346,7 @@ document.getElementById('deleteSelect').addEventListener('change', function () {
 // Llama a showInputs al cargar la página para visualizar por defecto "country"
 window.onload = function () {
     showInputs();
+    mostrarSeccion('añadir');
 };
 
 

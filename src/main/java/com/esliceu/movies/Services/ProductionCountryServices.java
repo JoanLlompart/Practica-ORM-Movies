@@ -12,8 +12,8 @@ public class ProductionCountryServices {
     @Autowired
     ProductionCountryRepo productionCountryRepo;
 
-    public void deleteByCountryId(Long id) {
-        List<ProductionCountry> productionCountryList = productionCountryRepo.findAllByCountry_CountryId(id);
+    public void deleteByCountryId(Long countryId) {
+        List<ProductionCountry> productionCountryList = productionCountryRepo.findAllByCountry_CountryId(countryId);
         productionCountryRepo.deleteAll(productionCountryList);
     }
 

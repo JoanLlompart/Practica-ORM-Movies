@@ -14,12 +14,13 @@ public class CountryServices {
     @Autowired
     AdminAddServices adminAddServices;
     @Autowired
-
+    ProductionCountryServices productionCountryServices;
 
 
     public String deleteCountry(Map<String, String> data) {
         Long countryId = Long.valueOf(data.get("value1"));
         if (countryRepo.existsByCountryId(countryId)) {
+            productionCountryServices.deleteByCountryId(countryId);
             countryRepo.deleteById(countryId);
             return "Country by id : " + countryId + " ,Delete successfully";
         } else {

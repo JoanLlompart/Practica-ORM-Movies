@@ -14,7 +14,6 @@ async function sendData() {
     };
 
     try {
-        // Realizar la solicitud Fetch al servidor con método POST
         const response = await fetch('/adminArea/filter', {
             method: 'POST',
             headers: {
@@ -23,7 +22,7 @@ async function sendData() {
             body: JSON.stringify(requestBody)
         });
 
-        // Verificar el estado de la respuesta
+        //resposta erronea
         if (!response.ok) {
             throw new Error(`Error: ${response.status} - ${response.statusText}`);
         }

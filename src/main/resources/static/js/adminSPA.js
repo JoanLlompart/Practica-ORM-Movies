@@ -240,6 +240,9 @@ function formDataForDelete(dataType,formData) {
         case 'person':
             formData.value1 = document.getElementById(`languageRoleInputsDelete_personId`).value;
         return formData;
+        case 'movie':
+            formData.value1 = document.getElementById(`movieInputsDelete_movieId`).value;
+        return formData;
         default:
             return formData;
     }

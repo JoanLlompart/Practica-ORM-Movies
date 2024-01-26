@@ -192,6 +192,26 @@
             placeholder="Department Name">
     </div>
 
+
+    <!--Apartat de afegir Movie-->
+    <div id="movieInputsUpdate" class="dynamicInputs hidden">
+        <p>Fields that are not entered will not be changed.</p>
+        <br>
+        <input type="text" name="movieId" id="movieInputsUpdate_movieId" placeholder="Movie ID">
+        <input type="text" name="title" id="movieInputsUpdate_title" placeholder="Title">
+        <input type="number" name="budget" id="movieInputsUpdate_budget" placeholder="Budget">
+        <input type="url" name="homepage" id="movieInputsUpdate_homepage" placeholder="Homepage">
+        <input type="text" name="overview" id="movieInputsUpdate_overview" placeholder="Overview">
+        <input type="number" name="popularity" id="movieInputsUpdate_popularity" placeholder="Popularity">
+        <input type="date" name="relaseDate" id="movieInputsUpdate_relaseDate" placeholder="Release Date">
+        <input type="number" name="revenue" id="movieInputsUpdate_revenue" placeholder="Revenue">
+        <input type="number" name="runtime" id="movieInputsUpdate_runtime" placeholder="Runtime">
+        <input type="text" name="movieStatus" id="movieInputsUpdate_movieStatus" placeholder="Movie Status">
+        <input type="text" name="tagline" id="movieInputsUpdate_tagline" placeholder="Tagline">
+        <input type="number" name="voteAvarage" id="movieInputsUpdate_voteAvarage" placeholder="Vote Avarage">
+        <input type="number" name="voteCount" id="movieInputsUpdate_voteCount" placeholder="Vote Count">
+    </div>
+
     <input type="button" id="actualizarButton" value="Update">
 </div>
 
@@ -204,6 +224,7 @@
         <option value="language">Language</option>
         <option value="languageRole">Language Rol</option>  
         <option value="person">Person</option>
+        <option value="movie">Movie</option>
         <!--
         <option value="genre">Genre</option>
         <option value="keyword">Keyword</option>
@@ -224,6 +245,11 @@
     <div id="languageRoleInputsDelete" class="dynamicInputs hidden">
         <input type="text" name="roleId" id="languageRoleInputsDelete_roleId" placeholder="Role ID">
     </div>
+
+    <div id="movieInputsDelete" class="dynamicInputs hidden">
+        <input type="text" name="roleId" id="movieInputsDelete_movieId" placeholder="Movie ID">
+    </div>
+
     <input type="button" id="borrarButton" value="Delete">
 
 </div>

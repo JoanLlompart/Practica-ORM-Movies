@@ -232,6 +232,34 @@ public class MovieSearchServices {
         return "Movie Add successfully";
     }
 
+    public String updateMovie(Map<String, String> data) {
+        //todo : Falta fer bastant
+        String title = data.get("value1");
+        Integer budget = Integer.valueOf(data.get("value2"));
+        String homepage = data.get("value3");
+        String overview = data.get("value4");
+        Double popularity = Double.valueOf(data.get("value5"));
+        Date relaseDate = Date.valueOf(data.get("value6"));
+        Long revenue = Long.valueOf(data.get("value7"));
+        Integer runtime = Integer.valueOf(data.get("value8"));
+        String movieStatus = data.get("value9");
+        String tagline = data.get("value10");
+        Double voteAvarage = Double.valueOf(data.get("value11"));
+        Integer voteCount = Integer.valueOf(data.get("value12"));
+        return "ENCARA NO ESTA FEt";
+
+    }
+
+    public String deleteMovie(Map<String, String> data) {
+        Long movieId = Long.valueOf(data.get("value1"));
+        if (movieSearchRepo.existsByMovieId(movieId)) {;
+            movieSearchRepo.deleteById(movieId);
+            return "Movie by id ," + movieId + " ,Delete successfully";
+        } else {
+            return "Movie Delete Error";
+        }
+    }
+
 
     //TODO: PER PAGINAR
   /*  public Page<Movie> findMoviesByTitle(String keyword, int page, int size) {

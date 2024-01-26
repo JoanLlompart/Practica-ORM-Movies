@@ -57,4 +57,7 @@ public interface MovieSearchRepo extends JpaRepository<Movie, Long> {
             "JOIN Person p ON p.personId = mc.person.personId " +
             "WHERE mc.job = 'Director' AND p.personName LIKE %:keyword%")
     List<Movie> findMovieByDirector(@Param("keyword") String keyword);
+
+    boolean existsByMovieId(Long movieId);
+
 }

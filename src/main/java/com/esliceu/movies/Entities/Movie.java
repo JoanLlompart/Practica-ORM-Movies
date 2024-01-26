@@ -77,6 +77,62 @@ public class Movie {
    // @JsonIgnore
     private Set<MovieLanguages> movieLanguages;
 
+    public Movie(Long movieId, String title, Integer budget, String homepage, String overview, Double popularity,
+                 Date releaseDate, Long revenue, Integer runtime, String movieStatus, String tagline, Double voteAverage,
+                 Integer voteCount, Set<MovieCast> moviecast, Set<ProductionCountry> productionCountries,
+                 Set<MovieCompany> movieCompanies, Set<MovieCrew> movieCrews, Set<MovieGenres> movieGenres,
+                 Set<MovieKeywords> movieKeywords, Set<MovieLanguages> movieLanguages) {
+        this.movieId = movieId;
+        this.title = title;
+        this.budget = budget;
+        this.homepage = homepage;
+        this.overview = overview;
+        this.popularity = popularity;
+        this.releaseDate = releaseDate;
+        this.revenue = revenue;
+        this.runtime = runtime;
+        this.movieStatus = movieStatus;
+        this.tagline = tagline;
+        this.voteAverage = voteAverage;
+        this.voteCount = voteCount;
+        this.moviecast = moviecast;
+        this.productionCountries = productionCountries;
+        this.movieCompanies = movieCompanies;
+        this.movieCrews = movieCrews;
+        this.movieGenres = movieGenres;
+        this.movieKeywords = movieKeywords;
+        this.movieLanguages = movieLanguages;
+    }
+
+    public Movie() {
+    }
+
+    public Movie(String title, Integer budget, String homepage, String overview, Double popularity, Date releaseDate,
+                 Long revenue, Integer runtime, String movieStatus, String tagline, Double voteAverage,
+                 Integer voteCount, Set<MovieCast> moviecast, Set<ProductionCountry> productionCountries,
+                 Set<MovieCompany> movieCompanies, Set<MovieCrew> movieCrews, Set<MovieGenres> movieGenres,
+                 Set<MovieKeywords> movieKeywords, Set<MovieLanguages> movieLanguages) {
+        this.title = title;
+        this.budget = budget;
+        this.homepage = homepage;
+        this.overview = overview;
+        this.popularity = popularity;
+        this.releaseDate = releaseDate;
+        this.revenue = revenue;
+        this.runtime = runtime;
+        this.movieStatus = movieStatus;
+        this.tagline = tagline;
+        this.voteAverage = voteAverage;
+        this.voteCount = voteCount;
+        this.moviecast = moviecast;
+        this.productionCountries = productionCountries;
+        this.movieCompanies = movieCompanies;
+        this.movieCrews = movieCrews;
+        this.movieGenres = movieGenres;
+        this.movieKeywords = movieKeywords;
+        this.movieLanguages = movieLanguages;
+    }
+
     public Long getMovieId() {
         return movieId;
     }

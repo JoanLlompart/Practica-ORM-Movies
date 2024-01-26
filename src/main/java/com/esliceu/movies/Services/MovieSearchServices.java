@@ -3,6 +3,7 @@ package com.esliceu.movies.Services;
 import com.esliceu.movies.DTO.MovieDTO;
 import com.esliceu.movies.Entities.Movie;
 import com.esliceu.movies.Repos.MovieSearchRepo;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -232,9 +233,10 @@ public class MovieSearchServices {
         return "Movie Add successfully";
     }
 
-    public String updateMovie(Map<String, String> data) {
+    @Transactional
 
-        //todo : Falta fer bastant
+    public String updateMovie(Map<String, String> data) {
+        /*
         String title = data.get("value1");
         Integer budget = Integer.valueOf(data.get("value2"));
         String homepage = data.get("value3");
@@ -248,8 +250,68 @@ public class MovieSearchServices {
         Double voteAvarage = Double.valueOf(data.get("value11"));
         Integer voteCount = Integer.valueOf(data.get("value12"));
         Long movieId = Long.valueOf(data.get("value13"));
+         */
+        String title = data.get("value1");
+        Integer budget = null;
+        String homepage = data.get("value3");
+        String overview = data.get("value4");
+        Double popularity = null;
+        Date releaseDate = null;
+        Long revenue = null;
+        Integer runtime = null;
+        String movieStatus = data.get("value9");
+        String tagline = data.get("value10");
+        Double voteAverage = null;
+        Integer voteCount = null;
+        Long movieId = null;
+        //Cream el objecte Movie per anar afegit els valors
+        Movie movie = new Movie();
+
+        if (data.get("value2") != null && !data.get("value2").isEmpty()) {
+            budget = Integer.valueOf(data.get("value2"));
+            movie.setBudget(budget);
+        }
+
+        if (data.get("value5") != null && !data.get("value5").isEmpty()) {
+            popularity = Double.valueOf(data.get("value5"));
+            movie.setPopularity(popularity);
+        }
+
+        if (data.get("value6") != null && !data.get("value6").isEmpty()) {
+            releaseDate = Date.valueOf(data.get("value6"));
+            movie.setReleaseDate(releaseDate);
+        }
+
+        if (data.get("value7") != null && !data.get("value7").isEmpty()) {
+            revenue = Long.valueOf(data.get("value7"));
+            movie.setRevenue(revenue);
+        }
+
+        if (data.get("value8") != null && !data.get("value8").isEmpty()) {
+            runtime = Integer.valueOf(data.get("value8"));
+            movie.setRuntime(runtime);
+        }
+
+        if (data.get("value11") != null && !data.get("value11").isEmpty()) {
+            voteAverage = Double.valueOf(data.get("value11"));
+            movie.setVoteAverage(voteAverage);
+        }
+
+        if (data.get("value12") != null && !data.get("value12").isEmpty()) {
+            voteCount = Integer.valueOf(data.get("value12"));
+            movie.setVoteCount(voteCount);
+        }
+
+        if (data.get("value13") != null && !data.get("value13").isEmpty()) {
+            movieId = Long.valueOf(data.get("value13"));
+            movie.setMovieId(movieId);
+        }
 
         if (movieSearchRepo.existsByMovieId(movieId)) {
+           movie.setTitle(title);
+           movie.setTagline(tagline);
+           movie.setHomepage(homepage);
+           movieSearchRepo.save(movie);
             return "Movie by id:" + movieId + " Update successfully";
         }else {
             return "Movie by id:" + movieId + " Delete error";

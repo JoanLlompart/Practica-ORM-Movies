@@ -233,8 +233,6 @@ public class MovieSearchServices {
         return "Movie Add successfully";
     }
 
-    }
-
 
     //TODO: PER PAGINAR
   /*  public Page<Movie> findMoviesByTitle(String keyword, int page, int size) {

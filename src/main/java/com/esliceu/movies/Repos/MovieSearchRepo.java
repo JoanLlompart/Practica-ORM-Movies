@@ -33,16 +33,13 @@ public interface MovieSearchRepo extends JpaRepository<Movie, Long> {
     Page<Movie> findMovieByActor(@Param("personName") String keyword,Pageable pageable);
      */
 
+
     /*@Query("SELECT m FROM Movie m WHERE title LIKE %:keyword%")
        //Page<Movie> findMoviesByTitle(@Param("keyword")String keyword, Pageable pageable);
     List<Movie> findMoviesByTitle(@Param("keyword")String keyword);
      */
 
-
-
     List<Movie> findByTitleContainingIgnoreCase(String keyword);
-
-
 
 
     @Query("SELECT m FROM Movie m " +
@@ -53,7 +50,6 @@ public interface MovieSearchRepo extends JpaRepository<Movie, Long> {
 
     //Author de la pelicula
     //List<Movie> findByMovieCrewJobAndMovieCrewPersonPersonNameContainingIgnoreCase(String job, String personName);
-
 
 
     //Format utilizant SQL

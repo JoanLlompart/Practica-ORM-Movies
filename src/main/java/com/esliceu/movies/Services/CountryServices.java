@@ -13,9 +13,9 @@ public class CountryServices {
 
     public String deleteCountry(Map<String, String> data) {
         Long countryId = Long.valueOf(data.get("value1"));
-        if (countryRepo.existsByCountryId(countryId)) {;
+        if (countryRepo.existsByCountryId(countryId)) {
             countryRepo.deleteById(countryId);
-            return "Country by id ," + countryId + " ,Delete successfully";
+            return "Country by id : " + countryId + " ,Delete successfully";
         } else {
             return "Country Delete Error";
         }

@@ -15,6 +15,8 @@ public class CrudFilterServices {
     CountryServices countryServices;
     @Autowired
     LanguageServices languageServices;
+    @Autowired
+    LanguageRoleServices languageRoleServices;
     public List<?> filterByEntity(Map<String, String> data) {
        String filter =data.get("filter");
         String keyword =data.get("keyword");
@@ -27,7 +29,7 @@ public class CrudFilterServices {
             case "language":
                 return languageServices.filterByLanguage(keyword,pageable);
             case "languageRole":
-                break;
+                return languageRoleServices.filterByLanguageRole(keyword,pageable);
             default:
                 break;
 

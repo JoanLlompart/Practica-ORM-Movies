@@ -1,7 +1,10 @@
 package com.esliceu.movies.Services;
 import com.esliceu.movies.Repos.LanguageRoleRepo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 import java.util.Map;
 
 @Service
@@ -17,5 +20,9 @@ public class LanguageRoleServices {
         } else {
             return "Language Role Delete Error";
         }
+    }
+
+    public List<?> filterByLanguageRole(String keyword, Pageable pageable) {
+        return languageRoleRepo.findByLanguageRoleContainingIgnoreCase(keyword,pageable);
     }
 }

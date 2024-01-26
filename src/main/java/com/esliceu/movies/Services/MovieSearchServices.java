@@ -325,7 +325,7 @@ public class MovieSearchServices {
 
     public String deleteMovie(Map<String, String> data) {
         Long movieId = Long.valueOf(data.get("value1"));
-        if (movieSearchRepo.existsByMovieId(movieId)) {;
+        if (movieSearchRepo.existsByMovieId(movieId)) {
             movieSearchRepo.deleteById(movieId);
             return "Movie by id ," + movieId + " ,Delete successfully";
         } else {

@@ -234,7 +234,9 @@ public class MovieSearchServices {
         Double voteAvarage = Double.valueOf(data.get("value11"));
         Integer voteCount = Integer.valueOf(data.get("value12"));
         Long movieId = Long.valueOf(data.get("value13"));
-         */
+        */
+
+
         String title = data.get("value1");
         Integer budget = null;
         String homepage = data.get("value3");
@@ -290,19 +292,36 @@ public class MovieSearchServices {
             movieId = Long.valueOf(data.get("value13"));
             movie.setMovieId(movieId);
         }
+        movie.setTitle(title);
+        movie.setTagline(tagline);
+        movie.setHomepage(homepage);
+        movie.setOverview(overview);
+        movie.setMovieStatus(movieStatus);
 
+        //todo:Fer un toSting de movie si fa falta
+
+        //Si el id coincideix amb un de la base de dades pasam a comprobar els valors que cambian
         if (movieSearchRepo.existsByMovieId(movieId)) {
-           movie.setTitle(title);
-           movie.setTagline(tagline);
-           movie.setHomepage(homepage);
-           movie.setOverview(overview);
-           movie.setMovieStatus(movieStatus);
+
+           //Movie movieBD= movieSearchRepo.getReferenceById(movieId);
+           //movieBD=registersChange(movieBD,movie);
            movieSearchRepo.save(movie);
             return "Movie by id:" + movieId + " Update successfully";
         }else {
             return "Movie by id:" + movieId + " Delete error";
         }
     }
+
+    /*
+    private Movie registersChange(Movie movieBD, Movie movie) {
+        if (!movie.getTitle().isEmpty() && movie.getTitle() != null && !movieBD.getTitle().equals(movie.getTitle())) {
+            movieBD.setTitle(movie.getTitle());
+        }
+        if (!movie.get().isEmpty() && movie.getTitle() != null && !movieBD.getTitle().equals(movie.getTitle()) {
+
+        }
+
+     */
 
     public String deleteMovie(Map<String, String> data) {
         Long movieId = Long.valueOf(data.get("value1"));

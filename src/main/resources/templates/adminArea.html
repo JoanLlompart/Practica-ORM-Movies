@@ -256,6 +256,34 @@
 
 </div>
 
+
+<form id="formFilter">
+    <select name="filter" id="filter">
+        <option value="actor">Actor</option>
+        <option value="character">Movie character</option>
+        <option value="title">Title</option>
+        <option value="genre">Genre</option>
+        <option value="director">Director</option>
+        <option value="author">Author</option>
+    </select>
+
+    <input type="text" name="keyword" id="keyword" placeholder="keyword">
+    <!--Probant coses-->
+    <label for="page">Page:</label>
+    <input type="number" name="page" id="page" value="0" required>
+
+    <label for="size">Size:</label>
+    <input type="number" name="size" id="size" value="10" required>
+
+    <button type="button" onclick="sendData()">Filter</button>
+</form>
+
+<table id="resultTable" class="table" border="1">
+</table>
+
+
+
+
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
     integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
     crossorigin="anonymous"></script>
@@ -267,6 +295,7 @@
     crossorigin="anonymous"></script>
 
 <script src="/js/adminSPA.js"></script>
+<script src="/js/crudFilter.js"></script> 
 <!--<script src="/js/adminSPA.js"></script> -->
 
 </body>

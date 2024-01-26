@@ -45,6 +45,9 @@ public interface MovieSearchRepo extends JpaRepository<Movie, Long> {
             "WHERE mc.job = 'Author' AND p.personName LIKE %:personName%")
     List<Movie> findMovieByAuthor(@Param("personName") String keyword);
 
+
+
+
     //Format utilizant SQL
    /* @Query("SELECT m " +
             "FROM Movie m " +
@@ -69,12 +72,16 @@ public interface MovieSearchRepo extends JpaRepository<Movie, Long> {
     //Peliculas que tenen aquest genre
     List<Movie> findMovieByMovieGenres_GenreGenreNameContaining(String genreName);
 
-
+/*
     @Query("SELECT m FROM Movie m " +
             "JOIN MovieCrew mc ON m.movieId = mc.movie.movieId " +
             "JOIN Person p ON p.personId = mc.person.personId " +
             "WHERE mc.job = 'Director' AND p.personName LIKE %:keyword%")
     List<Movie> findMovieByDirector(@Param("keyword") String keyword);
+
+ */
+
+    List<Movie> findDistincMovieByMovieCrewsJobAndMovieCrews_PersonPersonNameContaining(String director,String keyword);
 
     boolean existsByMovieId(Long movieId);
 

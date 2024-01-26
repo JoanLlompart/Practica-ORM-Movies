@@ -158,7 +158,8 @@ public class MovieSearchServices {
                     return movieDTOList;
                 case "director":
                     System.out.println("Director of movie : " + keyword);
-                    movieList = movieSearchRepo.findMovieByDirector(keyword);
+                   // movieList = movieSearchRepo.findMovieByDirector(keyword);
+                    movieList = movieSearchRepo.findDistincMovieByMovieCrewsJobAndMovieCrews_PersonPersonNameContaining("Director",keyword);
                     for (Movie mo:movieList) {
                         System.out.println(mo.getTitle());
                     }

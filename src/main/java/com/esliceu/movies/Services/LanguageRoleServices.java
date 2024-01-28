@@ -17,7 +17,6 @@ public class LanguageRoleServices {
 
     public String deleteLanguageRole(Map<String, String> data) {
         Long roleId = Long.valueOf(data.get("value1"));
-        //Long roleId = 5L;
         if (languageRoleRepo.existsByRoleId(roleId)) {
             languageRoleRepo.deleteById(roleId);
             return "LanguageRole by id ," + roleId + " ,Delete successfully";
@@ -36,7 +35,6 @@ public class LanguageRoleServices {
           roleDTOList.add(lrDTO);
         }
        return roleDTOList;
-        //return languageRoleRepo.findByLanguageRoleContainingIgnoreCase(keyword,pageable);
     }
 
 }

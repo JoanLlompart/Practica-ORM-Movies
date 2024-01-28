@@ -28,8 +28,6 @@ public class AdminAreaController {
         return "adminArea";
     }
 
-
-
     @PostMapping("/adminArea")
     public String adminPost(HttpServletRequest req, HttpSession session) {
         String email = (String) session.getAttribute("email");

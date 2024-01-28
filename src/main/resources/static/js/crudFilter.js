@@ -29,7 +29,7 @@ async function sendDataFilter() {
 
         // Obtener los datos de la respuesta JSON
         const data = await response.json();
-        
+        console.log(data);
         // Llamar a la función para actualizar la tabla con los datos recibidos
         updateTable(data);
     } catch (error) {

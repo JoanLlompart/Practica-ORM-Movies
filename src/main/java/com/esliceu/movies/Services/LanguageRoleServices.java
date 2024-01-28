@@ -1,4 +1,5 @@
 package com.esliceu.movies.Services;
+import com.esliceu.movies.Entities.LanguageRole;
 import com.esliceu.movies.Repos.LanguageRoleRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
@@ -22,7 +23,8 @@ public class LanguageRoleServices {
         }
     }
 
-    public List<?> filterByLanguageRole(String keyword, Pageable pageable) {
+    public List<LanguageRole> filterByLanguageRole(String keyword, Pageable pageable) {
         return languageRoleRepo.findByLanguageRoleContainingIgnoreCase(keyword,pageable);
     }
+
 }

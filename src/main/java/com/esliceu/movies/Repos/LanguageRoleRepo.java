@@ -14,7 +14,7 @@ public interface LanguageRoleRepo  extends JpaRepository<LanguageRole, Long> {
 
     boolean existsByRoleId(Long roleId);
 
-    List<?> findByLanguageRoleContainingIgnoreCase(String keyword, Pageable pageable);
+    List<LanguageRole>findByLanguageRoleContainingIgnoreCase(String keyword, Pageable pageable);
 
     //@Query("INSERT INTO LanguageRol role (roleId, )")
     //void save(LanguageRole role);

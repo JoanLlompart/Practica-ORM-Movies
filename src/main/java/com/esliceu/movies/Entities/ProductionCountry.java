@@ -7,7 +7,7 @@ import jakarta.persistence.*;
         uniqueConstraints =
         @UniqueConstraint(columnNames = {"movie_id", "country_id"})
 )
-@IdClass(ProductionCountry.class)
+@IdClass(ProductionCountryId.class) //Alerta amb aixo
 public class ProductionCountry {
     @Id
     @ManyToOne

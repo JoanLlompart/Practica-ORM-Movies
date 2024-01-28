@@ -232,8 +232,7 @@ public class MovieSearchServices {
         Long movieId = Long.valueOf(data.get("value13"));
         */
 
-
-        String title = data.get("value1");
+        Long movieId = null;
         Integer budget = null;
         String homepage = data.get("value3");
         String overview = data.get("value4");
@@ -245,57 +244,140 @@ public class MovieSearchServices {
         String tagline = data.get("value10");
         Double voteAverage = null;
         Integer voteCount = null;
-        Long movieId = null;
-        //Cream el objecte Movie per anar afegit els valors
-        Movie movie = new Movie();
 
-        if (data.get("value2") != null && !data.get("value2").isEmpty()) {
-            budget = Integer.valueOf(data.get("value2"));
-            movie.setBudget(budget);
-        }
-
-        if (data.get("value5") != null && !data.get("value5").isEmpty()) {
-            popularity = Double.valueOf(data.get("value5"));
-            movie.setPopularity(popularity);
-        }
-
-        if (data.get("value6") != null && !data.get("value6").isEmpty()) {
-            releaseDate = Date.valueOf(data.get("value6"));
-            movie.setReleaseDate(releaseDate);
-        }
-
-        if (data.get("value7") != null && !data.get("value7").isEmpty()) {
-            revenue = Long.valueOf(data.get("value7"));
-            movie.setRevenue(revenue);
-        }
-
-        if (data.get("value8") != null && !data.get("value8").isEmpty()) {
-            runtime = Integer.valueOf(data.get("value8"));
-            movie.setRuntime(runtime);
-        }
-
-        if (data.get("value11") != null && !data.get("value11").isEmpty()) {
-            voteAverage = Double.valueOf(data.get("value11"));
-            movie.setVoteAverage(voteAverage);
-        }
-
-        if (data.get("value12") != null && !data.get("value12").isEmpty()) {
-            voteCount = Integer.valueOf(data.get("value12"));
-            movie.setVoteCount(voteCount);
-        }
 
         if (data.get("value13") != null && !data.get("value13").isEmpty()) {
             movieId = Long.valueOf(data.get("value13"));
-            movie.setMovieId(movieId);
+            if (movieSearchRepo.existsByMovieId(movieId)) {
+                //TODO: Movie de la BD per compararla.
+
+                Movie movieBD = movieSearchRepo.getReferenceById(movieId);
+                //todo: funcio que compari els valors i torni MovieBD
+                String title = data.get("value1");
+                if (title.isEmpty()) {
+                    if (!movieBD.getTitle().equals(title)) {
+                        movieBD.setTitle(title);
+                    }
+                }
+                //budget
+                if (!data.get("value2").isEmpty()) {
+                    budget = Integer.valueOf(data.get("value2"));
+                    //Comproba que ha cambiat
+                    if (!movieBD.getBudget().equals(budget)) {
+                        //Nou valor asignat a Movie
+                        movieBD.setBudget(budget);
+                    }
+                }
+                //homepage
+                if (!homepage.isEmpty()) {
+                    //Comproba que ha cambiat
+                    if (!movieBD.getHomepage().equals(homepage)) {
+                        //Nou valor asignat a Movie
+                        movieBD.setHomepage(homepage);
+                    }
+                }
+                //Overview
+                if (!overview.isEmpty()) {
+                    //Comproba que ha cambiat
+                    if (!movieBD.getOverview().equals(overview)) {
+                        //Nou valor asignat a Movie
+                        movieBD.setOverview(overview);
+                    }
+                }
+
+                //Popularity
+                if (!data.get("value5").isEmpty()) {
+                    popularity = Double.valueOf(data.get("value5"));
+                    //Comproba que ha cambiat
+                    if (!movieBD.getPopularity().equals(popularity)) {
+                        //Nou valor asignat a Movie
+                        movieBD.setPopularity(popularity);
+                    }
+                }
+                //RelaseDate
+                if (!data.get("value6").isEmpty()) {
+                    releaseDate = Date.valueOf(data.get("value6"));
+                    //Comproba que ha cambiat
+                    if (!movieBD.getReleaseDate().equals(releaseDate)) {
+                        //Nou valor asignat a Movie
+                        movieBD.setReleaseDate(releaseDate);
+                    }
+                }
+
+                //Revenue
+                if (!data.get("value7").isEmpty()) {
+                    revenue = Long.valueOf(data.get("value7"));
+                    //Comproba que ha cambiat
+                    if (!movieBD.getRevenue().equals(revenue)) {
+                        //Nou valor asignat a Movie
+                        movieBD.setRevenue(revenue);
+                    }
+                }
+
+                //Runtime
+                if (!data.get("value8").isEmpty()) {
+                    runtime = Integer.valueOf(data.get("value8"));
+                    //Comproba que ha cambiat
+                    if (!movieBD.getRuntime().equals(runtime)) {
+                        //Nou valor asignat a Movie
+                        movieBD.setRuntime(runtime);
+                    }
+                }
+
+                //MovieStatus
+                if (!movieStatus.isEmpty()) {
+                    //Comproba que ha cambiat
+                    if (!movieBD.getMovieStatus().equals(movieStatus)) {
+                        //Nou valor asignat a Movie
+                        movieBD.setMovieStatus(movieStatus);
+                    }
+                }
+
+                //Tagline
+                if (!tagline.isEmpty()) {
+                    //Comproba que ha cambiat
+                    if (!movieBD.getTagline().equals(tagline)) {
+                        //Nou valor asignat a Movie
+                        movieBD.setTagline(tagline);
+                    }
+                }
+
+
+                //VoteAvarage
+                if (!data.get("value11").isEmpty()) {
+                    voteAverage = Double.valueOf(data.get("value11"));
+                    //Comproba que ha cambiat
+                    if (!movieBD.getVoteAverage().equals(voteAverage)) {
+                        //Nou valor asignat a Movie
+                        movieBD.setVoteAverage(voteAverage);
+                    }
+                }
+
+                //VoteCount
+                if (!data.get("value12").isEmpty()) {
+                    voteCount = Integer.valueOf(data.get("value12"));
+                    //Comproba que ha cambiat
+                    if (!movieBD.getVoteCount().equals(voteCount)) {
+                        //Nou valor asignat a Movie
+                        movieBD.setVoteCount(voteCount);
+                    }
+                }
+
+                movieSearchRepo.save(movieBD);
+                return "Movie by id:" + movieId + " Update successfully";
+                //TODO PAREIX QUE JA ACABARIA
+
+
+            } else {
+                return "The Movie you want to update does not match any id in the database";
+            }
+        } else {
+            return "To Update a Movie need provided a Movie Id";
         }
-        movie.setTitle(title);
-        movie.setTagline(tagline);
-        movie.setHomepage(homepage);
-        movie.setOverview(overview);
-        movie.setMovieStatus(movieStatus);
+    }
 
-        //todo:Fer un toSting de movie si fa falta
 
+/*
         //Si el id coincideix amb un de la base de dades pasam a comprobar els valors que cambian
         if (movieSearchRepo.existsByMovieId(movieId)) {
            //Movie movieBD= movieSearchRepo.getReferenceById(movieId);
@@ -306,7 +388,10 @@ public class MovieSearchServices {
         }else {
             return "Movie by id:" + movieId + " Delete error";
         }
-    }
+
+ */
+
+
 
     /*
     private Movie registersChange(Movie movieBD, Movie movie) {
@@ -316,7 +401,6 @@ public class MovieSearchServices {
         if (!movie.get().isEmpty() && movie.getTitle() != null && !movieBD.getTitle().equals(movie.getTitle()) {
 
         }
-
      */
 
     public String deleteMovie(Map<String, String> data) {

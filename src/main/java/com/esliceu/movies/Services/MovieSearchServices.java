@@ -331,8 +331,6 @@ public class MovieSearchServices {
             productionCountryServices.deleteByMovieId(movieId);
             movieSearchRepo.deleteById(movieId);
 
-
-
             //movieSearchRepo.deleteById(movieId);
             return "Movie by id ," + movieId + " ,Delete successfully";
         } else {

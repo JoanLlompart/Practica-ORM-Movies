@@ -18,4 +18,8 @@ public class ProductionCountryServices {
     }
 
 
+    public void deleteByMovieId(Long movieId) {
+        List<ProductionCountry> allMovieCountry = productionCountryRepo.findAllByMovie_MovieId(movieId);
+        productionCountryRepo.deleteAll(allMovieCountry);
+    }
 }

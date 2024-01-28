@@ -13,7 +13,7 @@ public class MovieGenresServices {
 @Autowired
     MovieGenresRepo movieGenresRepo;
     public void deleteByMovieId(Long movieId) {
-        List<MovieGenres> allMovieLanguages = movieGenresRepo.findAllByMovie_MovieId(movieId);
-        movieGenresRepo.deleteAll(allMovieLanguages);
+        List<MovieGenres> allMovieGenres = movieGenresRepo.findAllByMovie_MovieId(movieId);
+        movieGenresRepo.deleteAll(allMovieGenres);
     }
 }

@@ -323,6 +323,14 @@ public class MovieSearchServices {
         Long movieId = Long.valueOf(data.get("value1"));
         if (movieSearchRepo.existsByMovieId(movieId)) {
             movieLanguageServices.deleteByMovieId(movieId);
+            movieKeywordsServices.deleteByMovieId(movieId);
+            movieGenresServices.deleteByMovieId(movieId);
+            movieCrewServices.deleteByMovieId(movieId);
+            movieCompanyServices.deleteByMovieId(movieId);
+            movieCastServices.deleteByMovieId(movieId);
+            productionCountryServices.deleteByMovieId(movieId);
+            movieSearchRepo.deleteById(movieId);
+
 
 
             //movieSearchRepo.deleteById(movieId);

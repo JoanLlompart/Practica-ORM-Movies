@@ -2,6 +2,7 @@ package com.esliceu.movies.Entities;
 
 import java.io.Serializable;
 
+
 public class ProductionCountryId implements Serializable {
     private Movie movie;
     private Country country;

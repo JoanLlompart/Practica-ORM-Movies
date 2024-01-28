@@ -8,6 +8,7 @@ import jakarta.persistence.*;
         uniqueConstraints =
         @UniqueConstraint(columnNames = {"movie_id", "language_id", "language_role_id"})
 )
+@IdClass(MovieLanguagesId.class)
 public class MovieLanguages {
     @Id
     @ManyToOne

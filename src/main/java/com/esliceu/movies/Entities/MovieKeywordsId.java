@@ -1,22 +1,9 @@
 package com.esliceu.movies.Entities;
 
-import jakarta.persistence.*;
+import java.io.Serializable;
 
-@Entity
-@Table(
-        name = "movie_keywords",
-        uniqueConstraints =
-        @UniqueConstraint(columnNames = {"movie_id", "keyword_id"})
-)
-@IdClass(MovieKeywords.class)
-public class MovieKeywords {
-    @Id
-    @ManyToOne
-    @JoinColumn(name = "movie_id")
+public class MovieKeywordsId implements Serializable {
     private Movie movie;
-    @Id
-    @ManyToOne
-    @JoinColumn(name = "keyword_id")
     private Keyword keyword;
 
     public Movie getMovie() {

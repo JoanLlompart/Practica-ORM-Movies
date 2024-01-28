@@ -20,6 +20,8 @@ import java.util.Map;
 public class MovieSearchServices {
     @Autowired
     MovieSearchRepo movieSearchRepo;
+
+
     public List<Movie> allMovies() {
         return movieSearchRepo.findAll();
     }
@@ -302,9 +304,9 @@ public class MovieSearchServices {
 
         //Si el id coincideix amb un de la base de dades pasam a comprobar els valors que cambian
         if (movieSearchRepo.existsByMovieId(movieId)) {
-
            //Movie movieBD= movieSearchRepo.getReferenceById(movieId);
            //movieBD=registersChange(movieBD,movie);
+
            movieSearchRepo.save(movie);
             return "Movie by id:" + movieId + " Update successfully";
         }else {
@@ -326,104 +328,16 @@ public class MovieSearchServices {
     public String deleteMovie(Map<String, String> data) {
         Long movieId = Long.valueOf(data.get("value1"));
         if (movieSearchRepo.existsByMovieId(movieId)) {
-            movieSearchRepo.deleteById(movieId);
+
+            //movieSearchRepo.deleteById(movieId);
             return "Movie by id ," + movieId + " ,Delete successfully";
         } else {
             return "Movie Delete Error";
         }
+
     }
 
-
-    //TODO: PER PAGINAR
-  /*  public Page<Movie> findMoviesByTitle(String keyword, int page, int size) {
-        Pageable pageable = PageRequest.of(page, size);
-        return movieSearchRepo.findMoviesByTitle("%" + keyword + "%", pageable);
-    }
-
-   */
-
-/*
-    public List<Movie> filterMovies(String filter, String keyword) {
-        List<String> validFilters = Arrays.asList("title", "actor", "character", "genre", "director");
-
-        if (validFilters.contains(filter)) {
-            System.out.println("Es un filtre valid");
-            switch (filter) {
-                case "actor":
-                    System.out.println("actor :" + keyword );
-
-                    return movieSearchRepo.findMovieByActor(keyword);
-                case "character":
-                    break;
-                case "title":
-                    System.out.println();
-                    break;
-                case "genre":
-                    break;
-                case "director":
-                    break;
-                default:
-                    System.err.println("Tipus de filtre no trobat");
-                    break;
-            }
-        } else {
-            System.out.println("Filtre no valid");
-        }
-        return null;
-    }
-
- */
 }
 
 
 
-
-//anterior
-/*
-
-    public List<MovieDTO> filterMovies(String filter, String keyword,int page, int size) {
-        List<String> validFilters = Arrays.asList("title", "actor", "character", "genre", "director");
-
-        if (validFilters.contains(filter)) {
-            System.out.println("Es un filtre valid");
-            switch (filter) {
-                case "actor":
-                    System.out.println("actor :" + keyword );
-
-                   List<Movie> movieList= movieSearchRepo.findMovieByActor(keyword);
-                   List<MovieDTO> movieDTOList = new ArrayList<>();
-                   for (Movie m:movieList) {
-                       MovieDTO dto = new MovieDTO();
-                       dto.setMovieId(m.getMovieId());
-                       dto.setTitle(m.getTitle());
-                       dto.setReleaseDate(m.getReleaseDate());
-                       dto.setVoteAverage(m.getVoteAverage());
-                       //Una vegada el DTO te tots els atributs afegim a la llista
-                       movieDTOList.add(dto);
-                   }
-                   return movieDTOList;
-                case "character":
-
-                    break;
-                case "title":
-                    Page<Movie> moviesList = findMoviesByTitle(keyword, page,size);
-                    for (Movie m:moviesList) {
-                        MovieDTO dto = new MovieDTO();
-
-                    }
-                    System.out.println();
-                    break;
-                case "genre":
-                    break;
-                case "director":
-                    break;
-                default:
-                    System.err.println("Tipus de filtre no trobat");
-                    break;
-            }
-        } else {
-            System.out.println("Filtre no valid");
-        }
-        return null;
-    }
- */

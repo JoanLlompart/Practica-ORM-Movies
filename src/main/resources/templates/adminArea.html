@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>adminArea</title>
+    <title>AdminArea</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="/css/spa.css">
@@ -39,7 +39,7 @@
 
 
 <div id="añadir" class="section active-section container mt-3">
-    <h2>Elige un elemento para añadir</h2>
+    <h2>Choose an item to add</h2>
     <select name="addSelect" id="addSelect" onchange="showInputs()">
         <option value="country">Country</option>
         <option value="language">Language</option>
@@ -122,7 +122,7 @@
 </div>
 
 <div id="actualizar" class="section container mt-3">
-    <h2>Elige un elemento para modificar</h2>
+    <h2>Choose an element to modify</h2>
     <select name="updateSelect" id="updateSelect" onchange="showInputs()">
         <option value="country">Country</option>
         <option value="language">Language</option>
@@ -193,8 +193,6 @@
             placeholder="Department Name">
     </div>
 
-
-    <!--Apartat de afegir Movie-->
     <div id="movieInputsUpdate" class="dynamicInputs hidden">
         <br>
         <p>Fields that are not entered will not be changed.</p>
@@ -217,23 +215,14 @@
     <input type="button" id="actualizarButton" value="Update">
 </div>
 
-<!--</div>-->
-
 <div id="borrar" class="section container mt-3">
-    <h3>Elige un elemento para modificar</h3>
+    <h3>Select the item you want to delete</h3>
     <select name="deleteSelect" id="deleteSelect" onchange="showInputs()">
         <option value="country">Country</option>
         <option value="language">Language</option>
         <option value="languageRole">Language Rol</option>  
         <option value="person">Person</option>
         <option value="movie">Movie</option>
-        <!--
-        <option value="genre">Genre</option>
-        <option value="keyword">Keyword</option>
-        <option value="movieCompany">Movie Company</option>
-        <option value="productionCompany">Production Company</option>
-        <option value="gender">Genre</option>
-        <option value="department">Department</option>-->
     </select>
 
     <div id="countryInputsDelete" class="dynamicInputs hidden">

@@ -231,7 +231,7 @@ public class MovieSearchServices {
                 Movie movieBD = movieSearchRepo.getReferenceById(movieId);
                 //todo: funcio que compari els valors i torni MovieBD
                 String title = data.get("value1");
-                if (title.isEmpty()) {
+                if (!title.isEmpty()) {
                     if (!movieBD.getTitle().equals(title)) {
                         movieBD.setTitle(title);
                     }

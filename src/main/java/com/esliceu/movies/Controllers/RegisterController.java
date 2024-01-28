@@ -33,7 +33,6 @@ public class RegisterController {
             if (registrat) {
                 model.addAttribute("missatgeRegistre", "Registre correcte. Benvingut!");
                 return "redirect:/login";
-                //resp.sendRedirect("login");
             } else {
                 model.addAttribute("missatgeError", "Error, comprueba si el usuario ya existe");
                 return "register";

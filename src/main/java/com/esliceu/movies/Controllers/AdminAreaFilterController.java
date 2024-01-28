@@ -21,6 +21,7 @@ public class AdminAreaFilterController {
     UserServices userServices;
     @Autowired
     CrudFilterServices crudFilterServices;
+
     @GetMapping("/adminArea/filter")
     public String adminGet(HttpSession session, Model model) {
         String email = (String) session.getAttribute("email");

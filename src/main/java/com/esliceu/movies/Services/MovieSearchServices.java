@@ -2,6 +2,7 @@ package com.esliceu.movies.Services;
 
 import com.esliceu.movies.DTO.MovieDTO;
 import com.esliceu.movies.Entities.Movie;
+import com.esliceu.movies.Entities.MovieKeywords;
 import com.esliceu.movies.Entities.MovieLanguages;
 import com.esliceu.movies.Repos.MovieSearchRepo;
 import jakarta.transaction.Transactional;
@@ -23,6 +24,19 @@ public class MovieSearchServices {
     MovieSearchRepo movieSearchRepo;
     @Autowired
     MovieLanguageServices movieLanguageServices;
+    @Autowired
+    MovieKeywordsServices movieKeywordsServices;
+    @Autowired
+    MovieGenresServices movieGenresServices;
+    @Autowired
+    MovieCrewServices movieCrewServices;
+    @Autowired
+    MovieCompanyServices movieCompanyServices;
+    @Autowired
+    MovieCastServices movieCastServices;
+
+    @Autowired
+    ProductionCountryServices productionCountryServices;
 
 
     public List<Movie> allMovies() {
@@ -309,6 +323,7 @@ public class MovieSearchServices {
         Long movieId = Long.valueOf(data.get("value1"));
         if (movieSearchRepo.existsByMovieId(movieId)) {
             movieLanguageServices.deleteByMovieId(movieId);
+
 
             //movieSearchRepo.deleteById(movieId);
             return "Movie by id ," + movieId + " ,Delete successfully";

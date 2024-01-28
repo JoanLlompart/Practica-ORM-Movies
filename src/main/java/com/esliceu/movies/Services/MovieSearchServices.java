@@ -2,6 +2,7 @@ package com.esliceu.movies.Services;
 
 import com.esliceu.movies.DTO.MovieDTO;
 import com.esliceu.movies.Entities.Movie;
+import com.esliceu.movies.Entities.MovieLanguages;
 import com.esliceu.movies.Repos.MovieSearchRepo;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,40 +21,19 @@ import java.util.Map;
 public class MovieSearchServices {
     @Autowired
     MovieSearchRepo movieSearchRepo;
+    @Autowired
+    MovieLanguageServices movieLanguageServices;
 
 
     public List<Movie> allMovies() {
         return movieSearchRepo.findAll();
     }
 
-    /*
-    public Page<Movie> filterMovies(String filter, String keyword, PageRequest pageRequest) {
-        List<String> validFilters = Arrays.asList("title", "actor", "character", "genre", "director","author");
-        if (validFilters.contains(filter)) {
-            System.out.println("Es un filtre valid");
-            switch (filter) {
-                case "actor":
-                    System.out.println("actor :" + keyword );
-                    Page<Movie> movieList = movieSearchRepo.findMovieByActor(keyword,pageRequest);
-                for (Movie mo:movieList) {
-                    System.out.println(mo.getTitle());
-                }
-                return movieList;
-                default:
-                    System.err.println("Tipus de filtre no trobat");
-                    break;
-            }
-        } else {
-            System.out.println("Filtre no valid");
-        }
-        return null;
+    /*public Page<Movie> getPage(Pageable pageable) {
+        return movieSearchRepo.findAll(pageable);
     }
 
      */
-
-    public Page<Movie> getPage(Pageable pageable) {
-        return movieSearchRepo.findAll(pageable);
-    }
 
     public List<MovieDTO> filterMovies(String filter, String keyword,int page, int size) {
         if(isValidInput(keyword)) {
@@ -328,15 +308,14 @@ public class MovieSearchServices {
     public String deleteMovie(Map<String, String> data) {
         Long movieId = Long.valueOf(data.get("value1"));
         if (movieSearchRepo.existsByMovieId(movieId)) {
+            movieLanguageServices.deleteByMovieId(movieId);
 
             //movieSearchRepo.deleteById(movieId);
             return "Movie by id ," + movieId + " ,Delete successfully";
         } else {
             return "Movie Delete Error";
         }
-
     }
-
 }
 
 

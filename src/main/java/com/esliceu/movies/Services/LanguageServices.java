@@ -1,6 +1,8 @@
 package com.esliceu.movies.Services;
 
 import com.esliceu.movies.Entities.Language;
+import com.esliceu.movies.Entities.Movie;
+import com.esliceu.movies.Entities.MovieLanguages;
 import com.esliceu.movies.Repos.LanguageRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;

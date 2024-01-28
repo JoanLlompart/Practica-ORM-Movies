@@ -216,22 +216,6 @@ public class MovieSearchServices {
 
     @Transactional
     public String updateMovie(Map<String, String> data) {
-        /*
-        String title = data.get("value1");
-        Integer budget = Integer.valueOf(data.get("value2"));
-        String homepage = data.get("value3");
-        String overview = data.get("value4");
-        Double popularity = Double.valueOf(data.get("value5"));
-        Date relaseDate = Date.valueOf(data.get("value6"));
-        Long revenue = Long.valueOf(data.get("value7"));
-        Integer runtime = Integer.valueOf(data.get("value8"));
-        String movieStatus = data.get("value9");
-        String tagline = data.get("value10");
-        Double voteAvarage = Double.valueOf(data.get("value11"));
-        Integer voteCount = Integer.valueOf(data.get("value12"));
-        Long movieId = Long.valueOf(data.get("value13"));
-        */
-
         Long movieId = null;
         Integer budget = null;
         String homepage = data.get("value3");
@@ -376,32 +360,6 @@ public class MovieSearchServices {
         }
     }
 
-
-/*
-        //Si el id coincideix amb un de la base de dades pasam a comprobar els valors que cambian
-        if (movieSearchRepo.existsByMovieId(movieId)) {
-           //Movie movieBD= movieSearchRepo.getReferenceById(movieId);
-           //movieBD=registersChange(movieBD,movie);
-
-           movieSearchRepo.save(movie);
-            return "Movie by id:" + movieId + " Update successfully";
-        }else {
-            return "Movie by id:" + movieId + " Delete error";
-        }
-
- */
-
-
-
-    /*
-    private Movie registersChange(Movie movieBD, Movie movie) {
-        if (!movie.getTitle().isEmpty() && movie.getTitle() != null && !movieBD.getTitle().equals(movie.getTitle())) {
-            movieBD.setTitle(movie.getTitle());
-        }
-        if (!movie.get().isEmpty() && movie.getTitle() != null && !movieBD.getTitle().equals(movie.getTitle()) {
-
-        }
-     */
 
     public String deleteMovie(Map<String, String> data) {
         Long movieId = Long.valueOf(data.get("value1"));

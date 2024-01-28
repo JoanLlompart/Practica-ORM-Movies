@@ -180,7 +180,7 @@ public class MovieSearchServices {
         //Si el codi es una cadena buida o te nomes espais
         keyword =keyword.trim();
         //Permet numeros i lletras i espais enmitg ja que els altres se han eliminat
-        return keyword.matches("[a-zA-Z0-9 ]+");
+        return keyword.matches("[a-zA-Z0-9_çÇñÑ -?!]+");
     }
 
     public String insertNewMovie(Map<String, String> data) {
@@ -330,8 +330,6 @@ public class MovieSearchServices {
             movieCastServices.deleteByMovieId(movieId);
             productionCountryServices.deleteByMovieId(movieId);
             movieSearchRepo.deleteById(movieId);
-
-            //movieSearchRepo.deleteById(movieId);
             return "Movie by id ," + movieId + " ,Delete successfully";
         } else {
             return "Movie Delete Error";

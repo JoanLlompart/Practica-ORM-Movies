@@ -63,7 +63,7 @@ public class AdminAddServices {
         //Si el codi es una cadena buida o te nomes espais
         keyword =keyword.trim();
         //Permet numeros i lletras i espais enmitg ja que els altres se han eliminat
-        return keyword.matches("[a-zA-Z0-9 ]+");
+        return keyword.matches("[a-zA-Z0-9_çÇñÑ ]+");
     }
 
     public String insertLanguageRole(Map<String, String> data) {

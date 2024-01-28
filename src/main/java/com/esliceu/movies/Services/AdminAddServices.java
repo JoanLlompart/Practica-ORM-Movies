@@ -57,8 +57,6 @@ public class AdminAddServices {
             languageRepo.save(language);
         }
     }
-
-    //TODO:per ara no la utilitzarem
     protected boolean isValidInput(String keyword) {
         //Si el codi es una cadena buida o te nomes espais
         keyword =keyword.trim();

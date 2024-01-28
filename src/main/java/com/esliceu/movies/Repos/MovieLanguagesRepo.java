@@ -9,5 +9,4 @@ import java.util.List;
 public interface MovieLanguagesRepo  extends JpaRepository<MovieLanguages, Long> {
     List<MovieLanguages> findAllByMovie_MovieId(Long movieId);
 
-
 }

@@ -1,5 +1,6 @@
 package com.esliceu.movies.Entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.util.Set;
@@ -15,7 +16,20 @@ public class Department {
     @Column(name = "department_name")
     private String departmentName;
     @OneToMany(mappedBy = "department")
+    @JsonIgnore
     private Set<MovieCrew> movieCrews;
+
+    public Department() {
+    }
+
+    public Department(Long departmentId, String departmentName) {
+        this.departmentId = departmentId;
+        this.departmentName = departmentName;
+    }
+
+    public Department(String departmentName) {
+        this.departmentName = departmentName;
+    }
 
     public Set<MovieCrew> getMovieCrews() {
         return movieCrews;

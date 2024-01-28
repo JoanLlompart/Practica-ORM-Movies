@@ -1,7 +1,6 @@
 package com.esliceu.movies.Controllers;
 
 import com.esliceu.movies.DTO.MovieDTO;
-import com.esliceu.movies.DTO.MoviePageDTO;
 import com.esliceu.movies.Entities.Movie;
 import com.esliceu.movies.Services.MovieSearchServices;
 import com.esliceu.movies.Services.UserServices;

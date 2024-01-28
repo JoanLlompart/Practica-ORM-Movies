@@ -1,4 +1,5 @@
 package com.esliceu.movies.Entities;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import java.util.Set;
 
@@ -12,6 +13,7 @@ public class Genre {
     @Column(name = "genre_name")
     private String genreName;
     @OneToMany(mappedBy = "genre")
+    @JsonIgnore
     private Set<MovieGenres> movieGenres;
     public Long getGenreId() {
         return genreId;

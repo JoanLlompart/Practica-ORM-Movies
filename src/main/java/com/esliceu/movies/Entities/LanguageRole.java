@@ -1,4 +1,5 @@
 package com.esliceu.movies.Entities;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.util.Set;
@@ -10,10 +11,10 @@ public class LanguageRole {
     @Column(name = "role_id")
     private Long roleId;
     @Column(name = "language_role")
-    // private String language_role;
     private String languageRole;
 
     @OneToMany(mappedBy = "languageRole")
+    @JsonIgnore
     private Set<MovieLanguages> movieLanguages;
 
     public Long getRoleId() {

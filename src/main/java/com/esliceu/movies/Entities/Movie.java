@@ -1,4 +1,5 @@
 package com.esliceu.movies.Entities;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import org.hibernate.annotations.DynamicUpdate;
 
@@ -51,30 +52,30 @@ public class Movie {
 
 
     @OneToMany(mappedBy = "movie")
-    //@JsonIgnore
+    @JsonIgnore
     private Set<MovieCast> moviecast;
     @OneToMany(mappedBy = "movie")
-    //@JsonIgnore
+    @JsonIgnore
     private Set<ProductionCountry> productionCountries;
 
     @OneToMany(mappedBy = "movie")
-    // @JsonIgnore
+    @JsonIgnore
     private Set<MovieCompany> movieCompanies;
 
     @OneToMany(mappedBy = "movie")
-    //  @JsonIgnore
+    @JsonIgnore
     private Set<MovieCrew> movieCrews;
 
     @OneToMany(mappedBy = "movie")
-    // @JsonIgnore
+    @JsonIgnore
     private Set<MovieGenres> movieGenres;
 
     @OneToMany(mappedBy = "movie")
-    // @JsonIgnore
+    @JsonIgnore
     private Set<MovieKeywords> movieKeywords;
 
     @OneToMany(mappedBy = "movie")
-    // @JsonIgnore
+    @JsonIgnore
     private Set<MovieLanguages> movieLanguages;
 
     public Movie(Long movieId, String title, Integer budget, String homepage, String overview, Double popularity,

@@ -28,22 +28,6 @@ public class MovieCast {
     @ManyToOne
     @JoinColumn(name = "gender_id")
     private Gender gender;
-
-   /* @Id
-    @Column(name = "movie_id")
-    private int movieId;
-
-
-
-    @Id
-    @Column(name = "person_id")
-    private int personId;
-
-    @Column(name = "gender_id")
-    private int genderId;
-
-    */
-
     @Column(name = "cast_order")
     private int castOrder;
 

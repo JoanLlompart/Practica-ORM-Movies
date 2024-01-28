@@ -44,6 +44,8 @@ public class MovieSearchController {
      */
     @GetMapping("/movieSearch")
     public String showMovies(Model model, HttpSession session, @RequestParam(defaultValue = "0") int page) {
+        String email = (String) session.getAttribute("email");
+
         //Numero de de elements per pagina
        // int pageElement = 10;
        // Page<Movie> pageRes = movieSearchServices.getPage(PageRequest.of(page, pageElement));

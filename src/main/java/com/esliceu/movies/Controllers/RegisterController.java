@@ -20,7 +20,6 @@ public class RegisterController {
     @GetMapping("/register")
     public String showRegistrationForm(HttpSession session) {
         String email = (String) session.getAttribute("email");
-
         return "register";
     }
     @PostMapping("/register")

@@ -97,7 +97,7 @@ public class MovieSearchServices {
                     return movieDTOList;
                 case "author":
                     System.out.println("author :" + keyword );
-                    movieList= movieSearchRepo.findMovieByAuthor(keyword);
+                    movieList= movieSearchRepo.findMovieByAuthor(keyword,pageable);
                     //movieList = movieSearchRepo.findByMovieCrewJobAndMovieCrewPersonPersonNameContainingIgnoreCase("Author",keyword);
                     for (Movie mo:movieList) {
                         System.out.println(mo.getTitle());

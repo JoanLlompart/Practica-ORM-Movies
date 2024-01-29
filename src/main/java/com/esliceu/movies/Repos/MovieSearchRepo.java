@@ -46,7 +46,7 @@ public interface MovieSearchRepo extends JpaRepository<Movie, Long> {
             "JOIN MovieCrew mc ON m.movieId = mc.movie.movieId " +
             "JOIN Person p ON p.personId = mc.person.personId " +
             "WHERE mc.job = 'Author' AND p.personName LIKE %:personName%")
-    List<Movie> findMovieByAuthor(@Param("personName") String keyword);
+    List<Movie> findMovieByAuthor(@Param("personName") String keyword, Pageable pageable);
 
     //Author de la pelicula
     //List<Movie> findByMovieCrewJobAndMovieCrewPersonPersonNameContainingIgnoreCase(String job, String personName);

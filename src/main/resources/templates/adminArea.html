@@ -123,6 +123,9 @@
 
 <div id="actualizar" class="section container mt-3">
     <h2>Choose an element to modify</h2>
+    <br>
+    <p>Fields that are not entered will not be changed.</p>
+    <br>
     <select name="updateSelect" id="updateSelect" onchange="showInputs()">
         <option value="country">Country</option>
         <option value="language">Language</option>
@@ -137,7 +140,7 @@
         <option value="movie">Movie</option>
 
     </select>
-
+    <br>
     <div id="countryInputsUpdate" class="dynamicInputs hidden">
         <input type="text" name="countryId" id="countryInputsUpdate_countryId" placeholder="Country ID">
         <input type="text" name="countryIsoCode" id="countryInputsUpdate_countryIsoCode" placeholder="Country ISO Code">
@@ -194,9 +197,6 @@
     </div>
 
     <div id="movieInputsUpdate" class="dynamicInputs hidden">
-        <br>
-        <p>Fields that are not entered will not be changed.</p>
-        <br>
         <input type="text" name="movieId" id="movieInputsUpdate_movieId" placeholder="Movie ID">
         <input type="text" name="title" id="movieInputsUpdate_title" placeholder="Title">
         <input type="number" name="budget" id="movieInputsUpdate_budget" placeholder="Budget">

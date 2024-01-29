@@ -226,10 +226,9 @@ public class MovieSearchServices {
         if (data.get("value13") != null && !data.get("value13").isEmpty()) {
             movieId = Long.valueOf(data.get("value13"));
             if (movieSearchRepo.existsByMovieId(movieId)) {
-                //TODO: Movie de la BD per compararla.
-
+                //Movie de la BD per compararla.
                 Movie movieBD = movieSearchRepo.getReferenceById(movieId);
-                //todo: funcio que compari els valors i torni MovieBD
+                // funcio que compari els valors i torni MovieBD
                 String title = data.get("value1");
                 if (!title.isEmpty()) {
                     if (!movieBD.getTitle().equals(title)) {
@@ -342,9 +341,6 @@ public class MovieSearchServices {
 
                 movieSearchRepo.save(movieBD);
                 return "Movie by id:" + movieId + " Update successfully";
-                //TODO PAREIX QUE JA ACABARIA
-
-
             } else {
                 return "The Movie you want to update does not match any id in the database";
             }

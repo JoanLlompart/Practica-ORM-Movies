@@ -194,12 +194,23 @@ public class AdminAddServices {
         Long languageId = Long.valueOf(data.get("value3"));
         String code = data.get("value1");
         String name = data.get("value2");
-        if (!(code == null) && !(name ==null) && !(languageId ==null) && languageRepo.existsByLanguageId(languageId)) {
+        if (!(code == null) && !(name ==null) && !(languageId == null) && languageRepo.existsByLanguageId(languageId)) {
             //TODO: Comprobam si existeix el id.
-            Language lan = new Language();
-            lan.setLanguageId(languageId);
-            lan.setLanguageCode(code);
-            lan.setLanguageName(name);
+
+            Language lan = languageRepo.getReferenceById(languageId);
+            //Comproba que si ha de actualitzar els camp
+            if (!code.isEmpty()) {
+                if (!lan.getLanguageCode().equals(code)) {
+                    lan.setLanguageCode(code);
+                }
+            }
+            //Comproba que si ha de actualitzar els camp
+            if (!name.isEmpty()) {
+                if (!lan.getLanguageName().equals(name)) {
+                    lan.setLanguageName(name);
+                }
+            }
+
             languageRepo.save(lan);
             return "Language by id ," + languageId + " , Update successfully";
         } else {

@@ -51,7 +51,7 @@ public class AdminAddServices {
     }
 
     public void insertLanguage(String value1, String value2) {
-        if (!(value1 == null) && !(value2 ==null)) {
+        if (!value1.isEmpty() && !value2.isEmpty()) {
             Language language = new Language();
             language.setLanguageCode(value1);
             language.setLanguageName(value2);
@@ -67,7 +67,7 @@ public class AdminAddServices {
 
     public String insertLanguageRole(Map<String, String> data) {
         String languageRole = data.get("value1");
-        if (isValidInput(languageRole) && languageRole != null) {
+        if (isValidInput(languageRole) && !languageRole.isEmpty()) {
             LanguageRole lRole = new LanguageRole();
             lRole.setLanguageRole(languageRole);
             //Long lastRoleId =languageRoleRepo.findFirstByOrderByRoleIdDesc();
@@ -85,7 +85,7 @@ public class AdminAddServices {
 
     public String insertNewGenre(Map<String, String> data) {
         String genreName = data.get("value1");
-        if (isValidInput(genreName) && genreName != null) {
+        if (isValidInput(genreName) && !genreName.isEmpty()) {
             Genre g = new Genre();
             g.setGenreName(genreName);
             Long lastId =genreRepo.lasGenreId();
@@ -99,7 +99,7 @@ public class AdminAddServices {
     public String insertNewKeyword(Map<String, String> data) {
         String keywordName = data.get("value1");
         System.out.println("keywordname " + keywordName);
-        if (isValidInput(keywordName) && keywordName != null) {
+        if (isValidInput(keywordName) && !keywordName.isEmpty()) {
             Keyword k = new Keyword();
             k.setKeywordName(keywordName);
             Long lastId =keywordRepo.lasKeywordId();
@@ -114,7 +114,7 @@ public class AdminAddServices {
     public String insertNewProductionCompany(Map<String, String> data) {
         String companyName = data.get("value1");
        // String companyId = data.get("value2");
-        if (isValidInput(companyName) && companyName != null) {
+        if (isValidInput(companyName) && !companyName.isEmpty()) {
             ProductionCompany pc = new ProductionCompany();
             pc.setCompanyName(companyName);
             Long lastId = productionCompanyRepo.lastCompanyId();
@@ -134,7 +134,7 @@ public class AdminAddServices {
     public String insertNewGender(Map<String, String> data) {
         String genderName = data.get("value1");
 
-        if (isValidInput(genderName) && genderName != null) {
+        if (isValidInput(genderName) && !genderName.isEmpty()) {
             Gender ge = new Gender();
             ge.setGender(genderName);
             Long lastId =genderRepo.lastGenderId();
@@ -148,7 +148,7 @@ public class AdminAddServices {
 
     public String insertNewDepartment(Map<String, String> data) {
         String departmentName = data.get("value1");
-        if (isValidInput(departmentName) && departmentName != null) {
+        if (isValidInput(departmentName) && !departmentName.isEmpty()) {
             Department dp = new Department();
             dp.setDepartmentName(departmentName);
             departmentRepo.save(dp);
@@ -159,7 +159,7 @@ public class AdminAddServices {
     }
     public String insertNewPerson(Map<String, String> data) {
         String personName = data.get("value1");
-        if (isValidInput(personName) && personName != null) {
+        if (isValidInput(personName) && personName.isEmpty()) {
             Person person = new Person();
             person.setPersonName(personName);
             Long lastId =personRepo.lastPersonId();
@@ -178,7 +178,7 @@ public class AdminAddServices {
         String name = data.get("value2");
         Long countryId = Long.valueOf(data.get("value3"));
 
-        if (!(isoCode == null) && !(name ==null) && !(countryId ==null) && countryRepo.existsByCountryId(countryId)) {
+        if (!isoCode.isEmpty() && !name.isEmpty() && !(countryId ==null) && countryRepo.existsByCountryId(countryId)) {
             //TODO: Comprobam si existeix el id.
             Country c = new Country();
             c.setCountryId(countryId);

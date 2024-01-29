@@ -15,4 +15,12 @@ public class MovieLanguageServices {
         List<MovieLanguages> allMovieLanguages = movieLanguagesRepo.findAllByMovie_MovieId(movieId);
         movieLanguagesRepo.deleteAll(allMovieLanguages);
     }
+
+    public void deleteByLanguageId(Long languageId) {
+        List<MovieLanguages> allLanguageMovie = movieLanguagesRepo.findAllByLanguage_LanguageId(languageId);
+        for (MovieLanguages mL:allLanguageMovie) {
+            System.out.println(mL.toString());
+        }
+        movieLanguagesRepo.deleteAll(allLanguageMovie);
+    }
 }

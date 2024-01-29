@@ -25,19 +25,36 @@ public class MovieLanguages {
     @JoinColumn(name = "language_role_id")
     private LanguageRole languageRole;
 
-/*
-    @ManyToOne
-    @JoinColumn(name = "movie_id", insertable = false, updatable = false)
-    private Movie movie;
+    public Movie getMovie() {
+        return movie;
+    }
 
-    @ManyToOne
-    @JoinColumn(name = "language_id", insertable = false, updatable = false)
-    private Language language;
+    public void setMovie(Movie movie) {
+        this.movie = movie;
+    }
 
-    @ManyToOne
-    @JoinColumn(name = "language_role_id", insertable = false, updatable = false)
-    private LanguageRole languageRole;
+    public Language getLanguage() {
+        return language;
+    }
 
+    public void setLanguage(Language language) {
+        this.language = language;
+    }
 
-     */
+    public LanguageRole getLanguageRole() {
+        return languageRole;
+    }
+
+    public void setLanguageRole(LanguageRole languageRole) {
+        this.languageRole = languageRole;
+    }
+
+    @Override
+    public String toString() {
+        return "MovieLanguages{" +
+                "movie=" + movie +
+                ", language=" + language +
+                ", languageRole=" + languageRole +
+                '}';
+    }
 }

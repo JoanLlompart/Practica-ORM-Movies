@@ -17,10 +17,14 @@ public class LanguageServices {
     LanguageRepo languageRepo;
     @Autowired
     AdminAddServices adminAddServices;
+    @Autowired
+    MovieLanguageServices movieLanguageServices;
 
     public String deleteLanguage(Map<String, String> data) {
         Long languageId = Long.valueOf(data.get("value1"));
-        if (languageRepo.existsByLanguageId(languageId)) {;
+        if (languageRepo.existsByLanguageId(languageId)) {
+            //todo:probant de borrar correctament
+            movieLanguageServices.deleteByLanguageId(languageId);
             languageRepo.deleteById(languageId);
             return "Language by id ," + languageId + " ,Delete successfully";
         } else {
@@ -32,3 +36,5 @@ public class LanguageServices {
         return languageRepo.findByLanguageNameContainingIgnoreCase(keyword,pageable);
     }
 }
+
+//24653

@@ -8,4 +8,6 @@ import org.springframework.data.jpa.repository.Query;
 public interface PersonRepo extends JpaRepository<Person, Long>  {
     @Query("SELECT MAX(personId) FROM Person")
     Long lastPersonId();
+
+    boolean existsByPersonId(Long personId);
 }

@@ -27,6 +27,8 @@ public class AdminAddController {
     @Autowired
     LanguageRoleServices languageRoleServices;
 
+    @Autowired
+    PersonServices personServices;
     @GetMapping("/adminArea/add")
     public String adminGet(HttpSession session, Model model) {
         String email = (String) session.getAttribute("email");
@@ -232,6 +234,14 @@ public class AdminAddController {
         String email = (String) session.getAttribute("email");
         userServices.setEmail(email);
         String successMessage =languageRoleServices.deleteLanguageRole(data);
+        return ResponseEntity.ok().body(successMessage);
+    }
+
+    @PostMapping("/adminArea/delete/person")
+    public ResponseEntity<Object> adminDeletePostPerson(HttpSession session , @RequestBody Map<String,String> data) {
+        String email = (String) session.getAttribute("email");
+        userServices.setEmail(email);
+        String successMessage =personServices.deletePerson(data);
         return ResponseEntity.ok().body(successMessage);
     }
 

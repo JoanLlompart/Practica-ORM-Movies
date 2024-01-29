@@ -25,6 +25,7 @@ public class CrudFilterServices {
         String keyword =data.get("keyword");
         int page = Integer.parseInt(data.get("page"));
         int size = Integer.parseInt(data.get("size"));
+        System.out.println("Page :" + page + " , size : " + size);
         Pageable pageable = PageRequest.of(page,size);
         switch (filter) {
             case "country":

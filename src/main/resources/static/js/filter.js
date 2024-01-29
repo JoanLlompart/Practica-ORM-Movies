@@ -70,6 +70,17 @@ keywordInput.addEventListener("input" , function() {
     }
 })
 
+//proba 
+
+// Event Listener for Page input
+document.getElementById('page').addEventListener('change', function() {
+    sendData();
+});
+
+// Event Listener for Size input
+document.getElementById('size').addEventListener('change', function() {
+    sendData();
+});
 
 
 /*

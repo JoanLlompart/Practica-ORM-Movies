@@ -241,7 +241,7 @@ function formDataForDelete(dataType,formData) {
             formData.value1 = document.getElementById(`languageRoleInputsDelete_roleId`).value;
             return formData;
         case 'person':
-            formData.value1 = document.getElementById(`languageRoleInputsDelete_personId`).value;
+            formData.value1 = document.getElementById(`personInputsDelete_personId`).value;
         return formData;
         case 'movie':
             formData.value1 = document.getElementById(`movieInputsDelete_movieId`).value;

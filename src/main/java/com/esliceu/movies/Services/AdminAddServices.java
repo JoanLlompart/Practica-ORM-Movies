@@ -37,7 +37,8 @@ public class AdminAddServices {
     @PersistenceContext
     private EntityManager entityManager;
     public boolean insertCountry(String isoCode,String nameCountry) {
-        if (!(isoCode == null) && !(nameCountry ==null)) {
+        if (!isoCode.isEmpty() && !nameCountry.isEmpty()) {
+            System.out.println("iso " + isoCode + " , name " + nameCountry);
             Country c = new Country();
             c.setCountryIsoCode(isoCode);
             c.setCountryName(nameCountry);
@@ -222,7 +223,7 @@ public class AdminAddServices {
             Long roleId = Long.valueOf(data.get("value2"));
             String role = data.get("value1");
             if (!(role == null) && !(role ==null) && !(role ==null) && languageRoleRepo.existsByRoleId(roleId)) {
-                //TODO: Comprobam si existeix el id.
+                // Comprobam si existeix el id.
                 LanguageRole lr = new LanguageRole();
                 lr.setRoleId(roleId);
                 lr.setLanguageRole(role);

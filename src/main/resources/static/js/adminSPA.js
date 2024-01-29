@@ -9,6 +9,8 @@ let selectedOption = "add";
 //mostrarSeccion(seccion);
 
 
+
+
 operationSelect.addEventListener('change', (event) => {
     selectedOption = event.target.value;
     //Llamar a funcion
@@ -21,6 +23,30 @@ operationSelect.addEventListener('change', (event) => {
         mostrarSeccion('borrar');
     }
 });
+
+/*
+function handleOperationChange(event) {
+    selectedOption = event.target.value;
+    // Llamar a la función
+    checkOperation();
+
+    if (selectedOption === 'add') {
+        mostrarSeccion('añadir');
+    } else if (selectedOption === 'update') {
+        mostrarSeccion('actualizar');
+    } else if (selectedOption === 'delete') {
+        mostrarSeccion('borrar');
+    }
+}
+
+operationSelect.addEventListener('change', handleOperationChange);
+
+operationSelect.addEventListener('DOMContentLoaded', handleOperationChange);
+*/
+
+
+
+
 
 function mostrarSeccion(seccion) {
     var secciones = document.querySelectorAll('.section');
@@ -36,6 +62,8 @@ function mostrarSeccion(seccion) {
     });
 
 }
+
+
 //PART NOVA
 /*
 const addButton = document.getElementById('addButton');

@@ -4,6 +4,8 @@ import com.esliceu.movies.Entities.Movie;
 import com.esliceu.movies.Repos.MovieSearchRepo;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import java.sql.Date;
 import java.util.ArrayList;
@@ -53,12 +55,13 @@ public class MovieSearchServices {
         List<String> validFilters = Arrays.asList("title", "actor", "character", "genre", "director","author");
         if (validFilters.contains(filter)) {
             System.out.println("Es un filtre valid");
+            Pageable pageable = PageRequest.of(page,size);
             List<MovieDTO> movieDTOList = new ArrayList<>();
             switch (filter) {
                 case "actor":
                     System.out.println("actor :" + keyword );
                    // List<Movie> movieList= movieSearchRepo.findMovieByActor(keyword);
-                    List<Movie> movieList= movieSearchRepo.findMovieByMoviecast_PersonPersonNameContaining(keyword);
+                    List<Movie> movieList= movieSearchRepo.findMovieByMoviecast_PersonPersonNameContaining(keyword,pageable);
                     for (Movie mo:movieList) {
                         System.out.println(mo.getTitle());
                     }
@@ -77,7 +80,7 @@ public class MovieSearchServices {
                 case "character":
                     System.out.println("Character of movie : " + keyword);
                     //movieList = movieSearchRepo.findMovieByCharacter(keyword);
-                    movieList = movieSearchRepo.findMovieByMoviecastCharacterNameContaining(keyword);
+                    movieList = movieSearchRepo.findMovieByMoviecastCharacterNameContaining(keyword,pageable);
 
                     for (Movie mo:movieList) {
                         System.out.println(mo.getTitle());
@@ -112,7 +115,7 @@ public class MovieSearchServices {
                     return movieDTOList;
                 case "title":
                     //List<Movie> moviesList = movieSearchRepo.findMoviesByTitle(keyword);
-                    List<Movie> moviesList = movieSearchRepo.findByTitleContainingIgnoreCase(keyword);
+                    List<Movie> moviesList = movieSearchRepo.findByTitleContainingIgnoreCase(keyword,pageable);
                     List<MovieDTO> movietitleDTO = new ArrayList<>();
                     for (Movie m:moviesList) {
                         MovieDTO dto = new MovieDTO();
@@ -126,7 +129,7 @@ public class MovieSearchServices {
                 case "genre":
                     System.out.println("Genre of movie : " + keyword);
                    // movieList = movieSearchRepo.findMovieByGenre(keyword);
-                    movieList = movieSearchRepo.findMovieByMovieGenres_GenreGenreNameContaining(keyword);
+                    movieList = movieSearchRepo.findMovieByMovieGenres_GenreGenreNameContaining(keyword,pageable);
                     for (Movie mo:movieList) {
                         System.out.println(mo.getTitle());
                     }
@@ -143,7 +146,7 @@ public class MovieSearchServices {
                 case "director":
                     System.out.println("Director of movie : " + keyword);
                    // movieList = movieSearchRepo.findMovieByDirector(keyword);
-                    movieList = movieSearchRepo.findDistincMovieByMovieCrewsJobAndMovieCrews_PersonPersonNameContaining("Director",keyword);
+                    movieList = movieSearchRepo.findDistincMovieByMovieCrewsJobAndMovieCrews_PersonPersonNameContaining("Director",keyword,pageable);
                     for (Movie mo:movieList) {
                         System.out.println(mo.getTitle());
                     }

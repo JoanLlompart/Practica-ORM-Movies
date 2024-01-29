@@ -22,7 +22,7 @@ public interface MovieSearchRepo extends JpaRepository<Movie, Long> {
 
      */
 
-    List<Movie> findMovieByMoviecast_PersonPersonNameContaining(String keyword);
+    List<Movie> findMovieByMoviecast_PersonPersonNameContaining(String keyword, Pageable pageable);
 
     /*
     //Antigua
@@ -39,7 +39,7 @@ public interface MovieSearchRepo extends JpaRepository<Movie, Long> {
     List<Movie> findMoviesByTitle(@Param("keyword")String keyword);
      */
 
-    List<Movie> findByTitleContainingIgnoreCase(String keyword);
+    List<Movie> findByTitleContainingIgnoreCase(String keyword, Pageable pageable);
 
 
     @Query("SELECT m FROM Movie m " +
@@ -61,7 +61,7 @@ public interface MovieSearchRepo extends JpaRepository<Movie, Long> {
     */
 
     //Torna les peliculas que hi ha aquest personatge de una pelicula.
-    List<Movie> findMovieByMoviecastCharacterNameContaining(String keyword);
+    List<Movie> findMovieByMoviecastCharacterNameContaining(String keyword, Pageable pageable);
 
 
    /* @Query("SELECT m " +
@@ -74,7 +74,7 @@ public interface MovieSearchRepo extends JpaRepository<Movie, Long> {
 
 
     //Peliculas que tenen aquest genre
-    List<Movie> findMovieByMovieGenres_GenreGenreNameContaining(String genreName);
+    List<Movie> findMovieByMovieGenres_GenreGenreNameContaining(String genreName, Pageable pageable);
 
 /*
     @Query("SELECT m FROM Movie m " +
@@ -85,7 +85,7 @@ public interface MovieSearchRepo extends JpaRepository<Movie, Long> {
 
  */
 
-    List<Movie> findDistincMovieByMovieCrewsJobAndMovieCrews_PersonPersonNameContaining(String director,String keyword);
+    List<Movie> findDistincMovieByMovieCrewsJobAndMovieCrews_PersonPersonNameContaining(String director, String keyword, Pageable pageable);
 
     boolean existsByMovieId(Long movieId);
 

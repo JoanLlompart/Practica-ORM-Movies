@@ -68,3 +68,11 @@ keywordInput.addEventListener("input" , function() {
         sendDataFilter();
     }
 })
+document.getElementById('page').addEventListener('change', function() {
+    sendDataFilter();
+});
+
+// Event Listener for Size input
+document.getElementById('size').addEventListener('change', function() {
+    sendDataFilter();
+});

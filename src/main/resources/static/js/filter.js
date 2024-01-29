@@ -38,6 +38,7 @@ async function sendData() {
     }
 }
 
+/*
 function updateTable(data) {
     const table = document.getElementById("resultTable");
     table.innerHTML = ""; // Limpiar la tabla antes de actualizar
@@ -57,6 +58,45 @@ function updateTable(data) {
         headers.forEach(header => {
             const cell = row.insertCell();
             cell.textContent = item[header];
+        });
+    });
+}
+*/
+
+function updateTable(data) {
+    const table = document.getElementById("resultTable");
+    table.innerHTML = ""; // Limpiar la tabla antes de actualizar
+
+    // Crear encabezados de la tabla, incluyendo uno adicional para el botón "View"
+    const headers = Object.keys(data[0]);
+    headers.push("View");  // Agregar una columna adicional para el botón "View"
+    const headerRow = table.insertRow();
+    headers.forEach(header => {
+        const th = document.createElement("th");
+        th.textContent = header;
+        headerRow.appendChild(th);
+    });
+
+    // Llenar la tabla con los datos, incluyendo un botón "View" en cada fila
+    data.forEach(item => {
+        const row = table.insertRow();
+        headers.forEach(header => {
+            const cell = row.insertCell();
+            
+            if (header === "View") {
+                // Crear el botón "View" y asignarle un evento
+                const viewButton = document.createElement("button");
+                viewButton.textContent = "View";
+                viewButton.addEventListener("click", function() {
+                    // Aquí puedes agregar la lógica para manejar el clic en el botón "View"
+                    // Puedes acceder a los datos de la fila actual a través de la variable 'item'
+                    console.log("View button clicked for row:", item);
+                });
+                cell.appendChild(viewButton);
+            } else {
+                // Llenar las celdas con los datos del objeto 'item'
+                cell.textContent = item[header];
+            }
         });
     });
 }

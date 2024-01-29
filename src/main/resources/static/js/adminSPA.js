@@ -2,7 +2,7 @@
 const operationSelect = document.getElementById('operationSelect');
 const selectedSection = document.getElementById('selectedSection');
 let selectedOption = "add";
-
+mostrarSeccion('añadir')
 
 // Seccio que es troba (añadir,actualizar,delete)
 //let seccion = 'añadir';
@@ -23,6 +23,7 @@ operationSelect.addEventListener('change', (event) => {
         mostrarSeccion('borrar');
     }
 });
+
 
 /*
 function handleOperationChange(event) {

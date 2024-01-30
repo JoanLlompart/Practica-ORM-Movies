@@ -145,7 +145,7 @@ function showMovieModal(movieData) {
         row.innerHTML = `<strong>${key}:</strong> ${value}`;
         modalBody.appendChild(row);
     }
-    
+
     // Mostrar el modal
     $('#movieModal').modal('show');
 }
@@ -157,8 +157,48 @@ function applyFilter() {
 
     // Realizar la acción deseada según el tipo de filtro seleccionado
     console.log("Selected Filter Type:", filterType);
+    let url = filterType.substring(0, 1).toUpperCase() + filterType.substring(1);
 
-    // Aquí puedes realizar la lógica adicional según el filtro seleccionado
+    // Construir el cuerpo de la solicitud POST
+    const requestBody = {
+        filterType: filterType,
+        // Agrega otros campos según sea necesario
+    };
+
+    // Realizar la solicitud Fetch al servidor
+    fetch(`/movieSearch/movie${url}`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(requestBody)
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error(`Error: ${response.status} - ${response.statusText}`);
+        }
+        return response.json();
+    })
+    .then(data => {
+        // Visualizar la lista devuelta por el servidor
+        const resultContainer = document.getElementById("filterResult");
+        resultContainer.innerHTML = ""; // Limpiar el contenedor antes de actualizar
+
+        // Crear lista o actualizar según el formato de los datos recibidos
+        // Ejemplo: Crear una lista de elementos <li> para cada elemento recibido
+        const list = document.createElement("ul");
+        data.forEach(item => {
+            const listItem = document.createElement("li");
+            listItem.textContent = item;
+            list.appendChild(listItem);
+        });
+
+        resultContainer.appendChild(list);
+    })
+    .catch(error => {
+        console.error('Error:', error);
+    });
+
 
     // Cerrar el modal
     $('#filterModal').modal('hide');

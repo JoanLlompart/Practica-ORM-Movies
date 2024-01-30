@@ -60,6 +60,11 @@ public class MovieSearchController {
         return movieSearchServices.getAllMovieInfo(formData);
     }
 
+    @PostMapping("/movieSearch/movieActor")
+    @ResponseBody
+    public Optional<MovieInfoDTO> viewAllActorsInMovie(@RequestBody Map<String, String> formData) {
+        return movieSearchServices.getAllMovieInfo(formData);
+    }
 
     @PostMapping("/adminArea/add/movie")
     public ResponseEntity<Object> adminAddPostMovie(HttpSession session, @RequestBody Map<String, String> data) {

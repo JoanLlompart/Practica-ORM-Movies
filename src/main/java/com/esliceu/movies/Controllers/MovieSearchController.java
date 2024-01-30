@@ -1,5 +1,6 @@
 package com.esliceu.movies.Controllers;
 
+import com.esliceu.movies.DTO.ActorDTO;
 import com.esliceu.movies.DTO.MovieDTO;
 import com.esliceu.movies.DTO.MovieInfoDTO;
 import com.esliceu.movies.Entities.Movie;
@@ -62,8 +63,8 @@ public class MovieSearchController {
 
     @PostMapping("/movieSearch/movieActor")
     @ResponseBody
-    public Optional<MovieInfoDTO> viewAllActorsInMovie(@RequestBody Map<String, String> formData) {
-        return movieSearchServices.getAllMovieInfo(formData);
+    public Optional<ActorDTO> viewAllActorsInMovie(@RequestBody Map<String, String> formData) {
+        return movieSearchServices.getAllActors(formData);
     }
 
     @PostMapping("/adminArea/add/movie")

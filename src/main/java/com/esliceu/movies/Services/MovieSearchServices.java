@@ -1,4 +1,5 @@
 package com.esliceu.movies.Services;
+import com.esliceu.movies.DTO.ActorDTO;
 import com.esliceu.movies.DTO.MovieDTO;
 import com.esliceu.movies.DTO.MovieInfoDTO;
 import com.esliceu.movies.Entities.Movie;
@@ -382,6 +383,12 @@ public class MovieSearchServices {
         MovieInfoDTO movieInfoDTO = MovieInfoDTO.fromMovie(m.get(),director);
         System.out.println("El director de la pelicula es : " + director);
          return Optional.of(movieInfoDTO);
+    }
+
+    public Optional<ActorDTO> getAllActors(Map<String, String> formData) {
+        Long movieId = Long.valueOf(formData.get("movieId"));
+        String actor = formData.get("filterType");
+
     }
 }
 

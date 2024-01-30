@@ -162,6 +162,9 @@ function applyFilter() {
     // Construir el cuerpo de la solicitud POST
     const requestBody = {
         filterType: filterType,
+        movieId:movieId
+        //pasar movieId
+        
         // Agrega otros campos según sea necesario
     };
 

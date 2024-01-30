@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 @Controller
 public class MovieSearchController {
@@ -42,10 +43,20 @@ public class MovieSearchController {
         System.out.println("Filtram per: " + filter + ", amb la paraula clau: " + keyword);
         // En el service filtramos por el tipo de keyword y tratamos las datos.
         List<MovieDTO> movieList = movieSearchServices.filterMovies(filter, keyword, page, size);
-        for (MovieDTO m : movieList) {
+
+       /* for (MovieDTO m : movieList) {
             System.out.println("Title " + m.getTitle() + " , relaseDate : " + m.getReleaseDate() + " , voteAvarage : " + m.getVoteAverage());
         }
+
+        */
         return movieList;
+    }
+
+    //Informacio de Movie completa amb un modal.
+    @PostMapping("/movieSearch/infoMovie")
+    @ResponseBody
+    public Optional<Movie> viewAllMovieInfo(@RequestBody Map<String, String> formData) {
+        return movieSearchServices.getAllMovieInfo(formData);
     }
 
 

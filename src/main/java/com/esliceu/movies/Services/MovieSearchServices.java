@@ -8,10 +8,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import java.sql.Date;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Service
 public class MovieSearchServices {
@@ -368,6 +365,12 @@ public class MovieSearchServices {
         } else {
             return "Movie Delete Error";
         }
+    }
+
+    public Optional<Movie> getAllMovieInfo(Map<String, String> formData) {
+        Long movieId = Long.valueOf(formData.get("movieId"));
+        System.out.println("Movie id que volem veure la card ");
+        return movieSearchRepo.findById(movieId);
     }
 }
 

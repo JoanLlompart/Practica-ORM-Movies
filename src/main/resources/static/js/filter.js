@@ -90,7 +90,11 @@ function updateTable(data) {
                 viewButton.addEventListener("click", function() {
                     // Aquí puedes agregar la lógica para manejar el clic en el botón "View"
                     // Puedes acceder a los datos de la fila actual a través de la variable 'item'
+                    
                     console.log("View button clicked for row:", item);
+                    let viewId = item.movieId;
+                    console.log("View id :" + viewId);
+                    viewInfoMovie(viewId);
                 });
                 cell.appendChild(viewButton);
             } else {
@@ -100,6 +104,36 @@ function updateTable(data) {
         });
     });
 }
+
+async function viewInfoMovie(viewId) {
+    // Construir el cuerpo de la solicitud POST
+    const requestBody = {
+        movieId:viewId
+    };
+
+    try {
+        // Realizar la solicitud Fetch al servidor con método POST
+        const response = await fetch('/movieSearch/infoMovie', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(requestBody)
+        });
+
+        // Verificar el estado de la respuesta
+        if (!response.ok) {
+            throw new Error(`Error: ${response.status} - ${response.statusText}`);
+        }
+        // Obtener los datos de la respuesta JSON
+        const data = await response.json();
+        console.log("Dades que aniran a el modal " + data);
+    } catch (error) {
+        console.error('Error:', error);
+    }
+}
+
+
 
 
 const keywordInput = document.getElementById("keyword");
@@ -121,6 +155,7 @@ document.getElementById('page').addEventListener('change', function() {
 document.getElementById('size').addEventListener('change', function() {
     sendData();
 });
+
 
 
 /*

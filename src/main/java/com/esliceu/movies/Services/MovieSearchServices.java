@@ -1,5 +1,6 @@
 package com.esliceu.movies.Services;
 import com.esliceu.movies.DTO.MovieDTO;
+import com.esliceu.movies.DTO.MovieInfoDTO;
 import com.esliceu.movies.Entities.Movie;
 import com.esliceu.movies.Repos.MovieSearchRepo;
 import jakarta.transaction.Transactional;
@@ -367,10 +368,20 @@ public class MovieSearchServices {
         }
     }
 
-    public Optional<Movie> getAllMovieInfo(Map<String, String> formData) {
+    public Optional<MovieInfoDTO> getAllMovieInfo(Map<String, String> formData) {
         Long movieId = Long.valueOf(formData.get("movieId"));
         System.out.println("Movie id que volem veure la card ");
-        return movieSearchRepo.findById(movieId);
+       Optional<Movie> m=movieSearchRepo.findById(movieId);
+       //Rellenam el DTO amb les dades de Movie
+       MovieInfoDTO movieInfoDTO = new MovieInfoDTO(m.get().getMovieId(), m.get().getTitle(),
+               m.get().getBudget(),m.get().getHomepage(),m.get().getOverview(),m.get().getPopularity(),
+               m.get().getReleaseDate(),m.get().getRevenue(),m.get().getRuntime(),m.get().getMovieStatus(),
+               m.get().getTagline(),m.get().getVoteAverage(), m.get().getVoteCount());
+
+         String director =movieCrewServices.findDirectorByMovieId(movieId);
+        System.out.println("El director de la pelicula es : " + director);
+         movieInfoDTO.director(director);
+         return Optional.of(movieInfoDTO);
     }
 }
 

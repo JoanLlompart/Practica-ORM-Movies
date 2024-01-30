@@ -145,7 +145,7 @@ function showMovieModal(movieData) {
         row.innerHTML = `<strong>${key}:</strong> ${value}`;
         modalBody.appendChild(row);
     }
-
+    
     // Mostrar el modal
     $('#movieModal').modal('show');
 }
@@ -163,6 +163,7 @@ function applyFilter() {
     // Cerrar el modal
     $('#filterModal').modal('hide');
 }
+
 
 
 

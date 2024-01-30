@@ -36,7 +36,7 @@ async function sendDataFilter() {
         console.error('Error:', error);
     }
 }
-
+/*
 function updateTable(data) {
     const table = document.getElementById("resultTable");
     table.innerHTML = ""; // Limpiar la tabla antes de actualizar
@@ -58,6 +58,36 @@ function updateTable(data) {
             cell.textContent = item[header];
         });
     });
+}
+*/
+
+
+function updateTable(data) {
+    const table = document.getElementById("resultTable");
+    table.innerHTML = ""; // Limpiar la tabla antes de actualizar
+
+    // Crear encabezados de la tabla con clases de Bootstrap
+    const headers = Object.keys(data[0]);
+    const headerRow = table.insertRow();
+    headers.forEach(header => {
+        const th = document.createElement("th");
+        th.textContent = header;
+        th.classList.add("table-dark"); // Clase de Bootstrap para encabezados oscuros
+        headerRow.appendChild(th);
+    });
+
+    // Llenar la tabla con los datos y agregar clases de Bootstrap
+    data.forEach(item => {
+        const row = table.insertRow();
+        headers.forEach(header => {
+            const cell = row.insertCell();
+            cell.textContent = item[header];
+            cell.classList.add("table-light"); // Clase de Bootstrap para filas claras
+        });
+    });
+
+    // Agregar la clase de Bootstrap para tablas
+    table.classList.add("table", "table-bordered", "table-striped");
 }
 
 

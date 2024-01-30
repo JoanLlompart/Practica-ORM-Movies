@@ -129,14 +129,14 @@ async function viewInfoMovie(viewId) {
         const data = await response.json();
         showMovieModal(data);
         console.log("Dades que aniran a el modal " + data);
-        
+
     } catch (error) {
         console.error('Error:', error);
     }
 }
 
 function showMovieModal(movieData) {
-    // Llenar el contenido del modal con la información de la película
+    // Rellena el modal amb la informacio
     const modalBody = document.getElementById("movieModalBody");
     modalBody.innerHTML = "";
 
@@ -149,6 +149,21 @@ function showMovieModal(movieData) {
     // Mostrar el modal
     $('#movieModal').modal('show');
 }
+
+
+function applyFilter() {
+    // Obtener el valor seleccionado del select
+    const filterType = document.getElementById("filterType").value;
+
+    // Realizar la acción deseada según el tipo de filtro seleccionado
+    console.log("Selected Filter Type:", filterType);
+
+    // Aquí puedes realizar la lógica adicional según el filtro seleccionado
+
+    // Cerrar el modal
+    $('#filterModal').modal('hide');
+}
+
 
 
 

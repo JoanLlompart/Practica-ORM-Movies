@@ -66,7 +66,7 @@
                         </button>
                     </div>
                     <div class="modal-body" id="movieModalBody">
-                        <!-- Aquí se llenará la información de la película -->
+                        <!-- Aqui va la info de el modal -->
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -74,6 +74,33 @@
                 </div>
             </div>
         </div>
+
+
+        <!-- Modal de Participants -->
+        <div class="modal" id="filterModal" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Filter Options</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <label for="filterType">Select Filter Type:</label>
+                        <select id="filterType" class="form-control">
+                            <option value="actor">Actor</option>
+                            <option value="director">Director</option>
+                        </select>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" onclick="applyFilter()">Apply Filter</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
 
 
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"

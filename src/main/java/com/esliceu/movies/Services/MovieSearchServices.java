@@ -370,9 +370,7 @@ public class MovieSearchServices {
 
     public Optional<MovieInfoDTO> getAllMovieInfo(Map<String, String> formData) {
         Long movieId = Long.valueOf(formData.get("movieId"));
-        System.out.println("Movie id que volem veure la card " + movieId);
        Optional<Movie> m=movieSearchRepo.findById(movieId);
-        System.out.println(m.toString());
        //Rellenam el DTO amb les dades de Movie
       /* MovieInfoDTO movieInfoDTO = new MovieInfoDTO(m.getMovieId(), m.get().getTitle(),
                m.get().getBudget(),m.get().getHomepage(),m.get().getOverview(),m.get().getPopularity(),

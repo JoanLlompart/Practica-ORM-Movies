@@ -127,12 +127,28 @@ async function viewInfoMovie(viewId) {
         }
         // Obtener los datos de la respuesta JSON
         const data = await response.json();
+        showMovieModal(data);
         console.log("Dades que aniran a el modal " + data);
+        
     } catch (error) {
         console.error('Error:', error);
     }
 }
 
+function showMovieModal(movieData) {
+    // Llenar el contenido del modal con la información de la película
+    const modalBody = document.getElementById("movieModalBody");
+    modalBody.innerHTML = "";
+
+    for (const [key, value] of Object.entries(movieData)) {
+        const row = document.createElement("div");
+        row.innerHTML = `<strong>${key}:</strong> ${value}`;
+        modalBody.appendChild(row);
+    }
+
+    // Mostrar el modal
+    $('#movieModal').modal('show');
+}
 
 
 

@@ -134,6 +134,25 @@ public class Movie {
         this.movieLanguages = movieLanguages;
     }
 
+    @Override
+    public String toString() {
+        return "Movie{" +
+                "movieId=" + movieId +
+                ", title='" + title + '\'' +
+                ", budget=" + budget +
+                ", homepage='" + homepage + '\'' +
+                ", overview='" + overview + '\'' +
+                ", popularity=" + popularity +
+                ", releaseDate=" + releaseDate +
+                ", revenue=" + revenue +
+                ", runtime=" + runtime +
+                ", movieStatus='" + movieStatus + '\'' +
+                ", tagline='" + tagline + '\'' +
+                ", voteAverage=" + voteAverage +
+                ", voteCount=" + voteCount +
+                '}';
+    }
+
     public Long getMovieId() {
         return movieId;
     }

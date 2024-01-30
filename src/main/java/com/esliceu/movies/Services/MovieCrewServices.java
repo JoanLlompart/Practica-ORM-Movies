@@ -26,8 +26,9 @@ public class MovieCrewServices {
     }
 
     public String findDirectorByMovieId(Long movieId) {
-        List<Person> personList =movieCrewRepo.findPersonByMovie_MovieIdAndJob(movieId,"Director");
-        Person p =personList.get(0);
-        return p.getPersonName();
+        //Optional<Person> p =movieCrewRepo.findFirstPersonByMovie_MovieIdAndJob(movieId,"Director");
+        Optional<Person> p =movieCrewRepo.findFirstPersonByMovieIdAndJob(movieId,"Director");
+        System.out.println("PERSON " + p.toString());
+        return p.get().getPersonName();
     }
 }

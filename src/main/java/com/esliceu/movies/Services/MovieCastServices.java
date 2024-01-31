@@ -37,4 +37,9 @@ public class MovieCastServices {
 
         return movieCastRepo.actorsAndMovies(keyword,pageable);
     }
+
+    public void deleteByPersonId(Long personId) {
+        List<MovieCast> allPersonsMovie = movieCastRepo.findAllByPerson_PersonId(personId);
+        movieCastRepo.deleteAll(allPersonsMovie);
+    }
 }

@@ -10,6 +10,8 @@ import java.util.Map;
 public class PersonServices {
     @Autowired
     MovieCrewServices movieCrewServices;
+    @Autowired
+    MovieCastServices movieCastServices;
 
     @Autowired
     PersonRepo personRepo;
@@ -18,6 +20,7 @@ public class PersonServices {
         if (personRepo.existsByPersonId(personId)) {
             //todo:probant de borrar correctament
             movieCrewServices.deleteByPersonId(personId);
+            movieCastServices.deleteByPersonId(personId);
             personRepo.deleteById(personId);
             return "Person by id ," + personId + " ,Delete successfully";
         } else {

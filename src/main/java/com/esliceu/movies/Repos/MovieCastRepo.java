@@ -48,4 +48,5 @@ public interface MovieCastRepo extends JpaRepository<MovieCast,Long> {
             "JOIN Movie m ON m.movieId=mc.movie.movieId WHERE p.personName LIKE %:keyword%")
     List<?> actorsAndMovies(@Param("keyword") String keyword,Pageable pageable);
 
+    List<MovieCast> findAllByPerson_PersonId(Long personId);
 }

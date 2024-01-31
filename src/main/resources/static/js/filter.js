@@ -264,7 +264,12 @@ async function sendDeleteRelation(movieId, actorId) {
 
         // Puedes manejar la respuesta del servidor si es necesario
         console.log('Actor selection successful');
-        alert(response);
+        //recarrega la pagina
+    
+        $('#movieModal').modal('hide');
+        viewActors(movieId);
+           // window.location.reload();
+            alert(response);
         
     } catch (error) {
         console.error('Error:', error);

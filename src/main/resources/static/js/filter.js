@@ -247,6 +247,8 @@ async function sendDeleteRelation(movieId, actorId) {
         movieId: movieId,
         actorId: actorId
     };
+    const userConfirmed = window.confirm(`Are you sure you want to decast this actor in Movie by id :  ` + movieId + ' ?');
+    if(userConfirmed) {
     try {
         const response = await fetch('/adminArea/decastActor', {
             method: 'POST',
@@ -262,10 +264,13 @@ async function sendDeleteRelation(movieId, actorId) {
 
         // Puedes manejar la respuesta del servidor si es necesario
         console.log('Actor selection successful');
+        alert(response);
+        
     } catch (error) {
         console.error('Error:', error);
     }
-}
+} }
+
 
 
 

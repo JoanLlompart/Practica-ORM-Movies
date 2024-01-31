@@ -133,7 +133,7 @@ async function viewActors(viewId) {
 
         // Obtener los datos de la respuesta JSON
         const data = await response.json();
-        showActorsModal(data);
+        showActorsModal(data,viewId);
     } catch (error) {
         console.error('Error:', error);
     }
@@ -199,6 +199,8 @@ function showActorsModal(actorsData) {
                 <th>Person Name</th>
                 <th>Gender</th>
                 <th>Character Name</th>
+                <th></th>
+
             </tr>
         </thead>
         <tbody>
@@ -212,10 +214,22 @@ function showActorsModal(actorsData) {
         const cellPersonName = row.insertCell(0);
         const cellGender = row.insertCell(1);
         const cellCharacterName = row.insertCell(2);
+        const cellAction = row.insertCell(3);
 
         cellPersonName.textContent = actor.personName;
         cellGender.textContent = actor.gender;
         cellCharacterName.textContent = actor.characterName;
+
+
+        // Agregar el botón en la columna "Action"
+        const actionButton = document.createElement("button");
+        actionButton.textContent = "X";
+        actionButton.addEventListener("click", function() {
+            // Enviar la información al servidor al hacer clic en el botón
+            sendDeleteRelation(viewId, actor.id);
+        });
+        cellAction.appendChild(actionButton);
+
     });
 
     modalBody.appendChild(table);
@@ -225,6 +239,34 @@ function showActorsModal(actorsData) {
 }
 
 
+
+// Función para enviar la selección de actor al servidor
+async function sendDeleteRelation(movieId, actorId) {
+    const requestBody = {
+        movieId: movieId,
+        actorId: actorId
+    };
+    console.log("Body delete : " + requestBody)
+
+    try {
+        const response = await fetch('/movieSearch/decastActor', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(requestBody)
+        });
+
+        if (!response.ok) {
+            throw new Error(`Error: ${response.status} - ${response.statusText}`);
+        }
+
+        // Puedes manejar la respuesta del servidor si es necesario
+        console.log('Actor selection successful');
+    } catch (error) {
+        console.error('Error:', error);
+    }
+}
 
 
 

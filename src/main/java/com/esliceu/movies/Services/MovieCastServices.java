@@ -91,7 +91,6 @@ public class MovieCastServices {
         }else {
             return "Actor decast failed";
         }
-
         */
         movieCastRepo.deleteByMovie_MovieIdAndPerson_PersonId(movieId,personId);
         return "Actor decast successfully";

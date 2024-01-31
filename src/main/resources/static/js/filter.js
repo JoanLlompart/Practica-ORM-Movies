@@ -152,7 +152,7 @@ function showMovieModal(movieData) {
 }
 
 
-function applyFilter() {
+async function applyFilter() {
     // Obtener el valor seleccionado del select
     const filterType = document.getElementById("filterType").value;
 
@@ -178,6 +178,7 @@ function applyFilter() {
         body: JSON.stringify(requestBody)
     })
     .then(response => {
+        console.log(response);
         if (!response.ok) {
             throw new Error(`Error: ${response.status} - ${response.statusText}`);
         }
@@ -196,6 +197,7 @@ function applyFilter() {
             listItem.textContent = item;
             list.appendChild(listItem);
         });
+        
 
         resultContainer.appendChild(list);
     })

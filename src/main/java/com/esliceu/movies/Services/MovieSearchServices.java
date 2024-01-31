@@ -3,6 +3,7 @@ import com.esliceu.movies.DTO.ActorDTO;
 import com.esliceu.movies.DTO.MovieDTO;
 import com.esliceu.movies.DTO.MovieInfoDTO;
 import com.esliceu.movies.Entities.Movie;
+import com.esliceu.movies.Entities.MovieCast;
 import com.esliceu.movies.Repos.MovieSearchRepo;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -385,13 +386,16 @@ public class MovieSearchServices {
          return Optional.of(movieInfoDTO);
     }
 
-    public Optional<List<ActorDTO>> getAllActors(Map<String, String> formData) {
+
+
+     public Optional<List<ActorDTO>> getAllActors(Map<String, String> formData) {
         Long movieId = Long.valueOf(formData.get("movieId"));
         System.out.println("id de movie" +movieId);
         String actor = formData.get("filterType");
         List<ActorDTO> movieActors =movieCastServices.getActorsByMovieId(movieId);
         return Optional.of(movieActors);
     }
+
 }
 
 

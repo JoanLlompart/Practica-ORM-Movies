@@ -4,6 +4,7 @@ import com.esliceu.movies.DTO.ActorDTO;
 import com.esliceu.movies.DTO.MovieDTO;
 import com.esliceu.movies.DTO.MovieInfoDTO;
 import com.esliceu.movies.Entities.Movie;
+import com.esliceu.movies.Entities.MovieCast;
 import com.esliceu.movies.Services.MovieSearchServices;
 import com.esliceu.movies.Services.UserServices;
 import jakarta.servlet.http.HttpSession;
@@ -61,11 +62,16 @@ public class MovieSearchController {
         return movieSearchServices.getAllMovieInfo(formData);
     }
 
+
+
     @PostMapping("/movieSearch/movieActor")
     @ResponseBody
     public Optional<List<ActorDTO>> viewAllActorsInMovie(@RequestBody Map<String, String> formData) {
         return movieSearchServices.getAllActors(formData);
     }
+
+
+
 
     @PostMapping("/adminArea/add/movie")
     public ResponseEntity<Object> adminAddPostMovie(HttpSession session, @RequestBody Map<String, String> data) {

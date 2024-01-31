@@ -1,5 +1,6 @@
 package com.esliceu.movies.Repos;
 
+import com.esliceu.movies.DTO.ActorDTO;
 import com.esliceu.movies.Entities.MovieCrew;
 import com.esliceu.movies.Entities.MovieLanguages;
 import com.esliceu.movies.Entities.Person;
@@ -19,6 +20,13 @@ public interface MovieCrewRepo extends JpaRepository<MovieCrew, Long> {
     @Query("SELECT mc.person FROM MovieCrew mc WHERE mc.movie.movieId = :movieId AND mc.job = :job")
     Optional<Person> findFirstPersonByMovieIdAndJob(@Param("movieId") Long movieId, @Param("job") String job);
 
+    /*
+    @Query("SELECT p.person_name, g.gender, mc.character_name " +
+            "FROM `movie_cast` mc JOIN person p ON p.person_id=mc.person_id " +
+            "JOIN gender g ON mc.gender_id=g.gender_id " +
+            "WHERE movie_id =:movieId;")
+    List<ActorDTO> findAllActorsByMovieId(@Param("movieId") Long movieId);
+     */
 
     //Optional<Person> findFirstByMovie_IdAndJob(Long movieId, String job);
 

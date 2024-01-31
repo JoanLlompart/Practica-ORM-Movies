@@ -63,7 +63,7 @@ public class MovieSearchController {
 
     @PostMapping("/movieSearch/movieActor")
     @ResponseBody
-    public Optional<ActorDTO> viewAllActorsInMovie(@RequestBody Map<String, String> formData) {
+    public Optional<List<ActorDTO>> viewAllActorsInMovie(@RequestBody Map<String, String> formData) {
         return movieSearchServices.getAllActors(formData);
     }
 

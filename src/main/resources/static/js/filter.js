@@ -63,6 +63,7 @@ function updateTable(data) {
 }
 */
 
+let viewId = null;
 function updateTable(data) {
     const table = document.getElementById("resultTable");
     table.innerHTML = ""; // Limpiar la tabla antes de actualizar
@@ -92,7 +93,8 @@ function updateTable(data) {
                     // Puedes acceder a los datos de la fila actual a través de la variable 'item'
                     
                     console.log("View button clicked for row:", item);
-                    let viewId = item.movieId;
+                   // let viewId = item.movieId;
+                    viewId = item.movieId;
                     console.log("View id :" + viewId);
                     viewInfoMovie(viewId);
                 });
@@ -162,7 +164,7 @@ function applyFilter() {
     // Construir el cuerpo de la solicitud POST
     const requestBody = {
         filterType: filterType,
-        movieId:movieId
+        movieId:viewId
         //pasar movieId
         
         // Agrega otros campos según sea necesario

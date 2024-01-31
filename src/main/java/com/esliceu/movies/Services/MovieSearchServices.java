@@ -385,10 +385,12 @@ public class MovieSearchServices {
          return Optional.of(movieInfoDTO);
     }
 
-    public Optional<ActorDTO> getAllActors(Map<String, String> formData) {
+    public Optional<List<ActorDTO>> getAllActors(Map<String, String> formData) {
         Long movieId = Long.valueOf(formData.get("movieId"));
+        System.out.println("id de movie" +movieId);
         String actor = formData.get("filterType");
-
+        List<ActorDTO> movieActors =movieCastServices.getActorsByMovieId(movieId);
+        return Optional.of(movieActors);
     }
 }
 

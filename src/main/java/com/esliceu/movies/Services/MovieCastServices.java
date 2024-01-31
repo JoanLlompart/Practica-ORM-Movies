@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -29,6 +30,18 @@ public class MovieCastServices {
     }
 
     public List<?> filterByActor(String keyword, Pageable pageable) {
-        return movieCastRepo.findPersonAndCharacterAndMovieByPersonPersonNameContaining(keyword,pageable);
+
+        List<Object[]>actorsInfo = movieCastRepo.findPersonAndCharacterAndMovieByPersonPersonNameContaining(keyword,pageable);
+        List<ActorDTO> actorDTOList = new ArrayList<>();
+        for (Object[] actor : actorsInfo) {
+            String personName = (String) actor[0];
+            String character = (String) actor[1];
+            String title = (String) actor[2];
+
+            //afegim el registre a actors
+            actorDTOList.add(new ActorDTO(personName,character,title));
+        }
+        //todo
+        return actorsInfo;
     }
 }

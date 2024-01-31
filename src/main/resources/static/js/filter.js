@@ -185,22 +185,45 @@ function showMovieModal(movieData) {
     $('#movieModal').modal('show');
 }
 
-
-
 function showActorsModal(actorsData) {
     // Rellena el modal con la información de los actores
     const modalBody = document.getElementById("movieModalBody");
     modalBody.innerHTML = "";
 
-    for (const [key, value] of Object.entries(actorsData)) {
-        const row = document.createElement("div");
-        row.innerHTML = `<strong>${key}:</strong> ${value}`;
-        modalBody.appendChild(row);
-    }
+    // Crear una tabla para mostrar la información de los actores
+    const table = document.createElement("table");
+    table.classList.add("table");
+    table.innerHTML = `
+        <thead>
+            <tr>
+                <th>Person Name</th>
+                <th>Gender</th>
+                <th>Character Name</th>
+            </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    `;
+    
+    // Llenar la tabla con los datos de los actores
+    const tbody = table.querySelector("tbody");
+    actorsData.forEach(actor => {
+        const row = tbody.insertRow();
+        const cellPersonName = row.insertCell(0);
+        const cellGender = row.insertCell(1);
+        const cellCharacterName = row.insertCell(2);
+
+        cellPersonName.textContent = actor.personName;
+        cellGender.textContent = actor.gender;
+        cellCharacterName.textContent = actor.characterName;
+    });
+
+    modalBody.appendChild(table);
 
     // Mostrar el modal
     $('#movieModal').modal('show');
 }
+
 
 
 

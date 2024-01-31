@@ -292,6 +292,7 @@ async function applyFilter() {
 }
 */
 
+
 function updateFilterResult(data) {
     const resultContainer = document.getElementById("filterResult");
     resultContainer.innerHTML = ""; // Limpiar el contenedor antes de actualizar
@@ -307,6 +308,7 @@ function updateFilterResult(data) {
 
     resultContainer.appendChild(list);
 }
+
 
 
 

@@ -35,6 +35,7 @@ public class MovieCastServices {
         //List<Object[]> actorsInfo = movieCastRepo.findPersonAndCharacterAndMovieByPersonPersonNameContaining(keyword, pageable);
 
         //return movieCastRepo.findPersonAndCharacterAndMovieByPersonPersonNameContaining(keyword, pageable);
+
         return movieCastRepo.actorsAndMovies(keyword,pageable);
     }
 }

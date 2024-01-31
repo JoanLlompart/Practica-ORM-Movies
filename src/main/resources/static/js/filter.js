@@ -256,11 +256,13 @@ async function sendDeleteRelation(movieId, actorId) {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify(requestBody)
-        });
-
-        if (!response.ok) {
-            throw new Error(`Error: ${response.status} - ${response.statusText}`);
-        }
+        }) .then(response => {
+            if (!response.ok) {
+                throw new Error('Error en la solicitud: ' + response.statusText);
+            }
+            return response.text();
+        })
+        .then(responseData => {
 
         // Puedes manejar la respuesta del servidor si es necesario
         console.log('Actor selection successful');
@@ -268,9 +270,8 @@ async function sendDeleteRelation(movieId, actorId) {
     
         $('#movieModal').modal('hide');
         viewActors(movieId);
-           // window.location.reload();
-            alert(response);
-        
+        alert(responseData);
+        })
     } catch (error) {
         console.error('Error:', error);
     }

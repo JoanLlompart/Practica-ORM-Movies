@@ -200,6 +200,7 @@ function showActorsModal(actorsData) {
                 <th>Gender</th>
                 <th>Character Name</th>
                 <th></th>
+                <th>Person id</th>
 
             </tr>
         </thead>
@@ -215,10 +216,12 @@ function showActorsModal(actorsData) {
         const cellGender = row.insertCell(1);
         const cellCharacterName = row.insertCell(2);
         const cellAction = row.insertCell(3);
+        const cellId = row.insertCell(4);
 
         cellPersonName.textContent = actor.personName;
         cellGender.textContent = actor.gender;
         cellCharacterName.textContent = actor.characterName;
+        cellId.textContent = actor.personId;
 
 
         // Agregar el botón en la columna "Action"
@@ -226,7 +229,7 @@ function showActorsModal(actorsData) {
         actionButton.textContent = "X";
         actionButton.addEventListener("click", function() {
             // Enviar la información al servidor al hacer clic en el botón
-            sendDeleteRelation(viewId, actor.id);
+            sendDeleteRelation(viewId, actor.personId);
         });
         cellAction.appendChild(actionButton);
 
@@ -246,8 +249,6 @@ async function sendDeleteRelation(movieId, actorId) {
         movieId: movieId,
         actorId: actorId
     };
-    console.log("Body delete : " + requestBody)
-
     try {
         const response = await fetch('/movieSearch/decastActor', {
             method: 'POST',

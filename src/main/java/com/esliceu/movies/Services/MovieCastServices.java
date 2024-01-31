@@ -37,8 +37,9 @@ public class MovieCastServices {
             String personName =movieCast.getPerson().getPersonName();
             String gender = movieCast.getGender().getGender();
             String characterName = movieCast.getCharacterName();
+            Long personId = movieCast.getPerson().getPersonId();
             //Ficam en el DTO
-            actorsDTO.add(new ActorsMovieDTO(personName,gender,characterName));
+            actorsDTO.add(new ActorsMovieDTO(personName,gender,characterName,personId));
         }
         return actorsDTO;
     }

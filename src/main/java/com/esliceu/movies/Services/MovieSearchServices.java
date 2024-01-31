@@ -1,5 +1,6 @@
 package com.esliceu.movies.Services;
 import com.esliceu.movies.DTO.ActorDTO;
+import com.esliceu.movies.DTO.ActorsMovieDTO;
 import com.esliceu.movies.DTO.MovieDTO;
 import com.esliceu.movies.DTO.MovieInfoDTO;
 import com.esliceu.movies.Entities.Movie;
@@ -387,13 +388,24 @@ public class MovieSearchServices {
     }
 
 
-
+/*
      public Optional<List<ActorDTO>> getAllActors(Map<String, String> formData) {
+        //PrimeraOpcio
         Long movieId = Long.valueOf(formData.get("movieId"));
         System.out.println("id de movie" +movieId);
         String actor = formData.get("filterType");
         List<ActorDTO> movieActors =movieCastServices.getActorsByMovieId(movieId);
         return Optional.of(movieActors);
+    }
+
+ */
+
+    public List<ActorsMovieDTO> getAllActors(Map<String, String> formData) {
+        Long movieId = Long.valueOf(formData.get("movieId"));
+        System.out.println("id de movie" +movieId);
+        String actor = formData.get("filterType");
+        return movieCastServices.getActorsByMovieId(movieId);
+
     }
 
 }

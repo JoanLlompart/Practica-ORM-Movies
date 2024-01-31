@@ -1,13 +1,16 @@
 package com.esliceu.movies.Services;
 
 import com.esliceu.movies.DTO.ActorDTO;
+import com.esliceu.movies.DTO.ActorsMovieDTO;
 import com.esliceu.movies.Entities.MovieCast;
 import com.esliceu.movies.Repos.MovieCastRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class MovieCastServices {
@@ -21,9 +24,41 @@ public class MovieCastServices {
         movieCastRepo.deleteAll(allMovieCast);
     }
 
-    public List<ActorDTO> getActorsByMovieId(Long movieId) {
+  /*  public List<ActorDTO> getActorsByMovieId(Long movieId) {
         return movieCastRepo.findAllActorsByMovieId(movieId);
     }
+    
+   */
+
+    public List<ActorsMovieDTO> getActorsByMovieId(Long movieId) {
+        List<MovieCast> actorsInMovie= movieCastRepo.findByMovie_MovieId(movieId);
+        List<ActorsMovieDTO> actorsDTO = new ArrayList<>();
+        for (MovieCast movieCast : actorsInMovie) {
+            String personName =movieCast.getPerson().getPersonName();
+            String gender = movieCast.getGender().getGender();
+            String characterName = movieCast.getCharacterName();
+            //Ficam en el DTO
+            actorsDTO.add(new ActorsMovieDTO(personName,gender,characterName));
+        }
+        return actorsDTO;
+    }
+
+
+    /*
+    MItj correcte
+    public List<ActorsMovieDTO> getActorsByMovieId(Long movieId) {
+        List<MovieCast> actorsInMovie= movieCastRepo.findAllActorsByMovieId(movieId);
+        List<ActorsMovieDTO> actorsDTO = new ArrayList<>();
+        for (MovieCast movieCast : actorsInMovie) {
+            String personName =movieCast.getPerson().getPersonName();
+            String gender = movieCast.getGender().getGender();
+            String characterName = movieCast.getCharacterName();
+            //Ficam en el DTO
+            actorsDTO.add(new ActorsMovieDTO(personName,gender,characterName));
+        }
+        return actorsDTO;
+    }
+     */
 
 
 

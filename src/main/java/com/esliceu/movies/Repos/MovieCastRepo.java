@@ -24,14 +24,27 @@ public interface MovieCastRepo extends JpaRepository<MovieCast,Long> {
 
 
    //Aquest es el normal
-
+/*
     @Query("SELECT p.personName, g.gender, mc.characterName " +
             "FROM MovieCast mc JOIN Person p ON p.personId=mc.person.personId " +
             "JOIN Gender g ON mc.gender.genderId=g.genderId " +
             "WHERE mc.movie.movieId =:movieId")
     List<ActorDTO> findAllActorsByMovieId(@Param("movieId") Long movieId);
+*/
 
+    List<MovieCast> findByMovie_MovieId(Long movieId);
 
+    //List<MovieCast> findPersonNameAndGenderAndCharacterNameByMovieId(Long movieId);
+
+/*
+Amem si es la consulta
+    @Query("SELECT p.personName, g.gender, mc.characterName " +
+            "FROM MovieCast mc JOIN Person p ON p.personId=mc.person.personId " +
+            "JOIN Gender g ON mc.gender.genderId=g.genderId " +
+            "WHERE mc.movie.movieId =:movieId")
+    List<MovieCast> findAllActorsByMovieId(@Param("movieId") Long movieId);
+
+ */
 
 
 

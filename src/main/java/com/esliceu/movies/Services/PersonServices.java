@@ -18,7 +18,6 @@ public class PersonServices {
     public String deletePerson(Map<String, String> data) {
         Long personId = Long.valueOf(data.get("value1"));
         if (personRepo.existsByPersonId(personId)) {
-            //todo:probant de borrar correctament
             movieCrewServices.deleteByPersonId(personId);
             movieCastServices.deleteByPersonId(personId);
             personRepo.deleteById(personId);

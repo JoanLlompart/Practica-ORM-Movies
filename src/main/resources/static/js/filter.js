@@ -90,8 +90,7 @@ function updateTable(data) {
                 viewButton.textContent = "View";
                 viewButton.addEventListener("click", function() {
                     // Aquí puedes agregar la lógica para manejar el clic en el botón "View"
-                    // Puedes acceder a los datos de la fila actual a través de la variable 'item'
-                    
+                    // Puedes acceder a los datos de la fila actual a través de la variable 'item' 
                     console.log("View button clicked for row:", item);
                    // let viewId = item.movieId;
                     viewId = item.movieId;

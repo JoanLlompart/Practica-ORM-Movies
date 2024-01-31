@@ -6,6 +6,7 @@ import com.esliceu.movies.Entities.MovieLanguages;
 import com.esliceu.movies.Entities.Person;
 import com.esliceu.movies.Repos.MovieCastRepo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -15,6 +16,9 @@ import java.util.Map;
 public class MovieCastServices {
     @Autowired
     MovieCastRepo movieCastRepo;
+
+
+
     public void deleteByMovieId(Long movieId) {
         List<MovieCast> allMovieCast = movieCastRepo.findAllByMovie_MovieId(movieId);
         movieCastRepo.deleteAll(allMovieCast);
@@ -24,4 +28,7 @@ public class MovieCastServices {
         return movieCastRepo.findAllActorsByMovieId(movieId);
     }
 
+    public List<?> filterByActor(String keyword, Pageable pageable) {
+        return movieCastRepo.findPersonAndCharacterAndMovieByPersonPersonNameContaining(keyword,pageable);
+    }
 }

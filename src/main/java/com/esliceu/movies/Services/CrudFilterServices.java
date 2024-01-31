@@ -1,5 +1,6 @@
 package com.esliceu.movies.Services;
 
+import com.esliceu.movies.Entities.Person;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -17,6 +18,8 @@ public class CrudFilterServices {
     LanguageServices languageServices;
     @Autowired
     LanguageRoleServices languageRoleServices;
+    @Autowired
+    MovieCastServices movieCastServices;
 
     @Autowired
     GenreServices genreServices;
@@ -36,6 +39,8 @@ public class CrudFilterServices {
                 return languageRoleServices.filterByLanguageRole(keyword,pageable);
             case "genre":
                 return genreServices.filterByGenre(keyword,pageable);
+            case "actor":
+                return movieCastServices.filterByActor(keyword,pageable);
             default:
                 break;
         }

@@ -3,6 +3,7 @@ package com.esliceu.movies.Repos;
 import com.esliceu.movies.DTO.ActorDTO;
 import com.esliceu.movies.Entities.MovieCast;
 import com.esliceu.movies.Entities.Person;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -24,4 +25,6 @@ public interface MovieCastRepo extends JpaRepository<MovieCast,Long> {
             "JOIN Gender g ON mc.gender.genderId=g.genderId " +
             "WHERE mc.movie.movieId =:movieId")
     List<ActorDTO> findAllActorsByMovieId(@Param("movieId") Long movieId);
+
+    List<?> findPersonAndCharacterAndMovieByPersonPersonNameContaining(String keyword, Pageable pageable);
 }

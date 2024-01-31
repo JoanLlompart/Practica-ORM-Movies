@@ -6,6 +6,7 @@ import com.esliceu.movies.Entities.MovieLanguages;
 import com.esliceu.movies.Entities.Person;
 import com.esliceu.movies.Repos.MovieCastRepo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
@@ -31,17 +32,9 @@ public class MovieCastServices {
 
     public List<?> filterByActor(String keyword, Pageable pageable) {
 
-        List<Object[]>actorsInfo = movieCastRepo.findPersonAndCharacterAndMovieByPersonPersonNameContaining(keyword,pageable);
-        List<ActorDTO> actorDTOList = new ArrayList<>();
-        for (Object[] actor : actorsInfo) {
-            String personName = (String) actor[0];
-            String character = (String) actor[1];
-            String title = (String) actor[2];
+        //List<Object[]> actorsInfo = movieCastRepo.findPersonAndCharacterAndMovieByPersonPersonNameContaining(keyword, pageable);
 
-            //afegim el registre a actors
-            actorDTOList.add(new ActorDTO(personName,character,title));
-        }
-        //todo
-        return actorsInfo;
+        //return movieCastRepo.findPersonAndCharacterAndMovieByPersonPersonNameContaining(keyword, pageable);
+        return movieCastRepo.actorsAndMovies(keyword,pageable);
     }
 }

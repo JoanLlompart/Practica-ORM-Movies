@@ -26,5 +26,14 @@ public interface MovieCastRepo extends JpaRepository<MovieCast,Long> {
             "WHERE mc.movie.movieId =:movieId")
     List<ActorDTO> findAllActorsByMovieId(@Param("movieId") Long movieId);
 
-    List<Object[]> findPersonAndCharacterAndMovieByPersonPersonNameContaining(String keyword, Pageable pageable);
+    //List<Object[]> findPersonAndCharacterAndMovieByPersonPersonNameContaining(String keyword, Pageable pageable);
+
+    //FUNCIONA PERO NO FEIM BE EL CAST
+    //List<?> findPersonAndCharacterAndMovieByPersonPersonNameContaining(String keyword, Pageable pageable);
+
+    @Query("SELECT p.personName, mc.characterName, m.title " +
+            "FROM MovieCast mc JOIN Person p ON p.personId=mc.person.personId " +
+            "JOIN Movie m ON m.movieId=mc.movie.movieId WHERE p.personName LIKE %:keyword%")
+    List<?> actorsAndMovies(@Param("keyword") String keyword,Pageable pageable);
+
 }

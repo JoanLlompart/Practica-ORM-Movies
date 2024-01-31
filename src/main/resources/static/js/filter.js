@@ -200,8 +200,6 @@ function showActorsModal(actorsData) {
                 <th>Gender</th>
                 <th>Character Name</th>
                 <th></th>
-                <th>Person id</th>
-
             </tr>
         </thead>
         <tbody>
@@ -216,12 +214,12 @@ function showActorsModal(actorsData) {
         const cellGender = row.insertCell(1);
         const cellCharacterName = row.insertCell(2);
         const cellAction = row.insertCell(3);
-        const cellId = row.insertCell(4);
+       // const cellId = row.insertCell(4);
 
         cellPersonName.textContent = actor.personName;
         cellGender.textContent = actor.gender;
         cellCharacterName.textContent = actor.characterName;
-        cellId.textContent = actor.personId;
+       // cellId.textContent = actor.personId;
 
 
         // Agregar el botón en la columna "Action"
@@ -250,7 +248,7 @@ async function sendDeleteRelation(movieId, actorId) {
         actorId: actorId
     };
     try {
-        const response = await fetch('/movieSearch/decastActor', {
+        const response = await fetch('/adminArea/decastActor', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'

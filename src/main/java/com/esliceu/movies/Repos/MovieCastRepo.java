@@ -62,4 +62,8 @@ Amem si es la consulta
     List<?> actorsAndMovies(@Param("keyword") String keyword,Pageable pageable);
 
     List<MovieCast> findAllByPerson_PersonId(Long personId);
+
+   // boolean deleteByMovie_MovieIdAndPerson_PersonId(Long movieId, Long personId);
+   void deleteByMovie_MovieIdAndPerson_PersonId(Long movieId, Long personId);
+
 }

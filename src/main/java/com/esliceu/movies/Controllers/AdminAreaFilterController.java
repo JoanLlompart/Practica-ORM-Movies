@@ -1,6 +1,8 @@
 package com.esliceu.movies.Controllers;
 
 import com.esliceu.movies.Services.CrudFilterServices;
+import com.esliceu.movies.Services.MovieCastServices;
+import com.esliceu.movies.Services.MovieSearchServices;
 import com.esliceu.movies.Services.UserServices;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +23,8 @@ public class AdminAreaFilterController {
     UserServices userServices;
     @Autowired
     CrudFilterServices crudFilterServices;
+    @Autowired
+    MovieCastServices movieCastServices;
 
     @GetMapping("/adminArea/filter")
     public String adminGet(HttpSession session, Model model) {
@@ -34,5 +38,13 @@ public class AdminAreaFilterController {
         userServices.setEmail(email);
       //  String successMessage =crudFilterServices.insertNewKeyword(data);
         return crudFilterServices.filterByEntity(data);
+    }
+
+    @PostMapping("/adminArea/decastActor")
+    public ResponseEntity<Object> adminDecastActor(HttpSession session, @RequestBody Map<String, String> data) {
+        String email = (String) session.getAttribute("email");
+        userServices.setEmail(email);
+        String successMessage = movieCastServices.decastActor(data);
+        return ResponseEntity.ok().body(successMessage);
     }
 }

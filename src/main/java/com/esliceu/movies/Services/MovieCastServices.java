@@ -4,12 +4,14 @@ import com.esliceu.movies.DTO.ActorDTO;
 import com.esliceu.movies.DTO.ActorsMovieDTO;
 import com.esliceu.movies.Entities.MovieCast;
 import com.esliceu.movies.Repos.MovieCastRepo;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 @Service
@@ -77,5 +79,21 @@ public class MovieCastServices {
     public void deleteByPersonId(Long personId) {
         List<MovieCast> allPersonsMovie = movieCastRepo.findAllByPerson_PersonId(personId);
         movieCastRepo.deleteAll(allPersonsMovie);
+    }
+
+    @Transactional
+    public String decastActor(Map<String, String> data) {
+        Long movieId = Long.valueOf(data.get("movieId"));
+        Long personId = Long.valueOf(data.get("actorId"));
+
+       /* if (movieCastRepo.deleteByMovie_MovieIdAndPerson_PersonId(movieId, personId)) {
+            return "Actor decast successfully";
+        }else {
+            return "Actor decast failed";
+        }
+
+        */
+        movieCastRepo.deleteByMovie_MovieIdAndPerson_PersonId(movieId,personId);
+        return "Actor decast successfully";
     }
 }

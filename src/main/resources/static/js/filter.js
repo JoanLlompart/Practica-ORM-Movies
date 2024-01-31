@@ -68,9 +68,9 @@ function updateTable(data) {
     const table = document.getElementById("resultTable");
     table.innerHTML = ""; // Limpiar la tabla antes de actualizar
 
-    // Crear encabezados de la tabla, incluyendo uno adicional para el botón "View"
+    // Crear encabezados de la tabla, incluyendo botones adicionales
     const headers = Object.keys(data[0]);
-    headers.push("View");  // Agregar una columna adicional para el botón "View"
+    headers.push("View", "Actors");  // Agregar columnas adicionales para los botones
     const headerRow = table.insertRow();
     headers.forEach(header => {
         const th = document.createElement("th");
@@ -78,26 +78,30 @@ function updateTable(data) {
         headerRow.appendChild(th);
     });
 
-    // Llenar la tabla con los datos, incluyendo un botón "View" en cada fila
+    // Llenar la tabla con los datos, incluyendo botones en cada fila
     data.forEach(item => {
         const row = table.insertRow();
         headers.forEach(header => {
             const cell = row.insertCell();
-            
+
             if (header === "View") {
                 // Crear el botón "View" y asignarle un evento
                 const viewButton = document.createElement("button");
                 viewButton.textContent = "View";
                 viewButton.addEventListener("click", function() {
-                    // Aquí puedes agregar la lógica para manejar el clic en el botón "View"
-                    // Puedes acceder a los datos de la fila actual a través de la variable 'item' 
-                    console.log("View button clicked for row:", item);
-                   // let viewId = item.movieId;
                     viewId = item.movieId;
-                    console.log("View id :" + viewId);
                     viewInfoMovie(viewId);
                 });
                 cell.appendChild(viewButton);
+            } else if (header === "Actors") {
+                // Crear el botón "Actors" y asignarle un evento
+                const actorsButton = document.createElement("button");
+                actorsButton.textContent = "Actors";
+                actorsButton.addEventListener("click", function() {
+                    viewId = item.movieId;
+                    viewActors(viewId);
+                });
+                cell.appendChild(actorsButton);
             } else {
                 // Llenar las celdas con los datos del objeto 'item'
                 cell.textContent = item[header];
@@ -105,6 +109,36 @@ function updateTable(data) {
         });
     });
 }
+async function viewActors(viewId) {
+    // Construir el cuerpo de la solicitud POST
+    const requestBody = {
+        movieId: viewId
+
+    };
+
+    try {
+        // Realizar la solicitud Fetch al servidor con método POST
+        const response = await fetch('/movieSearch/movieActor', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(requestBody)
+        });
+
+        // Verificar el estado de la respuesta
+        if (!response.ok) {
+            throw new Error(`Error: ${response.status} - ${response.statusText}`);
+        }
+
+        // Obtener los datos de la respuesta JSON
+        const data = await response.json();
+        showActorsModal(data);
+    } catch (error) {
+        console.error('Error:', error);
+    }
+}
+
 
 async function viewInfoMovie(viewId) {
     // Construir el cuerpo de la solicitud POST
@@ -152,6 +186,26 @@ function showMovieModal(movieData) {
 }
 
 
+
+function showActorsModal(actorsData) {
+    // Rellena el modal con la información de los actores
+    const modalBody = document.getElementById("movieModalBody");
+    modalBody.innerHTML = "";
+
+    for (const [key, value] of Object.entries(actorsData)) {
+        const row = document.createElement("div");
+        row.innerHTML = `<strong>${key}:</strong> ${value}`;
+        modalBody.appendChild(row);
+    }
+
+    // Mostrar el modal
+    $('#movieModal').modal('show');
+}
+
+
+
+
+/*
 async function applyFilter() {
     // Obtener el valor seleccionado del select
     const filterType = document.getElementById("filterType").value;
@@ -185,6 +239,7 @@ async function applyFilter() {
         return response.json();
     })
     .then(data => {
+        
         // Visualizar la lista devuelta por el servidor
         const resultContainer = document.getElementById("filterResult");
         resultContainer.innerHTML = ""; // Limpiar el contenedor antes de actualizar
@@ -198,8 +253,11 @@ async function applyFilter() {
             list.appendChild(listItem);
         });
         
-
         resultContainer.appendChild(list);
+        
+        
+        // Mostrar los resultados filtrados en el modal
+        updateFilterResult(data);
     })
     .catch(error => {
         console.error('Error:', error);
@@ -209,8 +267,23 @@ async function applyFilter() {
     // Cerrar el modal
     $('#filterModal').modal('hide');
 }
+*/
 
+function updateFilterResult(data) {
+    const resultContainer = document.getElementById("filterResult");
+    resultContainer.innerHTML = ""; // Limpiar el contenedor antes de actualizar
 
+    // Crear lista o actualizar según el formato de los datos recibidos
+    // Ejemplo: Crear una lista de elementos <li> para cada elemento recibido
+    const list = document.createElement("ul");
+    data.forEach(item => {
+        const listItem = document.createElement("li");
+        listItem.textContent = item;
+        list.appendChild(listItem);
+    });
+
+    resultContainer.appendChild(list);
+}
 
 
 

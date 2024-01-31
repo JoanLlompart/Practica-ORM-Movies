@@ -403,7 +403,7 @@ public class MovieSearchServices {
     public List<ActorsMovieDTO> getAllActors(Map<String, String> formData) {
         Long movieId = Long.valueOf(formData.get("movieId"));
         System.out.println("id de movie" +movieId);
-        String actor = formData.get("filterType");
+        //String actor = formData.get("filterType");
         return movieCastServices.getActorsByMovieId(movieId);
 
     }

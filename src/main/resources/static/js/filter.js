@@ -88,7 +88,7 @@ function updateTable(data) {
                 // Crear el botón "View" y asignarle un evento
                 const viewButton = document.createElement("button");
                 viewButton.textContent = "View";
-                viewButton.addEventListener("click", function() {
+                viewButton.addEventListener("click", function () {
                     viewId = item.movieId;
                     viewInfoMovie(viewId);
                 });
@@ -97,7 +97,7 @@ function updateTable(data) {
                 // Crear el botón "Actors" y asignarle un evento
                 const actorsButton = document.createElement("button");
                 actorsButton.textContent = "Actors";
-                actorsButton.addEventListener("click", function() {
+                actorsButton.addEventListener("click", function () {
                     viewId = item.movieId;
                     viewActors(viewId);
                 });
@@ -133,7 +133,7 @@ async function viewActors(viewId) {
 
         // Obtener los datos de la respuesta JSON
         const data = await response.json();
-        showActorsModal(data,viewId);
+        showActorsModal(data, viewId);
     } catch (error) {
         console.error('Error:', error);
     }
@@ -143,7 +143,7 @@ async function viewActors(viewId) {
 async function viewInfoMovie(viewId) {
     // Construir el cuerpo de la solicitud POST
     const requestBody = {
-        movieId:viewId
+        movieId: viewId
     };
 
     try {
@@ -178,7 +178,7 @@ function showMovieModal(movieData) {
     for (const [key, value] of Object.entries(movieData)) {
         const row = document.createElement("div");
 
-        if(key === "director") {
+        if (key === "director") {
             const directorList = document.createElement("ul");
 
             // Iterar a través de cada director en la lista
@@ -205,7 +205,7 @@ function showActorsModal(actorsData) {
     const modalBody = document.getElementById("movieModalBody");
     //const modalTitle = document.querySelector('.modal-title');
 
-   // modalTitle.textContent = ``
+    // modalTitle.textContent = ``
     modalBody.innerHTML = "";
 
     // Crear una tabla para mostrar la información de los actores
@@ -223,7 +223,7 @@ function showActorsModal(actorsData) {
         <tbody>
         </tbody>
     `;
-    
+
     // Llenar la tabla con los datos de los actores
     const tbody = table.querySelector("tbody");
     actorsData.forEach(actor => {
@@ -232,18 +232,18 @@ function showActorsModal(actorsData) {
         const cellGender = row.insertCell(1);
         const cellCharacterName = row.insertCell(2);
         const cellAction = row.insertCell(3);
-       // const cellId = row.insertCell(4);
+        // const cellId = row.insertCell(4);
 
         cellPersonName.textContent = actor.personName;
         cellGender.textContent = actor.gender;
         cellCharacterName.textContent = actor.characterName;
-       // cellId.textContent = actor.personId;
+        // cellId.textContent = actor.personId;
 
 
         // Agregar el botón en la columna "Action"
         const actionButton = document.createElement("button");
         actionButton.textContent = "X";
-        actionButton.addEventListener("click", function() {
+        actionButton.addEventListener("click", function () {
             // Enviar la información al servidor al hacer clic en el botón
             sendDeleteRelation(viewId, actor.personId);
         });
@@ -266,34 +266,35 @@ async function sendDeleteRelation(movieId, actorId) {
         actorId: actorId
     };
     const userConfirmed = window.confirm(`Are you sure you want to decast this actor in Movie by id :  ` + movieId + ' ?');
-    if(userConfirmed) {
-    try {
-        const response = await fetch('/adminArea/decastActor', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(requestBody)
-        }) .then(response => {
-            if (!response.ok) {
-                throw new Error('Error en la solicitud: ' + response.statusText);
-            }
-            return response.text();
-        })
-        .then(responseData => {
+    if (userConfirmed) {
+        try {
+            const response = await fetch('/adminArea/decastActor', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(requestBody)
+            }).then(response => {
+                if (!response.ok) {
+                    throw new Error('Error en la solicitud: ' + response.statusText);
+                }
+                return response.text();
+            })
+                .then(responseData => {
 
-        // Puedes manejar la respuesta del servidor si es necesario
-        console.log('Actor selection successful');
-        //recarrega la pagina
-    
-        $('#movieModal').modal('hide');
-        viewActors(movieId);
-        alert(responseData);
-        })
-    } catch (error) {
-        console.error('Error:', error);
+                    // Puedes manejar la respuesta del servidor si es necesario
+                    console.log('Actor selection successful');
+                    //recarrega la pagina
+
+                    $('#movieModal').modal('hide');
+                    viewActors(movieId);
+                    alert(responseData);
+                })
+        } catch (error) {
+            console.error('Error:', error);
+        }
     }
-} }
+}
 
 
 
@@ -363,46 +364,6 @@ async function applyFilter() {
 */
 
 
-function updateFilterResult(data) {
-    const resultContainer = document.getElementById("filterResult");
-    resultContainer.innerHTML = ""; // Limpiar el contenedor antes de actualizar
-
-    // Crear lista o actualizar según el formato de los datos recibidos
-    // Ejemplo: Crear una lista de elementos <li> para cada elemento recibido
-    const list = document.createElement("ul");
-    data.forEach(item => {
-        const listItem = document.createElement("li");
-        listItem.textContent = item;
-        list.appendChild(listItem);
-    });
-
-    resultContainer.appendChild(list);
-}
-
-
-
-
-const keywordInput = document.getElementById("keyword");
-keywordInput.addEventListener("input" , function() {
-    //Envia les noves dades a sendData perque faci la peticio
-    if(keywordInput.value.trim() !=='') {
-        sendData();
-    }
-})
-
-//proba 
-
-// Event Listener for Page input
-document.getElementById('page').addEventListener('change', function() {
-    sendData();
-});
-
-// Event Listener for Size input
-document.getElementById('size').addEventListener('change', function() {
-    sendData();
-});
-
-
 
 
 
@@ -424,28 +385,53 @@ async function searchPersons() {
     const personPage = document.getElementById('personPage').value;
     const personSize = document.getElementById('personSize').value;
 
-    // Realizar la solicitud Fetch al servidor para buscar personas
-    const response = await fetch(`/searchPersons?keyword=${personKeyword}&page=${personPage}&size=${personSize}`);
-    const data = await response.json();
+    // Construir el cuerpo de la solicitud POST
+    const requestBody = {
+        keyword: personKeyword,
+        personPage: personPage,
+        personSize: personSize
+    };
 
-    // Mostrar los resultados en el modal
-    const personResults = document.getElementById('personResults');
-    personResults.innerHTML = '';
-
-    data.forEach(person => {
-        const listItem = document.createElement('li');
-        listItem.textContent = `${person.name} (${person.id})`;
-
-        // Añade un botón para agregar la persona al elenco
-        const addButton = document.createElement('button');
-        addButton.textContent = 'Add';
-        addButton.addEventListener('click', function () {
-            addPersonToCast(person.id, person.name);
+    try {
+        // Realizar la solicitud Fetch al servidor con método POST
+        const response = await fetch('/movieSearch/person', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(requestBody)
         });
 
-        listItem.appendChild(addButton);
-        personResults.appendChild(listItem);
-    });
+        // Verificar el estado de la respuesta
+        if (!response.ok) {
+            throw new Error(`Error: ${response.status} - ${response.statusText}`);
+        }
+        // Obtener los datos de la respuesta JSON
+        const data = await response.json();
+
+        // Mostrar los resultados en el modal
+        const personResults = document.getElementById('personResults');
+        personResults.innerHTML = '';
+
+        data.forEach(person => {
+            const listItem = document.createElement('li');
+            listItem.textContent = `${person.name} (${person.id})`;
+
+            // Añade un botón para agregar la persona al elenco
+            const addButton = document.createElement('button');
+            addButton.textContent = 'Add';
+            addButton.addEventListener('click', function () {
+                addPersonToCast(person.id, person.name);
+            });
+
+            listItem.appendChild(addButton);
+            personResults.appendChild(listItem);
+        });
+        // Llamar a la función para actualizar la tabla con los datos recibidos
+        // updateTable(data);
+    } catch (error) {
+        console.error('Error:', error);
+    }
 }
 
 // Función para agregar la persona seleccionada al elenco de la película
@@ -462,61 +448,65 @@ function addPersonToCast(personId, personName) {
 
 
 
-/*
-
-ORIGINAL I FUNCIONAL
-function sendData() {
-    var form = document.getElementById('formFilter');
-    var filter = document.getElementById('filter').value;
-    var keyword = document.getElementById('keyword').value;
-    var formData = {
-        filter: filter,
-        keyword: keyword
-        }
-        fetch('/movieSearch', {
-            method: 'POST', 
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body:JSON.stringify(formData)
-        })
-        .then(response => response.json())
-        .then(data => {
-            // Borrar la taula actual de dades per mostrar la nova
-            var tableBody = document.querySelector('.table tbody');
-            tableBody.innerHTML = "";
-            
-             // Llenar la tabla con los nuevos datos
-            data.moviesFind.forEach(movie => {
-                var newRow = tableBody.insertRow(tableBody.rows.length);
-                newRow.insertCell(0).textContent = movie.movieId;
-                newRow.insertCell(1).textContent = movie.title;
-                newRow.insertCell(2).textContent = movie.releaseDate;
-                newRow.insertCell(3).textContent = movie.voteAverage;
-            });
-        })
-        .catch(error => {
-            console.error('Error:', error);
-        });
-    }
-*/
 
 
-//Per ara no esta actiu
-        // Funció que navega a una página específica
-/*
-function goToPage() {
-    var pageNumberInput = document.getElementById('pageNumberInput').value;
-    var totalPages = ${totalPages};
 
-    // Validar que el valor sea un número entre 1 y totalPages
-    if (/^[1-9]\d*$/.test(pageNumberInput)) {
-        var page = parseInt(pageNumberInput, 10) - 1;
 
-        // Verificar que la página esté dentro del rango permitido
-        if (page >= 0 && page < totalPages) {
-            window.location.href = '/movieSearch?page=' + page;
-        }
-    }
+function updateFilterResult(data) {
+    const resultContainer = document.getElementById("filterResult");
+    resultContainer.innerHTML = ""; // Limpiar el contenedor antes de actualizar
+
+    // Crear lista o actualizar según el formato de los datos recibidos
+    // Ejemplo: Crear una lista de elementos <li> para cada elemento recibido
+    const list = document.createElement("ul");
+    data.forEach(item => {
+        const listItem = document.createElement("li");
+        listItem.textContent = item;
+        list.appendChild(listItem);
+    });
+
+    resultContainer.appendChild(list);
 }
-*/
+
+
+
+
+const keywordInput = document.getElementById("keyword");
+keywordInput.addEventListener("input", function () {
+    //Envia les noves dades a sendData perque faci la peticio
+    if (keywordInput.value.trim() !== '') {
+        sendData();
+    }
+})
+
+//proba 
+
+// Event Listener for Page input
+document.getElementById('page').addEventListener('change', function () {
+    sendData();
+});
+
+// Event Listener for Size input
+document.getElementById('size').addEventListener('change', function () {
+    sendData();
+});
+
+
+//PERSON SEARCH
+const keywordPersonInput = document.getElementById("personKeyword");
+keywordPersonInput.addEventListener("input", function () {
+    //Envia les noves dades a sendData perque faci la peticio
+    if (keywordPersonInput.value.trim() !== '') {
+        searchPersons();
+    }
+})
+
+
+document.getElementById('personPage').addEventListener('change', function () {
+    searchPersons();
+});
+
+
+document.getElementById('personSize').addEventListener('change', function () {
+    searchPersons();
+});

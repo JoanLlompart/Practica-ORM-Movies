@@ -184,6 +184,7 @@ function showMovieModal(movieData) {
             // Iterar a través de cada director en la lista
             value.forEach(director => {
                 const directorItem = document.createElement("li");
+                row.innerHTML = `<strong>${key}:</strong>`;
                 directorItem.textContent = `${director.personName}`;
                 directorList.appendChild(directorItem);
             });

@@ -203,6 +203,9 @@ function showMovieModal(movieData) {
 function showActorsModal(actorsData) {
     // Rellena el modal con la información de los actores
     const modalBody = document.getElementById("movieModalBody");
+    //const modalTitle = document.querySelector('.modal-title');
+
+   // modalTitle.textContent = ``
     modalBody.innerHTML = "";
 
     // Crear una tabla para mostrar la información de los actores
@@ -398,6 +401,64 @@ document.getElementById('page').addEventListener('change', function() {
 document.getElementById('size').addEventListener('change', function() {
     sendData();
 });
+
+
+
+
+
+
+// Añade un evento al botón "Add new person to cast" para abrir el modal de búsqueda de personas
+const addPersonButton = document.getElementById('btnPersonSearch');
+addPersonButton.addEventListener('click', function () {
+    // Limpiar el campo de búsqueda y los resultados
+    document.getElementById('personKeyword').value = '';
+    document.getElementById('personResults').innerHTML = '';
+
+    // Abrir el modal de búsqueda de personas
+    $('#addPersonModal').modal('show');
+});
+
+// Función para realizar la búsqueda de personas
+async function searchPersons() {
+    const personKeyword = document.getElementById('personKeyword').value;
+    const personPage = document.getElementById('personPage').value;
+    const personSize = document.getElementById('personSize').value;
+
+    // Realizar la solicitud Fetch al servidor para buscar personas
+    const response = await fetch(`/searchPersons?keyword=${personKeyword}&page=${personPage}&size=${personSize}`);
+    const data = await response.json();
+
+    // Mostrar los resultados en el modal
+    const personResults = document.getElementById('personResults');
+    personResults.innerHTML = '';
+
+    data.forEach(person => {
+        const listItem = document.createElement('li');
+        listItem.textContent = `${person.name} (${person.id})`;
+
+        // Añade un botón para agregar la persona al elenco
+        const addButton = document.createElement('button');
+        addButton.textContent = 'Add';
+        addButton.addEventListener('click', function () {
+            addPersonToCast(person.id, person.name);
+        });
+
+        listItem.appendChild(addButton);
+        personResults.appendChild(listItem);
+    });
+}
+
+// Función para agregar la persona seleccionada al elenco de la película
+function addPersonToCast(personId, personName) {
+    // Realiza la lógica para agregar la persona al elenco de la película
+    // Puedes hacer una solicitud Fetch al servidor para realizar esta acción
+    // Recuerda cerrar el modal después de realizar la acción
+
+    // Ejemplo de cómo cerrar el modal
+    $('#addPersonModal').modal('hide');
+}
+
+
 
 
 

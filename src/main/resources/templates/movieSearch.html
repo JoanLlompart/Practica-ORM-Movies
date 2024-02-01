@@ -64,24 +64,24 @@
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
-                    </div>
-                    <div class="modal-body" id="movieModalBody">
-                        <!-- Aqui va la info de el modal -->
-                    </div>
+                        <div>
+                            <button type="button" class="btn btn-primary" id="btnPersonSearch">Add new person to cast</button>
+                        </div>
+                </div>
 
-                    <!-- Botón para abrir el modal de filtro -->
-                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#filterModal">
-                        Open Filter Modal
-                    </button>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    </div>
+                <div class="modal-body" id="movieModalBody">
+                    <!-- Aqui va la info de el modal -->
+                </div>
+                <div class="modal-footer">
+
+                    <!--  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>-->
                 </div>
             </div>
         </div>
+    </div>
 
 
-        <!-- Modal de Participants -->
+    <!-- Modal de Participants 
         <div class="modal" id="filterModal" tabindex="-1" role="dialog">
             <div class="modal-dialog modal-lg" role="document">
                 <div class="modal-content">
@@ -92,11 +92,7 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        <label for="filterType">Select Filter Type:</label>
-                        <select id="filterType" class="form-control">
-                            <option value="actor">Actor</option>
-                            <option value="director">Director</option>
-                        </select>
+                        <label for="filterType">Add new person to cast:</label>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-primary" onclick="applyFilter()">Apply Filter</button>
@@ -105,21 +101,50 @@
                 </div>
                 <div id="filterResult" class="mt-3"></div>
             </div>
+        </div>-->
+    <!-- Modal para añadir nueva persona a la película -->
+    <div class="modal" id="addPersonModal" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Add Person to Cast</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <!-- Contenido de búsqueda de personas -->
+                    <input type="text" name="personKeyword" id="personKeyword" placeholder="Keyword">
+                    <label for="page">Page:</label>
+                    <input type="number" name="page" id="personPage" value="0" required>
+                    <label for="size">Size:</label>
+                    <input type="number" name="size" id="personSize" value="10" required>
+
+                    <!-- Resultados de búsqueda de personas -->
+                    <ul id="personResults"></ul>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" onclick="addPersonToCast()">Add Person</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
         </div>
+    </div>
 
 
 
-        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-            crossorigin="anonymous"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-            integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-            crossorigin="anonymous"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-            integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-            crossorigin="anonymous"></script>
 
-        <script src="/js/filter.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+
+    <script src="/js/filter.js"></script>
 </body>
 
 </html>

@@ -62,32 +62,6 @@ public class MovieCastServices {
     }
 
 
-    /*
-    MItj correcte
-    public List<ActorsMovieDTO> getActorsByMovieId(Long movieId) {
-        List<MovieCast> actorsInMovie= movieCastRepo.findAllActorsByMovieId(movieId);
-        List<ActorsMovieDTO> actorsDTO = new ArrayList<>();
-        for (MovieCast movieCast : actorsInMovie) {
-            String personName =movieCast.getPerson().getPersonName();
-            String gender = movieCast.getGender().getGender();
-            String characterName = movieCast.getCharacterName();
-            //Ficam en el DTO
-            actorsDTO.add(new ActorsMovieDTO(personName,gender,characterName));
-        }
-        return actorsDTO;
-    }
-     */
-
- /*   public List<?> filterByActor(String keyword, Pageable pageable) {
-
-        //List<Object[]> actorsInfo = movieCastRepo.findPersonAndCharacterAndMovieByPersonPersonNameContaining(keyword, pageable);
-        //return movieCastRepo.findPersonAndCharacterAndMovieByPersonPersonNameContaining(keyword, pageable);
-
-        return movieCastRepo.actorsAndMovies(keyword,pageable);
-    }
-
-  */
-
     public void deleteByPersonId(Long personId) {
         List<MovieCast> allPersonsMovie = movieCastRepo.findAllByPerson_PersonId(personId);
         movieCastRepo.deleteAll(allPersonsMovie);

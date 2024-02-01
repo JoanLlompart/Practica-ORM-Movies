@@ -62,7 +62,6 @@ Amem si es la consulta
 
     List<MovieCast> findAllByPerson_PersonNameContaining(String personName , Pageable pageable);
 
-
     List<MovieCast> findAllByPerson_PersonId(Long personId);
 
    // boolean deleteByMovie_MovieIdAndPerson_PersonId(Long movieId, Long personId);

@@ -1,9 +1,13 @@
 package com.esliceu.movies.Services;
 
+import com.esliceu.movies.Entities.Person;
 import com.esliceu.movies.Repos.PersonRepo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Map;
 
 @Service
@@ -25,5 +29,19 @@ public class PersonServices {
         } else {
             return "Person Delete Error";
         }
+    }
+
+    public List<Person> findPersonsByKeyword(Map<String, String> formData) {
+        /*
+        keyword: personKeyword,
+        personPage: personPage,
+        personSize: personSize
+         */
+        String keyword = formData.get("keyword");
+        int page = Integer.parseInt(formData.get("personPage"));
+        int size = Integer.parseInt(formData.get("personSize"));
+
+        Pageable pageable = PageRequest.of(page,size);
+        return personRepo.findByPersonNameContaining(keyword,pageable);
     }
 }

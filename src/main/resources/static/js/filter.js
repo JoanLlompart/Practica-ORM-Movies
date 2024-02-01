@@ -415,15 +415,14 @@ async function searchPersons() {
 
         data.forEach(person => {
             const listItem = document.createElement('li');
-            listItem.textContent = `${person.name} (${person.id})`;
+            listItem.textContent = `${person.personName} (${person.personId})`;
 
             // Añade un botón para agregar la persona al elenco
             const addButton = document.createElement('button');
             addButton.textContent = 'Add';
             addButton.addEventListener('click', function () {
-                addPersonToCast(person.id, person.name);
+                addPersonToCast(person.personId, person.personName);
             });
-
             listItem.appendChild(addButton);
             personResults.appendChild(listItem);
         });

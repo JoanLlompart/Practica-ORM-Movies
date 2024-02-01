@@ -3,7 +3,9 @@ package com.esliceu.movies.Controllers;
 import com.esliceu.movies.DTO.MovieDTO;
 import com.esliceu.movies.DTO.MovieInfoDTO;
 import com.esliceu.movies.Entities.Movie;
+import com.esliceu.movies.Entities.Person;
 import com.esliceu.movies.Services.MovieSearchServices;
+import com.esliceu.movies.Services.PersonServices;
 import com.esliceu.movies.Services.UserServices;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +25,8 @@ public class MovieSearchController {
     MovieSearchServices movieSearchServices;
     @Autowired
     UserServices userServices;
+    @Autowired
+    PersonServices personServices;
 
     @GetMapping("/movieSearch")
     public String showMovies(Model model, HttpSession session, @RequestParam(defaultValue = "0") int page) {
@@ -51,6 +55,15 @@ public class MovieSearchController {
 
         */
         return movieList;
+    }
+
+
+    @PostMapping("/movieSearch/person")
+    @ResponseBody
+    public List<Person> filterPerson(@RequestBody Map<String, String> formData, HttpSession session) {
+        String email = (String) session.getAttribute("email");
+        userServices.setEmail(email);
+        return personServices.findPersonsByKeyword(formData);
     }
 
     //Informacio de Movie completa amb un modal.

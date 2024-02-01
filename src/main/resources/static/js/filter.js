@@ -436,13 +436,41 @@ async function searchPersons() {
 }
 
 // Función para agregar la persona seleccionada al elenco de la película
-function addPersonToCast(personId,viewid) {
+async function addPersonToCast(personId,viewid) {
     const requestBody = {
-        keyword: personKeyword,
-        personPage: personPage
+        personId: personId,
+        movieId: viewid
+    }
+
+    const userConfirmed = window.confirm(`Are you sure you want to add this actor in Movie by id :  ` + viewId + ' ?');
+    if (userConfirmed) {
+        try {
+            const response = await fetch('/adminArea/castPerson', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(requestBody)
+            }).then(response => {
+                if (!response.ok) {
+                    throw new Error('Error en la solicitud: ' + response.statusText);
+                }
+                return response.text();
+            })
+                .then(responseData => {
+                    alert(responseData)
+                    //recarrega la pagina
+
+                    $('#addPersonModal').modal('hide');
+                    viewActors(movieId);
+                    alert(responseData);
+                })
+        } catch (error) {
+            console.error('Error:', error);
+        }
     }
     
-    $('#addPersonModal').modal('hide');
+   // $('#addPersonModal').modal('hide');
 }
 
 

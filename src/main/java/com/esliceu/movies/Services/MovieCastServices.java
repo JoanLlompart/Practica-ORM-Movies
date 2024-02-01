@@ -94,7 +94,7 @@ public class MovieCastServices {
     public String castActor(Map<String, String> data) {
         Long movieId = Long.valueOf(data.get("movieId"));
         Long personId = Long.valueOf(data.get("personId"));
-        String characterName = data.get("personId");
+        String characterName = data.get("characterName");
 
         // Pas 1:  Recuperar la persona amb el id
         Person person = personRepo.findById(personId)
@@ -107,6 +107,7 @@ public class MovieCastServices {
         MovieCast movieCast = new MovieCast();
         movieCast.setPerson(person);
         movieCast.setMovie(movie);
+        movieCast.setCharacterName(characterName);
         movieCastRepo.save(movieCast);
         return "Person assigned to the movie successfully";
     }

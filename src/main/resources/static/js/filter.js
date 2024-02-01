@@ -421,7 +421,9 @@ async function searchPersons() {
             const addButton = document.createElement('button');
             addButton.textContent = 'Add';
             addButton.addEventListener('click', function () {
-                addPersonToCast(person.personId, person.personName);
+                console.log("viewid person " + viewId)
+                addPersonToCast(person.personId, viewId);
+                
             });
             listItem.appendChild(addButton);
             personResults.appendChild(listItem);
@@ -434,12 +436,12 @@ async function searchPersons() {
 }
 
 // Función para agregar la persona seleccionada al elenco de la película
-function addPersonToCast(personId, personName) {
-    // Realiza la lógica para agregar la persona al elenco de la película
-    // Puedes hacer una solicitud Fetch al servidor para realizar esta acción
-    // Recuerda cerrar el modal después de realizar la acción
-
-    // Ejemplo de cómo cerrar el modal
+function addPersonToCast(personId,viewid) {
+    const requestBody = {
+        keyword: personKeyword,
+        personPage: personPage
+    }
+    
     $('#addPersonModal').modal('hide');
 }
 

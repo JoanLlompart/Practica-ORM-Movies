@@ -16,8 +16,11 @@ public interface MovieCrewRepo extends JpaRepository<MovieCrew, Long> {
 
     List<MovieCrew> findAllByPerson_PersonId(Long personId);
 
-    @Query("SELECT mc.person FROM MovieCrew mc WHERE mc.movie.movieId = :movieId AND mc.job = :job")
-    Optional<Person> findFirstPersonByMovieIdAndJob(@Param("movieId") Long movieId, @Param("job") String job);
+    List<MovieCrew> findAllPersonByMovie_MovieIdAndJob(Long movieId, String job);
+
+    //FUNCIONA PERO FALLA SI ES MES DE UN
+   // @Query("SELECT mc.person FROM MovieCrew mc WHERE mc.movie.movieId = :movieId AND mc.job = :job")
+    //Optional<Person> findFirstPersonByMovieIdAndJob(@Param("movieId") Long movieId, @Param("job") String job);
 
     /*
     @Query("SELECT p.person_name, g.gender, mc.character_name " +

@@ -24,6 +24,13 @@ public class Person {
     @JsonIgnore
     private Set<MovieCrew> movieCrews;
 
+    public Person() {
+    }
+
+    public Person(Long personId, String personName) {
+        this.personId = personId;
+        this.personName = personName;
+    }
 
     public Long getPersonId() {
         return personId;

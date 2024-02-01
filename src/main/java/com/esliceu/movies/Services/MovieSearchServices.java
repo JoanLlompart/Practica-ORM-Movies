@@ -4,6 +4,7 @@ import com.esliceu.movies.DTO.ActorsMovieDTO;
 import com.esliceu.movies.DTO.MovieDTO;
 import com.esliceu.movies.DTO.MovieInfoDTO;
 import com.esliceu.movies.Entities.Movie;
+import com.esliceu.movies.Entities.Person;
 import com.esliceu.movies.Repos.MovieSearchRepo;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -371,34 +372,30 @@ public class MovieSearchServices {
         }
     }
 
-    public Optional<MovieInfoDTO> getAllMovieInfo(Map<String, String> formData) {
-        Long movieId = Long.valueOf(formData.get("movieId"));
-       Optional<Movie> m=movieSearchRepo.findById(movieId);
-       //Rellenam el DTO amb les dades de Movie
-      /* MovieInfoDTO movieInfoDTO = new MovieInfoDTO(m.getMovieId(), m.get().getTitle(),
-               m.get().getBudget(),m.get().getHomepage(),m.get().getOverview(),m.get().getPopularity(),
-               m.get().getReleaseDate(),m.get().getRevenue(),m.get().getRuntime(),m.get().getMovieStatus(),
-               m.get().getTagline(),m.get().getVoteAverage(), m.get().getVoteCount());
 
-       */
+  /*  public Optional<MovieInfoDTO> getAllMovieInfo(Map<String, String> formData) {
+        Long movieId = Long.valueOf(formData.get("movieId"));
+        Optional<Movie> m=movieSearchRepo.findById(movieId);
+        //Rellenam el DTO amb les dades de Movie
         String director =movieCrewServices.findDirectorByMovieId(movieId);
         MovieInfoDTO movieInfoDTO = MovieInfoDTO.fromMovie(m.get(),director);
         System.out.println("El director de la pelicula es : " + director);
-         return Optional.of(movieInfoDTO);
+        return Optional.of(movieInfoDTO);
     }
 
-
-/*
-     public Optional<List<ActorDTO>> getAllActors(Map<String, String> formData) {
-        //PrimeraOpcio
+   */
+    public Optional<MovieInfoDTO> getAllMovieInfo(Map<String, String> formData) {
         Long movieId = Long.valueOf(formData.get("movieId"));
-        System.out.println("id de movie" +movieId);
-        String actor = formData.get("filterType");
-        List<ActorDTO> movieActors =movieCastServices.getActorsByMovieId(movieId);
-        return Optional.of(movieActors);
+        Optional<Movie> m=movieSearchRepo.findById(movieId);
+        //Rellenam el DTO amb les dades de Movie
+        List<Person> movieDirectors =movieCrewServices.findDirectorByMovieId(movieId);
+        MovieInfoDTO movieInfoDTO = MovieInfoDTO.fromMovie(m.get(),movieDirectors);
+        System.out.println("El director de la pelicula es : " + movieDirectors);
+        return Optional.of(movieInfoDTO);
     }
 
- */
+
+
 
     public List<ActorsMovieDTO> getAllActors(Map<String, String> formData) {
         Long movieId = Long.valueOf(formData.get("movieId"));

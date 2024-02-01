@@ -1,8 +1,7 @@
 package com.esliceu.movies.Repos;
 
-import com.esliceu.movies.DTO.ActorDTO;
+
 import com.esliceu.movies.Entities.MovieCrew;
-import com.esliceu.movies.Entities.MovieLanguages;
 import com.esliceu.movies.Entities.Person;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;

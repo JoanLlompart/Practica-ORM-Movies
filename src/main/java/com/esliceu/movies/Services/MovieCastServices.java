@@ -12,7 +12,6 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 @Service
 public class MovieCastServices {
@@ -47,6 +46,22 @@ public class MovieCastServices {
     }
 
 
+    public List<ActorDTO> filterByActor(String keyword, Pageable pageable) {
+
+        List<MovieCast> actorMoviesList = movieCastRepo.findAllByPerson_PersonNameContaining(keyword,pageable);
+        List<ActorDTO> jobActor = new ArrayList<>();
+        for (MovieCast movieCast: actorMoviesList) {
+            String personName = movieCast.getPerson().getPersonName();
+            String characterName = movieCast.getCharacterName();
+            String title = movieCast.getMovie().getTitle();
+
+            //Ficam dins el record de ActorDTO
+            jobActor.add(new ActorDTO(personName,characterName,title));
+        }
+        return jobActor;
+    }
+
+
     /*
     MItj correcte
     public List<ActorsMovieDTO> getActorsByMovieId(Long movieId) {
@@ -63,18 +78,15 @@ public class MovieCastServices {
     }
      */
 
-
-
-
-
-    public List<?> filterByActor(String keyword, Pageable pageable) {
+ /*   public List<?> filterByActor(String keyword, Pageable pageable) {
 
         //List<Object[]> actorsInfo = movieCastRepo.findPersonAndCharacterAndMovieByPersonPersonNameContaining(keyword, pageable);
-
         //return movieCastRepo.findPersonAndCharacterAndMovieByPersonPersonNameContaining(keyword, pageable);
 
         return movieCastRepo.actorsAndMovies(keyword,pageable);
     }
+
+  */
 
     public void deleteByPersonId(Long personId) {
         List<MovieCast> allPersonsMovie = movieCastRepo.findAllByPerson_PersonId(personId);

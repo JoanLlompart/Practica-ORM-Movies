@@ -1,16 +1,16 @@
 package com.esliceu.movies.Services;
-import com.esliceu.movies.DTO.ActorDTO;
+
 import com.esliceu.movies.DTO.ActorsMovieDTO;
 import com.esliceu.movies.DTO.MovieDTO;
 import com.esliceu.movies.DTO.MovieInfoDTO;
 import com.esliceu.movies.Entities.Movie;
-import com.esliceu.movies.Entities.MovieCast;
 import com.esliceu.movies.Repos.MovieSearchRepo;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+
 import java.sql.Date;
 import java.util.*;
 

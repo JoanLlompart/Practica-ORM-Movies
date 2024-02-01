@@ -2,8 +2,12 @@ package com.esliceu.movies.Services;
 
 import com.esliceu.movies.DTO.ActorDTO;
 import com.esliceu.movies.DTO.ActorsMovieDTO;
+import com.esliceu.movies.Entities.Movie;
 import com.esliceu.movies.Entities.MovieCast;
+import com.esliceu.movies.Entities.Person;
 import com.esliceu.movies.Repos.MovieCastRepo;
+import com.esliceu.movies.Repos.MovieSearchRepo;
+import com.esliceu.movies.Repos.PersonRepo;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
@@ -17,6 +21,10 @@ import java.util.Map;
 public class MovieCastServices {
     @Autowired
     MovieCastRepo movieCastRepo;
+    @Autowired
+    PersonRepo personRepo;
+    @Autowired
+    MovieSearchRepo movieSearchRepo;
 
 
 
@@ -80,5 +88,26 @@ public class MovieCastServices {
         */
         movieCastRepo.deleteByMovie_MovieIdAndPerson_PersonId(movieId,personId);
         return "Actor decast successfully";
+    }
+
+    @Transactional
+    public String castActor(Map<String, String> data) {
+        Long movieId = Long.valueOf(data.get("movieId"));
+        Long personId = Long.valueOf(data.get("personId"));
+        String characterName = data.get("personId");
+
+        // Pas 1:  Recuperar la persona amb el id
+        Person person = personRepo.findById(personId)
+                .orElseThrow(() -> new RuntimeException("Persona no encontrada con ID: " + personId));
+
+        // Pas 2: Recuperar la pelicula amb el id
+        Movie movie = movieSearchRepo.findById(movieId)
+                .orElseThrow(() -> new RuntimeException("Película no encontrada con ID: " + movieId));
+
+        MovieCast movieCast = new MovieCast();
+        movieCast.setPerson(person);
+        movieCast.setMovie(movie);
+        movieCastRepo.save(movieCast);
+        return "Person assigned to the movie successfully";
     }
 }

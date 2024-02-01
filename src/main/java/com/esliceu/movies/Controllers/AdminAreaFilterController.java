@@ -47,4 +47,12 @@ public class AdminAreaFilterController {
         String successMessage = movieCastServices.decastActor(data);
         return ResponseEntity.ok().body(successMessage);
     }
+
+    @PostMapping("/adminArea/castPerson")
+    public ResponseEntity<Object> adminCastPerson(HttpSession session, @RequestBody Map<String, String> data) {
+        String email = (String) session.getAttribute("email");
+        userServices.setEmail(email);
+        String successMessage = movieCastServices.castActor(data);
+        return ResponseEntity.ok().body(successMessage);
+    }
 }

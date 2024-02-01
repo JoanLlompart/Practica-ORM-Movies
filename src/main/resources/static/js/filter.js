@@ -177,7 +177,21 @@ function showMovieModal(movieData) {
 
     for (const [key, value] of Object.entries(movieData)) {
         const row = document.createElement("div");
-        row.innerHTML = `<strong>${key}:</strong> ${value}`;
+
+        if(key === "director") {
+            const directorList = document.createElement("ul");
+
+            // Iterar a través de cada director en la lista
+            value.forEach(director => {
+                const directorItem = document.createElement("li");
+                directorItem.textContent = `${director.personName}`;
+                directorList.appendChild(directorItem);
+            });
+
+            row.appendChild(directorList);
+        } else {
+            row.innerHTML = `<strong>${key}:</strong> ${value}`;
+        }
         modalBody.appendChild(row);
     }
 

@@ -2,6 +2,7 @@ package com.esliceu.movies.Services;
 
 import com.esliceu.movies.DTO.ActorDTO;
 import com.esliceu.movies.DTO.ActorsMovieDTO;
+import com.esliceu.movies.Entities.Gender;
 import com.esliceu.movies.Entities.Movie;
 import com.esliceu.movies.Entities.MovieCast;
 import com.esliceu.movies.Entities.Person;
@@ -16,6 +17,7 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 @Service
 public class MovieCastServices {
@@ -104,11 +106,27 @@ public class MovieCastServices {
         Movie movie = movieSearchRepo.findById(movieId)
                 .orElseThrow(() -> new RuntimeException("Película no encontrada con ID: " + movieId));
 
+        //int castOrder =movieCastRepo.findFirstByMovie_MovieIdOrderByCastOrderDesc(movieId);
+        //int castOrder = movieCastRepo.findMaxCastOrderForMovie(movieId);
+        Integer maxCastOrder = findMaxCastOrderForMovie(movieId);
+        int castOrder = maxCastOrder+1;
+        System.out.println("Castorder " +castOrder);
         MovieCast movieCast = new MovieCast();
+        //Gender gender = new Gender();
+       //gender.setGenderId(2L);
+        //gender.setGender("Male");
+
         movieCast.setPerson(person);
         movieCast.setMovie(movie);
         movieCast.setCharacterName(characterName);
+        movieCast.setCastOrder(castOrder);
+
         movieCastRepo.save(movieCast);
         return "Person assigned to the movie successfully";
+    }
+
+    public int findMaxCastOrderForMovie(Long movieId) {
+        Integer maxCastOrder = movieCastRepo.findMaxCastOrderForMovie(movieId);
+        return maxCastOrder != null ? maxCastOrder : 0;
     }
 }

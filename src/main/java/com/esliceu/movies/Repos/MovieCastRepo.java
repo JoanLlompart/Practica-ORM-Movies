@@ -7,6 +7,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface MovieCastRepo extends JpaRepository<MovieCast,Long> {
     List<MovieCast> findAllByMovie_MovieId(Long movieId);
@@ -67,4 +68,6 @@ Amem si es la consulta
    // boolean deleteByMovie_MovieIdAndPerson_PersonId(Long movieId, Long personId);
    void deleteByMovie_MovieIdAndPerson_PersonId(Long movieId, Long personId);
 
+    @Query("SELECT COALESCE(MAX(mc.castOrder), 0) FROM MovieCast mc WHERE mc.movie.movieId = :movieId")
+    int findMaxCastOrderForMovie(@Param("movieId") Long movieId);
 }

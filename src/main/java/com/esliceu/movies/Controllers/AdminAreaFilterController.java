@@ -1,9 +1,7 @@
 package com.esliceu.movies.Controllers;
 
-import com.esliceu.movies.Services.CrudFilterServices;
-import com.esliceu.movies.Services.MovieCastServices;
-import com.esliceu.movies.Services.MovieSearchServices;
-import com.esliceu.movies.Services.UserServices;
+import com.esliceu.movies.Entities.Gender;
+import com.esliceu.movies.Services.*;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -25,6 +23,8 @@ public class AdminAreaFilterController {
     CrudFilterServices crudFilterServices;
     @Autowired
     MovieCastServices movieCastServices;
+    @Autowired
+    GenderServices genderServices;
 
     @GetMapping("/adminArea/filter")
     public String adminGet(HttpSession session, Model model) {
@@ -55,4 +55,11 @@ public class AdminAreaFilterController {
         String successMessage = movieCastServices.castActor(data);
         return ResponseEntity.ok().body(successMessage);
     }
+    @PostMapping("/adminArea/allGender")
+    @ResponseBody
+    public List<Gender> viewAllGenders(@RequestBody Map<String, String> formData) {
+        return genderServices.getAllGender(formData);
+    }
+
+
 }

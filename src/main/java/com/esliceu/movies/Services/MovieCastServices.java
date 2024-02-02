@@ -107,8 +107,7 @@ public class MovieCastServices {
         Movie movie = movieSearchRepo.findById(movieId)
                 .orElseThrow(() -> new RuntimeException("Película no encontrada con ID: " + movieId));
 
-        //int castOrder =movieCastRepo.findFirstByMovie_MovieIdOrderByCastOrderDesc(movieId);
-        //int castOrder = movieCastRepo.findMaxCastOrderForMovie(movieId);
+
         Integer maxCastOrder = findMaxCastOrderForMovie(movieId);
         int castOrder = maxCastOrder+1;
         System.out.println("Castorder " +castOrder);

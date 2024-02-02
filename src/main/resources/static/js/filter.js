@@ -439,6 +439,8 @@ async function searchPersons() {
 async function addPersonToCast(personId, viewid) {
     //El usuari ha de afegir el personatge que interpretara el actor
     const characterName = prompt("Enter the character name:");
+
+    
     // Verificar si el usuario ingresó un valor
     if (characterName !== null && characterName.trim() !== "") {
         const requestBody = {
@@ -482,6 +484,57 @@ async function addPersonToCast(personId, viewid) {
     // $('#addPersonModal').modal('hide');
 }
 
+
+
+//proba gender
+function showDynamicPrompt() {
+    // Realizar la solicitud Fetch al servidor para obtener las opciones
+    fetch('/adminArea/allGender')
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`Error: ${response.status} - ${response.statusText}`);
+            }
+            return response.json();
+        })
+        .then(data => {
+            // Limpiar la lista de opciones
+            const optionsList = document.getElementById("genderList");
+            optionsList.innerHTML = "";
+
+            // Agregar cada opción a la lista
+            data.forEach(dataGender => {
+                const listItem = document.createElement("li");
+                listItem.textContent = dataGender.gender;
+                listItem.addEventListener("click", function () {
+                    // Cuando el usuario hace clic en una opción, cierra el modal y muestra la selección
+                    hideDynamicPrompt();
+                    alert("Selected gender: " + dataGender.gender_id + " - " + dataGender.gender);
+
+                    // Aquí puedes guardar la información según tus necesidades
+                    const selectedGenderId = dataGender.gender_id;
+                    const selectedGender = dataGender.gender;
+
+                    // Puedes utilizar estos valores como desees (enviar al servidor, almacenar en variables, etc.)
+                    console.log("Selected Gender ID: ", selectedGenderId);
+                    console.log("Selected Gender: ", selectedGender);
+                });
+                optionsList.appendChild(listItem);
+            });
+
+            // Mostrar el modal
+            const modal = document.getElementById("dynamicPromptModal");
+            modal.style.display = "flex";
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
+}
+
+// Función para ocultar el modal
+function hideDynamicPrompt() {
+    const modal = document.getElementById("dynamicPromptModal");
+    modal.style.display = "none";
+}
 
 
 

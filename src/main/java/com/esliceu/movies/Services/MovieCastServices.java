@@ -98,6 +98,7 @@ public class MovieCastServices {
         Long movieId = Long.valueOf(data.get("movieId"));
         Long personId = Long.valueOf(data.get("personId"));
         String characterName = data.get("characterName");
+        Long genderId = Long.valueOf(data.get("genderId"));
 
         // Pas 1:  Recuperar la persona amb el id
         Person person = personRepo.findById(personId)
@@ -112,7 +113,7 @@ public class MovieCastServices {
         int castOrder = maxCastOrder+1;
         System.out.println("Castorder " +castOrder);
         MovieCast movieCast = new MovieCast();
-        Gender gender = genderRepo.getReferenceById(0L);
+        Gender gender = genderRepo.getReferenceById(genderId);
         movieCast.setPerson(person);
         movieCast.setMovie(movie);
         movieCast.setCharacterName(characterName);

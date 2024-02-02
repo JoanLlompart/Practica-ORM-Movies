@@ -445,13 +445,16 @@ async function addPersonToCast(personId, viewid) {
     if (characterName !== null && characterName.trim() !== "") {
         // Llamar a la función showDynamicPrompt para obtener el gender_id seleccionado
         const selectedGender = await showDynamicPrompt();
+        console.log("Selected gender " + JSON.stringify(selectedGender));
 
+
+        console.log(selectedGender.genderId)
         if (selectedGender) {
             const requestBody = {
                 personId: personId,
                 movieId: viewid,
                 characterName: characterName,
-                genderId : selectedGender.gender_Id
+                genderId : selectedGender.genderId
             }
 
 

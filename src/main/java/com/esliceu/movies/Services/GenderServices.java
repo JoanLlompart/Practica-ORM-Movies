@@ -13,7 +13,7 @@ public class GenderServices {
     @Autowired
     GenderRepo genderRepo;
 
-    public List<Gender> getAllGender(Map<String, String> formData) {
+    public List<Gender> getAllGender() {
         return genderRepo.findAll();
     }
 }

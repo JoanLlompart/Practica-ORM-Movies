@@ -57,8 +57,9 @@ public class AdminAreaFilterController {
     }
     @PostMapping("/adminArea/allGender")
     @ResponseBody
-    public List<Gender> viewAllGenders(@RequestBody Map<String, String> formData) {
-        return genderServices.getAllGender(formData);
+    public List<Gender> viewAllGenders() {
+        System.out.println("HA ENTRAT");
+        return genderServices.getAllGender();
     }
 
 

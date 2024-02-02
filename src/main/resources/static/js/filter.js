@@ -440,41 +440,50 @@ async function addPersonToCast(personId, viewid) {
     //El usuari ha de afegir el personatge que interpretara el actor
     const characterName = prompt("Enter the character name:");
 
-    
+
     // Verificar si el usuario ingresó un valor
     if (characterName !== null && characterName.trim() !== "") {
-        const requestBody = {
-            personId: personId,
-            movieId: viewid,
-            characterName: characterName
-        }
+        // Llamar a la función showDynamicPrompt para obtener el gender_id seleccionado
+        const selectedGender = await showDynamicPrompt();
 
-        const userConfirmed = window.confirm(`Are you sure you want to add this actor in Movie by id :  ` + viewId + ' ?');
-        if (userConfirmed) {
-            try {
-                const response = await fetch('/adminArea/castPerson', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify(requestBody)
-                }).then(response => {
-                    if (!response.ok) {
-                        throw new Error('Error en la solicitud: ' + response.statusText);
-                    }
-                    return response.text();
-                })
-                    .then(responseData => {
-                        alert(responseData)
-                        //recarrega la pagina
-
-                        $('#addPersonModal').modal('hide');
-                        viewActors(viewId);
-                        alert(responseData);
-                    })
-            } catch (error) {
-                console.error('Error:', error);
+        if (selectedGender) {
+            const requestBody = {
+                personId: personId,
+                movieId: viewid,
+                characterName: characterName,
+                genderId : selectedGender.gender_Id
             }
+
+
+            const userConfirmed = window.confirm(`Are you sure you want to add this actor in Movie by id :  ` + viewId + ' ?');
+            if (userConfirmed) {
+                try {
+                    const response = await fetch('/adminArea/castPerson', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(requestBody)
+                    }).then(response => {
+                        if (!response.ok) {
+                            throw new Error('Error en la solicitud: ' + response.statusText);
+                        }
+                        return response.text();
+                    })
+                        .then(responseData => {
+                            alert(responseData)
+                            //recarrega la pagina
+
+                            $('#addPersonModal').modal('hide');
+                            viewActors(viewId);
+                            alert(responseData);
+                        })
+                } catch (error) {
+                    console.error('Error:', error);
+                }
+            }
+        } else {
+            console.log("User canceled gender selection.");
         }
     } else {
         //Si l'usuari no ha introduit el personatge mostrar mensatge
@@ -486,48 +495,45 @@ async function addPersonToCast(personId, viewid) {
 
 
 
-//proba gender
-function showDynamicPrompt() {
-    // Realizar la solicitud Fetch al servidor para obtener las opciones
-    fetch('/adminArea/allGender')
-        .then(response => {
-            if (!response.ok) {
-                throw new Error(`Error: ${response.status} - ${response.statusText}`);
-            }
-            return response.json();
-        })
-        .then(data => {
-            // Limpiar la lista de opciones
-            const optionsList = document.getElementById("genderList");
-            optionsList.innerHTML = "";
-
-            // Agregar cada opción a la lista
-            data.forEach(dataGender => {
-                const listItem = document.createElement("li");
-                listItem.textContent = dataGender.gender;
-                listItem.addEventListener("click", function () {
-                    // Cuando el usuario hace clic en una opción, cierra el modal y muestra la selección
-                    hideDynamicPrompt();
-                    alert("Selected gender: " + dataGender.gender_id + " - " + dataGender.gender);
-
-                    // Aquí puedes guardar la información según tus necesidades
-                    const selectedGenderId = dataGender.gender_id;
-                    const selectedGender = dataGender.gender;
-
-                    // Puedes utilizar estos valores como desees (enviar al servidor, almacenar en variables, etc.)
-                    console.log("Selected Gender ID: ", selectedGenderId);
-                    console.log("Selected Gender: ", selectedGender);
-                });
-                optionsList.appendChild(listItem);
-            });
-
-            // Mostrar el modal
-            const modal = document.getElementById("dynamicPromptModal");
-            modal.style.display = "flex";
-        })
-        .catch(error => {
-            console.error('Error:', error);
+//proba gender// Función para mostrar el modal con opciones dinámicas y devolver la opción seleccionada
+async function showDynamicPrompt() {
+    console.log("modal gender")
+    return new Promise(async (resolve) => {
+        // Realizar la solicitud Fetch al servidor para obtener las opciones de gender
+        const response = await fetch('/adminArea/allGender', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
         });
+
+        if (!response.ok) {
+            console.error(`Error: ${response.status} - ${response.statusText}`);
+            resolve(null); // Resolver con null en caso de error
+            return;
+        }
+        const data = await response.json();
+
+        // Limpiar la lista de opciones
+        const optionsList = document.getElementById("genderList");
+        optionsList.innerHTML = "";
+
+        // Agregar cada opción a la lista
+        data.forEach(option => {
+            const listItem = document.createElement("li");
+            listItem.textContent = option.gender;
+            listItem.addEventListener("click", function () {
+                // Cuando el usuario hace clic en una opción, cierra el modal y resuelve la promesa con la opción seleccionada
+                hideDynamicPrompt();
+                resolve(option);
+            });
+            optionsList.appendChild(listItem);
+        });
+
+        // Mostrar el modal
+        const modal = document.getElementById("dynamicPromptModal");
+        modal.style.display = "flex";
+    });
 }
 
 // Función para ocultar el modal

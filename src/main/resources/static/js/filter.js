@@ -190,6 +190,19 @@ function showMovieModal(movieData) {
             });
 
             row.appendChild(directorList);
+
+        }else if (key === "genres") {
+            const genresList = document.createElement("ul");
+
+            // Iterar a través de cada director en la lista
+            value.forEach(genres => {
+                const genresItem = document.createElement("li");
+                row.innerHTML = `<strong>${key}:</strong>`;
+                genresItem.textContent = `${genres.genreName}`;
+                genresList.appendChild(genresItem);
+            });
+
+            row.appendChild(genresList);
         } else {
             row.innerHTML = `<strong>${key}:</strong> ${value}`;
         }
@@ -579,7 +592,6 @@ keywordInput.addEventListener("input", function () {
     }
 })
 
-//proba 
 
 // Event Listener for Page input
 document.getElementById('page').addEventListener('change', function () {

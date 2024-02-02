@@ -467,7 +467,7 @@ async function addPersonToCast(personId, viewid) {
                         //recarrega la pagina
 
                         $('#addPersonModal').modal('hide');
-                        viewActors(movieId);
+                        viewActors(viewId);
                         alert(responseData);
                     })
             } catch (error) {

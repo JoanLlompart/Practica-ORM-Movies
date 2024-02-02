@@ -3,6 +3,8 @@ package com.esliceu.movies.Services;
 import com.esliceu.movies.DTO.ActorsMovieDTO;
 import com.esliceu.movies.DTO.MovieDTO;
 import com.esliceu.movies.DTO.MovieInfoDTO;
+import com.esliceu.movies.Entities.Gender;
+import com.esliceu.movies.Entities.Genre;
 import com.esliceu.movies.Entities.Movie;
 import com.esliceu.movies.Entities.Person;
 import com.esliceu.movies.Repos.MovieSearchRepo;
@@ -387,9 +389,12 @@ public class MovieSearchServices {
     public Optional<MovieInfoDTO> getAllMovieInfo(Map<String, String> formData) {
         Long movieId = Long.valueOf(formData.get("movieId"));
         Optional<Movie> m=movieSearchRepo.findById(movieId);
+
         //Rellenam el DTO amb les dades de Movie
         List<Person> movieDirectors =movieCrewServices.findDirectorByMovieId(movieId);
-        MovieInfoDTO movieInfoDTO = MovieInfoDTO.fromMovie(m.get(),movieDirectors);
+        List<Genre> moviGenre = movieGenresServices.findAllGenreByMovieId(movieId);
+
+        MovieInfoDTO movieInfoDTO = MovieInfoDTO.fromMovie(m.get(),moviGenre,movieDirectors);
         System.out.println("El director de la pelicula es : " + movieDirectors);
         return Optional.of(movieInfoDTO);
     }

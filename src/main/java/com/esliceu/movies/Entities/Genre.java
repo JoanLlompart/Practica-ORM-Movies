@@ -15,6 +15,15 @@ public class Genre {
     @OneToMany(mappedBy = "genre")
     @JsonIgnore
     private Set<MovieGenres> movieGenres;
+
+    public Genre() {
+    }
+
+    public Genre(Long genreId, String genreName) {
+        this.genreId = genreId;
+        this.genreName = genreName;
+    }
+
     public Long getGenreId() {
         return genreId;
     }

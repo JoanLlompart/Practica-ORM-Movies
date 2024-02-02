@@ -6,6 +6,7 @@ import com.esliceu.movies.Entities.Gender;
 import com.esliceu.movies.Entities.Movie;
 import com.esliceu.movies.Entities.MovieCast;
 import com.esliceu.movies.Entities.Person;
+import com.esliceu.movies.Repos.GenderRepo;
 import com.esliceu.movies.Repos.MovieCastRepo;
 import com.esliceu.movies.Repos.MovieSearchRepo;
 import com.esliceu.movies.Repos.PersonRepo;
@@ -27,8 +28,8 @@ public class MovieCastServices {
     PersonRepo personRepo;
     @Autowired
     MovieSearchRepo movieSearchRepo;
-
-
+    @Autowired
+    GenderRepo genderRepo;
 
     public void deleteByMovieId(Long movieId) {
         List<MovieCast> allMovieCast = movieCastRepo.findAllByMovie_MovieId(movieId);
@@ -112,14 +113,12 @@ public class MovieCastServices {
         int castOrder = maxCastOrder+1;
         System.out.println("Castorder " +castOrder);
         MovieCast movieCast = new MovieCast();
-        //Gender gender = new Gender();
-       //gender.setGenderId(2L);
-        //gender.setGender("Male");
-
+        Gender gender = genderRepo.getReferenceById(0L);
         movieCast.setPerson(person);
         movieCast.setMovie(movie);
         movieCast.setCharacterName(characterName);
         movieCast.setCastOrder(castOrder);
+        movieCast.setGender(gender);
 
         movieCastRepo.save(movieCast);
         return "Person assigned to the movie successfully";

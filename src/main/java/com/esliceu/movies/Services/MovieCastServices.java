@@ -129,19 +129,38 @@ public class MovieCastServices {
         return maxCastOrder != null ? maxCastOrder : 0;
     }
 
-    @Transactional
     public String updateMovieCast(Map<String, String> data) {
         Long personId= Long.valueOf(data.get("personId"));
         Long movieId = Long.valueOf(data.get("movieId"));
         String characterName = data.get("characterName");
         Long genderId = Long.valueOf(data.get("genderId"));
 
-        MovieCast movieCast=movieCastRepo.findByMovie_MovieIdAndPerson_PersonId(movieId,personId);
-        movieCast.setCharacterName(characterName);
-        Gender gender = genderRepo.getReferenceById(genderId);
-        System.out.println(gender.toString());
-        movieCast.setGender(gender);
-        movieCastRepo.save(movieCast);
-        return "Ha funcionat correctament";
+        MovieCast movieCastBD=movieCastRepo.findByMovie_MovieIdAndPerson_PersonId(movieId,personId);
+        MovieCast movieCast = new MovieCast();
+        if (movieCastBD.getMovie().getMovieId().equals(movieId) &&
+                movieCastBD.getPerson().getPersonId().equals(personId)) {
+
+            movieCast.setCharacterName(characterName);
+            movieCast.setCastOrder(movieCastBD.getCastOrder());
+            Gender gender = genderRepo.getReferenceById(genderId);
+            System.out.println(gender.toString());
+            movieCast.setGender(gender);
+            movieCast.setCastOrder(movieCastBD.getCastOrder());
+
+            Person person = personRepo.findById(personId)
+                    .orElseThrow(() -> new RuntimeException("Persona no encontrada con ID: " + personId));
+
+            Movie movie = movieSearchRepo.findById(movieId)
+                    .orElseThrow(() -> new RuntimeException("Película no encontrada con ID: " + movieId));
+            movieCast.setMovie(movie);
+            movieCast.setPerson(person);
+
+            movieCastRepo.save(movieCast);
+            return "Update value successfully";
+        } else {
+            return "Update Failed";
+        }
     }
+
+
 }

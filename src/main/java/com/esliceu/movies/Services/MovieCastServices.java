@@ -128,4 +128,8 @@ public class MovieCastServices {
         Integer maxCastOrder = movieCastRepo.findMaxCastOrderForMovie(movieId);
         return maxCastOrder != null ? maxCastOrder : 0;
     }
+
+    public String updateMovieCast(Map<String, String> data) {
+        return "Falta implementar";
+    }
 }

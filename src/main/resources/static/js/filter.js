@@ -214,6 +214,8 @@ function showMovieModal(movieData) {
 }
 
 function showActorsModal(actorsData) {
+    console.log("Actors data " + actorsData);
+
     // Rellena el modal con la información de los actores
     const modalBody = document.getElementById("movieModalBody");
 
@@ -253,7 +255,7 @@ function showActorsModal(actorsData) {
         // Afegeix un event que captura cuant l'usuari fa doble click en un camp per poder modificarlo i actualitzarlo.
         [cellPersonName, cellGender, cellCharacterName].forEach(cell => {
             cell.addEventListener("dblclick", function () {
-                editCellContent(cell);
+                editCellContent(cell,actor);
             });
         });
 
@@ -277,7 +279,7 @@ function showActorsModal(actorsData) {
 
 
 
-function editCellContent(cell) {
+function editCellContent(cell,actor) {
     const originalContent = cell.textContent;
     const inputElement = document.createElement("input");
     inputElement.value = originalContent;
@@ -288,7 +290,7 @@ function editCellContent(cell) {
         cell.textContent = updatedContent;
 
         // Aquí puedes enviar la información actualizada al servidor
-        // mediante una función como sendUpdatedInfo(actor.personId, cell.textContent);
+        sendUpdatedInfo(actor.personId, cell.textContent);
     });
 
     cell.textContent = "";
@@ -296,7 +298,30 @@ function editCellContent(cell) {
     inputElement.focus();
 }
 
+//Envia la info per actualitzar els camps
+function sendUpdatedInfo(personId, updatedContent) {
+    const data = {
+        personId: personId,
+        updatedContent: updatedContent
+    };
 
+    fetch('/adminArea/updateMoviCast', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+    })
+    .then(response => response.json())
+    .then(data => {
+        // Manejar la respuesta del servidor (puede ser un mensaje de éxito, etc.)
+        alert(data);
+    })
+    .catch(error => {
+        // Manejar errores en la solicitud
+        console.error('Error:', error);
+    });
+}
 
 
 
@@ -479,6 +504,7 @@ async function searchPersons() {
         console.error('Error:', error);
     }
 }
+
 
 // Función para agregar la persona seleccionada al elenco de la película
 async function addPersonToCast(personId, viewid) {

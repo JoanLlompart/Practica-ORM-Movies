@@ -191,7 +191,7 @@ function showMovieModal(movieData) {
 
             row.appendChild(directorList);
 
-        }else if (key === "genres") {
+        } else if (key === "genres") {
             const genresList = document.createElement("ul");
 
             // Iterar a través de cada director en la lista
@@ -216,9 +216,7 @@ function showMovieModal(movieData) {
 function showActorsModal(actorsData) {
     // Rellena el modal con la información de los actores
     const modalBody = document.getElementById("movieModalBody");
-    //const modalTitle = document.querySelector('.modal-title');
 
-    // modalTitle.textContent = ``
     modalBody.innerHTML = "";
 
     // Crear una tabla para mostrar la información de los actores
@@ -252,6 +250,12 @@ function showActorsModal(actorsData) {
         cellCharacterName.textContent = actor.characterName;
         // cellId.textContent = actor.personId;
 
+        // Afegeix un event que captura cuant l'usuari fa doble click en un camp per poder modificarlo i actualitzarlo.
+        [cellPersonName, cellGender, cellCharacterName].forEach(cell => {
+            cell.addEventListener("dblclick", function () {
+                editCellContent(cell);
+            });
+        });
 
         // Agregar el botón en la columna "Action"
         const actionButton = document.createElement("button");
@@ -269,6 +273,35 @@ function showActorsModal(actorsData) {
     // Mostrar el modal
     $('#movieModal').modal('show');
 }
+
+
+
+
+function editCellContent(cell) {
+    const originalContent = cell.textContent;
+    const inputElement = document.createElement("input");
+    inputElement.value = originalContent;
+
+    inputElement.addEventListener("blur", function () {
+        // Actualizar el contenido y enviar al servidor
+        const updatedContent = inputElement.value;
+        cell.textContent = updatedContent;
+
+        // Aquí puedes enviar la información actualizada al servidor
+        // mediante una función como sendUpdatedInfo(actor.personId, cell.textContent);
+    });
+
+    cell.textContent = "";
+    cell.appendChild(inputElement);
+    inputElement.focus();
+}
+
+
+
+
+
+
+
 
 
 // Función para enviar la selección de actor al servidor
@@ -466,7 +499,7 @@ async function addPersonToCast(personId, viewid) {
                 personId: personId,
                 movieId: viewid,
                 characterName: characterName,
-                genderId : selectedGender.genderId
+                genderId: selectedGender.genderId
             }
 
 

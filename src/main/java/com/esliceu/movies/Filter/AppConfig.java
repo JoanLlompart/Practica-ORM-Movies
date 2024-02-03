@@ -14,7 +14,7 @@ public class AppConfig implements WebMvcConfigurer {
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(sessionInterruptor)
-                .addPathPatterns("/register","adminArea/**","/movieSearch/movieActor");
-               // .addPathPatterns("/register","/adminArea/**");
+                //.addPathPatterns("/register","adminArea/**","/movieSearch/movieActor");
+                .addPathPatterns("/register","/adminArea/**");
     }
 }

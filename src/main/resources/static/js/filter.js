@@ -213,8 +213,9 @@ function showMovieModal(movieData) {
     $('#movieModal').modal('show');
 }
 
-function showActorsModal(actorsData) {
-    console.log("Actors data " + actorsData);
+function showActorsModal(actorsData,viewId) {
+    console.log("Actors data ");
+    console.log(actorsData);
 
     // Rellena el modal con la información de los actores
     const modalBody = document.getElementById("movieModalBody");
@@ -255,7 +256,7 @@ function showActorsModal(actorsData) {
         // Afegeix un event que captura cuant l'usuari fa doble click en un camp per poder modificarlo i actualitzarlo.
         [cellPersonName, cellGender, cellCharacterName].forEach(cell => {
             cell.addEventListener("dblclick", function () {
-                editCellContent(cell,actor);
+                editCellContent(cell,actor,viewId);
             });
         });
 
@@ -279,11 +280,10 @@ function showActorsModal(actorsData) {
 
 
 
-function editCellContent(cell,actor) {
+function editCellContent(cell,actor,viewId) {
     const originalContent = cell.textContent;
     const inputElement = document.createElement("input");
     inputElement.value = originalContent;
-    console.log(actor);
 
     inputElement.addEventListener("blur", function () {
         // Actualizar el contenido y enviar al servidor
@@ -291,20 +291,38 @@ function editCellContent(cell,actor) {
         cell.textContent = updatedContent;
 
         // Aquí puedes enviar la información actualizada al servidor
-        sendUpdatedInfo(actor.personId, cell.textContent);
+        //sendUpdatedInfo(actor.personId, cell.textContent);
+        sendUpdatedInfo(actor, viewId);
     });
 
     cell.textContent = "";
     cell.appendChild(inputElement);
     inputElement.focus();
 }
-
-//Envia la info per actualitzar els camps
-function sendUpdatedInfo(personId, updatedContent) {
-    const data = {
+function sendUpdatedInfo(person, viewId) {
+    /* const data = {
         personId: personId,
         updatedContent: updatedContent
+    };*/
+    const data = {
+        personId: person.personId,
+        movieId:viewId,
+        characterName: person.characterName,
+        gender:person.gender
     };
+
+    /*  const requestBody = {
+                personId: personId,
+                movieId: viewid,
+                characterName: characterName,
+                genderId: selectedGender.genderId
+            }
+*/
+
+
+    console.log("Update movie Cast ");
+    console.log(data);
+
 
     fetch('/adminArea/updateMoviCast', {
         method: 'POST',
@@ -324,6 +342,36 @@ function sendUpdatedInfo(personId, updatedContent) {
     });
 }
 
+/*
+//Envia la info per actualitzar els camps
+function sendUpdatedInfo(personId, updatedContent) {
+    const data = {
+        personId: personId,
+        updatedContent: updatedContent
+    };
+
+
+    console.log("Update movie Cast " + data);
+
+
+    fetch('/adminArea/updateMoviCast', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+    })
+    .then(response => response.json())
+    .then(data => {
+        // Manejar la respuesta del servidor (puede ser un mensaje de éxito, etc.)
+        alert(data);
+    })
+    .catch(error => {
+        // Manejar errores en la solicitud
+        console.error('Error:', error);
+    });
+}
+*/
 
 
 

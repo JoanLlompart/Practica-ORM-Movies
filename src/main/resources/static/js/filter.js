@@ -283,6 +283,7 @@ function editCellContent(cell,actor) {
     const originalContent = cell.textContent;
     const inputElement = document.createElement("input");
     inputElement.value = originalContent;
+    console.log(actor);
 
     inputElement.addEventListener("blur", function () {
         // Actualizar el contenido y enviar al servidor

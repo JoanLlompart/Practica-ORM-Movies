@@ -17,8 +17,7 @@ import java.util.Map;
 
 @Controller
 public class AdminAreaFilterController {
-    @Autowired
-    UserServices userServices;
+    @Autowired UserServices userServices;
     @Autowired
     CrudFilterServices crudFilterServices;
     @Autowired

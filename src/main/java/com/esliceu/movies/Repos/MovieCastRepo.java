@@ -70,4 +70,5 @@ Amem si es la consulta
 
     @Query("SELECT COALESCE(MAX(mc.castOrder), 0) FROM MovieCast mc WHERE mc.movie.movieId = :movieId")
     int findMaxCastOrderForMovie(@Param("movieId") Long movieId);
+    MovieCast findByMovie_MovieIdAndPerson_PersonId(Long movieId, Long personId);
 }

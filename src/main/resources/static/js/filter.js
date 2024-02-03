@@ -252,13 +252,33 @@ function showActorsModal(actorsData,viewId) {
         cellGender.textContent = actor.gender;
         cellCharacterName.textContent = actor.characterName;
         // cellId.textContent = actor.personId;
-
-        // Afegeix un event que captura cuant l'usuari fa doble click en un camp per poder modificarlo i actualitzarlo.
         [cellPersonName, cellGender, cellCharacterName].forEach(cell => {
-            cell.addEventListener("dblclick", function () {
-                editCellContent(cell,actor,viewId);
+            cell.addEventListener("dblclick", async function () {
+                console.log("cel");
+                console.log(cell);
+
+                if (cell === cellGender) {
+                    // Si se hace doble clic en la celda de género, llamar a showDynamicPrompt()
+                    const selectedGender = await showDynamicPrompt();
+
+                    // Verificar si se seleccionó un género antes de actualizar el contenido de la celda
+                    if (selectedGender !== null && selectedGender !== undefined) {
+                        cell.textContent = selectedGender;
+                        // También puedes actualizar el objeto actor con el nuevo género si es necesario
+                        actor.gender = selectedGender;
+                        console.log("selectedGender");
+                        console.log(selectedGender);
+                        console.log("ACTOR");
+                        console.log(actor);
+                        editCellContent(cell, actor, viewId);
+                    }
+                } else {
+                    // Si se hace doble clic en otras celdas, llamar a la función editCellContent()
+                    editCellContent(cell, actor, viewId);
+                }
             });
         });
+
 
         // Agregar el botón en la columna "Action"
         const actionButton = document.createElement("button");
@@ -308,7 +328,7 @@ function sendUpdatedInfo(person, viewId) {
         personId: person.personId,
         movieId:viewId,
         characterName: person.characterName,
-        gender:person.gender
+        genderId:person.gender.genderId
     };
 
     /*  const requestBody = {
@@ -318,7 +338,6 @@ function sendUpdatedInfo(person, viewId) {
                 genderId: selectedGender.genderId
             }
 */
-
 
     console.log("Update movie Cast ");
     console.log(data);

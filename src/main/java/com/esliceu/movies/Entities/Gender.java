@@ -21,6 +21,13 @@ public class Gender {
     @JsonIgnore
     private Set<MovieCast> moviecast;
 
+    @Override
+    public String toString() {
+        return "Gender{" +
+                "genderId=" + genderId +
+                ", gender='" + gender + '\'' +
+                '}';
+    }
 
     public Long getGenderId() {
         return genderId;

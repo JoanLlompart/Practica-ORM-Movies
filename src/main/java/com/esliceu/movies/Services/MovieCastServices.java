@@ -129,7 +129,19 @@ public class MovieCastServices {
         return maxCastOrder != null ? maxCastOrder : 0;
     }
 
+    @Transactional
     public String updateMovieCast(Map<String, String> data) {
-        return "Falta implementar";
+        Long personId= Long.valueOf(data.get("personId"));
+        Long movieId = Long.valueOf(data.get("movieId"));
+        String characterName = data.get("characterName");
+        Long genderId = Long.valueOf(data.get("genderId"));
+
+        MovieCast movieCast=movieCastRepo.findByMovie_MovieIdAndPerson_PersonId(movieId,personId);
+        movieCast.setCharacterName(characterName);
+        Gender gender = genderRepo.getReferenceById(genderId);
+        System.out.println(gender.toString());
+        movieCast.setGender(gender);
+        movieCastRepo.save(movieCast);
+        return "Ha funcionat correctament";
     }
 }

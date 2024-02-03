@@ -271,7 +271,6 @@ function showActorsModal(actorsData) {
 }
 
 
-
 // Función para enviar la selección de actor al servidor
 async function sendDeleteRelation(movieId, actorId) {
     const requestBody = {

@@ -66,6 +66,7 @@ function updateTable(data) {
 
 
 let viewId = null;
+/*
 function updateTable(data) {
     const table = document.getElementById("resultTable");
     table.innerHTML = "";
@@ -114,9 +115,9 @@ function updateTable(data) {
             }
         });
     });
-}
+}*/
 
-/*function updateTable(data) {
+function updateTable(data) {
     const table = document.getElementById("resultTable");
     table.innerHTML = ""; // Limpiar la tabla antes de actualizar
 
@@ -161,7 +162,7 @@ function updateTable(data) {
         });
     });
 }
-*/
+
 
 
 async function viewActors(viewId) {
@@ -333,8 +334,7 @@ function showActorsModal(actorsData, viewId) {
                 }
             });
         });
-
-
+        if(isEmailAvailable) {//proba
         // Agregar el botón en la columna "Action"
         const actionButton = document.createElement("button");
         actionButton.textContent = "X";
@@ -343,6 +343,7 @@ function showActorsModal(actorsData, viewId) {
             sendDeleteRelation(viewId, actor.personId);
         });
         cellAction.appendChild(actionButton);
+        }
 
     });
 

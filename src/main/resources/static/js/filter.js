@@ -671,12 +671,20 @@ async function showDynamicPrompt() {
             });
             optionsList.appendChild(listItem);
         });
-
         // Mostrar el modal
         const modal = document.getElementById("dynamicPromptModal");
         modal.style.display = "flex";
     });
+
 }
+
+// Obtener el botón de cerrar
+const closeButton = document.querySelector("#dynamicPromptModal .close");
+// Agregar un evento de clic al botón de cerrar
+closeButton.addEventListener("click", function () {
+    // Ocultar el modal al hacer clic en el botón de cerrar
+    hideDynamicPrompt();
+});
 
 // Función para ocultar el modal
 function hideDynamicPrompt() {

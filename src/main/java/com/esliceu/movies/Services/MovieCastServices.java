@@ -48,10 +48,11 @@ public class MovieCastServices {
         for (MovieCast movieCast : actorsInMovie) {
             String personName =movieCast.getPerson().getPersonName();
             String gender = movieCast.getGender().getGender();
+            Long genderId = movieCast.getGender().getGenderId();
             String characterName = movieCast.getCharacterName();
             Long personId = movieCast.getPerson().getPersonId();
             //Ficam en el DTO
-            actorsDTO.add(new ActorsMovieDTO(personName,gender,characterName,personId));
+            actorsDTO.add(new ActorsMovieDTO(personName,gender,characterName,personId,genderId));
         }
         return actorsDTO;
     }
@@ -145,7 +146,6 @@ public class MovieCastServices {
             Gender gender = genderRepo.getReferenceById(genderId);
             System.out.println(gender.toString());
             movieCast.setGender(gender);
-            movieCast.setCastOrder(movieCastBD.getCastOrder());
 
             Person person = personRepo.findById(personId)
                     .orElseThrow(() -> new RuntimeException("Persona no encontrada con ID: " + personId));
@@ -161,6 +161,8 @@ public class MovieCastServices {
             return "Update Failed";
         }
     }
+
+
 
 
 }

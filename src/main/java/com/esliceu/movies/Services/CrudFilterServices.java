@@ -1,5 +1,7 @@
 package com.esliceu.movies.Services;
 
+import com.esliceu.movies.DTO.MovieDTO;
+import com.esliceu.movies.Entities.Movie;
 import com.esliceu.movies.Entities.Person;
 import com.esliceu.movies.Repos.MovieSearchRepo;
 import com.esliceu.movies.Repos.PersonRepo;
@@ -9,6 +11,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -35,6 +38,8 @@ public class CrudFilterServices {
     GenreServices genreServices;
     @Autowired
     PersonRepo personRepo;
+    //@Autowired
+   // MovieDTO movieDTO;
     public List<?> filterByEntity(Map<String, String> data) {
        String filter =data.get("filter");
         String keyword =data.get("keyword");
@@ -54,7 +59,18 @@ public class CrudFilterServices {
             case "actor":
                 return movieCastServices.filterByActor(keyword,pageable);
             case "movie":
-                return movieSearchRepo.findByTitleContainingIgnoreCase(keyword,pageable);
+                List<MovieDTO> movieDTOList = new ArrayList<>();
+                List<Movie> movieList=  movieSearchRepo.findByTitleContainingIgnoreCase(keyword,pageable);
+                for (Movie m:movieList) {
+                    MovieDTO dto = new MovieDTO();
+                    dto.setMovieId(m.getMovieId());
+                    dto.setTitle(m.getTitle());
+                    dto.setReleaseDate(m.getReleaseDate());
+                    dto.setVoteAverage(m.getVoteAverage());
+                    //Una vegada el DTO te tots els atributs afegim a la llista
+                    movieDTOList.add(dto);
+                }
+                return movieDTOList;
             case "productionCompany":
                 return productionCompanyRepo.findByCompanyNameContainingIgnoreCase(keyword,pageable);
             case "person":

@@ -155,6 +155,8 @@ function updateTable(data) {
                     viewActors(viewId);
                 });
                 cell.appendChild(actorsButton);
+
+
             } else {
                 // Llenar las celdas con los datos del objeto 'item'
                 cell.textContent = item[header];

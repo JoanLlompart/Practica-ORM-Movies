@@ -63,8 +63,60 @@ function updateTable(data) {
 }
 */
 
+
+
 let viewId = null;
 function updateTable(data) {
+    const table = document.getElementById("resultTable");
+    table.innerHTML = "";
+
+    const headers = Object.keys(data[0]);
+    headers.push("View", "Actors");
+    const headerRow = table.insertRow();
+
+    headers.forEach(header => {
+        const th = document.createElement("th");
+        th.textContent = header;
+        headerRow.appendChild(th);
+    });
+
+    data.forEach(item => {
+        const row = table.insertRow();
+
+        headers.forEach(header => {
+            const cell = row.insertCell();
+
+            if (header === "View") {
+                const viewButton = document.createElement("button");
+                viewButton.textContent = "View";
+                viewButton.addEventListener("click", function () {
+                    viewId = item.movieId;
+                    viewInfoMovie(viewId);
+                });
+                cell.appendChild(viewButton);
+            } else if (header === "Actors") {
+                // Verificar si el usuario ha iniciado sesión antes de mostrar el botón "Actors"
+                if (isEmailAvailable) {
+                    const actorsButton = document.createElement("button");
+                    actorsButton.textContent = "Actors";
+                    actorsButton.addEventListener("click", function () {
+                        viewId = item.movieId;
+                        viewActors(viewId);
+                    });
+                    cell.appendChild(actorsButton);
+                } else {
+                    console.log("Invalid session")
+                    // No mostrar el botón "Actors" si el usuario no ha iniciado sesión
+                    cell.textContent = "Login required";
+                }
+            } else {
+                cell.textContent = item[header];
+            }
+        });
+    });
+}
+
+/*function updateTable(data) {
     const table = document.getElementById("resultTable");
     table.innerHTML = ""; // Limpiar la tabla antes de actualizar
 
@@ -109,6 +161,19 @@ function updateTable(data) {
         });
     });
 }
+*/
+
+// Función para verificar si el usuario ha iniciado sesión
+function userHasLoggedIn() {
+    // Obtener el correo electrónico de sessionStorage
+    const email = window.email;
+
+    console.log("Email");
+    console.log(email);
+    // Verificar si el correo electrónico está presente y no es nulo ni indefinido
+    return email !== null && email !== undefined && email !== "";
+}
+
 async function viewActors(viewId) {
     // Construir el cuerpo de la solicitud POST
     const requestBody = {

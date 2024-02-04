@@ -14,6 +14,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Enumeration;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -31,15 +32,23 @@ public class MovieSearchController {
     @GetMapping("/movieSearch")
     public String showMovies(Model model, HttpSession session, @RequestParam(defaultValue = "0") int page) {
         String email = (String) session.getAttribute("email");
+        printSession(session);
         List<Movie> movieList = movieSearchServices.allMovies();
         model.addAttribute("moviesFind", movieList);
         model.addAttribute("currentPage", page);
+        model.addAttribute("email", email != null);
+       /* if ( email != null) {
+            model.addAttribute("validAdmin",email);
+        }*/
+
         return "movieSearch";
     }
 
     @PostMapping("/movieSearch")
     @ResponseBody
-    public List<MovieDTO> filterMovies(@RequestBody Map<String, String> formData) {
+    public List<MovieDTO> filterMovies(@RequestBody Map<String, String> formData,HttpSession session) {
+        String email = (String) session.getAttribute("email");
+        printSession(session);
         String filter = formData.get("filter");
         String keyword = formData.get("keyword");
         int page = Integer.parseInt(formData.get("page"));
@@ -109,5 +118,14 @@ public class MovieSearchController {
         return ResponseEntity.ok().body(successMessage);
     }
 
+    private void printSession(HttpSession session) {
+        Enumeration<String> attributeNames = session.getAttributeNames();
+        while (attributeNames.hasMoreElements()) {
+            String attributeName = attributeNames.nextElement();
+            Object attributeValue = session.getAttribute(attributeName);
+            System.out.println("(Ojo que en hi ha)Nombre del atributo: " + attributeName);
+            System.out.println("(Ojo que en hi ha)Valor del atributo: " + attributeValue);
+        }
+    }
 
 }

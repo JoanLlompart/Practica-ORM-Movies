@@ -334,13 +334,15 @@ function showActorsModal(actorsData, viewId) {
                 }
             });
         });
-        if(isEmailAvailable) {//proba
+        if(isEmailAvailable) {
+
         // Agregar el botón en la columna "Action"
         const actionButton = document.createElement("button");
         actionButton.textContent = "X";
         actionButton.addEventListener("click", function () {
             // Enviar la información al servidor al hacer clic en el botón
             sendDeleteRelation(viewId, actor.personId);
+
         });
         cellAction.appendChild(actionButton);
         }
@@ -447,10 +449,6 @@ function sendUpdatedInfo(personId, updatedContent) {
     });
 }
 */
-
-
-
-
 
 
 // Función para enviar la selección de actor al servidor

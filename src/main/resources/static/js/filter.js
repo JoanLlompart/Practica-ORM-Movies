@@ -334,17 +334,17 @@ function showActorsModal(actorsData, viewId) {
                 }
             });
         });
-        if(isEmailAvailable) {
+        if (isEmailAvailable) {
 
-        // Agregar el botón en la columna "Action"
-        const actionButton = document.createElement("button");
-        actionButton.textContent = "X";
-        actionButton.addEventListener("click", function () {
-            // Enviar la información al servidor al hacer clic en el botón
-            sendDeleteRelation(viewId, actor.personId);
+            // Agregar el botón en la columna "Action"
+            const actionButton = document.createElement("button");
+            actionButton.textContent = "X";
+            actionButton.addEventListener("click", function () {
+                // Enviar la información al servidor al hacer clic en el botón
+                sendDeleteRelation(viewId, actor.personId);
 
-        });
-        cellAction.appendChild(actionButton);
+            });
+            cellAction.appendChild(actionButton);
         }
 
     });

@@ -159,7 +159,7 @@ public class AdminAddServices {
     }
     public String insertNewPerson(Map<String, String> data) {
         String personName = data.get("value1");
-        if (isValidInput(personName) && personName.isEmpty()) {
+        if (isValidInput(personName) && !personName.isEmpty()) {
             Person person = new Person();
             person.setPersonName(personName);
             Long lastId =personRepo.lastPersonId();

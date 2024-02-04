@@ -36,12 +36,6 @@ public class MovieCastServices {
         movieCastRepo.deleteAll(allMovieCast);
     }
 
-  /*  public List<ActorDTO> getActorsByMovieId(Long movieId) {
-        return movieCastRepo.findAllActorsByMovieId(movieId);
-    }
-    
-   */
-
     public List<ActorsMovieDTO> getActorsByMovieId(Long movieId) {
         List<MovieCast> actorsInMovie= movieCastRepo.findByMovie_MovieId(movieId);
         List<ActorsMovieDTO> actorsDTO = new ArrayList<>();

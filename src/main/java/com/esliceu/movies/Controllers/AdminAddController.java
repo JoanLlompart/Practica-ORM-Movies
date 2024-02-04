@@ -19,16 +19,6 @@ public class AdminAddController {
     UserServices userServices;
     @Autowired
     AdminAddServices adminAddServices;
-    @Autowired
-    CountryServices countryServices;
-    @Autowired
-    LanguageServices languageServices;
-
-    @Autowired
-    LanguageRoleServices languageRoleServices;
-
-    @Autowired
-    PersonServices personServices;
     @GetMapping("/adminArea/add")
     public String adminGet(HttpSession session, Model model) {
         String email = (String) session.getAttribute("email");
@@ -133,42 +123,6 @@ public class AdminAddController {
         String email = (String) session.getAttribute("email");
         userServices.setEmail(email);
         String successMessage =adminAddServices.insertNewPerson(data);
-        return ResponseEntity.ok().body(successMessage);
-    }
-
-
-
-
-    @PostMapping("/adminArea/delete/country")
-    public ResponseEntity<Object> adminDeletePostCountry(HttpSession session , @RequestBody Map<String,String> data) {
-        String email = (String) session.getAttribute("email");
-        userServices.setEmail(email);
-        String successMessage =countryServices.deleteCountry(data);
-        return ResponseEntity.ok().body(successMessage);
-    }
-
-    @PostMapping("/adminArea/delete/language")
-    public ResponseEntity<Object> adminDeletePostLanguage(HttpSession session , @RequestBody Map<String,String> data) {
-        String email = (String) session.getAttribute("email");
-        userServices.setEmail(email);
-        String successMessage =languageServices.deleteLanguage(data);
-        return ResponseEntity.ok().body(successMessage);
-    }
-
-
-    @PostMapping("/adminArea/delete/languageRole")
-    public ResponseEntity<Object> adminDeletePostLanguageRole(HttpSession session , @RequestBody Map<String,String> data) {
-        String email = (String) session.getAttribute("email");
-        userServices.setEmail(email);
-        String successMessage =languageRoleServices.deleteLanguageRole(data);
-        return ResponseEntity.ok().body(successMessage);
-    }
-
-    @PostMapping("/adminArea/delete/person")
-    public ResponseEntity<Object> adminDeletePostPerson(HttpSession session , @RequestBody Map<String,String> data) {
-        String email = (String) session.getAttribute("email");
-        userServices.setEmail(email);
-        String successMessage =personServices.deletePerson(data);
         return ResponseEntity.ok().body(successMessage);
     }
 

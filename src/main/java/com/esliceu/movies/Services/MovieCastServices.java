@@ -66,9 +66,10 @@ public class MovieCastServices {
             String personName = movieCast.getPerson().getPersonName();
             String characterName = movieCast.getCharacterName();
             String title = movieCast.getMovie().getTitle();
+            Long personId = movieCast.getPerson().getPersonId();
 
             //Ficam dins el record de ActorDTO
-            jobActor.add(new ActorDTO(personName,characterName,title));
+            jobActor.add(new ActorDTO(personId,personName,characterName,title));
         }
         return jobActor;
     }

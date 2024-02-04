@@ -1,5 +1,5 @@
 package com.esliceu.movies.DTO;
 
 
-public record ActorDTO(String personName, String characterName,String title) {
+public record ActorDTO(Long personId,String personName, String characterName,String title) {
 }

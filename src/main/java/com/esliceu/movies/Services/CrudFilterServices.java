@@ -2,6 +2,7 @@ package com.esliceu.movies.Services;
 
 import com.esliceu.movies.Entities.Person;
 import com.esliceu.movies.Repos.MovieSearchRepo;
+import com.esliceu.movies.Repos.ProductionCompanyRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -26,6 +27,8 @@ public class CrudFilterServices {
     MovieSearchServices movieSearchServices;
     @Autowired
     MovieSearchRepo movieSearchRepo;
+    @Autowired
+    ProductionCompanyRepo productionCompanyRepo;
 
     @Autowired
     GenreServices genreServices;
@@ -49,6 +52,8 @@ public class CrudFilterServices {
                 return movieCastServices.filterByActor(keyword,pageable);
             case "movie":
                 return movieSearchRepo.findByTitleContainingIgnoreCase(keyword,pageable);
+            case "productionCompany":
+                return productionCompanyRepo.findByCompanyNameContainingIgnoreCase(keyword,pageable);
             default:
                 break;
         }

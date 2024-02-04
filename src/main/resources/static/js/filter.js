@@ -163,16 +163,6 @@ function updateTable(data) {
 }
 */
 
-// Función para verificar si el usuario ha iniciado sesión
-function userHasLoggedIn() {
-    // Obtener el correo electrónico de sessionStorage
-    const email = window.email;
-
-    console.log("Email");
-    console.log(email);
-    // Verificar si el correo electrónico está presente y no es nulo ni indefinido
-    return email !== null && email !== undefined && email !== "";
-}
 
 async function viewActors(viewId) {
     // Construir el cuerpo de la solicitud POST
@@ -278,7 +268,7 @@ function showMovieModal(movieData) {
     $('#movieModal').modal('show');
 }
 
-function showActorsModal(actorsData,viewId) {
+function showActorsModal(actorsData, viewId) {
     console.log("Actors data ");
     console.log(actorsData);
 
@@ -365,7 +355,7 @@ function showActorsModal(actorsData,viewId) {
 
 
 
-function editCellContent(cell,actor,viewId) {
+function editCellContent(cell, actor, viewId) {
     const originalContent = cell.textContent;
     const inputElement = document.createElement("input");
     inputElement.value = originalContent;
@@ -391,9 +381,9 @@ function sendUpdatedInfo(person, viewId) {
     };*/
     const data = {
         personId: person.personId,
-        movieId:viewId,
+        movieId: viewId,
         characterName: person.characterName,
-        genderId:person.gender.genderId
+        genderId: person.gender.genderId
     };
 
     /*  const requestBody = {
@@ -415,15 +405,15 @@ function sendUpdatedInfo(person, viewId) {
         },
         body: JSON.stringify(data)
     })
-    .then(response => response.json())
-    .then(data => {
-        // Manejar la respuesta del servidor (puede ser un mensaje de éxito, etc.)
-        alert(data);
-    })
-    .catch(error => {
-        // Manejar errores en la solicitud
-        console.error('Error:', error);
-    });
+        .then(response => response.json())
+        .then(data => {
+            // Manejar la respuesta del servidor (puede ser un mensaje de éxito, etc.)
+            alert(data);
+        })
+        .catch(error => {
+            // Manejar errores en la solicitud
+            console.error('Error:', error);
+        });
 }
 
 /*
@@ -620,15 +610,17 @@ async function searchPersons() {
             const listItem = document.createElement('li');
             listItem.textContent = `${person.personName} (${person.personId})`;
 
-            // Añade un botón para agregar la persona al elenco
-            const addButton = document.createElement('button');
-            addButton.textContent = 'Add';
-            addButton.addEventListener('click', function () {
-                console.log("viewid person " + viewId)
-                addPersonToCast(person.personId, viewId);
+            if (isEmailAvailable) {
+                // Añade un botón para agregar la persona al elenco
+                const addButton = document.createElement('button');
+                addButton.textContent = 'Add';
+                addButton.addEventListener('click', function () {
+                    console.log("viewid person " + viewId)
+                    addPersonToCast(person.personId, viewId);
 
-            });
-            listItem.appendChild(addButton);
+                });
+                listItem.appendChild(addButton);
+            }
             personResults.appendChild(listItem);
         });
         // Llamar a la función para actualizar la tabla con los datos recibidos

@@ -21,7 +21,7 @@ public class AdminUpdateController {
     AdminAddServices adminAddServices;
 
     @GetMapping("/adminArea/update")
-    public String adminGet(HttpSession session, Model model) {
+    public String adminUpdateGet(HttpSession session, Model model) {
         String email = (String) session.getAttribute("email");
         return "adminArea";
     }

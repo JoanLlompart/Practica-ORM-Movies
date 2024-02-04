@@ -26,7 +26,7 @@ public class AdminAreaFilterController {
     GenderServices genderServices;
 
     @GetMapping("/adminArea/filter")
-    public String adminGet(HttpSession session, Model model) {
+    public String adminAreaGet(HttpSession session, Model model) {
         String email = (String) session.getAttribute("email");
         return "adminArea";
     }

@@ -38,6 +38,7 @@ async function sendDataFilter() {
     }
 }
 
+let viewId = null;
 function updateTable(data, filter) {
     const table = document.getElementById("resultTable");
     table.innerHTML = ""; // Limpiar la tabla antes de actualizar
@@ -68,8 +69,8 @@ function updateTable(data, filter) {
                 realtionButton.textContent = "Relations";
                 realtionButton.addEventListener("click", function () {
                     console.log("click a relations");
-                    const viewId = item.movieId;
-                    relationsMovie(viewId);
+                    viewId = item.movieId;
+                    //relationsMovie(viewId);
                 });
                 cell.appendChild(realtionButton);
             } else {
@@ -192,4 +193,28 @@ document.addEventListener("click", function(event) {
     if (event.target.classList.contains("close")) {
         closeRelationsModal();
     }
+});
+
+
+
+//PERSON SEARCH
+const keywordRelationInput = document.getElementById("relationKeyword");
+keywordRelationInput.addEventListener("input", function () {
+    //Envia les noves dades a sendData perque faci la peticio
+    if (keywordRelationInput.value.trim() !== '') {
+        relationsMovie(viewId);
+       // searchPersons();
+    }
+})
+
+
+document.getElementById('relationPage').addEventListener('change', function () {
+    relationsMovie(viewId);
+    //searchPersons();
+});
+
+
+document.getElementById('relationSize').addEventListener('change', function () {
+    relationsMovie(viewId);
+    //searchPersons();
 });

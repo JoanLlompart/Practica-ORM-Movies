@@ -178,9 +178,9 @@ function createResultsTable(data) {
         deleteButton.addEventListener("click", function () {
             // Aquí puedes agregar la lógica para manejar la eliminación del registro
             // Puedes usar el valor de "item.movieId" o cualquier otra información necesaria
-            console.log("Eliminar registro:", item);
+
             // Llamada a función para manejar la eliminación
-            handleDeleteRecord(item);
+            handleDeleteDirector(item);
         });
         deleteButtonCell.appendChild(deleteButton);
     });
@@ -189,14 +189,38 @@ function createResultsTable(data) {
     relationResults.appendChild(table);
 }
 
-// Función para manejar la eliminación del registro
-function handleDeleteRecord(record) {
-    // Aquí puedes implementar la lógica para enviar una solicitud de eliminación al servidor
-    console.log("Eliminar registro:", record);
-    // Puedes realizar una solicitud Fetch DELETE o cualquier otra acción necesaria
+
+
+async function handleDeleteDirector(data) {
+    const userConfirmed = window.confirm(`Are you sure you want to delete this relation in Movie by id :  ` + movieId + ' ?');
+    if (userConfirmed) {
+        try {
+            const response = await fetch('/adminArea/deleteMovieCrew', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            }).then(response => {
+                if (!response.ok) {
+                    throw new Error('Error en la solicitud: ' + response.statusText);
+                }
+                return response.text();
+            })
+                .then(responseData => {
+                    // Puedes manejar la respuesta del servidor si es necesario
+                    console.log('Actor selection successful');
+                    //recarrega la pagina
+
+                    $('#movieModal').modal('hide');
+                    viewActors(movieId);
+                    alert(responseData);
+                })
+        } catch (error) {
+            console.error('Error:', error);
+        }
+    }
 }
-
-
 
 
 

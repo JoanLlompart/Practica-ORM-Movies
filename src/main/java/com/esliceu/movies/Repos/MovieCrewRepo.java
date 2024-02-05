@@ -2,13 +2,9 @@ package com.esliceu.movies.Repos;
 
 
 import com.esliceu.movies.Entities.MovieCrew;
-import com.esliceu.movies.Entities.Person;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.query.Param;
 
 import java.util.List;
-import java.util.Optional;
 
 public interface MovieCrewRepo extends JpaRepository<MovieCrew, Long> {
 
@@ -19,6 +15,9 @@ public interface MovieCrewRepo extends JpaRepository<MovieCrew, Long> {
     List<MovieCrew> findAllPersonByMovie_MovieIdAndJob(Long movieId, String job);
 
     boolean existsByMovie_MovieId(Long movieId);
+
+    void deleteByPerson_PersonIdAndMovie_MovieIdAndDepartment_DepartmentId(Long personId, Long movieId, Long departmentId);
+
 
     //FUNCIONA PERO FALLA SI ES MES DE UN
    // @Query("SELECT mc.person FROM MovieCrew mc WHERE mc.movie.movieId = :movieId AND mc.job = :job")

@@ -9,6 +9,7 @@ import com.esliceu.movies.Repos.DepartmentRepo;
 import com.esliceu.movies.Repos.MovieCrewRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -81,5 +82,14 @@ public class MovieCrewServices {
         } else {
             return "Director failed add MovieCrew";
         }
+    }
+
+    @Transactional
+    public String deleteDirector(Map<String, String> data) {
+        Long movieId = Long.valueOf(data.get("movieId"));
+        Long personId = Long.valueOf(data.get("personId"));
+        Long departmentId = Long.valueOf(data.get("departmentId"));
+        movieCrewRepo.deleteByPerson_PersonIdAndMovie_MovieIdAndDepartment_DepartmentId(personId,movieId,departmentId);
+        return "Alomillor a anat ";
     }
 }

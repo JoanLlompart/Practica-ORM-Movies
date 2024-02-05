@@ -73,7 +73,13 @@ public class AdminAreaFilterController {
         String successMessage = movieCastServices.castActor(data);
         return ResponseEntity.ok().body(successMessage);
     }
-
+    @PostMapping("/adminArea/deleteDirector")
+    public ResponseEntity<Object> adminDeleteDirectorInMovieCrew(HttpSession session , @RequestBody Map<String,String> data) {
+        String email = (String) session.getAttribute("email");
+        userServices.setEmail(email);
+        String successMessage = movieCrewServices.deleteDirector(data);
+        return ResponseEntity.ok().body(successMessage);
+    }
 
 
     @PostMapping("/adminArea/allGender")

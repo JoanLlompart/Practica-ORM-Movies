@@ -64,4 +64,5 @@ public class AdminDeleteController {
         String successMessage =personServices.deletePerson(data);
         return ResponseEntity.ok().body(successMessage);
     }
+
 }

@@ -48,7 +48,7 @@ function updateTable(data, filter) {
 
     // Afegim els botons de Modificar
     if (filter === "movie") {
-        headers.push("Relations","AddDirector","AddGenre");
+        headers.push("Relations", "AddDirector", "AddGenre");
     }
 
     const headerRow = table.insertRow();
@@ -130,9 +130,9 @@ async function relationsMovie(viewId) {
         // Obtener los datos de la respuesta JSON
         const data = await response.json();
         // Mostrar los resultados en el modal
-     /*   const relationResults = document.getElementById('relationResults');
-        relationResults.innerHTML = '';
-*/
+        /*   const relationResults = document.getElementById('relationResults');
+           relationResults.innerHTML = '';
+   */
         createResultsTable(data);
         //showActorsModal(data, viewId);
 
@@ -209,7 +209,7 @@ function createResultsTable(data) {
 
     // Agregar la tabla al contenedor
     relationResults.appendChild(table);
-} 
+}
 
 
 
@@ -290,7 +290,7 @@ function closeRelationsModal() {
 }
 
 // Evento de clic en el botón "Relations"
-document.addEventListener("click", function(event) {
+document.addEventListener("click", function (event) {
     if (event.target.textContent === "Relations") {
         openRelationsModal();
 
@@ -298,7 +298,7 @@ document.addEventListener("click", function(event) {
 });
 
 // Evento de clic en el botón de cierre del modal
-document.addEventListener("click", function(event) {
+document.addEventListener("click", function (event) {
     if (event.target.classList.contains("close")) {
         closeRelationsModal();
     }
@@ -309,7 +309,7 @@ document.addEventListener("click", function(event) {
 
 // Añade un evento al botón "Add new person to cast" para abrir el modal de búsqueda de personas
 const addPersonButton = document.getElementById('btnPersonSearch');
-function openModalDirector(){
+function openModalDirector() {
     // Limpiar el campo de búsqueda y los resultados
     document.getElementById('personKeyword').value = '';
     document.getElementById('personResults').innerHTML = '';
@@ -357,17 +357,17 @@ async function searchPersons() {
             const listItem = document.createElement('li');
             listItem.textContent = `${person.personName} (${person.personId})`;
 
-            
-                // Añade un botón para agregar la persona al elenco
-                const addButton = document.createElement('button');
-                addButton.textContent = 'Add';
-                addButton.addEventListener('click', function () {
-                    console.log("View persons " + viewId)
-                    addPersonToCast(person.personId, viewId);
 
-                });
-                listItem.appendChild(addButton);
-            
+            // Añade un botón para agregar la persona al elenco
+            const addButton = document.createElement('button');
+            addButton.textContent = 'Add';
+            addButton.addEventListener('click', function () {
+                console.log("View persons " + viewId)
+                addDirector(person.personId, viewId);
+
+            });
+            listItem.appendChild(addButton);
+
             personResults.appendChild(listItem);
         });
         // Llamar a la función para actualizar la tabla con los datos recibidos
@@ -379,7 +379,37 @@ async function searchPersons() {
 
 
 //FALTA AFEGIR ADD Director
+async function addDirector(personId, viewid) {
+    const userConfirmed = window.confirm(`Are you sure you want to add this actor in Movie by id :  ` + viewId + ' ?');
+    if (userConfirmed) {
+        try {
+            const response = await fetch('/adminArea/castPerson', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(requestBody)
+            }).then(response => {
+                if (!response.ok) {
+                    throw new Error('Error en la solicitud: ' + response.statusText);
+                }
+                return response.text();
+            })
+                .then(responseData => {
+                    alert(responseData)
+                    //recarrega la pagina
 
+                    $('#addPersonModal').modal('hide');
+                    alert(responseData);
+                })
+        } catch (error) {
+            console.error('Error:', error);
+        }
+
+    } else {
+        console.log("User canceled gender selection.");
+    }
+};
 
 
 //PERSON SEARCH
@@ -388,7 +418,7 @@ keywordRelationInput.addEventListener("input", function () {
     //Envia les noves dades a sendData perque faci la peticio
     if (keywordRelationInput.value.trim() !== '') {
         relationsMovie(viewId);
-       // searchPersons();
+        // searchPersons();
     }
 })
 

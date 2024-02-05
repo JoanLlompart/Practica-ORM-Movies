@@ -123,8 +123,11 @@ function updateTable(data) {
 
     // Crear encabezados de la tabla, incluyendo botones adicionales
     const headers = Object.keys(data[0]);
-    
-    headers.push("View", "Actors","AddToMovie");  // Agregar columnas adicionales para los botones
+    if (isEmailAvailable) {
+        headers.push("View", "Actors", "AddToMovie");  // Agregar columnas adicionales para los botones
+    } else {
+        headers.push("View", "Actors");
+    }
     const headerRow = table.insertRow();
     headers.forEach(header => {
         const th = document.createElement("th");
@@ -158,10 +161,10 @@ function updateTable(data) {
                 cell.appendChild(actorsButton);
 
 
-            }else if (header === "AddToMovie") {
+            } else if (header === "AddToMovie") {
                 // Crear el botón "Actors" y asignarle un evento
                 const modifyButton = document.createElement("button");
-                modifyButton.textContent = "Actors";
+                modifyButton.textContent = "Relations";
                 modifyButton.addEventListener("click", function () {
                     viewId = item.movieId;
                     //viewActors(viewId);

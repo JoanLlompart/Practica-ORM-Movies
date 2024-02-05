@@ -107,7 +107,10 @@ async function relationsMovie(viewId) {
 
         // Obtener los datos de la respuesta JSON
         const data = await response.json();
-        
+        // Mostrar los resultados en el modal
+        const relationResults = document.getElementById('relationResults');
+        relationResults.innerHTML = '';
+
         //showActorsModal(data, viewId);
 
     } catch (error) {

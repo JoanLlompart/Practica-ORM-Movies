@@ -82,6 +82,7 @@ function updateTable(data, filter) {
                     viewId = item.movieId;
                     //searchPersons();
                     //relationsMovie(viewId);
+                    openModalDirector();
                 });
                 cell.appendChild(addDirector);
             } else if (header === "AddGenre") {
@@ -308,14 +309,14 @@ document.addEventListener("click", function(event) {
 
 // Añade un evento al botón "Add new person to cast" para abrir el modal de búsqueda de personas
 const addPersonButton = document.getElementById('btnPersonSearch');
-addPersonButton.addEventListener('click', function () {
+function openModalDirector(){
     // Limpiar el campo de búsqueda y los resultados
     document.getElementById('personKeyword').value = '';
     document.getElementById('personResults').innerHTML = '';
 
     // Abrir el modal de búsqueda de personas
     $('#addPersonModal').modal('show');
-});
+};
 
 
 

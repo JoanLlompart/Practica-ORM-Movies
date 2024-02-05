@@ -50,6 +50,13 @@ public class AdminAreaFilterController {
         return crudFilterServices.findMovieDirector(data);
     }
 
+    @PostMapping("/adminArea/movieMovieGenre")
+    @ResponseBody
+    public List<?> adminMovieRelationGenre(HttpSession session , @RequestBody Map<String,String> data) {
+        String email = (String) session.getAttribute("email");
+        userServices.setEmail(email);
+        return crudFilterServices.findByGenre(data);
+    }
 
     @PostMapping("/adminArea/decastActor")
     public ResponseEntity<Object> adminDecastActor(HttpSession session, @RequestBody Map<String, String> data) {

@@ -87,4 +87,8 @@ public class CrudFilterServices {
         Long movieId = Long.valueOf(data.get("movieId"));
         return movieCrewServices.findAllDirectors(movieId);
     }
+
+    public List<?> findByGenre(Map<String, String> data) {
+        return null;
+    }
 }

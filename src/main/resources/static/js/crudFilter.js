@@ -187,15 +187,21 @@ function createResultsTable(data) {
 
     // Agregar la tabla al contenedor
     relationResults.appendChild(table);
-}
+} 
 
 
 
 async function handleDeleteDirector(data) {
-    const userConfirmed = window.confirm(`Are you sure you want to delete this relation in Movie by id :  ` + movieId + ' ?');
+    var deleteSelect = document.getElementById("relationSelect").value;
+    console.log("Valor seleccionat " + deleteSelect);
+
+    let relationSelect = deleteSelect.substring(0, 1).toUpperCase() + deleteSelect.substring(1);
+
+    const userConfirmed = window.confirm(`Are you sure you want to delete this relation in Movie by id :  ` + data + ' ?');
+
     if (userConfirmed) {
         try {
-            const response = await fetch('/adminArea/deleteMovieCrew', {
+            const response = await fetch(`/adminArea/delete${relationSelect}`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'

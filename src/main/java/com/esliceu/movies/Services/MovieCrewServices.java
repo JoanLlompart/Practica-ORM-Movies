@@ -75,7 +75,7 @@ public class MovieCrewServices {
         Department dep = departmentRepo.getReferenceById(2L);
         Person person = personServices.findPersonById(personId);
         Movie movie = movieSearchServices.findById(movieId);
-        MovieCrew mc = new MovieCrew(movie,person,dep,"Director");
+        MovieCrew mc = new MovieCrew(movie, person, dep, "Director");
         movieCrewRepo.save(mc);
         if (movieCrewRepo.existsByMovie_MovieId(movieId)) {
             return "Director add to MovieCrew successfully";
@@ -89,7 +89,7 @@ public class MovieCrewServices {
         Long movieId = Long.valueOf(data.get("movieId"));
         Long personId = Long.valueOf(data.get("personId"));
         Long departmentId = Long.valueOf(data.get("departmentId"));
-        movieCrewRepo.deleteByPerson_PersonIdAndMovie_MovieIdAndDepartment_DepartmentId(personId,movieId,departmentId);
+        movieCrewRepo.deleteByPerson_PersonIdAndMovie_MovieIdAndDepartment_DepartmentId(personId, movieId, departmentId);
         return "Alomillor a anat ";
     }
 }

@@ -206,8 +206,8 @@ async function modifyModal(viewId) {
 
         // Obtener los datos de la respuesta JSON
         const data = await response.json();
-        showActorsModal(data, viewId);
-        
+        //showActorsModal(data, viewId);
+
     } catch (error) {
         console.error('Error:', error);
     }

@@ -1,3 +1,4 @@
+
 async function sendDataFilter() {
     // Obtener los valores del formulario
     const filter = document.getElementById("filter").value;
@@ -31,18 +32,24 @@ async function sendDataFilter() {
         const data = await response.json();
         console.log(data);
         // Llamar a la función para actualizar la tabla con los datos recibidos
-        updateTable(data);
+        updateTable(data, filter);
     } catch (error) {
         console.error('Error:', error);
     }
 }
 
-function updateTable(data) {
+function updateTable(data, filter) {
     const table = document.getElementById("resultTable");
     table.innerHTML = ""; // Limpiar la tabla antes de actualizar
 
     // Crear encabezados de la tabla
     const headers = Object.keys(data[0]);
+
+    // Afegim els botons de Modificar
+    if (filter === "movie") {
+        headers.push("Relations");
+    }
+
     const headerRow = table.insertRow();
     headers.forEach(header => {
         const th = document.createElement("th");
@@ -55,11 +62,56 @@ function updateTable(data) {
         const row = table.insertRow();
         headers.forEach(header => {
             const cell = row.insertCell();
-            cell.textContent = item[header];
+            if (header === "Relations") {
+                // Crear el botón "Relations" y asignarle un evento
+                const realtionButton = document.createElement("button");
+                realtionButton.textContent = "Relations";
+                realtionButton.addEventListener("click", function () {
+                    console.log("click a relations");
+                    const viewId = item.movieId;
+                    relationsMovie(viewId);
+                });
+                cell.appendChild(realtionButton);
+            } else {
+                // Establecer el contenido de la celda para otras columnas
+                cell.textContent = item[header];
+            }
         });
     });
 }
 
+async function relationsMovie(viewId) {
+    var addToMovieSelect = document.getElementById("addToMovieSelect").value;
+    console.log("Valor seleccionat " + addToMovieSelect);
+
+    let relationSelect = addToMovieSelect.substring(0, 1).toUpperCase() + addToMovieSelect.substring(1);
+    const requestBody = {
+        movieId: viewId
+    };
+
+    try {
+        // Realizar la solicitud Fetch al servidor con método POST
+        const response = await fetch(`/adminArea/movie${relationSelect}`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(requestBody)
+        });
+
+        // Verificar el estado de la respuesta
+        if (!response.ok) {
+            throw new Error(`Error: ${response.status} - ${response.statusText}`);
+        }
+
+        // Obtener los datos de la respuesta JSON
+        const data = await response.json();
+        //showActorsModal(data, viewId);
+
+    } catch (error) {
+        console.error('Error:', error);
+    }
+}
 
 /*
 function updateTable(data) {
@@ -99,17 +151,17 @@ function updateTable(data) {
 
 
 const keywordInput = document.getElementById("keyword");
-keywordInput.addEventListener("input" , function() {
+keywordInput.addEventListener("input", function () {
     //Envia les noves dades a sendDataFilter perque faci la peticio
-    if(keywordInput.value.trim() !=='') {
+    if (keywordInput.value.trim() !== '') {
         sendDataFilter();
     }
 })
-document.getElementById('page').addEventListener('change', function() {
+document.getElementById('page').addEventListener('change', function () {
     sendDataFilter();
 });
 
 // Event Listener for Size input
-document.getElementById('size').addEventListener('change', function() {
+document.getElementById('size').addEventListener('change', function () {
     sendDataFilter();
 });

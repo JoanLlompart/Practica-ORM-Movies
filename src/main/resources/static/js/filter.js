@@ -180,6 +180,39 @@ function updateTable(data) {
     });
 }
 
+async function modifyModal(viewId) {
+    var addToMovieSelect = document.getElementById("addToMovieSelect").value;
+    console.log("Valor seleccionat " + addToMovieSelect);
+
+    let relationSelect = addToMovieSelect.substring(0, 1).toUpperCase() + addToMovieSelect.substring(1);
+    const requestBody = {
+        movieId: viewId
+    };
+
+    try {
+        // Realizar la solicitud Fetch al servidor con método POST
+        const response = await fetch(`/movieSearch/movie${relationSelect}`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(requestBody)
+        });
+
+        // Verificar el estado de la respuesta
+        if (!response.ok) {
+            throw new Error(`Error: ${response.status} - ${response.statusText}`);
+        }
+
+        // Obtener los datos de la respuesta JSON
+        const data = await response.json();
+        showActorsModal(data, viewId);
+        
+    } catch (error) {
+        console.error('Error:', error);
+    }
+}
+
 
 
 async function viewActors(viewId) {

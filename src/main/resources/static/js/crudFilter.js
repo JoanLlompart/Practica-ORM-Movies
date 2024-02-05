@@ -108,9 +108,10 @@ async function relationsMovie(viewId) {
         // Obtener los datos de la respuesta JSON
         const data = await response.json();
         // Mostrar los resultados en el modal
-        const relationResults = document.getElementById('relationResults');
+     /*   const relationResults = document.getElementById('relationResults');
         relationResults.innerHTML = '';
-
+*/
+        createResultsTable(data);
         //showActorsModal(data, viewId);
 
     } catch (error) {
@@ -147,6 +148,53 @@ function updateTable(data) {
     table.classList.add("table", "table-bordered", "table-striped");
 }
 */
+
+// Función para crear y mostrar la tabla de resultados en el modal
+function createResultsTable(data) {
+    const relationResults = document.getElementById('relationResults');
+    relationResults.innerHTML = '';
+
+    // Crear la tabla y encabezados
+    const table = document.createElement("table");
+    const headersRow = table.insertRow();
+    Object.keys(data[0]).forEach(header => {
+        const th = document.createElement("th");
+        th.textContent = header;
+        headersRow.appendChild(th);
+    });
+
+    // Llenar la tabla con los datos
+    data.forEach(item => {
+        const row = table.insertRow();
+        Object.values(item).forEach(value => {
+            const cell = row.insertCell();
+            cell.textContent = value;
+        });
+
+        // Agregar botón para eliminar
+        const deleteButtonCell = row.insertCell();
+        const deleteButton = document.createElement("button");
+        deleteButton.textContent = "Eliminar";
+        deleteButton.addEventListener("click", function () {
+            // Aquí puedes agregar la lógica para manejar la eliminación del registro
+            // Puedes usar el valor de "item.movieId" o cualquier otra información necesaria
+            console.log("Eliminar registro:", item);
+            // Llamada a función para manejar la eliminación
+            handleDeleteRecord(item);
+        });
+        deleteButtonCell.appendChild(deleteButton);
+    });
+
+    // Agregar la tabla al contenedor
+    relationResults.appendChild(table);
+}
+
+// Función para manejar la eliminación del registro
+function handleDeleteRecord(record) {
+    // Aquí puedes implementar la lógica para enviar una solicitud de eliminación al servidor
+    console.log("Eliminar registro:", record);
+    // Puedes realizar una solicitud Fetch DELETE o cualquier otra acción necesaria
+}
 
 
 

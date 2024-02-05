@@ -82,7 +82,7 @@ function updateTable(data, filter) {
 }
 
 async function relationsMovie(viewId) {
-    var addToMovieSelect = document.getElementById("addToMovieSelect").value;
+    var addToMovieSelect = document.getElementById("relationSelect").value;
     console.log("Valor seleccionat " + addToMovieSelect);
 
     let relationSelect = addToMovieSelect.substring(0, 1).toUpperCase() + addToMovieSelect.substring(1);

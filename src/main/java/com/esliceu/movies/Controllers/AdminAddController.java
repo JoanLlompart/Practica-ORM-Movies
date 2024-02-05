@@ -19,6 +19,8 @@ public class AdminAddController {
     UserServices userServices;
     @Autowired
     AdminAddServices adminAddServices;
+    @Autowired
+    MovieCrewServices movieCrewServices;
     @GetMapping("/adminArea/add")
     public String adminGet(HttpSession session, Model model) {
         String email = (String) session.getAttribute("email");
@@ -125,5 +127,14 @@ public class AdminAddController {
         String successMessage =adminAddServices.insertNewPerson(data);
         return ResponseEntity.ok().body(successMessage);
     }
+
+    @PostMapping("/adminArea/addDirector")
+    public ResponseEntity<Object> adminAddDirector( HttpSession session , @RequestBody Map<String,String> data) {
+        String email = (String) session.getAttribute("email");
+        userServices.setEmail(email);
+        String successMessage =movieCrewServices.addMovieDirector(data);
+        return ResponseEntity.ok().body(successMessage);
+    }
+
 
 }

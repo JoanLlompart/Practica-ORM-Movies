@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 @Service
@@ -55,5 +56,9 @@ public class MovieCrewServices {
             directorDTOS.add(new MovieDirectorDTO(movieId,personId,personName,departmentId,departmentName,job));
         }
         return directorDTOS;
+    }
+
+    public String addMovieDirector(Map<String, String> data) {
+
     }
 }

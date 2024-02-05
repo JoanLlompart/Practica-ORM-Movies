@@ -379,11 +379,16 @@ async function searchPersons() {
 
 
 //FALTA AFEGIR ADD Director
-async function addDirector(personId, viewid) {
+async function addDirector(personId, viewId) {
+
+    const requestBody = {
+        personId: personId,
+        movieId: viewId
+    }
     const userConfirmed = window.confirm(`Are you sure you want to add this actor in Movie by id :  ` + viewId + ' ?');
     if (userConfirmed) {
         try {
-            const response = await fetch('/adminArea/castPerson', {
+            const response = await fetch('/adminArea/addDirector', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'

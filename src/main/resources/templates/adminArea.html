@@ -370,6 +370,35 @@
     </div>
 </div>
 
+<!-- Modal para añadir nueva persona a la película -->
+<div class="modal" id="addPersonModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Add Person to Cast</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <!-- Contenido de búsqueda de personas -->
+                <input type="text" name="personKeyword" id="personKeyword" placeholder="Keyword">
+                <label for="page">Page:</label>
+                <input type="number" name="page" id="personPage" value="0" required>
+                <label for="size">Size:</label>
+                <input type="number" name="size" id="personSize" value="10" required>
+
+                <!-- Resultados de búsqueda de personas -->
+                <ul id="personResults"></ul>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" onclick="addDirector()">Add Director</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 
 
 

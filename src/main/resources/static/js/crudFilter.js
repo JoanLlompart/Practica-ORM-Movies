@@ -48,7 +48,7 @@ function updateTable(data, filter) {
 
     // Afegim els botons de Modificar
     if (filter === "movie") {
-        headers.push("Relations");
+        headers.push("Relations","AddDirector","AddGenre");
     }
 
     const headerRow = table.insertRow();
@@ -73,6 +73,27 @@ function updateTable(data, filter) {
                     //relationsMovie(viewId);
                 });
                 cell.appendChild(realtionButton);
+            } else if (header === "AddDirector") {
+                // Crear el botón "Relations" y asignarle un evento
+                const addDirector = document.createElement("button");
+                addDirector.textContent = "AddDirector";
+                addDirector.addEventListener("click", function () {
+                    console.log("click a addDirector");
+                    viewId = item.movieId;
+                    //searchPersons();
+                    //relationsMovie(viewId);
+                });
+                cell.appendChild(addDirector);
+            } else if (header === "AddGenre") {
+                // Crear el botón "Relations" y asignarle un evento
+                const addGenreButton = document.createElement("button");
+                addGenreButton.textContent = "AddGenre";
+                addGenreButton.addEventListener("click", function () {
+                    console.log("click a genre");
+                    viewId = item.movieId;
+                    //relationsMovie(viewId);
+                });
+                cell.appendChild(addGenreButton);
             } else {
                 // Establecer el contenido de la celda para otras columnas
                 cell.textContent = item[header];
@@ -233,6 +254,9 @@ async function handleDeleteDirector(data) {
 
 
 
+
+
+
 const keywordInput = document.getElementById("keyword");
 keywordInput.addEventListener("input", function () {
     //Envia les noves dades a sendDataFilter perque faci la peticio
@@ -281,6 +305,82 @@ document.addEventListener("click", function(event) {
 
 
 
+
+// Añade un evento al botón "Add new person to cast" para abrir el modal de búsqueda de personas
+const addPersonButton = document.getElementById('btnPersonSearch');
+addPersonButton.addEventListener('click', function () {
+    // Limpiar el campo de búsqueda y los resultados
+    document.getElementById('personKeyword').value = '';
+    document.getElementById('personResults').innerHTML = '';
+
+    // Abrir el modal de búsqueda de personas
+    $('#addPersonModal').modal('show');
+});
+
+
+
+async function searchPersons() {
+    const personKeyword = document.getElementById('personKeyword').value;
+    const personPage = document.getElementById('personPage').value;
+    const personSize = document.getElementById('personSize').value;
+
+    // Construir el cuerpo de la solicitud POST
+    const requestBody = {
+        keyword: personKeyword,
+        personPage: personPage,
+        personSize: personSize
+    };
+
+    try {
+        // Realizar la solicitud Fetch al servidor con método POST
+        const response = await fetch('/movieSearch/person', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(requestBody)
+        });
+
+        // Verificar el estado de la respuesta
+        if (!response.ok) {
+            throw new Error(`Error: ${response.status} - ${response.statusText}`);
+        }
+        // Obtener los datos de la respuesta JSON
+        const data = await response.json();
+
+        // Mostrar los resultados en el modal
+        const personResults = document.getElementById('personResults');
+        personResults.innerHTML = '';
+
+        data.forEach(person => {
+            const listItem = document.createElement('li');
+            listItem.textContent = `${person.personName} (${person.personId})`;
+
+            
+                // Añade un botón para agregar la persona al elenco
+                const addButton = document.createElement('button');
+                addButton.textContent = 'Add';
+                addButton.addEventListener('click', function () {
+                    console.log("View persons " + viewId)
+                    addPersonToCast(person.personId, viewId);
+
+                });
+                listItem.appendChild(addButton);
+            
+            personResults.appendChild(listItem);
+        });
+        // Llamar a la función para actualizar la tabla con los datos recibidos
+        // updateTable(data);
+    } catch (error) {
+        console.error('Error:', error);
+    }
+}
+
+
+//FALTA AFEGIR ADD Director
+
+
+
 //PERSON SEARCH
 const keywordRelationInput = document.getElementById("relationKeyword");
 keywordRelationInput.addEventListener("input", function () {
@@ -306,4 +406,25 @@ document.getElementById('relationPage').addEventListener('change', function () {
 document.getElementById('relationSize').addEventListener('change', function () {
     relationsMovie(viewId);
     //searchPersons();
+});
+
+
+
+//PERSON SEARCH
+const keywordPersonInput = document.getElementById("personKeyword");
+keywordPersonInput.addEventListener("input", function () {
+    //Envia les noves dades a sendData perque faci la peticio
+    if (keywordPersonInput.value.trim() !== '') {
+        searchPersons();
+    }
+})
+
+
+document.getElementById('personPage').addEventListener('change', function () {
+    searchPersons();
+});
+
+
+document.getElementById('personSize').addEventListener('change', function () {
+    searchPersons();
 });

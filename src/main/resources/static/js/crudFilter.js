@@ -165,3 +165,28 @@ document.getElementById('page').addEventListener('change', function () {
 document.getElementById('size').addEventListener('change', function () {
     sendDataFilter();
 });
+// Función para mostrar el modal
+function openRelationsModal() {
+    const modal = document.getElementById("relationsModal");
+    modal.style.display = "block";
+}
+
+// Función para cerrar el modal
+function closeRelationsModal() {
+    const modal = document.getElementById("relationsModal");
+    modal.style.display = "none";
+}
+
+// Evento de clic en el botón "Relations"
+document.addEventListener("click", function(event) {
+    if (event.target.textContent === "Relations") {
+        openRelationsModal();
+    }
+});
+
+// Evento de clic en el botón de cierre del modal
+document.addEventListener("click", function(event) {
+    if (event.target.classList.contains("close")) {
+        closeRelationsModal();
+    }
+});

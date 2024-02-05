@@ -165,6 +165,9 @@ document.getElementById('page').addEventListener('change', function () {
 document.getElementById('size').addEventListener('change', function () {
     sendDataFilter();
 });
+
+
+
 // Función para mostrar el modal
 function openRelationsModal() {
     const modal = document.getElementById("relationsModal");

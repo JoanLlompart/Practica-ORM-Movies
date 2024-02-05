@@ -353,6 +353,18 @@
             <option value="MovieGenre">Movie Genre</option>
             <option value="Director">Director</option>
         </select>
+        <div class="modal-body">
+            <!-- Contenido de búsqueda de personas -->
+            <input type="text" name="personKeyword" id="personKeyword" placeholder="Keyword">
+            <label for="page">Page:</label>
+            <input type="number" name="page" id="personPage" value="0" required>
+            <label for="size">Size:</label>
+            <input type="number" name="size" id="personSize" value="10" required>
+
+            <!-- Resultados de búsqueda de personas -->
+            <ul id="personResults"></ul>
+        </div>
+        
         <!-- Puedes agregar más contenido al modal según tus necesidades -->
         <button onclick="performRelationAction()">Realizar acción de relación</button>
     </div>

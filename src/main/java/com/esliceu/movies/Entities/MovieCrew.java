@@ -2,6 +2,8 @@ package com.esliceu.movies.Entities;
 
 import jakarta.persistence.*;
 
+import java.util.Optional;
+
 @Entity
 @Table(
         name = "movie_crew",
@@ -25,6 +27,16 @@ public class MovieCrew {
     private Department department;
     @Column(name = "job")
     private String job;
+
+    public MovieCrew() {
+    }
+
+    public MovieCrew(Movie movie, Person person, Department department, String job) {
+        this.movie = movie;
+        this.person = person;
+        this.department = department;
+        this.job = job;
+    }
 
     public Movie getMovie() {
         return movie;

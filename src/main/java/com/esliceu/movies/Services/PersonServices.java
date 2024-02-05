@@ -44,4 +44,8 @@ public class PersonServices {
         Pageable pageable = PageRequest.of(page,size);
         return personRepo.findByPersonNameContaining(keyword,pageable);
     }
+
+    public Person findPersonById(Long personId) {
+        return personRepo.getReferenceById(personId);
+    }
 }

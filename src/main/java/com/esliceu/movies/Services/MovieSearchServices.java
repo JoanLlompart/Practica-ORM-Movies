@@ -409,6 +409,10 @@ public class MovieSearchServices {
         return movieCastServices.getActorsByMovieId(movieId);
 
     }
+
+    public Movie findById(Long movieId) {
+        return movieSearchRepo.getReferenceById(movieId);
+    }
 }
 
 

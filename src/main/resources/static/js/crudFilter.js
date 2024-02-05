@@ -107,6 +107,7 @@ async function relationsMovie(viewId) {
 
         // Obtener los datos de la respuesta JSON
         const data = await response.json();
+        
         //showActorsModal(data, viewId);
 
     } catch (error) {
@@ -173,6 +174,7 @@ document.getElementById('size').addEventListener('change', function () {
 function openRelationsModal() {
     const modal = document.getElementById("relationsModal");
     modal.style.display = "block";
+    relationsMovie(viewId);
 }
 
 // Función para cerrar el modal
@@ -185,6 +187,7 @@ function closeRelationsModal() {
 document.addEventListener("click", function(event) {
     if (event.target.textContent === "Relations") {
         openRelationsModal();
+
     }
 });
 
@@ -206,6 +209,11 @@ keywordRelationInput.addEventListener("input", function () {
        // searchPersons();
     }
 })
+
+document.getElementById('relationSelect').addEventListener('change', function () {
+    relationsMovie(viewId);
+    //searchPersons();
+});
 
 
 document.getElementById('relationPage').addEventListener('change', function () {

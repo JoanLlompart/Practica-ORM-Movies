@@ -24,6 +24,9 @@ public class AdminAreaFilterController {
     MovieCastServices movieCastServices;
     @Autowired
     GenderServices genderServices;
+    @Autowired
+    MovieCrewServices movieCrewServices;
+
 
     @GetMapping("/adminArea/filter")
     public String adminAreaGet(HttpSession session, Model model) {
@@ -38,6 +41,15 @@ public class AdminAreaFilterController {
       //  String successMessage =crudFilterServices.insertNewKeyword(data);
         return crudFilterServices.filterByEntity(data);
     }
+
+    @PostMapping("/adminArea/movieDirector")
+    @ResponseBody
+    public List<?> adminMovieRelationDirector(HttpSession session , @RequestBody Map<String,String> data) {
+        String email = (String) session.getAttribute("email");
+        userServices.setEmail(email);
+        return crudFilterServices.findMovieDirector(data);
+    }
+
 
     @PostMapping("/adminArea/decastActor")
     public ResponseEntity<Object> adminDecastActor(HttpSession session, @RequestBody Map<String, String> data) {
@@ -54,6 +66,9 @@ public class AdminAreaFilterController {
         String successMessage = movieCastServices.castActor(data);
         return ResponseEntity.ok().body(successMessage);
     }
+
+
+
     @PostMapping("/adminArea/allGender")
     @ResponseBody
     public List<Gender> viewAllGenders() {

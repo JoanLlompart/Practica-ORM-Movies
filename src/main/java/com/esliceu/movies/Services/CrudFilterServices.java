@@ -1,7 +1,9 @@
 package com.esliceu.movies.Services;
 
 import com.esliceu.movies.DTO.MovieDTO;
+import com.esliceu.movies.DTO.MovieDirectorDTO;
 import com.esliceu.movies.Entities.Movie;
+import com.esliceu.movies.Entities.MovieCrew;
 import com.esliceu.movies.Entities.Person;
 import com.esliceu.movies.Repos.MovieSearchRepo;
 import com.esliceu.movies.Repos.PersonRepo;
@@ -28,7 +30,7 @@ public class CrudFilterServices {
     MovieCastServices movieCastServices;
 
     @Autowired
-    MovieSearchServices movieSearchServices;
+    MovieCrewServices movieCrewServices;
     @Autowired
     MovieSearchRepo movieSearchRepo;
     @Autowired
@@ -79,5 +81,10 @@ public class CrudFilterServices {
                 break;
         }
         return null;
+    }
+
+    public List<?> findMovieDirector(Map<String, String> data) {
+        Long movieId = Long.valueOf(data.get("movieId"));
+        return movieCrewServices.findAllDirectors(movieId);
     }
 }

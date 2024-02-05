@@ -36,7 +36,7 @@ async function sendDataFilter() {
         console.error('Error:', error);
     }
 }
-/*
+
 function updateTable(data) {
     const table = document.getElementById("resultTable");
     table.innerHTML = ""; // Limpiar la tabla antes de actualizar
@@ -59,9 +59,9 @@ function updateTable(data) {
         });
     });
 }
-*/
 
 
+/*
 function updateTable(data) {
     const table = document.getElementById("resultTable");
     table.innerHTML = ""; // Limpiar la tabla antes de actualizar
@@ -89,6 +89,13 @@ function updateTable(data) {
     // Agregar la clase de Bootstrap para tablas
     table.classList.add("table", "table-bordered", "table-striped");
 }
+*/
+
+
+
+
+
+
 
 
 const keywordInput = document.getElementById("keyword");

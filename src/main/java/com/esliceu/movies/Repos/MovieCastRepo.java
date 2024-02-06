@@ -72,4 +72,11 @@ Amem si es la consulta
     int findMaxCastOrderForMovie(@Param("movieId") Long movieId);
     MovieCast findFirstByMovie_MovieIdAndPerson_PersonId(Long movieId, Long personId);
 
+
+    //proba per actualitzar mes exacte la relacio de movieCrew
+    MovieCast findFirstByMovie_MovieIdAndPerson_PersonIdAndGender_GenderId(Long movieId, Long personId, Long genderId);
+
+    MovieCast findByMovie_MovieIdAndPerson_PersonIdAndCharacterName(Long movieId, Long personId, String characterName);
+
+    void deleteByCharacterNameAndMovie_MovieIdAndPerson_PersonId(String characterName,Long movieId, Long personId);
 }

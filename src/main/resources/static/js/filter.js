@@ -397,7 +397,9 @@ function showActorsModal(actorsData, viewId) {
             actionButton.textContent = "X";
             actionButton.addEventListener("click", function () {
                 // Enviar la información al servidor al hacer clic en el botón
-                sendDeleteRelation(viewId, actor.personId);
+                console.log("confirm delete")
+                console.log(actor)
+                sendDeleteRelation(viewId, actor);
             });
             cellAction.appendChild(actionButton);
         }
@@ -556,10 +558,12 @@ function sendUpdatedInfo(personId, updatedContent) {
 
 
 // Función para enviar la selección de actor al servidor
-async function sendDeleteRelation(movieId, actorId) {
+async function sendDeleteRelation(movieId, actor) {
     const requestBody = {
         movieId: movieId,
-        actorId: actorId
+        actorId: actor.personId,
+        genderId:actor.genderId,
+        characterName: actor.characterName
     };
     const userConfirmed = window.confirm(`Are you sure you want to decast this actor in Movie by id :  ` + movieId + ' ?');
     if (userConfirmed) {

@@ -79,6 +79,16 @@ public class MovieCastServices {
     public String decastActor(Map<String, String> data) {
         Long movieId = Long.valueOf(data.get("movieId"));
         Long personId = Long.valueOf(data.get("actorId"));
+        Long genderId = Long.valueOf(data.get("genderId"));
+        String characterName =data.get("characterName");
+
+        /*
+         actorId: actor.personId,
+        genderId:actor.genderId,
+        characterName: actor.characterName
+         */
+
+
 
        /* if (movieCastRepo.deleteByMovie_MovieIdAndPerson_PersonId(movieId, personId)) {
             return "Actor decast successfully";
@@ -86,8 +96,8 @@ public class MovieCastServices {
             return "Actor decast failed";
         }
         */
-        //movieCastRepo.deleteByMovie_MovieIdAndPerson_PersonIdAndGender_GenderId(movieId,personId);
-        movieCastRepo.deleteByMovie_MovieIdAndPerson_PersonId(movieId, personId);
+        movieCastRepo.deleteByCharacterNameAndMovie_MovieIdAndPerson_PersonIdAndGender_GenderId(characterName,movieId,personId,genderId);
+        //movieCastRepo.deleteByMovie_MovieIdAndPerson_PersonId(movieId, personId);
         return "Actor decast successfully";
     }
 

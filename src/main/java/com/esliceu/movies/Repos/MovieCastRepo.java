@@ -79,4 +79,6 @@ Amem si es la consulta
     MovieCast findByMovie_MovieIdAndPerson_PersonIdAndCharacterName(Long movieId, Long personId, String characterName);
 
     void deleteByCharacterNameAndMovie_MovieIdAndPerson_PersonId(String characterName,Long movieId, Long personId);
+
+    void deleteByCharacterNameAndMovie_MovieIdAndPerson_PersonIdAndGender_GenderId(String characterName, Long movieId, Long personId, Long genderId);
 }

@@ -358,7 +358,8 @@ function showActorsModal(actorsData, viewId) {
         cellGender.textContent = actor.gender;
         cellCharacterName.textContent = actor.characterName;
         // cellId.textContent = actor.personId;
-        [cellPersonName, cellGender, cellCharacterName].forEach(cell => {
+        //[cellPersonName, cellGender, cellCharacterName].forEach(cell => {
+        [cellGender, cellCharacterName].forEach(cell => {
             cell.addEventListener("dblclick", async function () {
                 console.log("cel");
                 console.log(cell);
@@ -378,11 +379,14 @@ function showActorsModal(actorsData, viewId) {
                         console.log(actor);
                         //Proba
                         actor.genderId=actor.gender.genderId;
-                        editCellContent(cell, actor, viewId);
+                        //editCellContent(cell, actor, viewId);
+                        sendUpdatedInfo(actor,viewId);
                     }
-                } else {
+                } else if(cell == cellCharacterName){
+                    
+                    //sendUpdatedInfo(actor,viewId);
                     // Si se hace doble clic en otras celdas, llamar a la función editCellContent()
-                    editCellContent(cell, actor, viewId);
+                    editCellContent(cell, actor, viewId); original
                 }
             });
         });
@@ -407,7 +411,7 @@ function showActorsModal(actorsData, viewId) {
 
 
 
-
+//Original mas o menos
 function editCellContent(cell, actor, viewId) {
     const originalContent = cell.textContent;
     console.log("Original");
@@ -419,7 +423,7 @@ function editCellContent(cell, actor, viewId) {
         const updatedContent = inputElement.value;
         cell.textContent = updatedContent;
         console.log("Update Content");
-        actor.characterName=cell.textContent
+        actor.characterName=cell.textContent; //si es genera no ho fa be
         console.log(actor.characterName);
         // Aquí puedes enviar la información actualizada al servidor
         //sendUpdatedInfo(actor.personId, cell.textContent);
@@ -430,6 +434,37 @@ function editCellContent(cell, actor, viewId) {
     cell.appendChild(inputElement);
     inputElement.focus();
 }
+
+
+/*
+function editCellContent(cell, actor, viewId) {
+    const originalContent = cell.textContent;
+    console.log("Original");
+    console.log(originalContent)
+    const inputElement = document.createElement("input");
+    inputElement.value = originalContent;
+    inputElement.addEventListener("blur", function () {
+        // Actualizar el contenido y enviar al servidor
+        const updatedContent = inputElement.value;
+        cell.textContent = updatedContent;
+        console.log("Update Content");
+        actor.characterName=cell.textContent;
+        console.log(actor.characterName);
+        // Aquí puedes enviar la información actualizada al servidor
+        //sendUpdatedInfo(actor.personId, cell.textContent);
+        sendUpdatedInfo(actor, viewId);
+    });
+
+    cell.textContent = "";
+    cell.appendChild(inputElement);
+    inputElement.focus();
+}*/
+
+
+
+
+
+
 
 
 function sendUpdatedInfo(person, viewId) {

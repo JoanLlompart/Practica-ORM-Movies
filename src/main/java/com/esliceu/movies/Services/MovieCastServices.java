@@ -155,6 +155,7 @@ public class MovieCastServices {
                     .orElseThrow(() -> new RuntimeException("Película no encontrada con ID: " + movieId));
             movieCast.setMovie(movie);
             movieCast.setPerson(person);
+            movieCastRepo.deleteByMovie_MovieIdAndPerson_PersonId(movieId,personId);
             movieCastRepo.saveAndFlush(movieCast);//proba
             return "Update value successfully";
         } else {

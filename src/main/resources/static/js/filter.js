@@ -376,6 +376,8 @@ function showActorsModal(actorsData, viewId) {
                         console.log(selectedGender);
                         console.log("ACTOR");
                         console.log(actor);
+                        //Proba
+                        actor.genderId=actor.gender.genderId;
                         editCellContent(cell, actor, viewId);
                     }
                 } else {
@@ -385,14 +387,12 @@ function showActorsModal(actorsData, viewId) {
             });
         });
         if (isEmailAvailable) {
-
             // Agregar el botón en la columna "Action"
             const actionButton = document.createElement("button");
             actionButton.textContent = "X";
             actionButton.addEventListener("click", function () {
                 // Enviar la información al servidor al hacer clic en el botón
                 sendDeleteRelation(viewId, actor.personId);
-
             });
             cellAction.appendChild(actionButton);
         }
@@ -410,15 +410,17 @@ function showActorsModal(actorsData, viewId) {
 
 function editCellContent(cell, actor, viewId) {
     const originalContent = cell.textContent;
+    console.log("Original");
+    console.log(originalContent)
     const inputElement = document.createElement("input");
     inputElement.value = originalContent;
-
     inputElement.addEventListener("blur", function () {
         // Actualizar el contenido y enviar al servidor
         const updatedContent = inputElement.value;
         cell.textContent = updatedContent;
         console.log("Update Content");
-        console.log(updatedContent);
+        actor.characterName=cell.textContent
+        console.log(actor.characterName);
         // Aquí puedes enviar la información actualizada al servidor
         //sendUpdatedInfo(actor.personId, cell.textContent);
         sendUpdatedInfo(actor, viewId);
@@ -435,12 +437,22 @@ function sendUpdatedInfo(person, viewId) {
         personId: personId,
         updatedContent: updatedContent
     };*/
+    /* ACTUAL I MOSTRAT
     const data = {
         personId: person.personId,
         movieId: viewId,
         characterName: person.characterName,
         genderId: person.gender.genderId
+    };*/
+
+    const data = {
+        personId: person.personId,
+        movieId: viewId,
+        characterName: person.characterName,
+        genderId: person.genderId
     };
+
+
 
     /*  const requestBody = {
                 personId: personId,

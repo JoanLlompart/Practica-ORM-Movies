@@ -86,6 +86,7 @@ public class MovieCastServices {
             return "Actor decast failed";
         }
         */
+        //movieCastRepo.deleteByMovie_MovieIdAndPerson_PersonIdAndGender_GenderId(movieId,personId);
         movieCastRepo.deleteByMovie_MovieIdAndPerson_PersonId(movieId,personId);
         return "Actor decast successfully";
     }
@@ -128,7 +129,6 @@ public class MovieCastServices {
     }
 
     @Transactional
-    @Modifying
     public String updateMovieCast(Map<String, String> data) {
         Long personId= Long.valueOf(data.get("personId"));
         Long movieId = Long.valueOf(data.get("movieId"));
@@ -155,7 +155,7 @@ public class MovieCastServices {
                     .orElseThrow(() -> new RuntimeException("Película no encontrada con ID: " + movieId));
             movieCast.setMovie(movie);
             movieCast.setPerson(person);
-            movieCastRepo.save(movieCast);
+            movieCastRepo.saveAndFlush(movieCast);//proba
             return "Update value successfully";
         } else {
             return "Update Failed";

@@ -134,6 +134,9 @@ public class MovieCastServices {
         Long movieId = Long.valueOf(data.get("movieId"));
         String characterName = data.get("characterName");
         Long genderId = Long.valueOf(data.get("genderId"));
+        String changeParameter = data.get("changeParameter");
+
+        System.out.println("change parameter : " + changeParameter);
 
         System.out.println("gender id " + genderId);
         MovieCast movieCastBD=movieCastRepo.findFirstByMovie_MovieIdAndPerson_PersonId(movieId,personId);

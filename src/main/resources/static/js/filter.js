@@ -380,13 +380,14 @@ function showActorsModal(actorsData, viewId) {
                         //Proba
                         actor.genderId=actor.gender.genderId;
                         //editCellContent(cell, actor, viewId);
-                        sendUpdatedInfo(actor,viewId);
+                        let changeParameter = "gender";
+                        sendUpdatedInfo(actor,viewId,changeParameter);
                     }
                 } else if(cell == cellCharacterName){
-                    
+                    let changeParameter = "character";
                     //sendUpdatedInfo(actor,viewId);
                     // Si se hace doble clic en otras celdas, llamar a la función editCellContent()
-                    editCellContent(cell, actor, viewId); original
+                    editCellContent(cell, actor, viewId,changeParameter); 
                 }
             });
         });
@@ -412,7 +413,7 @@ function showActorsModal(actorsData, viewId) {
 
 
 //Original mas o menos
-function editCellContent(cell, actor, viewId) {
+function editCellContent(cell, actor, viewId,changeParameter) {
     const originalContent = cell.textContent;
     console.log("Original");
     console.log(originalContent)
@@ -427,7 +428,7 @@ function editCellContent(cell, actor, viewId) {
         console.log(actor.characterName);
         // Aquí puedes enviar la información actualizada al servidor
         //sendUpdatedInfo(actor.personId, cell.textContent);
-        sendUpdatedInfo(actor, viewId);
+        sendUpdatedInfo(actor, viewId,changeParameter);
     });
 
     cell.textContent = "";
@@ -467,7 +468,7 @@ function editCellContent(cell, actor, viewId) {
 
 
 
-function sendUpdatedInfo(person, viewId) {
+function sendUpdatedInfo(person, viewId,changeParameter) {
     /* const data = {
         personId: personId,
         updatedContent: updatedContent
@@ -484,7 +485,8 @@ function sendUpdatedInfo(person, viewId) {
         personId: person.personId,
         movieId: viewId,
         characterName: person.characterName,
-        genderId: person.genderId
+        genderId: person.genderId,
+        changeParameter:changeParameter
     };
 
 
@@ -511,7 +513,9 @@ function sendUpdatedInfo(person, viewId) {
         .then(response => response.json())
         .then(data => {
             // Manejar la respuesta del servidor (puede ser un mensaje de éxito, etc.)
-            alert(data);
+            //CRIDAR A ACTUALITZAR EL MODAL
+            $('#movieModal').modal('hide');
+            viewActors(movieId);
         })
         .catch(error => {
             // Manejar errores en la solicitud

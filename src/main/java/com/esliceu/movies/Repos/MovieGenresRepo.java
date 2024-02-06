@@ -9,5 +9,5 @@ import java.util.List;
 public interface MovieGenresRepo extends JpaRepository<MovieGenres, Long> {
     List<MovieGenres> findAllByMovie_MovieId(Long movieId);
 
-    List<MovieGenres> findAllGenreByMovie_MovieId(Long movieId);//proba
+    List<MovieGenres> findAllGenreByMovie_MovieId(Long movieId);
 }

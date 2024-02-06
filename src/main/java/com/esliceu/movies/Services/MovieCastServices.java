@@ -13,6 +13,7 @@ import com.esliceu.movies.Repos.PersonRepo;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -96,6 +97,8 @@ public class MovieCastServices {
         String characterName = data.get("characterName");
         Long genderId = Long.valueOf(data.get("genderId"));
 
+        System.out.println("character" + characterName);
+        System.out.println("Gender id" + genderId);
         // Pas 1:  Recuperar la persona amb el id
         Person person = personRepo.findById(personId)
                 .orElseThrow(() -> new RuntimeException("Persona no encontrada con ID: " + personId));
@@ -115,7 +118,6 @@ public class MovieCastServices {
         movieCast.setCharacterName(characterName);
         movieCast.setCastOrder(castOrder);
         movieCast.setGender(gender);
-
         movieCastRepo.save(movieCast);
         return "Person assigned to the movie successfully";
     }
@@ -125,21 +127,25 @@ public class MovieCastServices {
         return maxCastOrder != null ? maxCastOrder : 0;
     }
 
+    @Transactional
+    @Modifying
     public String updateMovieCast(Map<String, String> data) {
         Long personId= Long.valueOf(data.get("personId"));
         Long movieId = Long.valueOf(data.get("movieId"));
         String characterName = data.get("characterName");
         Long genderId = Long.valueOf(data.get("genderId"));
 
-        MovieCast movieCastBD=movieCastRepo.findByMovie_MovieIdAndPerson_PersonId(movieId,personId);
+        System.out.println("gender id " + genderId);
+        MovieCast movieCastBD=movieCastRepo.findFirstByMovie_MovieIdAndPerson_PersonId(movieId,personId);
+        System.out.println("Movi cast de el repo " + movieCastBD.toString());
         MovieCast movieCast = new MovieCast();
         if (movieCastBD.getMovie().getMovieId().equals(movieId) &&
                 movieCastBD.getPerson().getPersonId().equals(personId)) {
 
             movieCast.setCharacterName(characterName);
             movieCast.setCastOrder(movieCastBD.getCastOrder());
-            Gender gender = genderRepo.getReferenceById(genderId);
-            System.out.println(gender.toString());
+            //Gender gender = genderRepo.getReferenceById(genderId);
+            Gender gender = genderRepo.findByGenderId(genderId);
             movieCast.setGender(gender);
 
             Person person = personRepo.findById(personId)
@@ -149,7 +155,6 @@ public class MovieCastServices {
                     .orElseThrow(() -> new RuntimeException("Película no encontrada con ID: " + movieId));
             movieCast.setMovie(movie);
             movieCast.setPerson(person);
-
             movieCastRepo.save(movieCast);
             return "Update value successfully";
         } else {

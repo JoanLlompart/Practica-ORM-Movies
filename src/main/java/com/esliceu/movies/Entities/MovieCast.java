@@ -32,6 +32,17 @@ public class MovieCast {
     @Column(name = "cast_order")
     private int castOrder;
 
+    @Override
+    public String toString() {
+        return "MovieCast{" +
+                "movie=" + movie +
+                ", person=" + person +
+                ", characterName='" + characterName + '\'' +
+                ", gender=" + gender +
+                ", castOrder=" + castOrder +
+                '}';
+    }
+
     public Movie getMovie() {
         return movie;
     }

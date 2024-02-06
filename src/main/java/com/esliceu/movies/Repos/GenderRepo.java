@@ -10,4 +10,5 @@ public interface GenderRepo extends JpaRepository<Gender, Long> {
     Long lastGenderId();
 
     boolean existsByGenderId(Long genderId);
+    Gender findByGenderId(Long genderId);
 }

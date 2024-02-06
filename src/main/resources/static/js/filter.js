@@ -417,7 +417,8 @@ function editCellContent(cell, actor, viewId) {
         // Actualizar el contenido y enviar al servidor
         const updatedContent = inputElement.value;
         cell.textContent = updatedContent;
-
+        console.log("Update Content");
+        console.log(updatedContent);
         // Aquí puedes enviar la información actualizada al servidor
         //sendUpdatedInfo(actor.personId, cell.textContent);
         sendUpdatedInfo(actor, viewId);
@@ -427,6 +428,8 @@ function editCellContent(cell, actor, viewId) {
     cell.appendChild(inputElement);
     inputElement.focus();
 }
+
+
 function sendUpdatedInfo(person, viewId) {
     /* const data = {
         personId: personId,

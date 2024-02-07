@@ -7,6 +7,8 @@ import com.esliceu.movies.Repos.MovieGenresRepo;
 import com.esliceu.movies.Repos.MovieSearchRepo;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -50,5 +52,13 @@ public class MovieGenresServices {
             return "MovieGenres delete successfully";
         }
         return "Delete MovieGenres failed";
+    }
+
+    public List<?> findAllGenres(Map<String, String> data) {
+        String keyword = data.get("keyword");
+        int page = Integer.parseInt(data.get("genrePage"));
+        int size = Integer.parseInt(data.get("genreSize"));
+        Pageable pageable = PageRequest.of(page,size);
+        return genreRepo.findByGenreNameContainingIgnoreCase(keyword,pageable);
     }
 }

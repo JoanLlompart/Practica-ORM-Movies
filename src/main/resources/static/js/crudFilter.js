@@ -452,7 +452,7 @@ async function searchGenres() {
 
     try {
         // Realizar la solicitud Fetch al servidor con método POST
-        const response = await fetch('/movieSearch/genre', {
+        const response = await fetch('/adminArea/allGenres', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'

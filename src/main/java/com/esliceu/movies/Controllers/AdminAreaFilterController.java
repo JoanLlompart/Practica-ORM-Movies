@@ -17,7 +17,8 @@ import java.util.Map;
 
 @Controller
 public class AdminAreaFilterController {
-    @Autowired UserServices userServices;
+    @Autowired
+    UserServices userServices;
     @Autowired
     CrudFilterServices crudFilterServices;
     @Autowired
@@ -57,6 +58,16 @@ public class AdminAreaFilterController {
         userServices.setEmail(email);
         return crudFilterServices.findByGenre(data);
     }
+
+    @PostMapping("/adminArea/allGenres")
+    @ResponseBody
+    public List<?> adminAllGenres(HttpSession session , @RequestBody Map<String,String> data) {
+        String email = (String) session.getAttribute("email");
+        userServices.setEmail(email);
+
+        return crudFilterServices.findAllGenres(data);
+    }
+
 
    /* @PostMapping("/adminArea/movieProductionCompany")
     @ResponseBody

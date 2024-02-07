@@ -95,4 +95,8 @@ public class CrudFilterServices {
         Long movieId = Long.valueOf(data.get("movieId"));
         return movieGenresServices.findAllGenreByMovieId(movieId);
     }
+
+    public List<?> findAllGenres(Map<String, String> data) {
+        return movieGenresServices.findAllGenres(data);
+    }
 }

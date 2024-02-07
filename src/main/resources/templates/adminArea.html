@@ -386,13 +386,37 @@
                 <ul id="personResults"></ul>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-primary" onclick="addDirector()">Add Director</button>
+               <!-- <button type="button" class="btn btn-primary" onclick="addDirector()">Add Director</button>-->
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
             </div>
         </div>
     </div>
 </div>
 
+<div class="modal" id="addGenreModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Add Genre to Movie</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <input type="text" name="genreKeyword" id="genreKeyword" placeholder="Keyword">
+                <label for="page">Page:</label>
+                <input type="number" name="page" id="genrePage" value="0" required>
+                <label for="size">Size:</label>
+                <input type="number" name="size" id="genreSize" value="10" required>
+                <ul id="genreResults"></ul>
+            </div>
+            <div class="modal-footer">
+                <!-- <button type="button" class="btn btn-primary" onclick="addDirector()">Add Director</button>-->
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
 
 
 

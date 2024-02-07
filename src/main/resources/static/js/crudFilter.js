@@ -383,6 +383,8 @@ async function searchPersons() {
 }
 
 
+
+
 //FALTA AFEGIR ADD Director
 async function addDirector(personId, viewId) {
 
@@ -421,6 +423,64 @@ async function addDirector(personId, viewId) {
     }
 };
 
+
+
+async function searchGenres() {
+    const genreKeyword = document.getElementById('genreKeyword').value;
+    const genrePage = document.getElementById('genrePage').value;
+    const genreSize = document.getElementById('genreSize').value;
+
+    // Construir el cuerpo de la solicitud POST
+    const requestBody = {
+        keyword: genreKeyword,
+        genrePage: genrePage,
+        genreSize: genreSize
+    };
+
+    try {
+        // Realizar la solicitud Fetch al servidor con método POST
+        const response = await fetch('/movieSearch/genre', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(requestBody)
+        });
+
+        // Verificar el estado de la respuesta
+        if (!response.ok) {
+            throw new Error(`Error: ${response.status} - ${response.statusText}`);
+        }
+        // Obtener los datos de la respuesta JSON
+        const data = await response.json();
+
+        // Mostrar los resultados en el modal
+        const genreResults = document.getElementById('genreResults');
+        genreResults.innerHTML = '';
+
+        data.forEach(person => {
+            const listItem = document.createElement('li');
+            listItem.textContent = `${person.personName} (${person.personId})`;
+
+
+            // Añade un botón para agregar la persona al elenco
+            const addButton = document.createElement('button');
+            addButton.textContent = 'Add';
+            addButton.addEventListener('click', function () {
+                console.log("View persons " + viewId)
+                addDirector(person.personId, viewId);
+
+            });
+            listItem.appendChild(addButton);
+
+            personResults.appendChild(listItem);
+        });
+        // Llamar a la función para actualizar la tabla con los datos recibidos
+        // updateTable(data);
+    } catch (error) {
+        console.error('Error:', error);
+    }
+}
 //Add genre in Movie
 async function addGenre(personId, viewId) {
     const requestBody = {
@@ -446,7 +506,7 @@ async function addGenre(personId, viewId) {
                     alert(responseData)
                     //recarrega la pagina
 
-                    $('#addPersonModal').modal('hide');
+                    $('#addGenreModal').modal('hide');
                     alert(responseData);
                 })
         } catch (error) {
@@ -505,4 +565,24 @@ document.getElementById('personPage').addEventListener('change', function () {
 
 document.getElementById('personSize').addEventListener('change', function () {
     searchPersons();
+});
+
+
+//Genre search
+const keywordGenreInput = document.getElementById("genreKeyword");
+keywordGenreInput.addEventListener("input", function () {
+    //Envia les noves dades a sendData perque faci la peticio
+    if (keywordGenreInput.value.trim() !== '') {
+        searchGenres();
+    }
+})
+
+
+document.getElementById('genrePage').addEventListener('change', function () {
+    searchGenres();
+});
+
+
+document.getElementById('genreSize').addEventListener('change', function () {
+    searchGenres();
 });

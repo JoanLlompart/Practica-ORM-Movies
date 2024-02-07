@@ -17,6 +17,14 @@ public class MovieGenres {
     @JoinColumn(name = "genre_id")
     private Genre genre;
 
+    @Override
+    public String toString() {
+        return "MovieGenres{" +
+                "movie=" + movie +
+                ", genre=" + genre +
+                '}';
+    }
+
     public Movie getMovie() {
         return movie;
     }

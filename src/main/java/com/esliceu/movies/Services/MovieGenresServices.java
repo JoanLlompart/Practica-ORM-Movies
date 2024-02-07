@@ -1,9 +1,11 @@
 package com.esliceu.movies.Services;
 
-import com.esliceu.movies.Entities.Genre;
-import com.esliceu.movies.Entities.MovieGenres;
-import com.esliceu.movies.Entities.MovieLanguages;
+import com.esliceu.movies.Entities.*;
+import com.esliceu.movies.Repos.GenderRepo;
+import com.esliceu.movies.Repos.GenreRepo;
 import com.esliceu.movies.Repos.MovieGenresRepo;
+import com.esliceu.movies.Repos.MovieSearchRepo;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,8 +15,12 @@ import java.util.Map;
 
 @Service
 public class MovieGenresServices {
-@Autowired
+    @Autowired
     MovieGenresRepo movieGenresRepo;
+    @Autowired
+    MovieSearchRepo movieSearchRepo;
+    @Autowired
+    GenreRepo genreRepo;
     public void deleteByMovieId(Long movieId) {
         List<MovieGenres> allMovieGenres = movieGenresRepo.findAllByMovie_MovieId(movieId);
         movieGenresRepo.deleteAll(allMovieGenres);
@@ -32,8 +38,27 @@ public class MovieGenresServices {
     }
 
 
+    @Transactional
     public String deleteByMovieIdAndGenreId(Map<String, String> data) {
         Long genreId = Long.valueOf(data.get("genreId"));
-        return "FALTA IMPLEMENTAR NO HA ARRIBAT MovieId";
+        Long movieId = Long.valueOf(data.get("movieId"));
+
+        if (movieSearchRepo.existsByMovieId(movieId) && genreRepo.existsByGenreId(genreId)) {
+            Movie movie = movieSearchRepo.getReferenceById(movieId);
+            Genre genre = genreRepo.getReferenceById(genreId);
+            movieGenresRepo.deleteByMovieAndGenre(movie,genre);
+            return "MovieGenres delete successfully";
+        }
+
+
+
+        //movieGenresRepo.deleteByMovieAndGenre()
+                /*
+                @Transactional
+    public void deleteByGenreAndMovie(Genre genreDelte, Movie movie) {
+        movieGenresRepo.deleteByGenreAndMovie(genreDelte,movie);
+    }
+                 */
+        return "Delete MovieGenres failed";
     }
 }

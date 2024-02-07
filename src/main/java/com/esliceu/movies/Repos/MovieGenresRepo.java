@@ -12,8 +12,7 @@ public interface MovieGenresRepo extends JpaRepository<MovieGenres, Long> {
 
     List<MovieGenres> findAllGenreByMovie_MovieId(Long movieId);
 
-   // MovieGenres findByMovieIdAndGenreId(Long movieId, Long genreId); //proba
-
+    //Elimina MovieGenre que coincideix amb Movie i Genre
     void deleteByMovieAndGenre(Movie movie, Genre genre);
 
 }

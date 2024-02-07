@@ -49,16 +49,6 @@ public class MovieGenresServices {
             movieGenresRepo.deleteByMovieAndGenre(movie,genre);
             return "MovieGenres delete successfully";
         }
-
-
-
-        //movieGenresRepo.deleteByMovieAndGenre()
-                /*
-                @Transactional
-    public void deleteByGenreAndMovie(Genre genreDelte, Movie movie) {
-        movieGenresRepo.deleteByGenreAndMovie(genreDelte,movie);
-    }
-                 */
         return "Delete MovieGenres failed";
     }
 }

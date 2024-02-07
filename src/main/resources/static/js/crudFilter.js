@@ -92,6 +92,7 @@ function updateTable(data, filter) {
                 addGenreButton.addEventListener("click", function () {
                     console.log("click a genre");
                     viewId = item.movieId;
+
                     //relationsMovie(viewId);
                 });
                 cell.appendChild(addGenreButton);
@@ -393,6 +394,43 @@ async function addDirector(personId, viewId) {
     if (userConfirmed) {
         try {
             const response = await fetch('/adminArea/addDirector', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(requestBody)
+            }).then(response => {
+                if (!response.ok) {
+                    throw new Error('Error en la solicitud: ' + response.statusText);
+                }
+                return response.text();
+            })
+                .then(responseData => {
+                    alert(responseData)
+                    //recarrega la pagina
+
+                    $('#addPersonModal').modal('hide');
+                    alert(responseData);
+                })
+        } catch (error) {
+            console.error('Error:', error);
+        }
+
+    } else {
+        console.log("User canceled gender selection.");
+    }
+};
+
+//Add genre in Movie
+async function addGenre(personId, viewId) {
+    const requestBody = {
+        personId: personId,
+        movieId: viewId
+    }
+    const userConfirmed = window.confirm(`Are you sure you want to add this Genre in Movie by id :  ` + viewId + ' ?');
+    if (userConfirmed) {
+        try {
+            const response = await fetch('/adminArea/addGenre', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'

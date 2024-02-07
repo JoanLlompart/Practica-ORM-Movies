@@ -15,4 +15,5 @@ public interface MovieGenresRepo extends JpaRepository<MovieGenres, Long> {
     //Elimina MovieGenre que coincideix amb Movie i Genre
     void deleteByMovieAndGenre(Movie movie, Genre genre);
 
+    boolean existsByGenreAndMovie(Genre genre, Movie movie);
 }

@@ -63,6 +63,23 @@ public class MovieGenresServices {
     }
 
     public String addMovieGenre(Map<String, String> data) {
+        Long genderId = Long.valueOf(data.get("genreId"));
+        Long movieId = Long.valueOf(data.get("movieId"));
+
+        if (genreRepo.existsByGenreId(genderId) & movieSearchRepo.existsByMovieId(movieId)) {
+            Genre genre= genreRepo.getReferenceById(genderId);
+            Movie movie = movieSearchRepo.getReferenceById(movieId);
+            MovieGenres movieGenres = new MovieGenres(movie,genre);
+            if (!movieGenresRepo.existsByGenreAndMovie(genre,movie)) {
+                movieGenresRepo.save(movieGenres);
+                return "Genre add to Movie successfully";
+            } else {
+                return "Error: this Genre already exist in this Movie";
+            }
+        } else {
+            return "Failed: values of MovieId or GenderId not exist in Data Bases";
+        }
+
 
     }
 }

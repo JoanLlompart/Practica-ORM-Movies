@@ -148,11 +148,15 @@ public class MovieCastServices {
 
         System.out.println("change parameter : " + changeParameter);
         if (changeParameter.equals("character")) {
-            MovieCast movieCastBD = movieCastRepo.findFirstByMovie_MovieIdAndPerson_PersonIdAndGender_GenderId(movieId, personId, genderId);
-            System.out.println("Movi cast de el repo " + movieCastBD.toString());
-            movieCastBD.setCharacterName(characterName);
-            movieCastRepo.saveAndFlush(movieCastBD);
-            return "Update value successfully";
+            if (!characterName.isEmpty()) {
+                MovieCast movieCastBD = movieCastRepo.findFirstByMovie_MovieIdAndPerson_PersonIdAndGender_GenderId(movieId, personId, genderId);
+                System.out.println("Movi cast de el repo " + movieCastBD.toString());
+                movieCastBD.setCharacterName(characterName);
+                movieCastRepo.saveAndFlush(movieCastBD);
+                return "Update value successfully";
+            } else {
+                return "CharacterName input is invalid";
+            }
 
         } else if (changeParameter.equals("gender")) {
            // MovieCast movieCastBD = movieCastRepo.findByMovie_MovieIdAndPerson_PersonIdAndCharacterName(movieId, personId, characterName);

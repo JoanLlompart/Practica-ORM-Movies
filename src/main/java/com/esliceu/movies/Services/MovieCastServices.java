@@ -155,7 +155,8 @@ public class MovieCastServices {
             return "Update value successfully";
 
         } else if (changeParameter.equals("gender")) {
-            MovieCast movieCastBD = movieCastRepo.findByMovie_MovieIdAndPerson_PersonIdAndCharacterName(movieId, personId, characterName);
+           // MovieCast movieCastBD = movieCastRepo.findByMovie_MovieIdAndPerson_PersonIdAndCharacterName(movieId, personId, characterName);
+            MovieCast movieCastBD = movieCastRepo.findByCharacterNameAndMovie_MovieIdAndPerson_PersonId(characterName,movieId, personId);
             MovieCast movieCast = new MovieCast();
             if (movieCastBD.getMovie().getMovieId().equals(movieId) &&
                     movieCastBD.getPerson().getPersonId().equals(personId)) {

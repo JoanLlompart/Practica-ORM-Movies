@@ -81,4 +81,7 @@ Amem si es la consulta
     void deleteByCharacterNameAndMovie_MovieIdAndPerson_PersonId(String characterName,Long movieId, Long personId);
 
     void deleteByCharacterNameAndMovie_MovieIdAndPerson_PersonIdAndGender_GenderId(String characterName, Long movieId, Long personId, Long genderId);
+
+
+    MovieCast findByCharacterNameAndMovie_MovieIdAndPerson_PersonId(String characterName, Long movieId, Long personId);
 }

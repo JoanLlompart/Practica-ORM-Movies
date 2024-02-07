@@ -92,7 +92,7 @@ function updateTable(data, filter) {
                 addGenreButton.addEventListener("click", function () {
                     console.log("click a genre");
                     viewId = item.movieId;
-
+                    openModalGenre();
                     //relationsMovie(viewId);
                 });
                 cell.appendChild(addGenreButton);
@@ -321,6 +321,19 @@ function openModalDirector() {
 
     // Abrir el modal de búsqueda de personas
     $('#addPersonModal').modal('show');
+};
+
+
+
+// Añade un evento al botón "Add new person to cast" para abrir el modal de búsqueda de personas
+const addGenreButton = document.getElementById('btnGenreSearch');
+function openModalGenre() {
+    // Limpiar el campo de búsqueda y los resultados
+    document.getElementById('genreKeyword').value = '';
+    document.getElementById('genreResults').innerHTML = '';
+
+    // Abrir el modal de búsqueda de personas
+    $('#addGenreModal').modal('show');
 };
 
 

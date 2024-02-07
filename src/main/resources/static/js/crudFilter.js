@@ -131,7 +131,7 @@ async function relationsMovie(viewId) {
         const data = await response.json();
         // Mostrar los resultados en el modal
         /*   const relationResults = document.getElementById('relationResults');
-           relationResults.innerHTML = '';
+            relationResults.innerHTML = '';
    */
         createResultsTable(data);
         //showActorsModal(data, viewId);
@@ -200,8 +200,12 @@ function createResultsTable(data) {
         deleteButton.addEventListener("click", function () {
             // Aquí puedes agregar la lógica para manejar la eliminación del registro
             // Puedes usar el valor de "item.movieId" o cualquier otra información necesaria
+            item.movieId = viewId;
 
             // Llamada a función para manejar la eliminación
+            console.log("Boto de eliminar relacio");
+            console.log(item);
+
             handleDeleteDirector(item);
         });
         deleteButtonCell.appendChild(deleteButton);
@@ -241,7 +245,7 @@ async function handleDeleteDirector(data) {
                     //recarrega la pagina
 
                     $('#movieModal').modal('hide');
-                    viewActors(movieId);
+                    //viewActors(movieId);
                     alert(responseData);
                 })
         } catch (error) {

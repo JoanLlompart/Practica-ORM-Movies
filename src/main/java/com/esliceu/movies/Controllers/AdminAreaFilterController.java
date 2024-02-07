@@ -93,6 +93,9 @@ public class AdminAreaFilterController {
     }
 
 
+
+
+
     @PostMapping("/adminArea/allGender")
     @ResponseBody
     public List<Gender> viewAllGenders() {

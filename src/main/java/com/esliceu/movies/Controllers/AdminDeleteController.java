@@ -23,6 +23,9 @@ public class AdminDeleteController {
 
     @Autowired
     LanguageRoleServices languageRoleServices;
+    @Autowired
+    MovieGenresServices movieGenresServices;
+
 
     @Autowired
     PersonServices personServices;
@@ -65,4 +68,11 @@ public class AdminDeleteController {
         return ResponseEntity.ok().body(successMessage);
     }
 
+    @PostMapping("/adminArea/deleteMovieGenre")
+    public ResponseEntity<Object> adminDeleteMovieGenre(HttpSession session , @RequestBody Map<String,String> data) {
+        String email = (String) session.getAttribute("email");
+        userServices.setEmail(email);
+        String successMessage = movieGenresServices.deleteByMovieIdAndGenreId(data);
+        return ResponseEntity.ok().body(successMessage);
+    }
 }

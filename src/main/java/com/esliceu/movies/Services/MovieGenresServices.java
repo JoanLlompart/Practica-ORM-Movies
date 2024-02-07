@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class MovieGenresServices {
@@ -31,4 +32,8 @@ public class MovieGenresServices {
     }
 
 
+    public String deleteByMovieIdAndGenreId(Map<String, String> data) {
+        Long genreId = Long.valueOf(data.get("genreId"));
+        return "FALTA IMPLEMENTAR NO HA ARRIBAT MovieId";
+    }
 }

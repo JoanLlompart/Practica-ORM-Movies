@@ -481,7 +481,7 @@ async function searchGenres() {
             addButton.textContent = 'Add';
             addButton.addEventListener('click', function () {
                 console.log("View genre " + viewId)
-                addGenre(genre.personId, viewId);
+                addGenre(genre.genreId, viewId);
 
             });
             listItem.appendChild(addButton);
@@ -495,9 +495,9 @@ async function searchGenres() {
     }
 }
 //Add genre in Movie
-async function addGenre(personId, viewId) {
+async function addGenre(genreId, viewId) {
     const requestBody = {
-        personId: personId,
+        genreId: genreId,
         movieId: viewId
     }
     const userConfirmed = window.confirm(`Are you sure you want to add this Genre in Movie by id :  ` + viewId + ' ?');

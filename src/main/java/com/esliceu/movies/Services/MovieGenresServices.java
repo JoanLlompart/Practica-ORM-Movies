@@ -61,4 +61,8 @@ public class MovieGenresServices {
         Pageable pageable = PageRequest.of(page,size);
         return genreRepo.findByGenreNameContainingIgnoreCase(keyword,pageable);
     }
+
+    public String addMovieGenre(Map<String, String> data) {
+
+    }
 }

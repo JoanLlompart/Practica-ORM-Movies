@@ -458,22 +458,22 @@ async function searchGenres() {
         const genreResults = document.getElementById('genreResults');
         genreResults.innerHTML = '';
 
-        data.forEach(person => {
+        data.forEach(genre => {
             const listItem = document.createElement('li');
-            listItem.textContent = `${person.personName} (${person.personId})`;
+            listItem.textContent = `${genre.genreName} (${genre.genreId})`;
 
 
             // Añade un botón para agregar la persona al elenco
             const addButton = document.createElement('button');
             addButton.textContent = 'Add';
             addButton.addEventListener('click', function () {
-                console.log("View persons " + viewId)
-                addDirector(person.personId, viewId);
+                console.log("View genre " + viewId)
+                addGenre(genre.personId, viewId);
 
             });
             listItem.appendChild(addButton);
 
-            personResults.appendChild(listItem);
+            genreResults.appendChild(listItem);
         });
         // Llamar a la función para actualizar la tabla con los datos recibidos
         // updateTable(data);

@@ -172,8 +172,6 @@ public class AdminAddServices {
     }
     public String updateCountry(Map<String, String> data) {
         System.out.println("Data :" + data.toString());
-        //Long countryId = Long.valueOf(data.get("value1"));
-        //Long countryId = Long.valueOf(285);
         String isoCode = data.get("value1");
         String name = data.get("value2");
         Long countryId = Long.valueOf(data.get("value3"));
@@ -200,9 +198,8 @@ public class AdminAddServices {
         Long languageId = Long.valueOf(data.get("value3"));
         String code = data.get("value1");
         String name = data.get("value2");
-        if (!(code == null) && !(name ==null) && !(languageId == null) && languageRepo.existsByLanguageId(languageId)) {
+        if (languageRepo.existsByLanguageId(languageId)) {
             //TODO: Comprobam si existeix el id.
-
             Language lan = languageRepo.getReferenceById(languageId);
             //Comproba que si ha de actualitzar els camp
             if (!code.isEmpty()) {

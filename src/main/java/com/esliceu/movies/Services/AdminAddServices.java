@@ -180,12 +180,15 @@ public class AdminAddServices {
 
 
         if (countryRepo.existsByCountryId(countryId)) {
-            //TODO: Comprobam si existeix el id.
+            Country c= countryRepo.getReferenceById(countryId);
 
-            Country c = new Country();
-            c.setCountryId(countryId);
-            c.setCountryName(name);
-            c.setCountryIsoCode(isoCode);
+           // Country c = new Country();
+            if (!isoCode.isEmpty()) {
+                c.setCountryIsoCode(isoCode);
+            }
+            if (!name.isEmpty()) {
+                c.setCountryName(name);
+            }
             countryRepo.save(c);
             return "Country by id ," + countryId + " , Update successfully";
         } else {
@@ -224,7 +227,7 @@ public class AdminAddServices {
     public String updateLanguageRol(Map<String, String> data) {
             Long roleId = Long.valueOf(data.get("value2"));
             String role = data.get("value1");
-            if (!(role == null) && !(role ==null) && !(role ==null) && languageRoleRepo.existsByRoleId(roleId)) {
+            if (languageRoleRepo.existsByRoleId(roleId)) {
                 // Comprobam si existeix el id.
                 LanguageRole lr = new LanguageRole();
                 lr.setRoleId(roleId);

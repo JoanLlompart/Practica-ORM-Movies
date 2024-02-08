@@ -178,8 +178,10 @@ public class AdminAddServices {
         String name = data.get("value2");
         Long countryId = Long.valueOf(data.get("value3"));
 
-        if (!isoCode.isEmpty() && !name.isEmpty() && !(countryId ==null) && countryRepo.existsByCountryId(countryId)) {
+
+        if (countryRepo.existsByCountryId(countryId)) {
             //TODO: Comprobam si existeix el id.
+
             Country c = new Country();
             c.setCountryId(countryId);
             c.setCountryName(name);

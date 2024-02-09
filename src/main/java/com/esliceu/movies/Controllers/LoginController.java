@@ -16,8 +16,10 @@ public class LoginController {
     @Autowired
     UserServices userServices;
     @GetMapping("/login")
-    public String showLoginForm(HttpSession session) {
+    public String showLoginForm(HttpSession session,Model model) {
         String email = (String) session.getAttribute("email");
+        model.addAttribute("email", email != null);
+
        /*
         if (session != null) {
             session.invalidate();

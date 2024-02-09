@@ -42,7 +42,6 @@ async function sendData() {
 
 
 let viewId = null;
-/
 
 function updateTable(data) {
     const table = document.getElementById("resultTable");

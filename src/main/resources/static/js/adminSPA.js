@@ -4,11 +4,6 @@ const selectedSection = document.getElementById('selectedSection');
 let selectedOption = "add";
 //mostrarSeccion('añadir')
 
-// Seccio que es troba (añadir,actualizar,delete)
-//let seccion = 'añadir';
-//mostrarSeccion(seccion);
-
-
 
 
 operationSelect.addEventListener('change', (event) => {
@@ -23,29 +18,6 @@ operationSelect.addEventListener('change', (event) => {
         mostrarSeccion('borrar');
     }
 });
-
-
-/*
-function handleOperationChange(event) {
-    selectedOption = event.target.value;
-    // Llamar a la función
-    checkOperation();
-
-    if (selectedOption === 'add') {
-        mostrarSeccion('añadir');
-    } else if (selectedOption === 'update') {
-        mostrarSeccion('actualizar');
-    } else if (selectedOption === 'delete') {
-        mostrarSeccion('borrar');
-    }
-}
-
-operationSelect.addEventListener('change', handleOperationChange);
-
-operationSelect.addEventListener('DOMContentLoaded', handleOperationChange);
-*/
-
-
 
 
 
@@ -65,12 +37,6 @@ function mostrarSeccion(seccion) {
 }
 
 
-//PART NOVA
-/*
-const addButton = document.getElementById('addButton');
-addButton.addEventListener('click', (event) => {
-    sendData();
-});*/
 
 
 async function sendData() {
@@ -128,10 +94,6 @@ function checkOperation() {
 }
 
 function determineDataType() {
-    // Lógica para determinar el tipo de datos actual
-    // Puedes usar clases, estilos, atributos, o cualquier otro indicador en tu interfaz para determinar el tipo de datos
-    // Per exemple, si el div con id "countryInputs" está visible, el tipo de datos es "country", y así sucesivamente
-
     console.log("Ha entrat a determineDataType")
     return valueSelect;
 }
@@ -382,33 +344,3 @@ document.getElementById('deleteSelect').addEventListener('change', function () {
 window.onload = function () {
     showInputs();
 };
-
-
-
-
-/*function showInputs() {
-    // Oculta todos los div de inputs
-    var allInputs = document.querySelectorAll('.dynamicInputs');
-    allInputs.forEach(function (inputDiv) {
-        inputDiv.classList.add('hidden');
-    });
-
-    // Muestra el div correspondiente al valor seleccionado en el select
-    var selectedValue = document.getElementById('updateSelect').value;
-    var selectedInputsDiv = document.getElementById(selectedValue + 'InputsUpdate');
-    console.log("Valor a updateSelect : " + selectedValue + " , valor a el div : " + selectedInputsDiv);
-    if (selectedInputsDiv) {
-        selectedInputsDiv.classList.remove('hidden');
-    }
-}
-
-document.getElementById('updateSelect').addEventListener('change', function () {
-    // Llama a la función showInputs cuando cambia el valor del select
-    showInputs();
-});
-
-// Llama a showInputs al cargar la página para visualizar por defecto "country"
-window.onload = function() {
-    showInputs();
-};
-*/

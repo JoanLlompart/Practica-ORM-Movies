@@ -38,84 +38,11 @@ async function sendData() {
     }
 }
 
-/*
-function updateTable(data) {
-    const table = document.getElementById("resultTable");
-    table.innerHTML = ""; // Limpiar la tabla antes de actualizar
-
-    // Crear encabezados de la tabla
-    const headers = Object.keys(data[0]);
-    const headerRow = table.insertRow();
-    headers.forEach(header => {
-        const th = document.createElement("th");
-        th.textContent = header;
-        headerRow.appendChild(th);
-    });
-
-    // Llenar la tabla con los datos
-    data.forEach(item => {
-        const row = table.insertRow();
-        headers.forEach(header => {
-            const cell = row.insertCell();
-            cell.textContent = item[header];
-        });
-    });
-}
-*/
 
 
 
 let viewId = null;
-/*
-function updateTable(data) {
-    const table = document.getElementById("resultTable");
-    table.innerHTML = "";
-
-    const headers = Object.keys(data[0]);
-    headers.push("View", "Actors");
-    const headerRow = table.insertRow();
-
-    headers.forEach(header => {
-        const th = document.createElement("th");
-        th.textContent = header;
-        headerRow.appendChild(th);
-    });
-
-    data.forEach(item => {
-        const row = table.insertRow();
-
-        headers.forEach(header => {
-            const cell = row.insertCell();
-
-            if (header === "View") {
-                const viewButton = document.createElement("button");
-                viewButton.textContent = "View";
-                viewButton.addEventListener("click", function () {
-                    viewId = item.movieId;
-                    viewInfoMovie(viewId);
-                });
-                cell.appendChild(viewButton);
-            } else if (header === "Actors") {
-                // Verificar si el usuario ha iniciado sesión antes de mostrar el botón "Actors"
-                if (isEmailAvailable) {
-                    const actorsButton = document.createElement("button");
-                    actorsButton.textContent = "Actors";
-                    actorsButton.addEventListener("click", function () {
-                        viewId = item.movieId;
-                        viewActors(viewId);
-                    });
-                    cell.appendChild(actorsButton);
-                } else {
-                    console.log("Invalid session")
-                    // No mostrar el botón "Actors" si el usuario no ha iniciado sesión
-                    cell.textContent = "Login required";
-                }
-            } else {
-                cell.textContent = item[header];
-            }
-        });
-    });
-}*/
+/
 
 function updateTable(data) {
     const table = document.getElementById("resultTable");
@@ -442,49 +369,11 @@ function editCellContent(cell, actor, viewId,changeParameter) {
 }
 
 
-/*
-function editCellContent(cell, actor, viewId) {
-    const originalContent = cell.textContent;
-    console.log("Original");
-    console.log(originalContent)
-    const inputElement = document.createElement("input");
-    inputElement.value = originalContent;
-    inputElement.addEventListener("blur", function () {
-        // Actualizar el contenido y enviar al servidor
-        const updatedContent = inputElement.value;
-        cell.textContent = updatedContent;
-        console.log("Update Content");
-        actor.characterName=cell.textContent;
-        console.log(actor.characterName);
-        // Aquí puedes enviar la información actualizada al servidor
-        //sendUpdatedInfo(actor.personId, cell.textContent);
-        sendUpdatedInfo(actor, viewId);
-    });
-
-    cell.textContent = "";
-    cell.appendChild(inputElement);
-    inputElement.focus();
-}*/
-
-
-
-
 
 
 
 
 function sendUpdatedInfo(person, viewId,changeParameter) {
-    /* const data = {
-        personId: personId,
-        updatedContent: updatedContent
-    };*/
-    /* ACTUAL I MOSTRAT
-    const data = {
-        personId: person.personId,
-        movieId: viewId,
-        characterName: person.characterName,
-        genderId: person.gender.genderId
-    };*/
 
     const data = {
         personId: person.personId,
@@ -493,16 +382,6 @@ function sendUpdatedInfo(person, viewId,changeParameter) {
         genderId: person.genderId,
         changeParameter:changeParameter
     };
-
-
-
-    /*  const requestBody = {
-                personId: personId,
-                movieId: viewid,
-                characterName: characterName,
-                genderId: selectedGender.genderId
-            }
-*/
 
     console.log("Update movie Cast ");
     console.log(data);
@@ -528,36 +407,6 @@ function sendUpdatedInfo(person, viewId,changeParameter) {
         });
 }
 
-/*
-//Envia la info per actualitzar els camps
-function sendUpdatedInfo(personId, updatedContent) {
-    const data = {
-        personId: personId,
-        updatedContent: updatedContent
-    };
-
-
-    console.log("Update movie Cast " + data);
-
-
-    fetch('/adminArea/updateMoviCast', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(data)
-    })
-    .then(response => response.json())
-    .then(data => {
-        // Manejar la respuesta del servidor (puede ser un mensaje de éxito, etc.)
-        alert(data);
-    })
-    .catch(error => {
-        // Manejar errores en la solicitud
-        console.error('Error:', error);
-    });
-}
-*/
 
 
 // Función para enviar la selección de actor al servidor
@@ -598,77 +447,6 @@ async function sendDeleteRelation(movieId, actor) {
         }
     }
 }
-
-
-
-
-/*
-async function applyFilter() {
-    // Obtener el valor seleccionado del select
-    const filterType = document.getElementById("filterType").value;
-
-    // Realizar la acción deseada según el tipo de filtro seleccionado
-    console.log("Selected Filter Type:", filterType);
-    let url = filterType.substring(0, 1).toUpperCase() + filterType.substring(1);
-
-    // Construir el cuerpo de la solicitud POST
-    const requestBody = {
-        filterType: filterType,
-        movieId:viewId
-        //pasar movieId
-        
-        // Agrega otros campos según sea necesario
-    };
-
-    // Realizar la solicitud Fetch al servidor
-    fetch(`/movieSearch/movie${url}`, {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(requestBody)
-    })
-    .then(response => {
-        console.log(response);
-        if (!response.ok) {
-            throw new Error(`Error: ${response.status} - ${response.statusText}`);
-        }
-        return response.json();
-    })
-    .then(data => {
-        
-        // Visualizar la lista devuelta por el servidor
-        const resultContainer = document.getElementById("filterResult");
-        resultContainer.innerHTML = ""; // Limpiar el contenedor antes de actualizar
-
-        // Crear lista o actualizar según el formato de los datos recibidos
-        // Ejemplo: Crear una lista de elementos <li> para cada elemento recibido
-        const list = document.createElement("ul");
-        data.forEach(item => {
-            const listItem = document.createElement("li");
-            listItem.textContent = item;
-            list.appendChild(listItem);
-        });
-        
-        resultContainer.appendChild(list);
-        
-        
-        // Mostrar los resultados filtrados en el modal
-        updateFilterResult(data);
-    })
-    .catch(error => {
-        console.error('Error:', error);
-    });
-
-
-    // Cerrar el modal
-    $('#filterModal').modal('hide');
-}
-*/
-
-
-
-
 
 
 // Añade un evento al botón "Add new person to cast" para abrir el modal de búsqueda de personas

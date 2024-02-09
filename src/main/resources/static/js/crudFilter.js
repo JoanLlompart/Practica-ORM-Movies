@@ -543,6 +543,7 @@ keywordRelationInput.addEventListener("input", function () {
 })
 
 document.getElementById('relationSelect').addEventListener('change', function () {
+    console.log("change");
     relationsMovie(viewId);
     //searchPersons();
 });

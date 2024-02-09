@@ -17,9 +17,13 @@ public class LoginController {
     UserServices userServices;
     @GetMapping("/login")
     public String showLoginForm(HttpSession session) {
+        String email = (String) session.getAttribute("email");
+       /*
         if (session != null) {
             session.invalidate();
         }
+
+        */
         return "login";
     }
 

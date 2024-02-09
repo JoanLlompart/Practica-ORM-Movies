@@ -78,7 +78,7 @@ public class AdminAddServices {
             languageRoleRepo.save(lRole);
             return "Language Role added successfully";
         } else {
-            return "Problema a Language Role add";
+            return "Invalid input in Language Role add";
         }
 
     }

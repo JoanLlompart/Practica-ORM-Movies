@@ -2,10 +2,8 @@ package com.esliceu.movies.Services;
 
 import com.esliceu.movies.DTO.MovieDTO;
 import com.esliceu.movies.DTO.MovieDirectorDTO;
-import com.esliceu.movies.Entities.Movie;
-import com.esliceu.movies.Entities.MovieCrew;
-import com.esliceu.movies.Entities.MovieGenres;
-import com.esliceu.movies.Entities.Person;
+import com.esliceu.movies.Entities.*;
+import com.esliceu.movies.Repos.DepartmentRepo;
 import com.esliceu.movies.Repos.MovieSearchRepo;
 import com.esliceu.movies.Repos.PersonRepo;
 import com.esliceu.movies.Repos.ProductionCompanyRepo;
@@ -43,8 +41,9 @@ public class CrudFilterServices {
     GenreServices genreServices;
     @Autowired
     PersonRepo personRepo;
-    //@Autowired
-   // MovieDTO movieDTO;
+    @Autowired
+    DepartmentRepo departmentRepo;
+
     public List<?> filterByEntity(Map<String, String> data) {
        String filter =data.get("filter");
         String keyword =data.get("keyword");
@@ -80,6 +79,8 @@ public class CrudFilterServices {
                 return productionCompanyRepo.findByCompanyNameContainingIgnoreCase(keyword,pageable);
             case "person":
                 return personRepo.findByPersonNameContaining(keyword,pageable);
+            case "department":
+                return departmentRepo.findByDepartmentNameContaining(keyword,pageable);
             default:
                 break;
         }

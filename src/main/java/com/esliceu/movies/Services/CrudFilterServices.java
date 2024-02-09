@@ -3,10 +3,7 @@ package com.esliceu.movies.Services;
 import com.esliceu.movies.DTO.MovieDTO;
 import com.esliceu.movies.DTO.MovieDirectorDTO;
 import com.esliceu.movies.Entities.*;
-import com.esliceu.movies.Repos.DepartmentRepo;
-import com.esliceu.movies.Repos.MovieSearchRepo;
-import com.esliceu.movies.Repos.PersonRepo;
-import com.esliceu.movies.Repos.ProductionCompanyRepo;
+import com.esliceu.movies.Repos.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -43,6 +40,8 @@ public class CrudFilterServices {
     PersonRepo personRepo;
     @Autowired
     DepartmentRepo departmentRepo;
+    @Autowired
+    KeywordRepo keywordRepo;
 
     public List<?> filterByEntity(Map<String, String> data) {
        String filter =data.get("filter");
@@ -81,6 +80,8 @@ public class CrudFilterServices {
                 return personRepo.findByPersonNameContaining(keyword,pageable);
             case "department":
                 return departmentRepo.findByDepartmentNameContaining(keyword,pageable);
+            case "keyword":
+                return keywordRepo.findByKeywordNameContaining(keyword,pageable);
             default:
                 break;
         }

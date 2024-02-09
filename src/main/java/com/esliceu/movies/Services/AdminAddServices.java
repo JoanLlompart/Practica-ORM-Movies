@@ -295,14 +295,13 @@ public class AdminAddServices {
     }
 
     public String updatePerson(Map<String, String> data) {
-        Long companyId = Long.valueOf(data.get("value2"));
+        Long personId = Long.valueOf(data.get("value2"));
         String name = data.get("value1");
-        if (isValidInput(name) && productionCompanyRepo.existsByCompanyId(companyId)) {
-            ProductionCompany pc = new ProductionCompany();
-            pc.setCompanyId(companyId);
-            pc.setCompanyName(name);
-            productionCompanyRepo.save(pc);
-            return "Person by id ," + companyId + " , Update successfully";
+        if (isValidInput(name) && personRepo.existsByPersonId(personId)) {
+            Person p = personRepo.getReferenceById(personId);
+            p.setPersonName(name);
+            personRepo.save(p);
+            return "Person by id ," + personId + " , Update successfully";
         } else {
             return "Person Update Error";
         }

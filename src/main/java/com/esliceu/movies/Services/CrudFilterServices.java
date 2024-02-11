@@ -110,6 +110,11 @@ public class CrudFilterServices {
     }
 
     public List<?> findAllKeywordsByName(Map<String, String> data) {
-        return null;
+        String keyword =data.get("keyword");
+        int page = Integer.parseInt(data.get("keywordPage"));
+        int size = Integer.parseInt(data.get("keywordSize"));
+        Pageable pageable = PageRequest.of(page,size);
+       // return  keywordRepo.findByKeywordNameContaining(keywordName,pageable);
+        return  keywordRepo.findByKeywordNameContaining(keyword,pageable);
     }
 }

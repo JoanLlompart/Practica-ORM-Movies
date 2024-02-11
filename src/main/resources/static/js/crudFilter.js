@@ -554,6 +554,44 @@ async function addGenre(genreId, viewId) {
 };
 
 
+
+
+//Add Keyword in Movie
+async function addKeyword(keywordId, viewId) {
+    const requestBody = {
+        keywordId: keywordId,
+        movieId: viewId
+    }
+    const userConfirmed = window.confirm(`Are you sure you want to add this Keyword in Movie by id :  ` + viewId + ' ?');
+    if (userConfirmed) {
+        try {
+            const response = await fetch('/adminArea/addKeyword', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(requestBody)
+            }).then(response => {
+                if (!response.ok) {
+                    throw new Error('Error en la solicitud: ' + response.statusText);
+                }
+                return response.text();
+            })
+                .then(responseData => {
+                    alert(responseData)
+                    //recarrega la pagina
+
+                    $('#addKeywordModal').modal('hide');
+                    alert(responseData);
+                })
+        } catch (error) {
+            console.error('Error:', error);
+        }
+
+    } else {
+        console.log("User canceled Keyword selection.");
+    }
+};
 //PERSON SEARCH
 const keywordRelationInput = document.getElementById("relationKeyword");
 keywordRelationInput.addEventListener("input", function () {
@@ -667,11 +705,12 @@ async function searchKeyword() {
             addButton.textContent = 'Add';
             addButton.addEventListener('click', function () {
                 console.log("View keyword " + viewId)
-                addGenre(genre.genreId, viewId);
+
+
+                addKeyword(keyword.keywordId, viewId);
             });
             listItem.appendChild(addButton);
-
-            genreResults.appendChild(listItem);
+            keywordResults.appendChild(listItem);
         });
         // Llamar a la función para actualizar la tabla con los datos recibidos
         // updateTable(data);

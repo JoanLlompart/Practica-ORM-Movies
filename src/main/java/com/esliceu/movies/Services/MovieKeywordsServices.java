@@ -6,6 +6,8 @@ import com.esliceu.movies.Entities.MovieKeywords;
 import com.esliceu.movies.Repos.MovieKeywordsRepo;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -48,4 +50,15 @@ public class MovieKeywordsServices {
         }
         return "Error: MovieKeywords by not exist";
     }
+
+
+  /*  public List<MovieKeywords> findByKeywordName(Map<String, String> data) {
+        String keyword =data.get("keyword");
+        int page = Integer.parseInt(data.get("KeywordPage"));
+        int size = Integer.parseInt(data.get("keywordSize"));
+        Pageable pageable = PageRequest.of(page,size);
+        return  movieKeywordsRepo.findByKeywordNameContaining(keyword,pageable);
+    }
+
+   */
 }

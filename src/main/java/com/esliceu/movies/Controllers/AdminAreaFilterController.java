@@ -58,6 +58,13 @@ public class AdminAreaFilterController {
         userServices.setEmail(email);
         return crudFilterServices.findByGenre(data);
     }
+    @PostMapping("/adminArea/movieMovieKeywords")
+    @ResponseBody
+    public List<?> adminMovieRelationKeywords(HttpSession session , @RequestBody Map<String,String> data) {
+        String email = (String) session.getAttribute("email");
+        userServices.setEmail(email);
+        return crudFilterServices.findByKeyword(data);
+    }
 
     @PostMapping("/adminArea/allGenres")
     @ResponseBody

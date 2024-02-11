@@ -42,6 +42,8 @@ public class CrudFilterServices {
     DepartmentRepo departmentRepo;
     @Autowired
     KeywordRepo keywordRepo;
+    @Autowired
+    MovieKeywordsServices movieKeywordsServices;
 
     public List<?> filterByEntity(Map<String, String> data) {
        String filter =data.get("filter");
@@ -100,5 +102,10 @@ public class CrudFilterServices {
 
     public List<?> findAllGenres(Map<String, String> data) {
         return movieGenresServices.findAllGenres(data);
+    }
+
+
+    public List<?> findByKeyword(Map<String, String> data) {
+        return movieKeywordsServices.findAllMovieKeywords(data);
     }
 }

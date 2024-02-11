@@ -1,9 +1,10 @@
 package com.esliceu.movies.Services;
 
 import com.esliceu.movies.DTO.MovieKeywordDTO;
-import com.esliceu.movies.Entities.Movie;
-import com.esliceu.movies.Entities.MovieKeywords;
+import com.esliceu.movies.Entities.*;
+import com.esliceu.movies.Repos.KeywordRepo;
 import com.esliceu.movies.Repos.MovieKeywordsRepo;
+import com.esliceu.movies.Repos.MovieSearchRepo;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
@@ -18,6 +19,10 @@ import java.util.Map;
 public class MovieKeywordsServices {
     @Autowired
     MovieKeywordsRepo movieKeywordsRepo;
+    @Autowired
+    MovieSearchRepo movieSearchRepo;
+    @Autowired
+    KeywordRepo keywordRepo;
 
     public void deleteByMovieId(Long movieId) {
         List<MovieKeywords> allMovieKeywords = movieKeywordsRepo.findAllByMovie_MovieId(movieId);
@@ -52,13 +57,19 @@ public class MovieKeywordsServices {
     }
 
 
-  /*  public List<MovieKeywords> findByKeywordName(Map<String, String> data) {
-        String keyword =data.get("keyword");
-        int page = Integer.parseInt(data.get("KeywordPage"));
-        int size = Integer.parseInt(data.get("keywordSize"));
-        Pageable pageable = PageRequest.of(page,size);
-        return  movieKeywordsRepo.findByKeywordNameContaining(keyword,pageable);
+    public String addMovieKeyword(Map<String, String> data) {
+        Long movieId = Long.valueOf(data.get("movieId"));
+        Long keywordId = Long.valueOf(data.get("keywordId"));
+        if (movieSearchRepo.existsByMovieId(movieId) && keywordRepo.existsByKeywordId(keywordId)){
+            Keyword keyword= keywordRepo.getReferenceById(keywordId);
+            Movie movie = movieSearchRepo.getReferenceById(movieId);
+            MovieKeywords movieKeywords = new MovieKeywords();
+            movieKeywords.setKeyword(keyword);
+            movieKeywords.setMovie(movie);
+            movieKeywordsRepo.save(movieKeywords);
+            return "Keyword add to Movie successfully";
+        } else {
+            return "Failed: values of MovieId or GenderId not exist in Data Bases";
+        }
     }
-
-   */
 }

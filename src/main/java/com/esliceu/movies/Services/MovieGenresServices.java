@@ -66,7 +66,7 @@ public class MovieGenresServices {
         Long genderId = Long.valueOf(data.get("genreId"));
         Long movieId = Long.valueOf(data.get("movieId"));
 
-        if (genreRepo.existsByGenreId(genderId) & movieSearchRepo.existsByMovieId(movieId)) {
+        if (genreRepo.existsByGenreId(genderId) && movieSearchRepo.existsByMovieId(movieId)) {
             Genre genre= genreRepo.getReferenceById(genderId);
             Movie movie = movieSearchRepo.getReferenceById(movieId);
             MovieGenres movieGenres = new MovieGenres(movie,genre);

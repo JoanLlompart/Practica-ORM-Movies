@@ -48,7 +48,8 @@ function updateTable(data, filter) {
 
     // Afegim els botons de Modificar
     if (filter === "movie") {
-        headers.push("Relations", "AddDirector", "AddGenre");
+        // headers.push("Relations", "AddDirector", "AddGenre");
+        headers.push("Relations", "AddDirector", "AddGenre", "AddKeyword");
     }
 
     const headerRow = table.insertRow();
@@ -96,6 +97,17 @@ function updateTable(data, filter) {
                     //relationsMovie(viewId);
                 });
                 cell.appendChild(addGenreButton);
+            } else if (header === "AddKeyword") {
+                // Crear el botón "Relations" y asignarle un evento
+                const addKeywordButton = document.createElement("button");
+                addKeywordButton.textContent = "AddKeyword";
+                addKeywordButton.addEventListener("click", function () {
+                    console.log("click a Keyword");
+                    viewId = item.movieId;
+                    openModalKeyword();
+                    //relationsMovie(viewId);
+                });
+                cell.appendChild(addKeywordButton);
             } else {
                 // Establecer el contenido de la celda para otras columnas
                 cell.textContent = item[header];
@@ -336,6 +348,16 @@ function openModalGenre() {
     $('#addGenreModal').modal('show');
 };
 
+const addKeywordButton = document.getElementById('btnKeywordSearch');
+function openModalKeyword() {
+    // Limpiar el campo de búsqueda y los resultados
+    document.getElementById('keywordKeyword').value = '';
+    document.getElementById('keywordResults').innerHTML = '';
+
+    // Abrir el modal de búsqueda de personas
+    $('#addKeywordModal').modal('show');
+};
+
 
 
 async function searchPersons() {
@@ -565,7 +587,7 @@ document.getElementById('relationSize').addEventListener('change', function () {
 //PERSON SEARCH
 const keywordPersonInput = document.getElementById("personKeyword");
 keywordPersonInput.addEventListener("input", function () {
-    //Envia les noves dades a sendData perque faci la peticio
+    //Envia les noves dades a searxhPersons perque faci la peticio
     if (keywordPersonInput.value.trim() !== '') {
         searchPersons();
     }
@@ -585,7 +607,7 @@ document.getElementById('personSize').addEventListener('change', function () {
 //Genre search
 const keywordGenreInput = document.getElementById("genreKeyword");
 keywordGenreInput.addEventListener("input", function () {
-    //Envia les noves dades a sendData perque faci la peticio
+    //Envia les noves dades a searchGenres perque faci la peticio
     if (keywordGenreInput.value.trim() !== '') {
         searchGenres();
     }
@@ -600,3 +622,80 @@ document.getElementById('genrePage').addEventListener('change', function () {
 document.getElementById('genreSize').addEventListener('change', function () {
     searchGenres();
 });
+
+
+async function searchKeyword() {
+    const keywordKeyword = document.getElementById('keywordKeyword').value;
+    const keywordPage = document.getElementById('keywordPage').value;
+    const keywordSize = document.getElementById('keywordSize').value;
+
+    // Construir el cuerpo de la solicitud POST
+    const requestBody = {
+        keyword: keywordKeyword,
+        keywordPage: keywordPage,
+        keywordSize: keywordSize
+    };
+
+    try {
+        // Realizar la solicitud Fetch al servidor con método POST
+        const response = await fetch('/adminArea/keywordName', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(requestBody)
+        });
+
+        // Verificar el estado de la respuesta
+        if (!response.ok) {
+            throw new Error(`Error: ${response.status} - ${response.statusText}`);
+        }
+        // Obtener los datos de la respuesta JSON
+        const data = await response.json();
+
+        // Mostrar los resultados en el modal
+        const keywordResults = document.getElementById('keywordResults');
+        keywordResults.innerHTML = '';
+
+        data.forEach(keyword => {
+            const listItem = document.createElement('li');
+            listItem.textContent = `${keyword.keywordName} (${keyword.keywordId})`;
+
+
+            // Añade un botón para agregar la persona al elenco
+            const addButton = document.createElement('button');
+            addButton.textContent = 'Add';
+            addButton.addEventListener('click', function () {
+                console.log("View keyword " + viewId)
+                addGenre(genre.genreId, viewId);
+            });
+            listItem.appendChild(addButton);
+
+            genreResults.appendChild(listItem);
+        });
+        // Llamar a la función para actualizar la tabla con los datos recibidos
+        // updateTable(data);
+    } catch (error) {
+        console.error('Error:', error);
+    }
+}
+
+//Keywords search
+const keywordKeywordInput = document.getElementById("keywordKeyword");
+keywordKeywordInput.addEventListener("input", function () {
+    //Envia les noves dades a sendData perque faci la peticio
+    if (keywordKeywordInput.value.trim() !== '') {
+        searchKeyword();
+    }
+})
+
+
+document.getElementById('keywordPage').addEventListener('change', function () {
+    searchKeyword();
+});
+
+
+document.getElementById('keywordSize').addEventListener('change', function () {
+    searchKeyword();
+});
+

@@ -90,6 +90,9 @@ public class MovieCrewServices {
         Long personId = Long.valueOf(data.get("personId"));
         Long departmentId = Long.valueOf(data.get("departmentId"));
         movieCrewRepo.deleteByPerson_PersonIdAndMovie_MovieIdAndDepartment_DepartmentId(personId, movieId, departmentId);
-        return "Alomillor a anat ";
+       if (movieCrewRepo.existsByPerson_PersonIdAndMovie_MovieIdAndDepartment_DepartmentId(personId, movieId, departmentId)) {
+           return "Delete Failed";
+       }
+        return "Director delete successfully";
     }
 }

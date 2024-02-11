@@ -18,6 +18,8 @@ public interface MovieCrewRepo extends JpaRepository<MovieCrew, Long> {
 
     void deleteByPerson_PersonIdAndMovie_MovieIdAndDepartment_DepartmentId(Long personId, Long movieId, Long departmentId);
 
+    boolean existsByPerson_PersonIdAndMovie_MovieIdAndDepartment_DepartmentId(Long personId, Long movieId, Long departmentId);
+
 
     //FUNCIONA PERO FALLA SI ES MES DE UN
    // @Query("SELECT mc.person FROM MovieCrew mc WHERE mc.movie.movieId = :movieId AND mc.job = :job")

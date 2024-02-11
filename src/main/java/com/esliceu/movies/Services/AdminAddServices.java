@@ -322,7 +322,15 @@ public class AdminAddServices {
             departmentRepo.save(dp);
             return "Department by id ," + departmentId + " , Update successfully";
         } else {
+            if (isValidInput(name)) {
+                return "This input is Invalid,has not passed the allowed character filter, plese try a valid name";
+            } else if (name.isEmpty()) {
+                return "Input invalid: please enter a not empty input";
+            }
             return "Department Update Error";
         }
+    }
+    public static String quitarEspacios(String texto) {
+        return texto.replaceAll("\\s", "");
     }
 }

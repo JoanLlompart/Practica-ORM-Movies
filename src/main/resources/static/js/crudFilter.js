@@ -146,6 +146,8 @@ async function relationsMovie(viewId) {
         /*   const relationResults = document.getElementById('relationResults');
             relationResults.innerHTML = '';
    */
+        console.log("Data que se envia a createrestable")
+        console.log(data);
         createResultsTable(data);
         //showActorsModal(data, viewId);
 

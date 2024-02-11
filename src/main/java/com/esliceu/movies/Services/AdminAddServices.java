@@ -62,7 +62,7 @@ public class AdminAddServices {
         //Si el codi es una cadena buida o te nomes espais
         keyword =keyword.trim();
         //Permet numeros i lletras i espais enmitg ja que els altres se han eliminat
-        return keyword.matches("[a-zA-Z0-9_çÇñÑ ]+");
+        return keyword.matches("[a-zA-Z0-9_çÇéÉíÍóÓúÚüÜñÑ ]+");
     }
 
     public String insertLanguageRole(Map<String, String> data) {
@@ -303,6 +303,11 @@ public class AdminAddServices {
             personRepo.save(p);
             return "Person by id ," + personId + " , Update successfully";
         } else {
+            if (isValidInput(name)) {
+                return "This input is Invalid,has not passed the allowed character filter, plese try a valid name";
+            } else if (name.isEmpty()) {
+                return "Input invalid: please enter a not empty input";
+            }
             return "Person Update Error";
         }
     }

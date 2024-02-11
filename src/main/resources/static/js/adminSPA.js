@@ -2,6 +2,7 @@
 const operationSelect = document.getElementById('operationSelect');
 const selectedSection = document.getElementById('selectedSection');
 let selectedOption = "add";
+checkOperation();
 //mostrarSeccion('añadir')
 
 
@@ -342,5 +343,6 @@ document.getElementById('deleteSelect').addEventListener('change', function () {
 
 // Llama a showInputs al cargar la página para visualizar por defecto "country"
 window.onload = function () {
+    mostrarSeccion('añadir')
     showInputs();
 };

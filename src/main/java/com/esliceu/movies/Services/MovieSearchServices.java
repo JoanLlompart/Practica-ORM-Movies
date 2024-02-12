@@ -42,12 +42,6 @@ public class MovieSearchServices {
         return movieSearchRepo.findAll();
     }
 
-    /*public Page<Movie> getPage(Pageable pageable) {
-        return movieSearchRepo.findAll(pageable);
-    }
-
-     */
-
     public List<MovieDTO> filterMovies(String filter, String keyword,int page, int size) {
         if(isValidInput(keyword)) {
             System.out.println("Input valid");

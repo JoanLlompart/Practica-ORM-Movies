@@ -175,12 +175,11 @@ public class MovieSearchServices {
     }
 
 
-    //TODO: AMB PROBES DE SI POT CONTROLAR ELS FALSOS IMPUTS
     private boolean isValidInput(String keyword) {
         //Si el codi es una cadena buida o te nomes espais
         keyword =keyword.trim();
         //Permet numeros i lletras i espais enmitg ja que els altres se han eliminat
-        return keyword.matches("[a-zA-Z0-9_çÇñÑ -?!]+");
+        return keyword.matches("[a-zA-Z0-9_çÇéÉíÍóÓúÚüÜñÑ!?\\s]+");
     }
     @Transactional
     public String insertNewMovie(Map<String, String> data) {

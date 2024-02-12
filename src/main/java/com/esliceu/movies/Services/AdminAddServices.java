@@ -335,7 +335,7 @@ public class AdminAddServices {
             return "Department Update Error";
         }
     }
-    public static String quitarEspacios(String texto) {
+    public static String deleteSpace(String texto) {
         return texto.replaceAll("\\s", "");
     }
 }

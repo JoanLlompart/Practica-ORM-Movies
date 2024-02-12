@@ -73,7 +73,6 @@ public class MovieSearchServices {
                     return movieDTOList;
                 case "character":
                     System.out.println("Character of movie : " + keyword);
-                    //movieList = movieSearchRepo.findMovieByCharacter(keyword);
                     movieList = movieSearchRepo.findMovieByMoviecastCharacterNameContaining(keyword,pageable);
 
                     for (Movie mo:movieList) {
@@ -92,11 +91,11 @@ public class MovieSearchServices {
                 case "author":
                     System.out.println("author :" + keyword );
                     movieList= movieSearchRepo.findMovieByAuthor(keyword,pageable);
-                    //movieList = movieSearchRepo.findByMovieCrewJobAndMovieCrewPersonPersonNameContainingIgnoreCase("Author",keyword);
-                    for (Movie mo:movieList) {
+                  /*  for (Movie mo:movieList) {
                         System.out.println(mo.getTitle());
                     }
-                    //List<MovieDTO> movieDTOList = new ArrayList<>();
+
+                   */
                     for (Movie m:movieList) {
                         MovieDTO dto = new MovieDTO();
                         dto.setMovieId(m.getMovieId());
@@ -108,7 +107,6 @@ public class MovieSearchServices {
                     }
                     return movieDTOList;
                 case "title":
-                    //List<Movie> moviesList = movieSearchRepo.findMoviesByTitle(keyword);
                     List<Movie> moviesList = movieSearchRepo.findByTitleContainingIgnoreCase(keyword,pageable);
                     List<MovieDTO> movietitleDTO = new ArrayList<>();
                     for (Movie m:moviesList) {
@@ -122,11 +120,10 @@ public class MovieSearchServices {
                     return movietitleDTO;
                 case "genre":
                     System.out.println("Genre of movie : " + keyword);
-                   // movieList = movieSearchRepo.findMovieByGenre(keyword);
                     movieList = movieSearchRepo.findMovieByMovieGenres_GenreGenreNameContaining(keyword,pageable);
-                    for (Movie mo:movieList) {
+                   /* for (Movie mo:movieList) {
                         System.out.println(mo.getTitle());
-                    }
+                    }*/
                     for (Movie m:movieList) {
                         MovieDTO dto = new MovieDTO();
                         dto.setMovieId(m.getMovieId());
@@ -139,7 +136,6 @@ public class MovieSearchServices {
                     return movieDTOList;
                 case "director":
                     System.out.println("Director of movie : " + keyword);
-                   // movieList = movieSearchRepo.findMovieByDirector(keyword);
                     movieList = movieSearchRepo.findDistincMovieByMovieCrewsJobAndMovieCrews_PersonPersonNameContaining("Director",keyword,pageable);
                     for (Movie mo:movieList) {
                         System.out.println(mo.getTitle());

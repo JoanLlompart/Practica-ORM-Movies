@@ -164,7 +164,7 @@ public class MovieCastServices {
                 movieCast.setMovie(movie);
                 movieCast.setPerson(person);
                 movieCastRepo.deleteByCharacterNameAndMovie_MovieIdAndPerson_PersonId(characterName,movieId, personId);
-                movieCastRepo.save(movieCast);//proba
+                movieCastRepo.save(movieCast);
 
                 return "Update value successfully";
             }

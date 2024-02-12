@@ -374,18 +374,6 @@ public class MovieSearchServices {
         }
     }
 
-
-  /*  public Optional<MovieInfoDTO> getAllMovieInfo(Map<String, String> formData) {
-        Long movieId = Long.valueOf(formData.get("movieId"));
-        Optional<Movie> m=movieSearchRepo.findById(movieId);
-        //Rellenam el DTO amb les dades de Movie
-        String director =movieCrewServices.findDirectorByMovieId(movieId);
-        MovieInfoDTO movieInfoDTO = MovieInfoDTO.fromMovie(m.get(),director);
-        System.out.println("El director de la pelicula es : " + director);
-        return Optional.of(movieInfoDTO);
-    }
-
-   */
     public Optional<MovieInfoDTO> getAllMovieInfo(Map<String, String> formData) {
         Long movieId = Long.valueOf(formData.get("movieId"));
         Optional<Movie> m=movieSearchRepo.findById(movieId);

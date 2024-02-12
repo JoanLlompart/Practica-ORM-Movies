@@ -182,7 +182,7 @@ public class MovieSearchServices {
         //Permet numeros i lletras i espais enmitg ja que els altres se han eliminat
         return keyword.matches("[a-zA-Z0-9_çÇñÑ -?!]+");
     }
-
+    @Transactional
     public String insertNewMovie(Map<String, String> data) {
         String title = data.get("value1");
         Integer budget = Integer.valueOf(data.get("value2"));
@@ -355,6 +355,7 @@ public class MovieSearchServices {
             return "To Update a Movie need provided a Movie Id";
         }
     }
+
 
 
     public String deleteMovie(Map<String, String> data) {

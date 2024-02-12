@@ -10,6 +10,6 @@ import java.util.List;
 public interface MovieLanguagesRepo  extends JpaRepository<MovieLanguages, Long> {
     List<MovieLanguages> findAllByMovie_MovieId(Long movieId);
 
-    List<MovieLanguages> findAllByLanguage_LanguageId(Long languageId);//proba
+    List<MovieLanguages> findAllByLanguage_LanguageId(Long languageId);
 
 }

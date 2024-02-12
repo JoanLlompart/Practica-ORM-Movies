@@ -45,17 +45,21 @@ public class AdminAddServices {
             countryRepo.save(c);
             return true;
         } else {
-            System.out.println("VALOR DE ENTRADA NULL A InsertCountry");
+            System.out.println("The entry cannot be empty");
             return false;
         }
     }
 
-    public void insertLanguage(String value1, String value2) {
+    public String insertLanguage(String value1, String value2) {
         if (!value1.isEmpty() && !value2.isEmpty()) {
             Language language = new Language();
             language.setLanguageCode(value1);
             language.setLanguageName(value2);
             languageRepo.save(language);
+            return "Language added successfully";
+        } else {
+            return (value2.isEmpty()) ? "The entry cannot be empty" :
+                    "Invalid input in Language Role add, there are characters not supported by the filter";
         }
     }
     protected boolean isValidInput(String keyword) {

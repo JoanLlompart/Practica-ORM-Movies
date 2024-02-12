@@ -62,7 +62,7 @@ public class AdminAddServices {
         //Si el codi es una cadena buida o te nomes espais
         keyword =keyword.trim();
         //Permet numeros i lletras i espais enmitg ja que els altres se han eliminat
-        return keyword.matches("[a-zA-Z0-9_çÇéÉíÍóÓúÚüÜñÑ ]+");
+        return keyword.matches("[a-zA-Z0-9_çÇéÉíÍóÓúÚüÜñÑ!?\\s]+");
     }
 
     public String insertLanguageRole(Map<String, String> data) {
@@ -78,7 +78,7 @@ public class AdminAddServices {
             languageRoleRepo.save(lRole);
             return "Language Role added successfully";
         } else {
-            return "Invalid input in Language Role add";
+            return "Invalid input in Language Role add, there are characters not supported by the filter";
         }
 
     }
@@ -93,13 +93,14 @@ public class AdminAddServices {
             genreRepo.save(g);
             return "Genre added successfully";
         } else {
-            return "Genre Insert FAILED";
+            return "Genre Insert FAILED, there are characters not supported by the filter";
         }
     }
     public String insertNewKeyword(Map<String, String> data) {
         String keywordName = data.get("value1");
         System.out.println("keywordname " + keywordName);
-        if (isValidInput(keywordName) && !keywordName.isEmpty()) {
+        //if (isValidInput(keywordName) && !keywordName.isEmpty()) {
+        if (!keywordName.isEmpty()){
             Keyword k = new Keyword();
             k.setKeywordName(keywordName);
             Long lastId =keywordRepo.lasKeywordId();
@@ -107,7 +108,7 @@ public class AdminAddServices {
             keywordRepo.save(k);
             return "Keyword Add successfully";
         } else {
-            return "Keyword Insert FAILED";
+            return "Keyword Insert FAILED, there are characters not supported by the filter";
         }
     }
 
@@ -122,7 +123,7 @@ public class AdminAddServices {
             productionCompanyRepo.save(pc);
             return "Company Add successfully";
         } else {
-            return "Company Insert FAILED";
+            return "Company Insert FAILED, there are characters not supported by the filter";
         }
 
     }
@@ -134,7 +135,7 @@ public class AdminAddServices {
     public String insertNewGender(Map<String, String> data) {
         String genderName = data.get("value1");
 
-        if (isValidInput(genderName) && !genderName.isEmpty()) {
+        if (!genderName.isEmpty()) {
             Gender ge = new Gender();
             ge.setGender(genderName);
             Long lastId =genderRepo.lastGenderId();
@@ -142,7 +143,7 @@ public class AdminAddServices {
             genderRepo.save(ge);
             return "Gender Add successfully";
         } else {
-            return "Gender Insert FAILED";
+            return "Gender Insert FAILED, this input is not valid";
         }
     }
 
@@ -154,7 +155,7 @@ public class AdminAddServices {
             departmentRepo.save(dp);
             return "Department Add successfully";
         } else {
-            return "Department Insert FAILED";
+            return "Department Insert FAILED, this input DepartmentName contain invalid characters.";
         }
     }
     public String insertNewPerson(Map<String, String> data) {
@@ -167,7 +168,7 @@ public class AdminAddServices {
             personRepo.save(person);
             return "Person Add successfully";
         } else {
-            return "Person Insert FAILED";
+            return "Person Insert FAILED, there are characters not supported by the filter in input Name";
         }
     }
     public String updateCountry(Map<String, String> data) {

@@ -10,11 +10,7 @@ import java.util.List;
 
 public interface MovieCastRepo extends JpaRepository<MovieCast, Long> {
     List<MovieCast> findAllByMovie_MovieId(Long movieId);
-
-
     List<MovieCast> findByMovie_MovieId(Long movieId);
-
-
     List<MovieCast> findAllByPerson_PersonNameContaining(String personName, Pageable pageable);
 
     List<MovieCast> findAllByPerson_PersonId(Long personId);
@@ -22,17 +18,14 @@ public interface MovieCastRepo extends JpaRepository<MovieCast, Long> {
     @Query("SELECT COALESCE(MAX(mc.castOrder), 0) FROM MovieCast mc WHERE mc.movie.movieId = :movieId")
     int findMaxCastOrderForMovie(@Param("movieId") Long movieId);
 
-    MovieCast findFirstByMovie_MovieIdAndPerson_PersonId(Long movieId, Long personId);
-
-
     //Torna MoviCast que coincideix amb MovieId ,PersonId i GenderId
     MovieCast findFirstByMovie_MovieIdAndPerson_PersonIdAndGender_GenderId(Long movieId, Long personId, Long genderId);
 
-
+    //Borra MoviCast que coincideix amb MovieId ,PersonId i characterName
     void deleteByCharacterNameAndMovie_MovieIdAndPerson_PersonId(String characterName, Long movieId, Long personId);
-
+   //Borra MoviCast que coincideix amb MovieId ,PersonId i GenderId
     void deleteByCharacterNameAndMovie_MovieIdAndPerson_PersonIdAndGender_GenderId(String characterName, Long movieId, Long personId, Long genderId);
 
-
+    //Torna MoviCast que coincideix amb MovieId ,PersonId i characterName
     MovieCast findByCharacterNameAndMovie_MovieIdAndPerson_PersonId(String characterName, Long movieId, Long personId);
 }

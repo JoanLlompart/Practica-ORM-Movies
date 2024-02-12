@@ -52,18 +52,14 @@ public class MovieSearchServices {
 
         List<String> validFilters = Arrays.asList("title", "actor", "character", "genre", "director","author");
         if (validFilters.contains(filter)) {
-            System.out.println("Es un filtre valid");
             Pageable pageable = PageRequest.of(page,size);
             List<MovieDTO> movieDTOList = new ArrayList<>();
             switch (filter) {
                 case "actor":
-                    System.out.println("actor :" + keyword );
-                   // List<Movie> movieList= movieSearchRepo.findMovieByActor(keyword);
                     List<Movie> movieList= movieSearchRepo.findMovieByMoviecast_PersonPersonNameContaining(keyword,pageable);
-                    for (Movie mo:movieList) {
+                  /*  for (Movie mo:movieList) {
                         System.out.println(mo.getTitle());
-                    }
-                    //List<MovieDTO> movieDTOList = new ArrayList<>();
+                    }*/
 
                     for (Movie m:movieList) {
                         MovieDTO dto = new MovieDTO();

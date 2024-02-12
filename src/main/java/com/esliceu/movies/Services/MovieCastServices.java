@@ -82,15 +82,7 @@ public class MovieCastServices {
         Long genderId = Long.valueOf(data.get("genderId"));
         String characterName =data.get("characterName");
 
-
-       /* if (movieCastRepo.deleteByMovie_MovieIdAndPerson_PersonId(movieId, personId)) {
-            return "Actor decast successfully";
-        }else {
-            return "Actor decast failed";
-        }
-        */
         movieCastRepo.deleteByCharacterNameAndMovie_MovieIdAndPerson_PersonIdAndGender_GenderId(characterName,movieId,personId,genderId);
-        //movieCastRepo.deleteByMovie_MovieIdAndPerson_PersonId(movieId, personId);
         return "Actor decast successfully";
     }
 

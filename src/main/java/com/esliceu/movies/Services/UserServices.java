@@ -8,8 +8,8 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class UserServices {
-    private String email;
-    private String password;
+    //private String email;
+    //private String password;
     @Autowired
     AdminRepo adminRepo;
 
@@ -17,7 +17,7 @@ public class UserServices {
         return DigestUtils.md5Hex(password);
     }
 
-    public String getEmail() {
+ /*   public String getEmail() {
         return email;
     }
 
@@ -33,6 +33,8 @@ public class UserServices {
         this.password = password;
     }
 
+
+  */
     public AdminRepo getAdminRepo() {
         return adminRepo;
     }
@@ -42,7 +44,9 @@ public class UserServices {
     }
 
     public boolean validLogin(String email, String password) {
-        System.out.println();
+        //encriptam la password que el usuari ha introduit a Login
+        password = encriptarPassword(password);
+
         User user = adminRepo.findByEmail(email);
         if (user == null) {
             System.out.println("Usuari no existent");

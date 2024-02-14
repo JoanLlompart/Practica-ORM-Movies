@@ -29,8 +29,6 @@ public class LoginController {
         return "login";
     }
 
-
-
     @GetMapping("/logout")
     public String logout(HttpSession session) {
         //Invalidar la session actual si existe
@@ -52,12 +50,15 @@ public class LoginController {
         Integer loginAttempts = (Integer) session.getAttribute("loginAttempts");
         Long lastFailedLoginTime = (Long) session.getAttribute("lastFailedLoginTime");
         boolean userInPause = false;
-        userServices.setEmail(email);
-        userServices.setPassword(userServices.encriptarPassword(password));
+        //todo:Refactoritzant
+        //userServices.setEmail(email);
+        //userServices.setPassword(userServices.encriptarPassword(password));
+
+
        // String nameUser=userServices.getNameOfUser(email);
         if (loginAttempts == null || loginAttempts < 3) {
-            if (userServices.validLogin(userServices.getEmail(), userServices.getPassword())) {
-                session.setAttribute("email", userServices.getEmail());
+            if (userServices.validLogin(email, password)) {
+                session.setAttribute("email", email);
                 session.setAttribute("loginAttempts", 0);
                 session.setAttribute("usuariLogueat", true);
                 //session.setAttribute("name",nameUser);

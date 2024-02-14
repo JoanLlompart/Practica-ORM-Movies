@@ -33,7 +33,8 @@ public class AdminAreaController {
     @PostMapping("/adminArea")
     public String adminPost(HttpServletRequest req, HttpSession session) {
         String email = (String) session.getAttribute("email");
-        userServices.setEmail(email);
+        //    userServices.setEmail(email);
+
        // String isoCode = data.get("isoCode");
         //String nameCountry = data.get("name");
         //adminAddServices.insertCountry(isoCode, nameCountry);
@@ -44,7 +45,7 @@ public class AdminAreaController {
     @PostMapping("/adminArea/updateMoviCast")
     public ResponseEntity<Object> adminUpdateMovieCast(HttpSession session, @RequestBody Map<String, String> data) {
         String email = (String) session.getAttribute("email");
-        userServices.setEmail(email);
+        //userServices.setEmail(email);
         String successMessage = movieCastServices.updateMovieCast(data);
         return ResponseEntity.ok().body(successMessage);
     }

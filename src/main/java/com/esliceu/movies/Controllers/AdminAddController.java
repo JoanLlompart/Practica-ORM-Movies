@@ -112,6 +112,7 @@ public class AdminAddController {
             String successMessage = adminAddServices.insertNewDepartment(data);
             return ResponseEntity.ok().body(successMessage);
         }
+        return ResponseEntity.ok().body("Acces denied, you do not have admin permissions");
     }
 
     @PostMapping("/adminArea/add/person")

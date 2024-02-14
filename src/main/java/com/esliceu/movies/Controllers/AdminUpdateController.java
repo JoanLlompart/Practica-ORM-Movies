@@ -81,24 +81,36 @@ public class AdminUpdateController {
     public ResponseEntity<Object> adminUpdatePostGender( HttpSession session , @RequestBody Map<String,String> data) {
         String email = (String) session.getAttribute("email");
         //userServices.setEmail(email);
-        String successMessage =adminAddServices.updateGender(data);
-        return ResponseEntity.ok().body(successMessage);
+        if (email != null) {
+            String successMessage = adminAddServices.updateGender(data);
+            return ResponseEntity.ok().body(successMessage);
+        } else {
+            return ResponseEntity.ok().body("Acces denied, you do not have admin permissions");
+        }
     }
 
     @PostMapping("/adminArea/update/person")
     public ResponseEntity<Object> adminUpdatePostPerson( HttpSession session , @RequestBody Map<String,String> data) {
         String email = (String) session.getAttribute("email");
         //userServices.setEmail(email);
-        String successMessage =adminAddServices.updatePerson(data);
-        return ResponseEntity.ok().body(successMessage);
+        if (email != null) {
+            //userServices.setEmail(email);
+            String successMessage =adminAddServices.updatePerson(data);
+            return ResponseEntity.ok().body(successMessage);
+        } else {
+            return ResponseEntity.ok().body("Acces denied, you do not have admin permissions");
+        }
     }
 
     @PostMapping("/adminArea/update/department")
     public ResponseEntity<Object> adminUpdatePostDepartment( HttpSession session , @RequestBody Map<String,String> data) {
         String email = (String) session.getAttribute("email");
         //userServices.setEmail(email);
-        String successMessage =adminAddServices.updateDepartment(data);
-        return ResponseEntity.ok().body(successMessage);
+        if (email != null) {
+            String successMessage = adminAddServices.updateDepartment(data);
+            return ResponseEntity.ok().body(successMessage);
+        }
+        return ResponseEntity.ok().body("Acces denied, you do not have admin permissions");
     }
 
 }

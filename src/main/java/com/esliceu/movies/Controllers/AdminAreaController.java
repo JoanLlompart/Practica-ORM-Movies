@@ -45,9 +45,14 @@ public class AdminAreaController {
     @PostMapping("/adminArea/updateMoviCast")
     public ResponseEntity<Object> adminUpdateMovieCast(HttpSession session, @RequestBody Map<String, String> data) {
         String email = (String) session.getAttribute("email");
-        //userServices.setEmail(email);
-        String successMessage = movieCastServices.updateMovieCast(data);
-        return ResponseEntity.ok().body(successMessage);
+        if (email != null) {
+            //userServices.setEmail(email);
+            String successMessage = movieCastServices.updateMovieCast(data);
+            return ResponseEntity.ok().body(successMessage);
+        } else {
+            return ResponseEntity.ok().body("Acces denied, you do not have admin permissions");
+        }
+
     }
 
 

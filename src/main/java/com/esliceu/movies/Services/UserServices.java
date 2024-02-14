@@ -17,24 +17,24 @@ public class UserServices {
         return DigestUtils.md5Hex(password);
     }
 
- /*   public String getEmail() {
-        return email;
-    }
+    /*   public String getEmail() {
+           return email;
+       }
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
+       public void setEmail(String email) {
+           this.email = email;
+       }
 
-    public String getPassword() {
-        return password;
-    }
+       public String getPassword() {
+           return password;
+       }
 
-    public void setPassword(String password) {
-        this.password = password;
-    }
+       public void setPassword(String password) {
+           this.password = password;
+       }
 
 
-  */
+     */
     public AdminRepo getAdminRepo() {
         return adminRepo;
     }
@@ -55,7 +55,7 @@ public class UserServices {
         if (user.getEmail().equals(email) && user.getPassword().equals(password)) {
             System.out.println("usuari existent" + "PasswordCorrecte");
             System.out.println(user.getPassword());
-           // password = encriptarPassword(password);
+            // password = encriptarPassword(password);
             return true;
         } else {
             System.out.println("Usuari o password incorrectes");

@@ -39,7 +39,7 @@ public class AdminAreaFilterController {
     public List<?> adminFilter(HttpSession session , @RequestBody Map<String,String> data) {
         String email = (String) session.getAttribute("email");
         //userServices.setEmail(email);
-      //  String successMessage =crudFilterServices.insertNewKeyword(data);
+        //  String successMessage =crudFilterServices.insertNewKeyword(data);
         return crudFilterServices.filterByEntity(data);
     }
 

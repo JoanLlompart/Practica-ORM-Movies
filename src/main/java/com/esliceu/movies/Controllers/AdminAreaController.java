@@ -33,7 +33,7 @@ public class AdminAreaController {
     @PostMapping("/adminArea")
     public String adminPost(HttpServletRequest req, HttpSession session) {
         String email = (String) session.getAttribute("email");
-        //    userServices.setEmail(email);
+        //userServices.setEmail(email);
 
        // String isoCode = data.get("isoCode");
         //String nameCountry = data.get("name");

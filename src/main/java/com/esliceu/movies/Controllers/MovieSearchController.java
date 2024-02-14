@@ -37,9 +37,7 @@ public class MovieSearchController {
         model.addAttribute("moviesFind", movieList);
         model.addAttribute("currentPage", page);
         model.addAttribute("email", email != null);
-       /* if ( email != null) {
-            model.addAttribute("validAdmin",email);
-        }*/
+
 
         return "movieSearch";
     }
@@ -57,12 +55,6 @@ public class MovieSearchController {
         System.out.println("Filtram per: " + filter + ", amb la paraula clau: " + keyword);
         // En el service filtramos por el tipo de keyword y tratamos las datos.
         List<MovieDTO> movieList = movieSearchServices.filterMovies(filter, keyword, page, size);
-
-       /* for (MovieDTO m : movieList) {
-            System.out.println("Title " + m.getTitle() + " , relaseDate : " + m.getReleaseDate() + " , voteAvarage : " + m.getVoteAverage());
-        }
-
-        */
         return movieList;
     }
 
@@ -71,7 +63,7 @@ public class MovieSearchController {
     @ResponseBody
     public List<Person> filterPerson(@RequestBody Map<String, String> formData, HttpSession session) {
         String email = (String) session.getAttribute("email");
-        //userServices.setEmail(email);
+
         return personServices.findPersonsByKeyword(formData);
     }
 

@@ -38,17 +38,21 @@ public class AdminDeleteController {
     @PostMapping("/adminArea/delete/country")
     public ResponseEntity<Object> adminDeletePostCountry(HttpSession session , @RequestBody Map<String,String> data) {
         String email = (String) session.getAttribute("email");
-        //userServices.setEmail(email);
-        String successMessage =countryServices.deleteCountry(data);
-        return ResponseEntity.ok().body(successMessage);
+        if (email != null) {
+            String successMessage = countryServices.deleteCountry(data);
+            return ResponseEntity.ok().body(successMessage);
+        }
+        return ResponseEntity.ok().body("Acces denied, you do not have admin permissions");
     }
 
     @PostMapping("/adminArea/delete/language")
     public ResponseEntity<Object> adminDeletePostLanguage(HttpSession session , @RequestBody Map<String,String> data) {
         String email = (String) session.getAttribute("email");
-        //userServices.setEmail(email);
-        String successMessage =languageServices.deleteLanguage(data);
-        return ResponseEntity.ok().body(successMessage);
+        if (email != null) {
+            String successMessage = languageServices.deleteLanguage(data);
+            return ResponseEntity.ok().body(successMessage);
+        }
+        return ResponseEntity.ok().body("Acces denied, you do not have admin permissions");
     }
 
 
@@ -63,24 +67,31 @@ public class AdminDeleteController {
     @PostMapping("/adminArea/delete/person")
     public ResponseEntity<Object> adminDeletePostPerson(HttpSession session , @RequestBody Map<String,String> data) {
         String email = (String) session.getAttribute("email");
-        // userServices.setEmail(email);
-        String successMessage =personServices.deletePerson(data);
-        return ResponseEntity.ok().body(successMessage);
+        if (email != null) {
+            String successMessage = personServices.deletePerson(data);
+            return ResponseEntity.ok().body(successMessage);
+        }
+        return ResponseEntity.ok().body("Acces denied, you do not have admin permissions");
+
     }
 
     @PostMapping("/adminArea/deleteMovieGenre")
     public ResponseEntity<Object> adminDeleteMovieGenre(HttpSession session , @RequestBody Map<String,String> data) {
         String email = (String) session.getAttribute("email");
-        // userServices.setEmail(email);
-        String successMessage = movieGenresServices.deleteByMovieIdAndGenreId(data);
-        return ResponseEntity.ok().body(successMessage);
+        if (email != null) {
+            String successMessage = movieGenresServices.deleteByMovieIdAndGenreId(data);
+            return ResponseEntity.ok().body(successMessage);
+        }
+        return ResponseEntity.ok().body("Acces denied, you do not have admin permissions");
+
     }
     @PostMapping("/adminArea/deleteMovieKeywords")
     public ResponseEntity<Object> adminDeleteMovieKeywords(HttpSession session , @RequestBody Map<String,String> data) {
         String email = (String) session.getAttribute("email");
-        // userServices.setEmail(email);
-        //String successMessage = movieGenresServices.deleteByMovieIdAndGenreId(data);
-        String successMessage = movieKeywordsServices.deleteByMovieIdAndKeywordId(data);
-        return ResponseEntity.ok().body(successMessage);
+        if (email != null) {
+            String successMessage = movieKeywordsServices.deleteByMovieIdAndKeywordId(data);
+            return ResponseEntity.ok().body(successMessage);
+        }
+        return ResponseEntity.ok().body("Acces denied, you do not have admin permissions");
     }
 }

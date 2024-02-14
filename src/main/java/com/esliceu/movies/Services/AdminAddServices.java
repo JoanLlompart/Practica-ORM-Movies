@@ -75,9 +75,7 @@ public class AdminAddServices {
         if (isValidInput(languageRole) && !languageRole.isEmpty()) {
             LanguageRole lRole = new LanguageRole();
             lRole.setLanguageRole(languageRole);
-            //Long lastRoleId =languageRoleRepo.findFirstByOrderByRoleIdDesc();
             Long lastRoleId=languageRoleRepo.lastRoleId();
-
             lRole.setRoleId(lastRoleId +1);
             System.out.println("Id darrer de LanguageRole es : " + lRole.getRoleId());
             languageRoleRepo.save(lRole);
@@ -119,7 +117,6 @@ public class AdminAddServices {
 
     public String insertNewProductionCompany(Map<String, String> data) {
         String companyName = data.get("value1");
-       // String companyId = data.get("value2");
         if (isValidInput(companyName) && !companyName.isEmpty()) {
             ProductionCompany pc = new ProductionCompany();
             pc.setCompanyName(companyName);
@@ -335,8 +332,5 @@ public class AdminAddServices {
             }
             return "Department Update Error";
         }
-    }
-    public static String deleteSpace(String texto) {
-        return texto.replaceAll("\\s", "");
     }
 }

@@ -96,7 +96,6 @@ public class MovieSearchController {
     @PostMapping("/adminArea/add/movie")
     public ResponseEntity<Object> adminAddPostMovie(HttpSession session, @RequestBody Map<String, String> data) {
         String email = (String) session.getAttribute("email");
-        //userServices.setEmail(email);
         String successMessage = movieSearchServices.insertNewMovie(data);
         return ResponseEntity.ok().body(successMessage);
     }
@@ -105,7 +104,6 @@ public class MovieSearchController {
     @PostMapping("/adminArea/update/movie")
     public ResponseEntity<Object> adminUpdatePostMovie(HttpSession session, @RequestBody Map<String, String> data) {
         String email = (String) session.getAttribute("email");
-         //userServices.setEmail(email);
         String successMessage = movieSearchServices.updateMovie(data);
         return ResponseEntity.ok().body(successMessage);
     }
@@ -113,7 +111,6 @@ public class MovieSearchController {
     @PostMapping("/adminArea/delete/movie")
     public ResponseEntity<Object> adminDeletePostMovie(HttpSession session, @RequestBody Map<String, String> data) {
         String email = (String) session.getAttribute("email");
-         //userServices.setEmail(email);
         String successMessage = movieSearchServices.deleteMovie(data);
         return ResponseEntity.ok().body(successMessage);
     }

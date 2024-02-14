@@ -10,7 +10,6 @@ import java.util.Set;
 public class Gender {
 
     @Id
-    //@GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "gender_id")
     private Long genderId;
 

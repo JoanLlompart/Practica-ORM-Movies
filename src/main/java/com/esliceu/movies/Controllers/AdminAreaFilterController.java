@@ -38,8 +38,6 @@ public class AdminAreaFilterController {
     @ResponseBody
     public List<?> adminFilter(HttpSession session , @RequestBody Map<String,String> data) {
         String email = (String) session.getAttribute("email");
-        //userServices.setEmail(email);
-        //  String successMessage =crudFilterServices.insertNewKeyword(data);
         return crudFilterServices.filterByEntity(data);
     }
 
@@ -47,7 +45,6 @@ public class AdminAreaFilterController {
     @ResponseBody
     public List<?> adminMovieRelationDirector(HttpSession session , @RequestBody Map<String,String> data) {
         String email = (String) session.getAttribute("email");
-        //userServices.setEmail(email);
         return crudFilterServices.findMovieDirector(data);
     }
 
@@ -55,14 +52,12 @@ public class AdminAreaFilterController {
     @ResponseBody
     public List<?> adminMovieRelationGenre(HttpSession session , @RequestBody Map<String,String> data) {
         String email = (String) session.getAttribute("email");
-        // userServices.setEmail(email);
         return crudFilterServices.findByGenre(data);
     }
     @PostMapping("/adminArea/movieMovieKeywords")
     @ResponseBody
     public List<?> adminMovieRelationKeywords(HttpSession session , @RequestBody Map<String,String> data) {
         String email = (String) session.getAttribute("email");
-        //userServices.setEmail(email);
         return crudFilterServices.findByKeyword(data);
     }
 
@@ -83,39 +78,33 @@ public class AdminAreaFilterController {
         return crudFilterServices.findAllKeywordsByName(data);
     }
 
-
-   /* @PostMapping("/adminArea/movieProductionCompany")
-    @ResponseBody
-    public List<?> adminMovieRelationProductCompany(HttpSession session , @RequestBody Map<String,String> data) {
-        String email = (String) session.getAttribute("email");
-        userServices.setEmail(email);
-        return crudFilterServices.find(data);
-    }*/
-
-
-
-
     @PostMapping("/adminArea/decastActor")
     public ResponseEntity<Object> adminDecastActor(HttpSession session, @RequestBody Map<String, String> data) {
         String email = (String) session.getAttribute("email");
-        //userServices.setEmail(email);
-        String successMessage = movieCastServices.decastActor(data);
-        return ResponseEntity.ok().body(successMessage);
+        if (email != null) {
+            String successMessage = movieCastServices.decastActor(data);
+            return ResponseEntity.ok().body(successMessage);
+        }
+        return ResponseEntity.ok().body("Acces denied, you do not have admin permissions");
     }
 
     @PostMapping("/adminArea/castPerson")
     public ResponseEntity<Object> adminCastPerson(HttpSession session, @RequestBody Map<String, String> data) {
         String email = (String) session.getAttribute("email");
-        // userServices.setEmail(email);
-        String successMessage = movieCastServices.castActor(data);
-        return ResponseEntity.ok().body(successMessage);
+        if (email != null) {
+            String successMessage = movieCastServices.castActor(data);
+            return ResponseEntity.ok().body(successMessage);
+        }
+        return ResponseEntity.ok().body("Acces denied, you do not have admin permissions");
     }
     @PostMapping("/adminArea/deleteDirector")
     public ResponseEntity<Object> adminDeleteDirectorInMovieCrew(HttpSession session , @RequestBody Map<String,String> data) {
         String email = (String) session.getAttribute("email");
-        //userServices.setEmail(email);
-        String successMessage = movieCrewServices.deleteDirector(data);
-        return ResponseEntity.ok().body(successMessage);
+        if (email != null) {
+            String successMessage = movieCrewServices.deleteDirector(data);
+            return ResponseEntity.ok().body(successMessage);
+        }
+        return ResponseEntity.ok().body("Acces denied, you do not have admin permissions");
     }
 
 

@@ -44,6 +44,8 @@ public class CrudFilterServices {
     KeywordRepo keywordRepo;
     @Autowired
     MovieKeywordsServices movieKeywordsServices;
+    @Autowired
+    GenderServices genderServices;
 
     public List<?> filterByEntity(Map<String, String> data) {
        String filter =data.get("filter");
@@ -84,6 +86,8 @@ public class CrudFilterServices {
                 return departmentRepo.findByDepartmentNameContaining(keyword,pageable);
             case "keyword":
                 return keywordRepo.findByKeywordNameContaining(keyword,pageable);
+            case "gender":
+                return genderServices.findByGender(keyword,pageable);
             default:
                 break;
         }

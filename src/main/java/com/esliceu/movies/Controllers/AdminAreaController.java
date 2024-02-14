@@ -40,7 +40,6 @@ public class AdminAreaController {
     public ResponseEntity<Object> adminUpdateMovieCast(HttpSession session, @RequestBody Map<String, String> data) {
         String email = (String) session.getAttribute("email");
         if (email != null) {
-
             String successMessage = movieCastServices.updateMovieCast(data);
             return ResponseEntity.ok().body(successMessage);
         } else {

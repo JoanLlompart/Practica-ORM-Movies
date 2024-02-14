@@ -31,39 +31,23 @@ public class AdminAddController {
         return "adminArea";
     }
 
-   /* @PostMapping("/adminArea/add")
-    public ResponseEntity<Object> adminPost(HttpServletRequest req, HttpSession session , @RequestBody Map<String,String> data) {
-        String email = (String) session.getAttribute("email");
-        userServices.setEmail(email);
-        String isoCode = data.get("value1");
-        String nameCountry = data.get("value2");
-        System.out.println("name" + nameCountry + " , CODE :"+ isoCode);
-        boolean valid=adminAddServices.insertCountry(isoCode,nameCountry);
-        String successMessage;
-        if (valid) {
-            successMessage = "Add admin AdminController";
-        } else {
-            successMessage = "Country ADD FAILED";
-        }
-        return ResponseEntity.ok().body(successMessage);
-    }
-
-    */
 
     @PostMapping("/adminArea/add/country")
     public ResponseEntity<Object> adminAddPostCountry(HttpServletRequest req, HttpSession session , @RequestBody Map<String,String> data) {
         String email = (String) session.getAttribute("email");
-        //userServices.setEmail(email);
-        String isoCode = data.get("value1");
-        String nameCountry = data.get("value2");
-        boolean valid =adminAddServices.insertCountry(isoCode,nameCountry);
-        String successMessage;
-        if (valid) {
-            successMessage = "Country added successfully";
-        } else {
-            successMessage = "Country ADD FAILED";
+        if (email != null) {
+            String isoCode = data.get("value1");
+            String nameCountry = data.get("value2");
+            boolean valid = adminAddServices.insertCountry(isoCode, nameCountry);
+            String successMessage;
+            if (valid) {
+                successMessage = "Country added successfully";
+            } else {
+                successMessage = "Country ADD FAILED";
+            }
+            return ResponseEntity.ok().body(successMessage);
         }
-        return ResponseEntity.ok().body(successMessage);
+        return ResponseEntity.ok().body("Acces denied, you do not have admin permissions");
     }
 
     @PostMapping("/adminArea/add/language")

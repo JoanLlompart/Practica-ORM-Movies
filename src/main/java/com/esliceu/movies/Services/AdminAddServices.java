@@ -36,17 +36,18 @@ public class AdminAddServices {
 
     @PersistenceContext
     private EntityManager entityManager;
-    public boolean insertCountry(String isoCode,String nameCountry) {
+    public String insertCountry(Map<String, String> data) {
+        String isoCode = data.get("value1");
+        String nameCountry = data.get("value2");
         if (!isoCode.isEmpty() && !nameCountry.isEmpty()) {
             System.out.println("iso " + isoCode + " , name " + nameCountry);
             Country c = new Country();
             c.setCountryIsoCode(isoCode);
             c.setCountryName(nameCountry);
             countryRepo.save(c);
-            return true;
+            return "Country added successfully";
         } else {
-            System.out.println("The entry cannot be empty");
-            return false;
+           return "Country ADD FAILED";
         }
     }
 

@@ -36,15 +36,7 @@ public class AdminAddController {
     public ResponseEntity<Object> adminAddPostCountry(HttpServletRequest req, HttpSession session , @RequestBody Map<String,String> data) {
         String email = (String) session.getAttribute("email");
         if (email != null) {
-            String isoCode = data.get("value1");
-            String nameCountry = data.get("value2");
-            boolean valid = adminAddServices.insertCountry(isoCode, nameCountry);
-            String successMessage;
-            if (valid) {
-                successMessage = "Country added successfully";
-            } else {
-                successMessage = "Country ADD FAILED";
-            }
+            String successMessage= adminAddServices.insertCountry(data);
             return ResponseEntity.ok().body(successMessage);
         }
         return ResponseEntity.ok().body("Acces denied, you do not have admin permissions");
@@ -53,18 +45,15 @@ public class AdminAddController {
     @PostMapping("/adminArea/add/language")
     public ResponseEntity<Object> adminAddPostLanguage(HttpServletRequest req, HttpSession session , @RequestBody Map<String,String> data) {
         String email = (String) session.getAttribute("email");
-        //userServices.setEmail(email);
         String isoCode = data.get("value1");
         String nameCountry = data.get("value2");
         String successMessage =adminAddServices.insertLanguage(isoCode,nameCountry);
-        //String successMessage = "Country added successfully";
         return ResponseEntity.ok().body(successMessage);
     }
 
     @PostMapping("/adminArea/add/languageRole")
     public ResponseEntity<Object> adminAddPostLanguageRole( HttpSession session , @RequestBody Map<String,String> data) {
         String email = (String) session.getAttribute("email");
-        //userServices.setEmail(email);
         String successMessage = adminAddServices.insertLanguageRole(data);
         return ResponseEntity.ok().body(successMessage);
     }
@@ -72,7 +61,6 @@ public class AdminAddController {
     @PostMapping("/adminArea/add/genre")
     public ResponseEntity<Object> adminAddPostGenre( HttpSession session , @RequestBody Map<String,String> data) {
         String email = (String) session.getAttribute("email");
-        //userServices.setEmail(email);
         String successMessage =adminAddServices.insertNewGenre(data);
         return ResponseEntity.ok().body(successMessage);
     }
@@ -80,7 +68,6 @@ public class AdminAddController {
     @PostMapping("/adminArea/add/keyword")
     public ResponseEntity<Object> adminAddPostKeyword( HttpSession session , @RequestBody Map<String,String> data) {
         String email = (String) session.getAttribute("email");
-        //userServices.setEmail(email);
         String successMessage =adminAddServices.insertNewKeyword(data);
         return ResponseEntity.ok().body(successMessage);
     }
@@ -88,8 +75,6 @@ public class AdminAddController {
     @PostMapping("/adminArea/add/productionCompany")
     public ResponseEntity<Object> adminAddPostProductionCompany( HttpSession session , @RequestBody Map<String,String> data) {
         String email = (String) session.getAttribute("email");
-        //userServices.setEmail(email);
-
         String successMessage =adminAddServices.insertNewProductionCompany(data);
         return ResponseEntity.ok().body(successMessage);
     }
@@ -98,7 +83,6 @@ public class AdminAddController {
     @PostMapping("/adminArea/add/gender")
     public ResponseEntity<Object> adminAddPostGender( HttpSession session , @RequestBody Map<String,String> data) {
         String email = (String) session.getAttribute("email");
-        //userServices.setEmail(email);
         String successMessage =adminAddServices.insertNewGender(data);
         return ResponseEntity.ok().body(successMessage);
     }
@@ -106,7 +90,6 @@ public class AdminAddController {
     @PostMapping("/adminArea/add/department")
     public ResponseEntity<Object> adminAddPostDepartment( HttpSession session , @RequestBody Map<String,String> data) {
         String email = (String) session.getAttribute("email");
-        //userServices.setEmail(email);
         String successMessage =adminAddServices.insertNewDepartment(data);
         return ResponseEntity.ok().body(successMessage);
     }
